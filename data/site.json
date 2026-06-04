@@ -1,0 +1,44 @@
+{
+  "name": "SInC",
+  "fullName": "Student Incubation Cell",
+  "tagline": "Your journey from idea to impact begins here.",
+  "description": "Official website of the Student Incubation Cell, IIT Delhi — empowering campus founders to build real startups.",
+  "contact": {
+    "email": "contact@sinciitd.in",
+    "phone": "+91 8854876945",
+    "address": "2C3, Research & Innovation Park, Indian Institute of Technology Delhi, 110016",
+    "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.0!2d77.1926!3d28.5455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIIT%20Delhi!5e0!3m2!1sen!2sin!4v1"
+  },
+  "socials": [
+    {
+      "name": "linkedin",
+      "href": "https://www.linkedin.com/company/sinciitd",
+      "label": "LinkedIn"
+    },
+    {
+      "name": "instagram",
+      "href": "https://www.instagram.com/sinciitd/",
+      "label": "Instagram"
+    },
+    {
+      "name": "facebook",
+      "href": "https://www.facebook.com/sinciitd/",
+      "label": "Facebook"
+    }
+  ],
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about" },
+    { "label": "Programs", "href": "/programs" },
+    { "label": "Events", "href": "/events" },
+    { "label": "Portfolio", "href": "/portfolio" },
+    { "label": "Team", "href": "/team" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "stats": [
+    { "value": 0, "suffix": "", "label": "Startups supported", "note": "Update in site.json" },
+    { "value": 0, "suffix": "", "label": "Events hosted", "note": "Update in site.json" },
+    { "value": 0, "suffix": "", "label": "Mentors & partners", "note": "Update in site.json" },
+    { "value": 0, "suffix": "", "label": "Years of impact", "note": "Update in site.json" }
+  ]
+}

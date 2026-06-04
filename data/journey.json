@@ -1,0 +1,7 @@
+[
+  { "step": 1, "title": "Ideate", "description": "Explore problems worth solving and validate ideas with peers and mentors." },
+  { "step": 2, "title": "Validate", "description": "Run experiments, talk to users, and refine your value proposition." },
+  { "step": 3, "title": "Build", "description": "Ship an MVP with access to space, tools, and technical guidance." },
+  { "step": 4, "title": "Pitch", "description": "Prepare for demo days, investor meetings, and grant applications." },
+  { "step": 5, "title": "Launch", "description": "Incorporate, scale, and join IIT Delhi's founder alumni network." }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "name": "",
+    "role": "",
+    "team": "Leadership",
+    "bio": ""
+  },
+  {
+    "id": "2",
+    "name": "",
+    "role": "",
+    "team": "Events",
+    "bio": ""
+  },
+  {
+    "id": "3",
+    "name": "",
+    "role": "",
+    "team": "Tech",
+    "bio": ""
+  },
+  {
+    "id": "4",
+    "name": "",
+    "role": "",
+    "team": "Outreach",
+    "bio": ""
+  },
+  {
+    "id": "5",
+    "name": "",
+    "role": "",
+    "team": "Incubation",
+    "bio": ""
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "mentorship",
+    "title": "Mentorship",
+    "description": "Connect with professors, industry veterans, and successful founders who guide you at every stage.",
+    "icon": "Users",
+    "color": "blue"
+  },
+  {
+    "id": "space",
+    "title": "Incubation Space",
+    "description": "Access workspace and resources at Research & Innovation Park to build without constraints.",
+    "icon": "Building2",
+    "color": "orange"
+  },
+  {
+    "id": "legal",
+    "title": "Legal & Compliance",
+    "description": "Navigate incorporation, IP, and regulatory hurdles with expert guidance built for startups.",
+    "icon": "Scale",
+    "color": "maroon"
+  },
+  {
+    "id": "funding",
+    "title": "Funding Connect",
+    "description": "Get pitch-ready and meet investors, grant programs, and campus funding opportunities.",
+    "icon": "TrendingUp",
+    "color": "gold"
+  },
+  {
+    "id": "community",
+    "title": "Founder Community",
+    "description": "Join a network of builders who challenge, collaborate, and celebrate wins together.",
+    "icon": "Sparkles",
+    "color": "purple"
+  }
+]
