@@ -40,9 +40,9 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2 group shrink-0">
             <Image
               src="/logo.svg"
-              alt="SInC logo"
-              width={32}
-              height={32}
+              alt="SInC"
+              width={40}
+              height={40}
               className="transition-transform group-hover:scale-105"
             />
             <span className="text-lg font-bold tracking-tight hidden sm:inline">
