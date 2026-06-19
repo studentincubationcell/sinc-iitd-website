@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { CheckCircle2 } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const applySchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -20,6 +21,9 @@ const applySchema = z.object({
 });
 
 type ApplyForm = z.infer<typeof applySchema>;
+
+const fieldClass =
+  "border-club-lavender/25 bg-background focus-visible:ring-club-gold/40 focus-visible:border-club-lavender/50";
 
 export function ApplyForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -43,9 +47,9 @@ export function ApplyForm() {
       <m.div
         initial={reduceMotion ? false : { scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="rounded-2xl border border-primary/20 bg-primary/5 p-12 text-center"
+        className="rounded-2xl border border-club-lavender/25 bg-club-lavender/[0.06] p-12 text-center"
       >
-        <CheckCircle2 className="h-16 w-16 text-primary mx-auto mb-6" />
+        <CheckCircle2 className="h-16 w-16 text-club-gold mx-auto mb-6" />
         <h3 className="text-2xl font-bold">Application received!</h3>
         <p className="text-muted mt-3 max-w-md mx-auto">
           Thanks for applying to SInC. Our team will review your application and
@@ -56,25 +60,30 @@ export function ApplyForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-5 shadow-sm"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <Label htmlFor="apply-name">Full name</Label>
-          <Input id="apply-name" className="mt-1.5" {...register("name")} />
+          <Label htmlFor="apply-name" className="text-foreground/90">
+            Full name
+          </Label>
+          <Input
+            id="apply-name"
+            className={cn("mt-1.5", fieldClass)}
+            {...register("name")}
+          />
           {errors.name && (
             <p className="text-sm text-accent mt-1">{errors.name.message}</p>
           )}
         </div>
         <div>
-          <Label htmlFor="apply-email">Email</Label>
+          <Label htmlFor="apply-email" className="text-foreground/90">
+            Email
+          </Label>
           <Input
             id="apply-email"
             type="email"
             placeholder="you@iitd.ac.in"
-            className="mt-1.5"
+            className={cn("mt-1.5", fieldClass)}
             {...register("email")}
           />
           {errors.email && (
@@ -83,10 +92,15 @@ export function ApplyForm() {
         </div>
       </div>
       <div>
-        <Label htmlFor="apply-year">Year of study</Label>
+        <Label htmlFor="apply-year" className="text-foreground/90">
+          Year of study
+        </Label>
         <select
           id="apply-year"
-          className="mt-1.5 flex h-11 w-full rounded-xl border border-border bg-card px-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className={cn(
+            "mt-1.5 flex h-11 w-full rounded-xl border px-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1",
+            fieldClass
+          )}
           {...register("year")}
         >
           <option value="">Select year</option>
@@ -102,11 +116,13 @@ export function ApplyForm() {
         )}
       </div>
       <div>
-        <Label htmlFor="apply-idea">Your startup idea</Label>
+        <Label htmlFor="apply-idea" className="text-foreground/90">
+          Your startup idea
+        </Label>
         <Textarea
           id="apply-idea"
           placeholder="What problem are you solving? Who is your customer?"
-          className="mt-1.5"
+          className={cn("mt-1.5", fieldClass)}
           {...register("idea")}
         />
         {errors.idea && (
@@ -114,18 +130,20 @@ export function ApplyForm() {
         )}
       </div>
       <div>
-        <Label htmlFor="apply-why">Why SInC?</Label>
+        <Label htmlFor="apply-why" className="text-foreground/90">
+          Why SInC?
+        </Label>
         <Textarea
           id="apply-why"
           placeholder="What do you hope to gain from joining?"
-          className="mt-1.5"
+          className={cn("mt-1.5", fieldClass)}
           {...register("why")}
         />
         {errors.why && (
           <p className="text-sm text-accent mt-1">{errors.why.message}</p>
         )}
       </div>
-      <Button type="submit" disabled={isSubmitting} size="lg" className="w-full">
+      <Button type="submit" disabled={isSubmitting} variant="club" size="lg" className="w-full">
         {isSubmitting ? "Submitting..." : "Submit application"}
       </Button>
     </form>

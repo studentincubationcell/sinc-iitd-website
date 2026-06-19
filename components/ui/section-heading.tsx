@@ -8,6 +8,7 @@ export function SectionHeading({
   align = "left",
   className,
   dark = false,
+  club = false,
 }: {
   label: string;
   title: string;
@@ -15,7 +16,10 @@ export function SectionHeading({
   align?: "left" | "center";
   className?: string;
   dark?: boolean;
+  club?: boolean;
 }) {
+  const onDark = club || dark;
+
   return (
     <Reveal
       className={cn(
@@ -24,18 +28,19 @@ export function SectionHeading({
         className
       )}
     >
-      <p
+      <span
         className={cn(
-          "text-xs font-semibold uppercase tracking-[0.2em] mb-4",
-          dark ? "text-white/50" : "text-muted"
+          "inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.28em] mb-5",
+          onDark ? "text-club-lavender/50" : "text-club-lavender-dim/70"
         )}
       >
+        <span className={cn("h-px w-7 inline-block", onDark ? "bg-club-lavender/35" : "bg-club-lavender-dim/40")} />
         {label}
-      </p>
+      </span>
       <h2
         className={cn(
-          "text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.1]",
-          dark ? "text-white" : "text-foreground"
+          "text-3xl sm:text-4xl lg:text-[2.75rem] font-black tracking-tight leading-[1.08]",
+          onDark ? "text-white" : "text-foreground"
         )}
       >
         {title}
@@ -44,7 +49,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-4 text-lg leading-relaxed",
-            dark ? "text-white/60" : "text-muted"
+            onDark ? "text-white/50" : "text-muted"
           )}
         >
           {description}

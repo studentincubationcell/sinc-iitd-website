@@ -16,6 +16,7 @@ export default function PortfolioPage() {
   return (
     <>
       <PageHeader
+        variant="club"
         badge="Portfolio"
         title="Campus startups"
         description="Founders building from IIT Delhi with SInC support."

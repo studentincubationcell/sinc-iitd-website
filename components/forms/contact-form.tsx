@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { CheckCircle2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -17,6 +18,9 @@ const contactSchema = z.object({
 });
 
 type ContactForm = z.infer<typeof contactSchema>;
+
+const fieldClass =
+  "border-club-lavender/25 bg-background focus-visible:ring-club-gold/40 focus-visible:border-club-lavender/50";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -36,8 +40,8 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center">
-        <CheckCircle2 className="h-12 w-12 text-primary mx-auto mb-4" />
+      <div className="rounded-2xl border border-club-lavender/25 bg-club-lavender/[0.06] p-8 text-center">
+        <CheckCircle2 className="h-12 w-12 text-club-gold mx-auto mb-4" />
         <h3 className="text-xl font-semibold">Message sent!</h3>
         <p className="text-muted mt-2">We&apos;ll get back to you soon.</p>
       </div>
@@ -47,27 +51,42 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div>
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" className="mt-1.5" {...register("name")} />
+        <Label htmlFor="name" className="text-foreground/90">
+          Name
+        </Label>
+        <Input id="name" className={cn("mt-1.5", fieldClass)} {...register("name")} />
         {errors.name && (
           <p className="text-sm text-accent mt-1">{errors.name.message}</p>
         )}
       </div>
       <div>
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" type="email" className="mt-1.5" {...register("email")} />
+        <Label htmlFor="email" className="text-foreground/90">
+          Email
+        </Label>
+        <Input
+          id="email"
+          type="email"
+          className={cn("mt-1.5", fieldClass)}
+          {...register("email")}
+        />
         {errors.email && (
           <p className="text-sm text-accent mt-1">{errors.email.message}</p>
         )}
       </div>
       <div>
-        <Label htmlFor="message">Message</Label>
-        <Textarea id="message" className="mt-1.5" {...register("message")} />
+        <Label htmlFor="message" className="text-foreground/90">
+          Message
+        </Label>
+        <Textarea
+          id="message"
+          className={cn("mt-1.5", fieldClass)}
+          {...register("message")}
+        />
         {errors.message && (
           <p className="text-sm text-accent mt-1">{errors.message.message}</p>
         )}
       </div>
-      <Button type="submit" disabled={isSubmitting} className="w-full">
+      <Button type="submit" disabled={isSubmitting} variant="club" className="w-full">
         {isSubmitting ? "Sending..." : "Send message"}
       </Button>
     </form>

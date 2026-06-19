@@ -15,6 +15,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
+        variant="club"
         badge="Contact"
         title="Get in touch"
         description="Questions, partnerships, or just want to say hi — we'd love to hear from you."

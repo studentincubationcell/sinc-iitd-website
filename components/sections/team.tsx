@@ -85,16 +85,15 @@ export function MemberSocials({
                 target={key === "email" ? undefined : "_blank"}
                 rel={key === "email" ? undefined : "noopener noreferrer"}
                 aria-label={`${member.name || "Team member"} on ${label}`}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background text-muted transition-all duration-200 hover:border-primary hover:bg-primary hover:text-white hover:scale-110"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background text-muted transition-all duration-200 hover:border-club-lavender hover:bg-club-lavender hover:text-club-purple"
               >
                 <Icon className="h-4 w-4" />
               </a>
             );
           })
-        : socialConfig.map(({ key, label, Icon }) => (
+        : socialConfig.map(({ key, Icon }) => (
             <span
               key={key}
-              title={`Add ${label} in team.json`}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-dashed border-border/80 bg-background/50 text-muted/25"
               aria-hidden
             >
@@ -143,7 +142,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
             </h3>
             <p className="text-sm font-medium mt-0.5">
               <PlaceholderText empty={roleEmpty}>
-                <span className={roleEmpty ? "" : "text-primary"}>
+                <span className={roleEmpty ? "" : "text-club-lavender"}>
                   {roleEmpty ? "Role" : member.role}
                 </span>
               </PlaceholderText>
@@ -160,7 +159,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
             bioEmpty ? "text-muted/35 italic" : "text-muted"
           )}
         >
-          {bioEmpty ? "Short bio — edit in team.json" : member.bio}
+          {bioEmpty ? "Bio coming soon." : member.bio}
         </p>
 
         <div className="mt-auto pt-5 border-t border-border/50">
@@ -182,13 +181,13 @@ export function TeamIntro({
     <Reveal className="max-w-3xl mx-auto text-center mb-16">
       <p className="text-lg text-muted leading-relaxed">
         SInC is run by students who believe campus founders deserve world-class
-        support. Add your team below — names, roles, bios, and social links in{" "}
-        <code className="text-primary text-sm">data/team.json</code>.
+        support. Meet the coordinators and leads across events, tech, outreach,
+        and incubation.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-sm font-semibold">
+        <span className="inline-flex items-center gap-2 rounded-sm bg-club-lavender/15 text-club-purple px-4 py-1.5 text-sm font-semibold">
           <Users className="h-4 w-4" />
-          {count > 0 ? `${count} members` : `${slots} slots to fill`}
+          {count > 0 ? `${count} members` : "Team growing"}
         </span>
         {TEAM_DEPARTMENTS.map((dept) => (
           <span
@@ -222,8 +221,8 @@ export function TeamByDepartment({ members }: { members: TeamMember[] }) {
               <div className="h-px flex-1 bg-border" />
               <span className="text-sm text-muted font-medium">
                 {deptMembers.filter(isTeamMemberFilled).length > 0
-                  ? `${deptMembers.filter(isTeamMemberFilled).length} filled`
-                  : `${deptMembers.length} slot${deptMembers.length === 1 ? "" : "s"}`}
+                  ? `${deptMembers.filter(isTeamMemberFilled).length} members`
+                  : "Coming soon"}
               </span>
             </Reveal>
             <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -240,21 +239,29 @@ export function TeamByDepartment({ members }: { members: TeamMember[] }) {
   );
 }
 
-export function TeamPreview({ team }: { team: TeamMember[] }) {
+export function TeamPreview({
+  team,
+}: {
+  team: TeamMember[];
+}) {
   const preview = team.slice(0, 3);
 
   return (
-    <section className="section-padding bg-card border-y border-border">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="section-padding bg-background border-y border-club-lavender/15 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-club-lavender/[0.04] via-transparent to-club-gold/[0.03] pointer-events-none" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <SectionHeading
             label="Team"
             title="Meet the people behind SInC."
             description="Students building the ecosystem for campus founders."
-            className="mb-0"
+            className="mb-0 [&_p:first-child]:text-club-gold"
           />
           <Link href="/team" className="shrink-0">
-            <Button variant="outline" className="rounded-full bg-background">
+            <Button
+              variant="outline"
+              className="rounded-sm border-club-lavender/30 bg-background hover:bg-club-lavender/5 hover:border-club-lavender/50"
+            >
               View full team
             </Button>
           </Link>
@@ -266,14 +273,14 @@ export function TeamPreview({ team }: { team: TeamMember[] }) {
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="rounded-2xl border border-dashed border-border p-8 text-center bg-card/50"
+                  className="rounded-2xl border border-dashed border-club-lavender/30 p-8 text-center bg-club-lavender/[0.04]"
                 >
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-purple/20 text-2xl font-bold text-primary mb-4">
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-club-lavender/20 to-club-gold/15 text-2xl font-bold text-club-gold mb-4">
                     ?
                   </div>
-                  <p className="font-semibold text-muted">Your team here</p>
+                  <p className="font-semibold text-muted">Team member</p>
                   <p className="text-sm text-muted/70 mt-1">
-                    Add members in data/team.json
+                    Profile coming soon
                   </p>
                 </div>
               ))}
@@ -299,10 +306,10 @@ export function TeamEmptyState() {
       <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-purple/10 mb-6">
         <Users className="h-8 w-8 text-purple" />
       </div>
-      <h3 className="text-xl font-semibold mb-2">Build your team page</h3>
+      <h3 className="text-xl font-semibold mb-2">Team profiles coming soon</h3>
       <p className="text-muted max-w-md mx-auto">
-        Add members with names, roles, bios, and social links in{" "}
-        <code className="text-primary text-sm">data/team.json</code>
+        We&apos;re updating this page with our coordinators and leads across
+        events, tech, outreach, and incubation.
       </p>
     </div>
   );
@@ -310,8 +317,8 @@ export function TeamEmptyState() {
 
 export function JoinTeamCTA() {
   return (
-    <Reveal className="mt-20 rounded-2xl border border-border bg-gradient-to-br from-primary/5 to-purple/5 p-10 sm:p-12 text-center">
-      <Mail className="h-10 w-10 text-primary mx-auto mb-4" />
+    <Reveal className="mt-20 rounded-2xl border border-club-lavender/25 bg-gradient-to-br from-club-lavender/10 to-club-gold/5 p-10 sm:p-12 text-center">
+      <Mail className="h-10 w-10 text-club-gold mx-auto mb-4" />
       <h3 className="text-2xl font-bold">Want to join the team?</h3>
       <p className="text-muted mt-3 mb-8 max-w-lg mx-auto">
         We&apos;re always looking for passionate builders across events, tech,
@@ -322,7 +329,7 @@ export function JoinTeamCTA() {
           <Button variant="outline">Get in touch</Button>
         </Link>
         <Link href="/apply">
-          <Button>Apply to SInC</Button>
+          <Button variant="club">Apply to SInC</Button>
         </Link>
       </div>
     </Reveal>

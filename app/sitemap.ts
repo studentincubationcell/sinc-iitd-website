@@ -1,28 +1,28 @@
 import type { MetadataRoute } from "next";
 import { events, startups } from "@/lib/data";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.sinciitd.in";
+const base = "https://www.sinciitd.in";
 
+export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
-    "",
-    "/about",
-    "/programs",
-    "/events",
-    "/portfolio",
-    "/team",
-    "/apply",
-    "/contact",
-  ].map((path) => ({
+    { path: "", priority: 1, changeFrequency: "weekly" as const },
+    { path: "/about", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/programs", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/events", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/portfolio", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/team", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/apply", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/contact", priority: 0.7, changeFrequency: "monthly" as const },
+  ].map(({ path, priority, changeFrequency }) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: path === "" ? 1 : 0.8,
+    changeFrequency,
+    priority,
   }));
 
   const eventRoutes = events.map((e) => ({
     url: `${base}/events/${e.slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(e.date),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

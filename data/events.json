@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "slug": "startup-101-workshop-2026",
+    "title": "Startup 101 — From Idea to MVP",
+    "description": "A hands-on workshop covering customer discovery, value proposition design, and getting to your first prototype. Led by IIT Delhi alumni founders.",
+    "date": "2026-07-12",
+    "category": "workshop",
+    "registrationUrl": "https://lu.ma/sinciitd"
+  },
+  {
+    "slug": "sinc-hackathon-summer-2026",
+    "title": "SInC Hackathon — Build for Bharat",
+    "description": "48-hour hackathon focused on solutions for Indian markets. Prizes, mentorship, and direct intros to seed investors for top teams.",
+    "date": "2026-08-02",
+    "category": "hackathon",
+    "registrationUrl": "https://lu.ma/sinciitd"
+  },
+  {
+    "slug": "founder-dinner-july-2026",
+    "title": "Founder Dinner — July Edition",
+    "description": "Informal dinner connecting active SInC founders with industry mentors and R&I Park alumni. Limited seats. Apply to attend.",
+    "date": "2026-07-25",
+    "category": "networking",
+    "registrationUrl": "https://lu.ma/sinciitd"
+  },
+  {
+    "slug": "investor-connect-aug-2026",
+    "title": "Investor Connect — Seed Stage",
+    "description": "Meet angel investors and seed-stage VCs actively looking at IIT Delhi deals. Bring your one-pager and deck.",
+    "date": "2026-08-20",
+    "category": "networking",
+    "registrationUrl": "https://lu.ma/sinciitd"
+  },
+  {
+    "slug": "legal-clinic-sep-2026",
+    "title": "Legal Clinic — Incorporation & IP",
+    "description": "Open clinic with startup lawyers covering company incorporation, co-founder agreements, and IP protection basics for early-stage teams.",
+    "date": "2026-09-05",
+    "category": "workshop",
+    "registrationUrl": "https://lu.ma/sinciitd"
+  },
+  {
+    "slug": "demo-day-cohort-1",
+    "title": "Demo Day — Cohort 1",
+    "description": "SInC's first official Demo Day. Six founding teams present to a room of investors, mentors, and campus founders. Open to IIT Delhi community.",
+    "date": "2026-09-28",
+    "category": "other",
+    "registrationUrl": "https://lu.ma/sinciitd"
+  }
+]

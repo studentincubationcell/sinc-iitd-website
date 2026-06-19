@@ -2,27 +2,29 @@ import Link from "next/link";
 import { Rocket, Filter } from "lucide-react";
 import { StaggerContainer, StaggerItem } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { ClubEmptyState } from "@/components/ui/club-empty-state";
 import type { Startup } from "@/lib/schemas";
 
-export function PortfolioEmptyState() {
+export function PortfolioEmptyState({ filtered = false }: { filtered?: boolean }) {
+  if (filtered) {
+    return (
+      <ClubEmptyState
+        icon={Rocket}
+        title="No startups in this sector"
+        description="Try another sector filter or browse the full portfolio."
+        action={{ href: "/portfolio", label: "View all startups", variant: "outline" }}
+      />
+    );
+  }
+
   return (
-    <div className="framer-card border-dashed p-16 text-center">
-      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 mb-6">
-        <Rocket className="h-8 w-8 text-primary" />
-      </div>
-      <h3 className="text-2xl font-bold mb-2">Portfolio launching soon</h3>
-      <p className="text-muted max-w-md mx-auto mb-2">
-        Our founders are building. This space will showcase IIT Delhi startups
-        incubated through SInC.
-      </p>
-      <p className="text-sm text-muted/70 mb-8">
-        Add startups in <code className="text-primary">data/startups.json</code>
-      </p>
-      <Link href="/apply">
-        <Button>Be the first featured startup</Button>
-      </Link>
-    </div>
+    <ClubEmptyState
+      icon={Rocket}
+      title="Portfolio launching soon"
+      description="Our founders are building. This space will showcase IIT Delhi startups incubated through SInC."
+      hint="Add startups in data/startups.json"
+      action={{ href: "/apply", label: "Be the first featured startup" }}
+    />
   );
 }
 
@@ -39,7 +41,11 @@ export function PortfolioGrid({
       : startups;
 
   if (filtered.length === 0) {
-    return <PortfolioEmptyState />;
+    return (
+      <PortfolioEmptyState
+        filtered={startups.length > 0 && sectorFilter !== "all" && sectorFilter !== undefined}
+      />
+    );
   }
 
   return (
@@ -82,10 +88,10 @@ export function SectorFilters({
           key={sector}
           type="button"
           onClick={() => onChange(sector)}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all capitalize ${
+          className={`rounded-sm px-4 py-1.5 text-sm font-medium transition-all capitalize ${
             active === sector
-              ? "bg-primary text-white shadow-lg shadow-primary/25"
-              : "bg-card border border-border hover:border-primary/30"
+              ? "bg-club-gold text-club-purple font-semibold"
+              : "bg-card border border-border hover:border-club-lavender/40"
           }`}
         >
           {sector === "all" ? "All" : sector}

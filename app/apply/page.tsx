@@ -42,6 +42,7 @@ export default function ApplyPage() {
   return (
     <>
       <PageHeader
+        variant="club"
         badge="Apply"
         title="Join SInC"
         description="Open to all IIT Delhi students with a startup idea or early venture."

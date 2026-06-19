@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "slug": "agrilink",
+    "name": "AgriLink",
+    "tagline": "Connecting smallholder farmers directly to institutional buyers.",
+    "sector": "AgriTech",
+    "founder": "Rahul Sharma",
+    "website": "https://example.com"
+  },
+  {
+    "slug": "medflow",
+    "name": "MedFlow",
+    "tagline": "AI-powered diagnostics for rural primary health centres.",
+    "sector": "HealthTech",
+    "founder": "Priya Nair",
+    "website": "https://example.com"
+  },
+  {
+    "slug": "carbontrace",
+    "name": "CarbonTrace",
+    "tagline": "Real-time carbon footprint tracking for Indian SMEs.",
+    "sector": "CleanTech",
+    "founder": "Arjun Mehta",
+    "website": "https://example.com"
+  },
+  {
+    "slug": "studyloop",
+    "name": "StudyLoop",
+    "tagline": "Peer-to-peer tutoring platform built for Tier 2 & 3 college students.",
+    "sector": "EdTech",
+    "founder": "Sneha Gupta",
+    "website": "https://example.com"
+  },
+  {
+    "slug": "logixai",
+    "name": "LogixAI",
+    "tagline": "Predictive logistics routing for last-mile delivery in dense urban areas.",
+    "sector": "DeepTech",
+    "founder": "Varun Patel",
+    "website": "https://example.com"
+  },
+  {
+    "slug": "buildos",
+    "name": "BuildOS",
+    "tagline": "Construction project management SaaS for India's mid-tier contractors.",
+    "sector": "B2B SaaS",
+    "founder": "Karan Singh",
+    "website": "https://example.com"
+  }
+]

@@ -18,6 +18,7 @@ export default function EventsPage() {
   return (
     <>
       <PageHeader
+        variant="club"
         badge="Events"
         title="Workshops, hackathons & more"
         description="Build skills, meet founders, and grow your network at SInC events."
@@ -30,17 +31,20 @@ export default function EventsPage() {
                 key={cat}
                 type="button"
                 onClick={() => setFilter(cat)}
-                className={`rounded-full px-4 py-1.5 text-sm font-medium capitalize transition-all ${
+                className={`rounded-sm px-4 py-1.5 text-sm font-medium capitalize transition-all ${
                   filter === cat
-                    ? "bg-primary text-white shadow-lg shadow-primary/25"
-                    : "bg-card border border-border hover:border-primary/30"
+                    ? "bg-club-gold text-club-purple font-semibold"
+                    : "bg-card border border-border hover:border-club-lavender/40"
                 }`}
               >
                 {cat === "all" ? "All" : cat}
               </button>
             ))}
           </div>
-          <EventsGrid events={filtered} />
+          <EventsGrid
+            events={filtered}
+            emptyReason={events.length > 0 && filter !== "all" ? "filtered" : "all"}
+          />
         </div>
       </section>
     </>

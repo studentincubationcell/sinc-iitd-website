@@ -41,12 +41,13 @@ export default function ProgramsPage() {
   return (
     <>
       <PageHeader
+        variant="club"
         badge="Programs"
         title="Everything you need to launch"
         description="From your first customer interview to your first term sheet — SInC supports every stage."
       />
       <ProgramsBento programs={programs} />
-      <JourneySection steps={journeySteps} />
+      <JourneySection steps={journeySteps} variant="light" />
 
       <section className="py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

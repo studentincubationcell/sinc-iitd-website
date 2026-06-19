@@ -12,7 +12,7 @@ import { team } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "Meet the SInC team — add your coordinators and leads in team.json.",
+    "Meet the SInC team — students building the ecosystem for campus founders at IIT Delhi.",
 };
 
 export default function TeamPage() {
@@ -21,9 +21,10 @@ export default function TeamPage() {
   return (
     <>
       <PageHeader
+        variant="club"
         badge="Team"
         title="The people behind SInC"
-        description="Fill in your team — one card per department, ready for names and social links."
+        description="Students across events, tech, outreach, and incubation who make SInC happen."
       />
       <section className="py-16 pb-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

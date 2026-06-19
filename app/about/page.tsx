@@ -14,6 +14,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
+        variant="club"
         badge="About SInC"
         title="Building IIT Delhi's founder ecosystem"
         description={about.intro}
