@@ -12,7 +12,6 @@ import {
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { TeamMember } from "@/lib/schemas";
 import { TEAM_DEPARTMENTS } from "@/lib/schemas";
@@ -109,53 +108,65 @@ export function TeamCard({ member }: { member: TeamMember }) {
   const roleEmpty = !isTeamFieldFilled(member.role);
   const bioEmpty = !isTeamFieldFilled(member.bio);
   const isSlot = nameEmpty && roleEmpty && bioEmpty;
+  const hasPhoto = isTeamFieldFilled(member.image);
 
   return (
     <article
       className={cn(
-        "sheen group framer-card flex flex-col h-full hover:-translate-y-1",
+        "sheen group framer-card flex flex-col h-full overflow-hidden hover:-translate-y-1",
         isSlot && "border-dashed bg-background/50"
       )}
     >
-      <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-start gap-4">
-          <div className="relative shrink-0">
-            <div
-              className={cn(
-                "flex h-14 w-14 items-center justify-center rounded-none font-mono text-lg font-bold transition-transform duration-200 group-hover:scale-105",
-                nameEmpty
-                  ? "border border-dashed border-border bg-background text-muted/40"
-                  : "bg-foreground text-background"
-              )}
-            >
-              {getInitials(member.name)}
-            </div>
-            {!nameEmpty && (
-              <span className="absolute -bottom-1 -right-1 h-3.5 w-3.5 bg-accent-lime border-2 border-card" />
+      {/* Portrait */}
+      <div className="relative aspect-square w-full overflow-hidden border-b-2 border-border-ink">
+        {hasPhoto ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={member.image as string}
+            alt={`${member.name} — ${member.role}`}
+            className="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className={cn(
+              "flex h-full w-full items-center justify-center",
+              nameEmpty
+                ? "bg-background text-muted/30"
+                : "bg-foreground text-background"
             )}
+          >
+            <span className="font-mono text-5xl font-bold tracking-tight">
+              {getInitials(member.name)}
+            </span>
           </div>
-          <div className="min-w-0 flex-1 pt-0.5">
-            <h3 className="text-lg font-bold tracking-tight truncate">
-              <PlaceholderText empty={nameEmpty}>
-                {nameEmpty ? "Name" : member.name}
-              </PlaceholderText>
-            </h3>
-            <p className="text-sm font-medium mt-0.5">
-              <PlaceholderText empty={roleEmpty}>
-                <span className={roleEmpty ? "" : "text-foreground"}>
-                  {roleEmpty ? "Role" : member.role}
-                </span>
-              </PlaceholderText>
-            </p>
-            <Badge variant="outline" className="mt-2 text-xs">
-              {member.team}
-            </Badge>
-          </div>
-        </div>
+        )}
+        {/* Department tag overlay */}
+        <span className="absolute left-3 top-3 inline-flex items-center border-2 border-border-ink bg-accent-lime px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wide text-foreground">
+          {member.team}
+        </span>
+        {!nameEmpty && (
+          <span className="absolute right-3 top-3 h-3.5 w-3.5 bg-accent-lime border-2 border-foreground" />
+        )}
+      </div>
+
+      <div className="p-6 flex flex-col flex-1">
+        <h3 className="text-lg font-bold tracking-tight truncate">
+          <PlaceholderText empty={nameEmpty}>
+            {nameEmpty ? "Name" : member.name}
+          </PlaceholderText>
+        </h3>
+        <p className="text-sm font-medium mt-0.5">
+          <PlaceholderText empty={roleEmpty}>
+            <span className={roleEmpty ? "" : "text-foreground"}>
+              {roleEmpty ? "Role" : member.role}
+            </span>
+          </PlaceholderText>
+        </p>
 
         <p
           className={cn(
-            "mt-4 text-sm leading-relaxed line-clamp-3 min-h-[3.75rem]",
+            "mt-3 text-sm leading-relaxed line-clamp-3 min-h-[3.75rem]",
             bioEmpty ? "text-muted/35 italic" : "text-muted"
           )}
         >

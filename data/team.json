@@ -2,9 +2,10 @@
   {
     "id": "1",
     "name": "Gagan Tak",
-    "role": "coordinator",
+    "role": "Coordinator",
     "team": "Leadership",
-    "bio": "hello demo"
+    "bio": "Leading SInC's mission to turn campus ideas into real ventures.",
+    "image": "/team/gagan-tak.png"
   },
   {
     "id": "2",

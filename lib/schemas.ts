@@ -81,6 +81,18 @@ const optionalEmail = z.preprocess(
   z.string().email().optional()
 );
 
+// Accepts a full URL (https://...) OR a local/relative path (/team/x.jpg)
+const optionalImage = z.preprocess(
+  emptyToUndefined,
+  z
+    .string()
+    .refine(
+      (v) => /^https?:\/\//.test(v) || v.startsWith("/"),
+      "Must be a URL or an absolute path starting with /"
+    )
+    .optional()
+);
+
 export const teamMemberSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -92,7 +104,7 @@ export const teamMemberSchema = z.object({
   twitter: optionalUrl,
   github: optionalUrl,
   email: optionalEmail,
-  image: optionalUrl,
+  image: optionalImage,
 });
 
 export type Site = z.infer<typeof siteSchema>;
