@@ -1,51 +1,56 @@
 @import "tailwindcss";
 
-/* ─── Design Tokens · Premium Light ─────────────────────── */
+/* ─── Design Tokens · Editorial / Swiss-Brutalist ───────── */
+/* Off-white paper + ink black + a single electric-lime accent.
+   Lime is ALWAYS used as a block/highlight behind ink-black text,
+   never as low-contrast text on the paper canvas. */
 :root {
   /* Surface */
-  --background: #f8f9fa;   /* cool off-white canvas */
-  --foreground: #111827;   /* deep slate — never pure black */
-  --muted: #4b5563;        /* medium cool grey body text */
-  --card: #ffffff;         /* pure white surfaces */
-  --border: #e5e7eb;       /* light structural border */
+  --background: #f4f3ee;   /* warm off-white paper */
+  --foreground: #0a0a0a;   /* near-black ink */
+  --muted: #6b6b63;        /* warm grey body/labels */
+  --card: #faf9f4;         /* slightly raised paper */
+  --card-pure: #ffffff;
+  --border: #e3e1d6;       /* soft structural rule */
+  --border-ink: #0a0a0a;   /* hard brutalist rule */
 
-  /* Single accent — Electric Blue */
-  --accent-blue:      #2563eb;
-  --accent-blue-dark: #1d4ed8;
-  --accent-blue-soft: #3b82f6;
-  --accent-tint:      #eff4ff;  /* very light blue wash */
+  /* Single accent — Electric Lime */
+  --accent-lime:      #c8ff00;
+  --accent-lime-dark: #b2e600;  /* hover */
+  --accent-tint:      #f0f5d8;  /* faint lime wash */
 
-  /* Brand (mapped to the single accent system) */
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --accent: #2563eb;
-  --maroon: #2563eb;
+  /* Brand roles */
+  --primary: #0a0a0a;
+  --primary-foreground: #f4f3ee;
+  --accent: #c8ff00;
+  --maroon: #0a0a0a;
 
-  /* Legacy "club" palette — remapped so all existing
-     components resolve to the light + single-blue system. */
-  --club-purple:       #111827;   /* now: deep slate (text/headings) */
-  --club-purple-mid:   #1f2937;
-  --club-purple-deep:  #0b1220;
-  --club-lavender:     #2563eb;   /* now: accent blue */
-  --club-lavender-dim: #3b82f6;
-  --club-gold:         #2563eb;   /* now: accent blue (primary CTA) */
-  --club-gold-bright:  #3b82f6;
-  --club-gold-dim:     #1d4ed8;
+  /* Legacy "club" palette remapped to the editorial system.
+     The classic pairing in components is bg-club-gold + text-club-purple,
+     which now renders as the signature LIME BLOCK + INK TEXT. */
+  --club-purple:       #0a0a0a;   /* now: ink (headings / text on lime) */
+  --club-purple-mid:   #1a1a1a;
+  --club-purple-deep:  #000000;
+  --club-lavender:     #0a0a0a;   /* now: ink (accent marks/icons) */
+  --club-lavender-dim: #3a3a36;
+  --club-gold:         #c8ff00;   /* now: electric lime (blocks/CTAs) */
+  --club-gold-bright:  #d4ff33;
+  --club-gold-dim:     #b2e600;
 
-  /* Accents (all collapse to blue family) */
-  --neon-purple:  #2563eb;
-  --neon-blue:    #2563eb;
-  --neon-green:   #2563eb;
-  --hot-orange:   #2563eb;
+  /* Accents collapse to the mono system */
+  --neon-purple:  #0a0a0a;
+  --neon-blue:    #0a0a0a;
+  --neon-green:   #c8ff00;
+  --hot-orange:   #c8ff00;
 
-  /* Structural shadows (no glow) */
-  --shadow-sm:    0 1px 3px rgba(17,24,39,0.06);
-  --shadow-md:    0 10px 15px -3px rgba(17,24,39,0.08), 0 4px 6px -4px rgba(17,24,39,0.05);
-  --shadow-lg:    0 20px 35px -10px rgba(17,24,39,0.12);
-  --shadow-framer-hover: 0 10px 15px -3px rgba(17,24,39,0.08), 0 4px 6px -4px rgba(17,24,39,0.05);
+  /* Brutalist hard-offset shadows */
+  --shadow-sm:    2px 2px 0 0 rgba(10,10,10,0.9);
+  --shadow-md:    4px 4px 0 0 rgba(10,10,10,0.92);
+  --shadow-lg:    8px 8px 0 0 rgba(10,10,10,0.95);
+  --shadow-framer-hover: 6px 6px 0 0 rgba(10,10,10,0.95);
   --shadow-glow-gold:   var(--shadow-md);
   --shadow-glow-purple: var(--shadow-md);
-  --radius: 0.875rem;
+  --radius: 0rem;          /* sharp editorial corners */
 }
 
 @theme inline {
@@ -53,13 +58,15 @@
   --color-foreground:        var(--foreground);
   --color-muted:             var(--muted);
   --color-card:              var(--card);
+  --color-card-pure:         var(--card-pure);
   --color-border:            var(--border);
+  --color-border-ink:        var(--border-ink);
   --color-primary:           var(--primary);
+  --color-primary-foreground:var(--primary-foreground);
   --color-accent:            var(--accent);
   --color-maroon:            var(--maroon);
-  --color-accent-blue:       var(--accent-blue);
-  --color-accent-blue-dark:  var(--accent-blue-dark);
-  --color-accent-blue-soft:  var(--accent-blue-soft);
+  --color-accent-lime:       var(--accent-lime);
+  --color-accent-lime-dark:  var(--accent-lime-dark);
   --color-accent-tint:       var(--accent-tint);
   --color-club-purple:       var(--club-purple);
   --color-club-purple-mid:   var(--club-purple-mid);
@@ -74,6 +81,7 @@
   --color-neon-green:        var(--neon-green);
   --color-hot-orange:        var(--hot-orange);
   --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   --radius-lg: var(--radius);
 }
 
@@ -93,102 +101,136 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(37, 99, 235, 0.18);
-  color: var(--foreground);
+  background: var(--accent-lime);
+  color: #0a0a0a;
 }
 
-/* ─── Typography Utilities ────────────────────────────── */
-/* No gradients in the premium-light system — render solid. */
+/* ─── Editorial Typography Utilities ──────────────────── */
+
+/* Mono kicker / label */
+.mono-label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Oversized editorial display headline */
+.editorial-display {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.headline-tight { letter-spacing: -0.03em; line-height: 0.98; }
+
+/* Lime highlight behind ink text */
+.lime-mark {
+  background: var(--accent-lime);
+  color: #0a0a0a;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.12em;
+}
+
+/* Solid lime block */
+.lime-block { background: var(--accent-lime); color: #0a0a0a; }
+.ink-block  { background: var(--foreground); color: var(--background); }
+
+/* No gradients in this system — render solid ink, with optional lime mark via markup */
 .gradient-text,
 .gradient-text-hero,
 .gradient-text-gold {
-  color: var(--accent-blue);
+  color: var(--foreground);
   -webkit-text-fill-color: currentColor;
 }
 
-/* Engineered headline treatment */
-.headline-tight { letter-spacing: -0.03em; line-height: 1.02; }
-
 /* ─── Background Patterns ─────────────────────────────── */
 
-/* Blueprint dot grid (subtle, ~4% ink) */
+/* Blueprint dot grid (ink on paper) */
 .dot-grid {
   background-color: var(--background);
-  background-image: radial-gradient(circle, rgba(17,24,39,0.10) 1px, transparent 1px);
-  background-size: 26px 26px;
+  background-image: radial-gradient(circle, rgba(10,10,10,0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-/* Fine blueprint cross grid for light sections */
+/* Fine ink cross grid */
 .cross-grid {
   background-image:
-    linear-gradient(rgba(17,24,39,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17,24,39,0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(rgba(10,10,10,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,10,10,0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
 }
 
-/* ─── Cards ───────────────────────────────────────────── */
+/* ─── Cards — bordered, hard-shadow on hover ──────────── */
 .framer-card {
   position: relative;
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-ink);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out, border-color 0.25s ease-in-out;
+  transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s cubic-bezier(0.22,1,0.36,1);
 }
 .framer-card:hover {
+  transform: translate(-3px, -3px);
   box-shadow: var(--shadow-md);
-  border-color: #d1d5db;
-  transform: translateY(-2px);
 }
 
-/* "dark-card" used on former dark sections — now a clean white UI card */
 .dark-card {
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-ink);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out, border-color 0.25s ease-in-out;
+  transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s cubic-bezier(0.22,1,0.36,1);
 }
 .dark-card:hover {
-  background: var(--card);
-  border-color: #d1d5db;
+  transform: translate(-3px, -3px);
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
 }
 
-/* Accent card — light blue wash */
+/* Accent card — lime wash */
 .gold-card {
-  background: var(--accent-tint);
-  border: 1px solid rgba(37,99,235,0.18);
+  background: var(--accent-lime);
+  border: 1px solid var(--border-ink);
   border-radius: var(--radius);
+  color: #0a0a0a;
 }
 
-/* ─── Glassmorphism ───────────────────────────────────── */
+/* ─── Glass (kept neutral/light) ──────────────────────── */
 .glass {
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(229,231,235,0.8);
+  background: rgba(244,243,238,0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
 }
 .glass-dark {
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(244,243,238,0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
 }
 
 /* ─── Layout Helpers ──────────────────────────────────── */
-.section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+.section-padding { padding-top: 5.5rem; padding-bottom: 5.5rem; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-/* ─── Animations (snappy, deliberate — no bounce) ─────── */
+/* Hard offset shadow utilities */
+.hard-shadow    { box-shadow: var(--shadow-md); }
+.hard-shadow-sm { box-shadow: var(--shadow-sm); }
+.hard-shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* Ruled divider */
+.beam-divider { height: 1px; width: 100%; background: var(--border-ink); }
+
+/* ─── Animations ──────────────────────────────────────── */
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -219,61 +261,48 @@ body {
 }
 .animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
 
-/* ─── Reveal (fade up, 300ms) ─────────────────────────── */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Neutralized legacy effects (kept as no-ops) ─────── */
-.glow-gold, .glow-purple { box-shadow: var(--shadow-sm); }
+/* ─── Animated underline link ─────────────────────────── */
+.cine-link { position: relative; display: inline-flex; align-items: center; }
+.cine-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  height: 2px; width: 100%;
+  background: var(--accent-lime);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.cine-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* ─── Neutralized legacy effects (no-ops in this theme) ── */
+.glow-gold, .glow-purple { box-shadow: none; }
 .text-glow-gold, .text-glow-soft { text-shadow: none; }
 .vignette::after { content: none; }
 .iridescent { background: none; animation: none; }
 .aurora-drift, .aurora-drift-2, .aurora-drift-3 { animation: none; }
 .grain-animate { animation: none; opacity: 0 !important; }
 .hero-grain { background: none; }
-.beam-divider {
-  height: 1px;
-  width: 100%;
-  background: var(--border);
-}
-
-/* Animated underline link — accent blue */
-.cine-link { position: relative; display: inline-flex; align-items: center; }
-.cine-link::after {
-  content: "";
-  position: absolute;
-  left: 0; bottom: -2px;
-  height: 1.5px; width: 100%;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease-in-out;
-}
-.cine-link:hover::after { transform: scaleX(1); transform-origin: left; }
-
-/* Subtle, neutral sheen (harmless on light cards) */
 .sheen { position: relative; overflow: hidden; isolation: isolate; }
-
-/* Gradient border → simple light border in this theme */
 .gradient-border {
   position: relative;
   border-radius: var(--radius);
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-ink);
 }
-
 .cine-card {
   position: relative;
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-ink);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out, border-color 0.25s ease-in-out;
+  transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s cubic-bezier(0.22,1,0.36,1);
 }
 .cine-card:hover {
-  transform: translateY(-2px);
-  border-color: #d1d5db;
+  transform: translate(-3px, -3px);
   box-shadow: var(--shadow-md);
 }

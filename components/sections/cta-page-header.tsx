@@ -14,47 +14,32 @@ const FEATURES = [
 
 export function ApplyCTA() {
   return (
-    <section
-      className="relative overflow-hidden py-28 lg:py-36 border-t border-white/[0.06] vignette"
-      style={{ background: "linear-gradient(160deg, #09051a 0%, #130d2e 45%, #1e1247 100%)" }}
-    >
-      {/* Iridescent halo */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="iridescent h-[640px] w-[640px] rounded-full opacity-[0.16]" style={{ filter: "blur(70px)" }} />
-      </div>
-      {/* Layered glows */}
+    <section className="relative overflow-hidden border-t border-border-ink bg-foreground py-28 text-background lg:py-36">
+      {/* Cross-grid overlay (light lines on ink) */}
       <div
-        className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full"
-        style={{ background: "radial-gradient(ellipse at bottom, rgba(167,139,250,0.22) 0%, transparent 65%)", filter: "blur(60px)" }}
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(244,243,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(244,243,238,1) 1px, transparent 1px)",
+          backgroundSize: "34px 34px",
+        }}
       />
-      <div
-        className="pointer-events-none absolute top-0 right-1/4 w-[400px] h-[300px] rounded-full opacity-20"
-        style={{ background: "radial-gradient(ellipse, rgba(245,158,11,0.5) 0%, transparent 65%)", filter: "blur(72px)" }}
-      />
-      <div
-        className="pointer-events-none absolute top-1/2 left-0 w-[300px] h-[300px] rounded-full opacity-12"
-        style={{ background: "radial-gradient(circle, rgba(192,132,252,0.6) 0%, transparent 65%)", filter: "blur(64px)" }}
-      />
-      <div className="absolute inset-0 cross-grid pointer-events-none" />
-      <div className="absolute inset-0 hero-grain opacity-[0.03] pointer-events-none" />
 
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center text-white">
+      <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
           {/* Eyebrow */}
-          <span className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.3em] text-club-lavender/60 mb-7">
-            <span className="h-px w-8 bg-club-lavender/40" />
+          <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background/60">
+            <span className="inline-block h-3 w-3 bg-accent-lime" />
             Start your journey
-            <span className="h-px w-8 bg-club-lavender/40" />
           </span>
 
           {/* Mega headline */}
-          <h2 className="headline-tight text-glow-soft text-5xl sm:text-6xl lg:text-[5rem] font-black">
-            Ready to build
-            <br />
-            <span className="gradient-text-hero">something real?</span>
+          <h2 className="editorial-display text-5xl sm:text-6xl lg:text-[5rem]">
+            Ready to build{" "}
+            <span className="lime-mark">something real?</span>
           </h2>
 
-          <p className="mt-8 text-lg sm:text-xl text-white/40 max-w-lg mx-auto leading-relaxed">
+          <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-background/55 sm:text-xl">
             Join SInC — mentorship, lab access, and a community of builders pushing from campus idea to funded startup.
           </p>
 
@@ -63,9 +48,9 @@ export function ApplyCTA() {
             {FEATURES.map((f) => (
               <span
                 key={f.label}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-semibold text-white/65 hover:border-club-lavender/40 hover:bg-white/[0.08] hover:text-white/90 transition-all"
+                className="inline-flex items-center gap-2 border border-background/30 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wide text-background/70 transition-colors hover:border-accent-lime hover:bg-accent-lime hover:text-foreground"
               >
-                <f.icon className="h-4 w-4 text-club-lavender/80" strokeWidth={2} />
+                <f.icon className="h-4 w-4" strokeWidth={2} />
                 {f.label}
               </span>
             ))}
@@ -77,7 +62,7 @@ export function ApplyCTA() {
               <Button
                 size="lg"
                 variant="club"
-                className="h-14 gap-2 px-12 text-base font-black normal-case tracking-normal shadow-[0_0_40px_rgba(245,158,11,0.45)] hover:shadow-[0_0_60px_rgba(245,158,11,0.65)] transition-shadow"
+                className="h-14 gap-2 px-12 text-base font-bold normal-case tracking-normal"
               >
                 Apply now <ArrowRight className="h-5 w-5" />
               </Button>
@@ -86,7 +71,7 @@ export function ApplyCTA() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-14 px-12 text-base border-white/15 text-white/70 hover:bg-white/[0.06] hover:border-white/30 hover:text-white"
+                className="h-14 border-background bg-transparent px-12 text-base text-background hover:bg-background hover:text-foreground"
               >
                 Explore programs
               </Button>

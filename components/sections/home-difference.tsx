@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatedMeshGradient } from "@/components/motion/animated-mesh-gradient";
 import Link from "next/link";
 import { ArrowRight, Zap, Network, FlaskConical, Quote } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
@@ -13,33 +12,18 @@ const PILLARS = [
     icon: Zap,
     title: "Pre-incubation,\nnot a poster club",
     body: "SInC is built for founders who want term sheets and customers — not just event photos and LinkedIn posts.",
-    gradient: "from-amber-500/20 via-yellow-400/10 to-transparent",
-    iconBg: "bg-amber-400/15",
-    iconColor: "text-amber-400",
-    borderAccent: "group-hover:border-amber-400/40",
-    glow: "group-hover:shadow-[0_8px_48px_rgba(245,158,11,0.15)]",
   },
   {
     number: "02",
     icon: Network,
     title: "Campus + industry\nin one loop",
     body: "Professors, R&I Park, alumni founders, and investors — connected so you're not guessing who to email next.",
-    gradient: "from-violet-500/20 via-purple-400/10 to-transparent",
-    iconBg: "bg-violet-400/15",
-    iconColor: "text-violet-400",
-    borderAccent: "group-hover:border-violet-400/40",
-    glow: "group-hover:shadow-[0_8px_48px_rgba(167,139,250,0.15)]",
   },
   {
     number: "03",
     icon: FlaskConical,
     title: "Deep-tech\nfrom day one",
     body: "Lab access, IP guidance, and mentors who've shipped hardware and software — built for IIT Delhi's builder culture.",
-    gradient: "from-cyan-500/20 via-sky-400/10 to-transparent",
-    iconBg: "bg-cyan-400/15",
-    iconColor: "text-cyan-400",
-    borderAccent: "group-hover:border-cyan-400/40",
-    glow: "group-hover:shadow-[0_8px_48px_rgba(34,211,238,0.12)]",
   },
 ];
 
@@ -52,77 +36,69 @@ export function HomeDifference() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      className="relative py-24 lg:py-32 overflow-hidden border-y border-club-lavender/10"
-      style={{ background: "linear-gradient(180deg, var(--background) 0%, #f0edff 100%)" }}
-    >
-      {/* Animated mesh blobs — very subtle */}
-      <AnimatedMeshGradient opacity={0.07} />
-
-      {/* Dot grid overlay */}
-      <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
+    <section className="relative overflow-hidden border-t border-border-ink bg-background py-24 lg:py-32">
+      {/* Cross grid overlay */}
+      <div className="pointer-events-none absolute inset-0 cross-grid opacity-60" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* ── Section header ─────────────────────────────── */}
-        <div className="grid lg:grid-cols-2 gap-12 items-end mb-16">
+        <div className="mb-16 grid items-end gap-12 lg:grid-cols-2">
           <Reveal>
-            <span className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.28em] text-club-lavender-dim mb-5">
-              <span className="h-px w-8 bg-club-lavender-dim/60 inline-block" />
+            <span className="mb-5 inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
+              <span className="inline-block h-3 w-3 bg-accent-lime" />
               Why SInC
             </span>
-            <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight leading-[1.06] text-foreground">
-              Built different from every<br />
-              <span className="gradient-text">other cell on campus.</span>
+            <h2 className="editorial-display text-4xl text-foreground sm:text-5xl lg:text-[3.5rem]">
+              Built different from every other cell on{" "}
+              <span className="lime-mark">campus.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="flex flex-col justify-end">
-            <p className="text-lg text-muted leading-relaxed mb-6">
+            <p className="mb-6 text-lg leading-relaxed text-muted">
               Same institute. Different ambition. This is home for students treating their idea
               like a company from day one.
             </p>
             <Link href="/about">
-              <Button size="lg" variant="club" className="gap-2 w-fit shadow-[0_4px_24px_rgba(245,158,11,0.3)] hover:shadow-[0_4px_36px_rgba(245,158,11,0.45)] transition-shadow">
+              <Button size="lg" variant="club" className="w-fit gap-2">
                 Our story <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
           </Reveal>
         </div>
 
-        {/* ── 3-column bento grid ─────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-12">
+        {/* ── 3-column bordered grid ──────────────────────── */}
+        <div className="mb-12 grid grid-cols-1 border border-border-ink md:grid-cols-3">
           {PILLARS.map((pillar, i) => {
             const Icon = pillar.icon;
             return (
               <m.article
                 key={pillar.number}
-                initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: i * 0.1, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className={`sheen group relative overflow-hidden rounded-2xl border border-border bg-card p-8 flex flex-col gap-5 transition-all duration-300 hover:-translate-y-1.5 ${pillar.borderAccent} ${pillar.glow}`}
+                className="group relative flex flex-col gap-6 border-border-ink bg-card p-8 transition-colors duration-300 hover:bg-foreground md:border-l md:first:border-l-0 [&:not(:last-child)]:border-b md:[&:not(:last-child)]:border-b-0"
               >
-                {/* Gradient fill on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-
-                {/* Header */}
-                <div className="relative flex items-start justify-between">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${pillar.iconBg} ${pillar.iconColor} transition-transform duration-300 group-hover:scale-110`}>
+                {/* Header row */}
+                <div className="flex items-start justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center border border-border-ink bg-background text-foreground transition-colors duration-300 group-hover:bg-accent-lime">
                     <Icon className="h-5 w-5" strokeWidth={2} />
                   </div>
-                  <span className="font-mono text-xs font-bold text-muted/30 tabular-nums">{pillar.number}</span>
+                  <span className="font-mono text-4xl font-bold tabular-nums text-foreground/15 transition-colors duration-300 group-hover:text-accent-lime">
+                    {pillar.number}
+                  </span>
                 </div>
 
                 {/* Text */}
-                <div className="relative flex-1">
-                  <h3 className="text-xl font-black tracking-tight whitespace-pre-line leading-snug text-foreground">
+                <div className="flex-1">
+                  <h3 className="whitespace-pre-line text-xl font-black leading-snug tracking-tight text-foreground transition-colors duration-300 group-hover:text-background">
                     {pillar.title}
                   </h3>
-                  <p className="mt-3 text-sm text-muted leading-relaxed">{pillar.body}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-background/70">
+                    {pillar.body}
+                  </p>
                 </div>
-
-                {/* Bottom accent bar */}
-                <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               </m.article>
             );
           })}
@@ -130,13 +106,15 @@ export function HomeDifference() {
 
         {/* ── Founder quote ───────────────────────────────── */}
         <Reveal>
-          <div className="gold-card p-8 sm:p-10 flex flex-col sm:flex-row gap-6 items-start">
-            <Quote className="h-8 w-8 text-club-gold shrink-0 mt-1 opacity-80" />
+          <div className="flex flex-col items-start gap-6 border border-border-ink bg-accent-lime p-8 sm:flex-row sm:p-10">
+            <Quote className="mt-1 h-9 w-9 shrink-0 text-foreground" fill="currentColor" />
             <div>
-              <p className="text-lg sm:text-xl font-semibold text-foreground/85 leading-relaxed italic">
+              <p className="text-xl font-semibold leading-relaxed text-foreground sm:text-2xl">
                 &ldquo;{QUOTE.text}&rdquo;
               </p>
-              <p className="mt-4 text-sm font-bold text-club-gold-dim">— {QUOTE.author}</p>
+              <p className="mt-5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-foreground/70">
+                — {QUOTE.author}
+              </p>
             </div>
           </div>
         </Reveal>

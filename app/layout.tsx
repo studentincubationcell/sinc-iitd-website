@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MotionProvider } from "@/components/motion/motion-provider";
@@ -14,10 +14,16 @@ const geistSans = Geist({
   display: "swap",
 });
 
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 const siteUrl = "https://www.sinciitd.in";
 
 export const viewport: Viewport = {
-  themeColor: "#1a1033",
+  themeColor: "#f4f3ee",
 };
 
 export const metadata: Metadata = {
@@ -71,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased bg-background`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-background`}>
       <body className="min-h-full flex flex-col">
         <MotionProvider>
           <CustomCursor />

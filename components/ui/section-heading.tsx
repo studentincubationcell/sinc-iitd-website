@@ -18,8 +18,6 @@ export function SectionHeading({
   dark?: boolean;
   club?: boolean;
 }) {
-  const onDark = club || dark;
-
   return (
     <Reveal
       className={cn(
@@ -30,28 +28,18 @@ export function SectionHeading({
     >
       <span
         className={cn(
-          "inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.28em] mb-5",
-          onDark ? "text-club-lavender/50" : "text-club-lavender-dim/70"
+          "mb-5 inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted",
+          align === "center" && "justify-center"
         )}
       >
-        <span className={cn("h-px w-7 inline-block", onDark ? "bg-club-lavender/35" : "bg-club-lavender-dim/40")} />
+        <span className="inline-block h-3 w-3 bg-accent-lime" />
         {label}
       </span>
-      <h2
-        className={cn(
-          "text-3xl sm:text-4xl lg:text-[2.75rem] font-black tracking-tight leading-[1.08]",
-          onDark ? "text-white" : "text-foreground"
-        )}
-      >
+      <h2 className="editorial-display text-4xl text-foreground sm:text-5xl lg:text-[3.5rem]">
         {title}
       </h2>
       {description && (
-        <p
-          className={cn(
-            "mt-4 text-lg leading-relaxed",
-            onDark ? "text-white/50" : "text-muted"
-          )}
-        >
+        <p className="mt-5 text-lg leading-relaxed text-muted">
           {description}
         </p>
       )}

@@ -25,114 +25,131 @@ const TRUST_ITEMS = [
 ];
 
 const fadeUp = (delay: number, reduce: boolean | null) => ({
-  initial: reduce ? false : { opacity: 0, y: 10 },
+  initial: reduce ? false : { opacity: 0, y: 14 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.3, delay, ease: "easeOut" as const },
+  transition: { duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
 export function HeroContent({
   eyebrow,
   title,
+  screenTagline,
   description,
   announcements,
 }: HeroContentProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative z-10 min-h-[100svh] flex items-center px-4 pt-24 pb-16 sm:px-6 lg:px-8 md:pl-20">
+    <div className="relative z-10 min-h-[100svh] flex items-center px-4 pt-28 pb-16 sm:px-6 lg:px-8 md:pl-20">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
 
           {/* ── Left column ─────────────────────────────── */}
-          <div className="max-w-xl">
+          <div className="lg:col-span-7">
+
+            {/* Mono kicker */}
+            <m.div
+              className="mb-7 flex items-center gap-3"
+              {...fadeUp(0, reduceMotion)}
+            >
+              <span className="lime-block px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
+                01 / SInC
+              </span>
+              <span className="mono-label">{eyebrow}</span>
+            </m.div>
 
             {/* Announcement pill */}
             {announcements.length > 0 && (
-              <m.div className="mb-7" {...fadeUp(0, reduceMotion)}>
+              <m.div className="mb-7" {...fadeUp(0.05, reduceMotion)}>
                 <HeroAnnouncement items={announcements} />
               </m.div>
             )}
 
-            {/* Eyebrow */}
-            <m.p
-              className="mb-5 flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent-blue"
-              {...fadeUp(0.05, reduceMotion)}
-            >
-              <span className="inline-block h-px w-8 bg-accent-blue/50" />
-              {eyebrow}
-            </m.p>
-
-            {/* Headline — massive, static, deep slate */}
+            {/* Headline — oversized editorial */}
             <m.h1
-              className="headline-tight text-balance text-[2.75rem] font-extrabold text-foreground sm:text-6xl lg:text-[4.25rem]"
-              {...fadeUp(0.08, reduceMotion)}
+              className="editorial-display text-[3.25rem] leading-[0.9] text-foreground sm:text-7xl lg:text-[6.25rem]"
+              {...fadeUp(0.1, reduceMotion)}
             >
               {title}
             </m.h1>
 
-            {/* Description */}
+            {/* Tagline with lime mark */}
             <m.p
-              className="mt-6 max-w-[28rem] text-base leading-relaxed text-muted sm:text-lg"
-              {...fadeUp(0.16, reduceMotion)}
+              className="mt-7 max-w-[34rem] text-lg leading-relaxed text-foreground/80 sm:text-xl"
+              {...fadeUp(0.18, reduceMotion)}
             >
               {description}
             </m.p>
 
             {/* CTAs */}
-            <m.div className="mt-9 flex flex-wrap gap-3" {...fadeUp(0.24, reduceMotion)}>
+            <m.div className="mt-9 flex flex-wrap items-center gap-4" {...fadeUp(0.26, reduceMotion)}>
               <Link href="/apply">
                 <Button
                   size="lg"
                   variant="club"
-                  className="h-13 gap-2 px-8 text-[15px] font-bold normal-case tracking-normal"
+                  className="group/btn h-13 gap-2 px-8 text-[15px] font-bold normal-case tracking-normal"
                 >
-                  Apply now <ArrowRight className="h-4 w-4" />
+                  Apply now
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
                 </Button>
               </Link>
-              <Link href="/programs">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-13 border-border bg-card px-8 text-[15px] text-foreground hover:bg-muted/5 hover:border-foreground/20"
-                >
-                  Our programs
-                </Button>
+              <Link
+                href="/programs"
+                className="cine-link font-mono text-sm font-semibold uppercase tracking-[0.16em] text-foreground"
+              >
+                Our programs
               </Link>
             </m.div>
 
-            {/* Trust bar */}
+            {/* Trust bar — ruled mono row */}
             <m.div
-              className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2"
-              {...fadeUp(0.32, reduceMotion)}
+              className="mt-12 grid max-w-2xl grid-cols-2 border-t border-border-ink sm:grid-cols-4"
+              {...fadeUp(0.34, reduceMotion)}
             >
-              {TRUST_ITEMS.map((item, i) => (
-                <span key={item.label} className="flex items-center gap-2">
-                  {i > 0 && <span className="h-1 w-1 rounded-full bg-border" />}
-                  <span className="flex items-center gap-1.5 text-xs font-medium text-muted">
-                    <item.icon className="h-3.5 w-3.5 text-accent-blue" strokeWidth={2} />
+              {TRUST_ITEMS.map((item) => (
+                <div
+                  key={item.label}
+                  className="flex flex-col gap-2 border-b border-r border-border-ink px-3 py-4 sm:border-b-0"
+                >
+                  <item.icon className="h-4 w-4 text-foreground" strokeWidth={2} />
+                  <span className="font-mono text-[10px] font-semibold uppercase leading-tight tracking-[0.1em] text-muted">
                     {item.label}
                   </span>
-                </span>
+                </div>
               ))}
             </m.div>
           </div>
 
-          {/* ── Right column — glassmorphism render ──────── */}
+          {/* ── Right column — framed render ─────────────── */}
           <m.div
-            className="relative"
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            className="lg:col-span-5"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12, duration: 0.5, ease: "easeOut" }}
+            transition={{ delay: 0.14, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative mx-auto aspect-square w-full max-w-xl">
-              <Image
-                src="/hero-glass-render.png"
-                alt="Abstract glassmorphism render representing SInC's deep-tech engineering platform"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 45vw"
-                className="object-contain animate-float"
-              />
+            <div className="relative mx-auto w-full max-w-md">
+              {/* Lime corner tab */}
+              <div className="absolute -left-3 -top-3 z-10 lime-block px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em]">
+                Deep-Tech
+              </div>
+              {/* Framed render */}
+              <div className="relative aspect-square w-full border border-border-ink bg-card-pure hard-shadow-lg">
+                <Image
+                  src="/hero-glass-render.png"
+                  alt="Abstract render representing SInC's deep-tech engineering platform"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  className="object-contain p-2"
+                />
+                {/* Bottom caption bar */}
+                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-border-ink bg-background px-4 py-2">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                    {screenTagline}
+                  </span>
+                  <span className="h-2 w-2 bg-accent-lime" />
+                </div>
+              </div>
             </div>
           </m.div>
         </div>

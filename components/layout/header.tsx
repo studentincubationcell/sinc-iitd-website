@@ -31,7 +31,7 @@ export function Header() {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-foreground",
           transparent
             ? "bg-transparent border-b border-transparent"
-            : "bg-[rgba(255,255,255,0.85)] backdrop-blur-xl border-b border-border shadow-sm"
+            : "bg-[rgba(244,243,238,0.88)] backdrop-blur-xl border-b border-border-ink"
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
@@ -46,17 +46,17 @@ export function Header() {
                 height={34}
                 className="transition-transform duration-300 group-hover:scale-105"
               />
-              {/* Gold dot indicator */}
-              <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-club-gold animate-pulse" />
+              {/* Lime dot indicator */}
+              <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 bg-accent-lime ring-1 ring-foreground" />
             </div>
             <div className="hidden sm:block">
               <span className="text-[15px] font-black tracking-tight leading-none">{site.name}</span>
-              <span className="block text-[9px] font-bold uppercase tracking-[0.2em] text-white/35 leading-none mt-0.5">IIT Delhi</span>
+              <span className="block font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-muted leading-none mt-0.5">IIT Delhi</span>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-0.5 lg:flex rounded-full border border-white/[0.06] bg-white/[0.03] px-1.5 py-1 backdrop-blur-md">
+          <nav className="hidden items-center gap-1 lg:flex">
             {site.nav.map((item) => {
               const active = pathname === item.href;
               return (
@@ -64,14 +64,14 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "relative rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors duration-200",
-                    active ? "text-club-gold" : "text-white/50 hover:text-white"
+                    "relative px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-200",
+                    active ? "text-foreground" : "text-muted hover:text-foreground"
                   )}
                 >
                   {active && (
                     <m.span
                       layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded-full bg-club-gold/12 ring-1 ring-club-gold/30"
+                      className="absolute inset-x-2 -bottom-0.5 h-[3px] bg-accent-lime"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -87,14 +87,14 @@ export function Header() {
               <Button
                 size="sm"
                 variant="club"
-                className="sheen text-xs font-black normal-case tracking-normal shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] transition-shadow"
+                className="text-xs font-bold normal-case tracking-normal"
               >
                 Apply now
               </Button>
             </Link>
             <button
               type="button"
-              className="lg:hidden rounded-xl p-2 text-white/70 hover:text-white hover:bg-white/10 transition-all"
+              className="lg:hidden p-2 text-foreground hover:bg-foreground hover:text-background transition-all"
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
             >
@@ -112,18 +112,17 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 lg:hidden bg-black/60 backdrop-blur-sm"
+              className="fixed inset-0 z-40 lg:hidden bg-foreground/30 backdrop-blur-sm"
               onClick={() => setOpen(false)}
             />
             <m.nav
-              initial={{ opacity: 0, y: -8, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.97 }}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed right-4 top-20 z-50 w-[min(100%-2rem,320px)] rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
-              style={{ background: "linear-gradient(160deg, #130d2e 0%, #1e1247 100%)" }}
+              className="fixed right-4 top-20 z-50 w-[min(100%-2rem,320px)] border border-border-ink bg-background hard-shadow-lg overflow-hidden"
             >
-              <div className="p-4 flex flex-col gap-1">
+              <div className="p-3 flex flex-col gap-1">
                 {site.nav.map((item) => {
                   const active = pathname === item.href;
                   return (
@@ -132,19 +131,19 @@ export function Header() {
                       href={item.href}
                       onClick={() => setOpen(false)}
                       className={cn(
-                        "flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider transition-all",
+                        "flex items-center justify-between px-4 py-3 font-mono text-xs font-semibold uppercase tracking-wider transition-all",
                         active
-                          ? "bg-club-gold/15 text-club-gold border border-club-gold/25"
-                          : "text-white/60 hover:bg-white/[0.06] hover:text-white"
+                          ? "bg-accent-lime text-foreground"
+                          : "text-muted hover:bg-foreground hover:text-background"
                       )}
                     >
                       {item.label}
-                      {active && <span className="h-1.5 w-1.5 rounded-full bg-club-gold" />}
+                      {active && <span className="h-1.5 w-1.5 bg-foreground" />}
                     </Link>
                   );
                 })}
                 <Link href="/apply" className="mt-2" onClick={() => setOpen(false)}>
-                  <Button variant="club" className="w-full font-black normal-case tracking-normal">
+                  <Button variant="club" className="w-full font-bold normal-case tracking-normal">
                     Apply now
                   </Button>
                 </Link>

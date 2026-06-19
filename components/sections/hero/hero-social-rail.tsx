@@ -34,7 +34,7 @@ export function HeroSocialRail({ socials }: { socials: SocialLink[] }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={s.label}
-            className="text-muted transition-colors hover:text-accent-blue"
+            className="text-muted transition-colors hover:text-foreground"
           >
             <Icon className="h-5 w-5" />
           </Link>

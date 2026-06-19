@@ -3,20 +3,20 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-accent-blue text-white font-semibold hover:bg-accent-blue-dark shadow-sm",
+          "border border-foreground bg-foreground text-background font-semibold hover:bg-accent-lime hover:text-foreground",
         accent:
-          "bg-accent-blue text-white font-semibold hover:bg-accent-blue-dark shadow-sm",
+          "border border-foreground bg-accent-lime text-foreground font-semibold hover:bg-foreground hover:text-background",
         outline:
-          "border border-border bg-card text-foreground hover:border-foreground/20 hover:bg-muted/5",
+          "border border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background",
         ghost: "text-foreground hover:bg-accent-tint",
         maroon:
-          "bg-accent-blue text-white hover:bg-accent-blue-dark",
-        club: "bg-accent-blue text-white font-semibold hover:bg-accent-blue-dark shadow-sm",
+          "border border-foreground bg-foreground text-background hover:bg-accent-lime hover:text-foreground",
+        club: "border border-foreground bg-foreground text-background font-semibold hover:bg-accent-lime hover:text-foreground",
       },
       size: {
         default: "h-11 px-6 py-2",
