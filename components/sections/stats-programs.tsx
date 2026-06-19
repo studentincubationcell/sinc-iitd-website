@@ -30,22 +30,25 @@ export function ClubStatsBand() {
           </p>
         </Reveal>
 
-        <StaggerContainer className="grid grid-cols-2 border-l border-t border-border-ink lg:grid-cols-4">
-          {site.stats.map((stat) => (
-            <StaggerItem key={stat.label}>
-              <div className="group flex h-full flex-col justify-between border-b border-r border-border-ink bg-card p-7 transition-colors duration-300 hover:bg-foreground sm:p-8">
-                <div className="flex items-baseline font-black tabular-nums text-foreground transition-colors duration-300 group-hover:text-background">
-                  <span className="editorial-display text-5xl sm:text-6xl">
-                    <CountUp value={stat.value} duration={1400} />
-                  </span>
-                  <span className="editorial-display text-3xl text-accent-lime sm:text-4xl">{stat.suffix}</span>
+        <StaggerContainer className="grid grid-cols-2 gap-5 lg:grid-cols-4">
+          {site.stats.map((stat, i) => {
+            const pop = ["bg-accent-lime", "bg-pop-pink", "bg-pop-sky", "bg-pop-peach"][i % 4];
+            return (
+              <StaggerItem key={stat.label}>
+                <div className={`group flex h-full flex-col justify-between ${pop} brutal-block p-7 text-foreground transition-[transform,box-shadow] duration-150 ease-out hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none sm:p-8`}>
+                  <div className="flex items-baseline font-black tabular-nums text-foreground">
+                    <span className="editorial-display text-5xl sm:text-6xl">
+                      <CountUp value={stat.value} duration={1400} />
+                    </span>
+                    <span className="editorial-display text-3xl sm:text-4xl">{stat.suffix}</span>
+                  </div>
+                  <p className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground/75">
+                    {stat.label}
+                  </p>
                 </div>
-                <p className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted transition-colors duration-300 group-hover:text-background/70">
-                  {stat.label}
-                </p>
-              </div>
-            </StaggerItem>
-          ))}
+              </StaggerItem>
+            );
+          })}
         </StaggerContainer>
       </div>
     </section>

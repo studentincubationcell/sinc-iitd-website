@@ -3,20 +3,20 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-sm font-semibold transition-[transform,box-shadow,background-color,color] duration-150 ease-out shadow-[4px_4px_0_0_#0a0a0a] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_#0a0a0a] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "border border-foreground bg-foreground text-background font-semibold hover:bg-accent-lime hover:text-foreground",
+          "border-2 border-foreground bg-accent-lime text-foreground font-bold hover:bg-accent-lime-dark",
         accent:
-          "border border-foreground bg-accent-lime text-foreground font-semibold hover:bg-foreground hover:text-background",
+          "border-2 border-foreground bg-pop-pink text-foreground font-bold hover:brightness-95",
         outline:
-          "border border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background",
-        ghost: "text-foreground hover:bg-accent-tint",
+          "border-2 border-foreground bg-card text-foreground hover:bg-accent-lime",
+        ghost: "shadow-none hover:shadow-none active:translate-x-0 active:translate-y-0 text-foreground hover:bg-accent-tint",
         maroon:
-          "border border-foreground bg-foreground text-background hover:bg-accent-lime hover:text-foreground",
-        club: "border border-foreground bg-foreground text-background font-semibold hover:bg-accent-lime hover:text-foreground",
+          "border-2 border-foreground bg-foreground text-background hover:bg-accent-lime hover:text-foreground",
+        club: "border-2 border-foreground bg-accent-lime text-foreground font-bold hover:bg-accent-lime-dark",
       },
       size: {
         default: "h-11 px-6 py-2",

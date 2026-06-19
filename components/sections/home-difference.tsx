@@ -12,18 +12,21 @@ const PILLARS = [
     icon: Zap,
     title: "Pre-incubation,\nnot a poster club",
     body: "SInC is built for founders who want term sheets and customers — not just event photos and LinkedIn posts.",
+    pop: "bg-accent-lime",
   },
   {
     number: "02",
     icon: Network,
     title: "Campus + industry\nin one loop",
     body: "Professors, R&I Park, alumni founders, and investors — connected so you're not guessing who to email next.",
+    pop: "bg-pop-pink",
   },
   {
     number: "03",
     icon: FlaskConical,
     title: "Deep-tech\nfrom day one",
     body: "Lab access, IP guidance, and mentors who've shipped hardware and software — built for IIT Delhi's builder culture.",
+    pop: "bg-pop-sky",
   },
 ];
 
@@ -67,8 +70,8 @@ export function HomeDifference() {
           </Reveal>
         </div>
 
-        {/* ── 3-column bordered grid ──────────────────────── */}
-        <div className="mb-12 grid grid-cols-1 border border-border-ink md:grid-cols-3">
+        {/* ── 3 pop-color blocks ──────────────────────────── */}
+        <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {PILLARS.map((pillar, i) => {
             const Icon = pillar.icon;
             return (
@@ -78,24 +81,24 @@ export function HomeDifference() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: i * 0.1, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex flex-col gap-6 border-border-ink bg-card p-8 transition-colors duration-300 hover:bg-foreground md:border-l md:first:border-l-0 [&:not(:last-child)]:border-b md:[&:not(:last-child)]:border-b-0"
+                className={`group relative flex flex-col gap-6 p-8 ${pillar.pop} brutal-block text-foreground transition-[transform,box-shadow] duration-150 ease-out hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`}
               >
                 {/* Header row */}
                 <div className="flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center border border-border-ink bg-background text-foreground transition-colors duration-300 group-hover:bg-accent-lime">
-                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  <div className="flex h-12 w-12 items-center justify-center border-2 border-border-ink bg-background text-foreground">
+                    <Icon className="h-5 w-5" strokeWidth={2.25} />
                   </div>
-                  <span className="font-mono text-4xl font-bold tabular-nums text-foreground/15 transition-colors duration-300 group-hover:text-accent-lime">
+                  <span className="font-mono text-4xl font-bold tabular-nums text-foreground/25">
                     {pillar.number}
                   </span>
                 </div>
 
                 {/* Text */}
                 <div className="flex-1">
-                  <h3 className="whitespace-pre-line text-xl font-black leading-snug tracking-tight text-foreground transition-colors duration-300 group-hover:text-background">
+                  <h3 className="whitespace-pre-line text-xl font-black leading-snug tracking-tight text-foreground">
                     {pillar.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-background/70">
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/75">
                     {pillar.body}
                   </p>
                 </div>
@@ -106,7 +109,7 @@ export function HomeDifference() {
 
         {/* ── Founder quote ───────────────────────────────── */}
         <Reveal>
-          <div className="flex flex-col items-start gap-6 border border-border-ink bg-accent-lime p-8 sm:flex-row sm:p-10">
+          <div className="flex flex-col items-start gap-6 bg-accent-lime brutal-block-lg p-8 sm:flex-row sm:p-10">
             <Quote className="mt-1 h-9 w-9 shrink-0 text-foreground" fill="currentColor" />
             <div>
               <p className="text-xl font-semibold leading-relaxed text-foreground sm:text-2xl">
