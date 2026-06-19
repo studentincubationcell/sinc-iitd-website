@@ -140,20 +140,39 @@ export function EventsGrid({
         return (
           <StaggerItem key={event.slug}>
             <Link href={`/events/${event.slug}`} className="group block h-full border-b border-r border-border-ink">
-              <article className="flex h-full flex-col bg-card p-7 transition-colors duration-300 hover:bg-foreground">
-                <div className="mb-5 flex items-center justify-between">
-                  <span className="inline-flex items-center border border-border-ink px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-foreground transition-colors group-hover:border-background group-hover:text-background">
+              <article className="flex h-full flex-col bg-card transition-colors duration-300 hover:bg-foreground">
+                {/* Image header */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border-ink">
+                  {event.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="dot-grid flex h-full w-full items-center justify-center bg-accent-tint">
+                      <Calendar className="h-10 w-10 text-foreground/30" strokeWidth={1.5} />
+                    </div>
+                  )}
+                  <span className="absolute left-3 top-3 inline-flex items-center border-2 border-border-ink bg-accent-lime px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-foreground">
                     {cat.label}
                   </span>
-                  <ArrowUpRight className="h-4 w-4 text-muted transition-colors group-hover:text-accent-lime" />
                 </div>
-                <time className="font-mono text-xs font-bold tracking-wide text-muted transition-colors group-hover:text-accent-lime">
-                  {new Date(event.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
-                </time>
-                <h3 className="mt-2 text-lg font-black leading-snug tracking-tight text-foreground transition-colors group-hover:text-background">
-                  {event.title}
-                </h3>
-                <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted transition-colors group-hover:text-background/70">{event.description}</p>
+                {/* Body */}
+                <div className="flex flex-1 flex-col p-7">
+                  <div className="flex items-center justify-between">
+                    <time className="font-mono text-xs font-bold tracking-wide text-muted transition-colors group-hover:text-accent-lime">
+                      {new Date(event.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+                    </time>
+                    <ArrowUpRight className="h-4 w-4 text-muted transition-colors group-hover:text-accent-lime" />
+                  </div>
+                  <h3 className="mt-2 text-lg font-black leading-snug tracking-tight text-foreground transition-colors group-hover:text-background">
+                    {event.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted transition-colors group-hover:text-background/70">{event.description}</p>
+                </div>
               </article>
             </Link>
           </StaggerItem>

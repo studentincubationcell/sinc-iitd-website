@@ -133,7 +133,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-14 pt-6 border-t border-background/10 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs uppercase tracking-wide text-background/30">
           <p>© {new Date().getFullYear()} SInC IIT Delhi. All rights reserved.</p>
-          <p>Built by the SInC Tech Team</p>
+          <p>Designed by Gagan Tak</p>
         </div>
       </div>
     </footer>

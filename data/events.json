@@ -5,6 +5,7 @@
     "description": "A hands-on workshop covering customer discovery, value proposition design, and getting to your first prototype. Led by IIT Delhi alumni founders.",
     "date": "2026-07-12",
     "category": "workshop",
+    "image": "/events/startup-101-workshop.png",
     "registrationUrl": "https://lu.ma/sinciitd"
   },
   {
@@ -13,6 +14,7 @@
     "description": "48-hour hackathon focused on solutions for Indian markets. Prizes, mentorship, and direct intros to seed investors for top teams.",
     "date": "2026-08-02",
     "category": "hackathon",
+    "image": "/events/sinc-hackathon.png",
     "registrationUrl": "https://lu.ma/sinciitd"
   },
   {
@@ -21,6 +23,7 @@
     "description": "Informal dinner connecting active SInC founders with industry mentors and R&I Park alumni. Limited seats. Apply to attend.",
     "date": "2026-07-25",
     "category": "networking",
+    "image": "/events/founder-dinner.png",
     "registrationUrl": "https://lu.ma/sinciitd"
   },
   {
@@ -29,6 +32,7 @@
     "description": "Meet angel investors and seed-stage VCs actively looking at IIT Delhi deals. Bring your one-pager and deck.",
     "date": "2026-08-20",
     "category": "networking",
+    "image": "/events/investor-connect.png",
     "registrationUrl": "https://lu.ma/sinciitd"
   },
   {
@@ -37,6 +41,7 @@
     "description": "Open clinic with startup lawyers covering company incorporation, co-founder agreements, and IP protection basics for early-stage teams.",
     "date": "2026-09-05",
     "category": "workshop",
+    "image": "/events/legal-clinic.png",
     "registrationUrl": "https://lu.ma/sinciitd"
   },
   {
@@ -45,6 +50,7 @@
     "description": "SInC's first official Demo Day. Six founding teams present to a room of investors, mentors, and campus founders. Open to IIT Delhi community.",
     "date": "2026-09-28",
     "category": "other",
+    "image": "/events/demo-day.png",
     "registrationUrl": "https://lu.ma/sinciitd"
   }
 ]

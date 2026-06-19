@@ -66,6 +66,16 @@ export default async function EventDetailPage({ params }: Props) {
 
       <section className="py-12 pb-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          {event.image && (
+            <Reveal className="mb-10 overflow-hidden border-2 border-border-ink shadow-[6px_6px_0_0_#0a0a0a]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={event.image}
+                alt={event.title}
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </Reveal>
+          )}
           {event.description.trim() ? (
             <Reveal>
               <p className="text-lg leading-relaxed text-muted">{event.description}</p>
