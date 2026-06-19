@@ -57,10 +57,10 @@ export function PortfolioGrid({
             className="group relative flex h-full flex-col framer-card p-6 transition-all hover:shadow-[var(--shadow-framer-hover)]"
           >
             <div className="flex items-start justify-between">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-club-lavender/25 to-club-gold/15 text-lg font-black text-club-lavender ring-1 ring-club-lavender/20 transition-transform duration-300 group-hover:scale-110">
+              <div className="flex h-12 w-12 items-center justify-center rounded-none bg-foreground font-mono text-lg font-black text-background transition-transform duration-300 group-hover:scale-110">
                 {startup.name.charAt(0)}
               </div>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted transition-all duration-300 group-hover:border-club-lavender/50 group-hover:text-club-lavender group-hover:rotate-45">
+              <span className="flex h-8 w-8 items-center justify-center rounded-none border border-border text-muted transition-all duration-300 group-hover:border-foreground group-hover:bg-foreground group-hover:text-background">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
             </div>
@@ -98,10 +98,10 @@ export function SectorFilters({
           key={sector}
           type="button"
           onClick={() => onChange(sector)}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all capitalize ${
+          className={`rounded-none border px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide transition-all ${
             active === sector
-              ? "bg-club-gold text-club-purple font-semibold shadow-[0_0_18px_rgba(245,158,11,0.35)]"
-              : "bg-card border border-border hover:border-club-lavender/40 hover:-translate-y-0.5"
+              ? "border-foreground bg-accent-lime text-foreground"
+              : "border-border bg-card text-muted hover:border-foreground hover:text-foreground"
           }`}
         >
           {sector === "all" ? "All" : sector}

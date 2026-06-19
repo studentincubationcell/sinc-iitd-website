@@ -103,43 +103,18 @@ export function PageHeader({
   children?: React.ReactNode;
   narrow?: boolean;
 }) {
-  const isClub = variant === "club";
-
   return (
     <section
-      className="relative overflow-hidden"
-      style={
-        isClub
-          ? { background: "linear-gradient(160deg, #09051a 0%, #130d2e 100%)", paddingTop: "8rem", paddingBottom: "3.5rem" }
-          : { paddingTop: "8rem", paddingBottom: "3.5rem" }
-      }
+      className="relative overflow-hidden border-b border-border-ink bg-background"
+      style={{ paddingTop: "9rem", paddingBottom: "4rem" }}
     >
-      {isClub && (
-        <>
-          <div
-            className="absolute inset-0 cross-grid pointer-events-none"
-            style={{ maskImage: "radial-gradient(ellipse 90% 100% at 70% 0%, black 20%, transparent 80%)", WebkitMaskImage: "radial-gradient(ellipse 90% 100% at 70% 0%, black 20%, transparent 80%)" }}
-          />
-          <div
-            className="pointer-events-none absolute -top-10 right-1/4 w-96 h-96 rounded-full opacity-20 aurora-drift"
-            style={{ background: "radial-gradient(circle, rgba(167,139,250,0.6) 0%, transparent 65%)", filter: "blur(64px)" }}
-          />
-          <div
-            className="pointer-events-none absolute top-0 -left-16 w-80 h-80 rounded-full opacity-15 aurora-drift-2"
-            style={{ background: "radial-gradient(circle, rgba(245,158,11,0.55) 0%, transparent 68%)", filter: "blur(70px)" }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background/60 to-transparent pointer-events-none" />
-        </>
-      )}
-      {!isClub && <div className="absolute inset-0 dot-grid opacity-70 pointer-events-none" />}
+      <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
 
       <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-7xl"}`}>
         {backHref && (
           <Link
             href={backHref}
-            className={`mb-8 inline-flex items-center gap-2 text-sm font-medium transition-colors ${
-              isClub ? "text-white/40 hover:text-club-gold" : "text-muted hover:text-primary"
-            }`}
+            className="mb-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             {backLabel ?? "Back"}
@@ -149,7 +124,6 @@ export function PageHeader({
           label={badge ?? "SInC"}
           title={title}
           description={description}
-          club={isClub}
         />
         {children}
       </div>

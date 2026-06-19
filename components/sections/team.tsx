@@ -85,7 +85,7 @@ export function MemberSocials({
                 target={key === "email" ? undefined : "_blank"}
                 rel={key === "email" ? undefined : "noopener noreferrer"}
                 aria-label={`${member.name || "Team member"} on ${label}`}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background text-muted transition-all duration-200 hover:border-club-lavender hover:bg-club-lavender hover:text-club-purple"
+                className="flex h-9 w-9 items-center justify-center rounded-none border border-border text-muted transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -94,7 +94,7 @@ export function MemberSocials({
         : socialConfig.map(({ key, Icon }) => (
             <span
               key={key}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-dashed border-border/80 bg-background/50 text-muted/25"
+              className="flex h-9 w-9 items-center justify-center rounded-none border border-dashed border-border/80 text-muted/25"
               aria-hidden
             >
               <Icon className="h-4 w-4" />
@@ -122,7 +122,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
           <div className="relative shrink-0">
             <div
               className={cn(
-                "flex h-14 w-14 items-center justify-center rounded-xl text-lg font-bold transition-transform duration-200 group-hover:scale-105",
+                "flex h-14 w-14 items-center justify-center rounded-none font-mono text-lg font-bold transition-transform duration-200 group-hover:scale-105",
                 nameEmpty
                   ? "border border-dashed border-border bg-background text-muted/40"
                   : "bg-foreground text-background"
@@ -131,7 +131,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
               {getInitials(member.name)}
             </div>
             {!nameEmpty && (
-              <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-accent border-2 border-card" />
+              <span className="absolute -bottom-1 -right-1 h-3.5 w-3.5 bg-accent-lime border-2 border-card" />
             )}
           </div>
           <div className="min-w-0 flex-1 pt-0.5">
@@ -142,7 +142,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
             </h3>
             <p className="text-sm font-medium mt-0.5">
               <PlaceholderText empty={roleEmpty}>
-                <span className={roleEmpty ? "" : "text-club-lavender"}>
+                <span className={roleEmpty ? "" : "text-foreground"}>
                   {roleEmpty ? "Role" : member.role}
                 </span>
               </PlaceholderText>
@@ -185,14 +185,14 @@ export function TeamIntro({
         and incubation.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <span className="inline-flex items-center gap-2 rounded-sm bg-club-lavender/15 text-club-purple px-4 py-1.5 text-sm font-semibold">
+        <span className="inline-flex items-center gap-2 rounded-none bg-foreground px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-background">
           <Users className="h-4 w-4" />
           {count > 0 ? `${count} members` : "Team growing"}
         </span>
         {TEAM_DEPARTMENTS.map((dept) => (
           <span
             key={dept}
-            className="rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-muted"
+            className="rounded-none border border-border px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-wide text-muted"
           >
             {dept}
           </span>
@@ -247,21 +247,17 @@ export function TeamPreview({
   const preview = team.slice(0, 3);
 
   return (
-    <section className="section-padding bg-background border-y border-club-lavender/15 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-club-lavender/[0.04] via-transparent to-club-gold/[0.03] pointer-events-none" />
+    <section className="section-padding bg-background border-y border-border-ink relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <SectionHeading
             label="Team"
             title="Meet the people behind SInC."
             description="Students building the ecosystem for campus founders."
-            className="mb-0 [&_p:first-child]:text-club-gold"
+            className="mb-0"
           />
           <Link href="/team" className="shrink-0">
-            <Button
-              variant="outline"
-              className="rounded-sm border-club-lavender/30 bg-background hover:bg-club-lavender/5 hover:border-club-lavender/50"
-            >
+            <Button variant="outline">
               View full team
             </Button>
           </Link>
@@ -273,9 +269,9 @@ export function TeamPreview({
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="rounded-2xl border border-dashed border-club-lavender/30 p-8 text-center bg-club-lavender/[0.04]"
+                  className="rounded-none border border-dashed border-border p-8 text-center"
                 >
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-club-lavender/20 to-club-gold/15 text-2xl font-bold text-club-gold mb-4">
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-none border border-dashed border-border text-2xl font-bold text-muted/40 mb-4">
                     ?
                   </div>
                   <p className="font-semibold text-muted">Team member</p>
@@ -302,9 +298,9 @@ export function TeamPreview({
 
 export function TeamEmptyState() {
   return (
-    <div className="rounded-3xl border-2 border-dashed border-border bg-card/50 p-16 text-center">
-      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-purple/10 mb-6">
-        <Users className="h-8 w-8 text-purple" />
+    <div className="rounded-none border border-dashed border-border bg-card p-16 text-center">
+      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-none border border-border mb-6">
+        <Users className="h-8 w-8 text-foreground" />
       </div>
       <h3 className="text-xl font-semibold mb-2">Team profiles coming soon</h3>
       <p className="text-muted max-w-md mx-auto">
@@ -317,8 +313,8 @@ export function TeamEmptyState() {
 
 export function JoinTeamCTA() {
   return (
-    <Reveal className="mt-20 rounded-2xl border border-club-lavender/25 bg-gradient-to-br from-club-lavender/10 to-club-gold/5 p-10 sm:p-12 text-center">
-      <Mail className="h-10 w-10 text-club-gold mx-auto mb-4" />
+    <Reveal className="mt-20 rounded-none border border-border-ink bg-card p-10 sm:p-12 text-center hard-shadow">
+      <Mail className="h-10 w-10 text-foreground mx-auto mb-4" />
       <h3 className="text-2xl font-bold">Want to join the team?</h3>
       <p className="text-muted mt-3 mb-8 max-w-lg mx-auto">
         We&apos;re always looking for passionate builders across events, tech,

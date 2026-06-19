@@ -163,12 +163,11 @@ export function CustomCursor() {
         style={{
           opacity: visible ? 1 : 0,
           border: hovering
-            ? "1.5px solid rgba(245, 166, 35, 0.6)"
-            : "1.5px solid rgba(155, 127, 212, 0.4)",
+            ? "1.5px solid rgba(200, 255, 0, 0.9)"
+            : "1.5px solid rgba(10, 10, 10, 0.45)",
           transition:
             "opacity 0.15s ease, border 0.2s ease, width 0.25s ease, height 0.25s ease, border-radius 0.25s ease",
-          backdropFilter: hovering ? "blur(1px)" : "none",
-          background: hovering ? "rgba(245, 166, 35, 0.04)" : "transparent",
+          background: hovering ? "rgba(200, 255, 0, 0.12)" : "transparent",
         }}
       />
     </>
