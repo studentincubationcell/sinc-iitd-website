@@ -115,9 +115,9 @@ export type Startup = z.infer<typeof startupSchema>;
 export type TeamMember = z.infer<typeof teamMemberSchema>;
 
 export const TEAM_DEPARTMENTS = [
+  "Tech",
   "Leadership",
   "Events",
-  "Tech",
   "Outreach",
   "Incubation",
 ] as const;

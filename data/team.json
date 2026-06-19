@@ -1,5 +1,13 @@
 [
   {
+    "id": "3",
+    "name": "",
+    "role": "",
+    "team": "Tech",
+    "bio": "",
+    "image": "/team/gagan-tak.jpg"
+  },
+  {
     "id": "1",
     "name": "",
     "role": "Coordinator",
@@ -12,14 +20,6 @@
     "role": "",
     "team": "Events",
     "bio": ""
-  },
-  {
-    "id": "3",
-    "name": "",
-    "role": "",
-    "team": "Tech",
-    "bio": "",
-    "image": "/team/gagan-tak.png"
   },
   {
     "id": "4",

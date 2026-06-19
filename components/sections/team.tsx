@@ -19,6 +19,7 @@ import {
   isTeamMemberFilled,
   isTeamFieldFilled,
   getTeamInitials,
+  sortTeamMembers,
 } from "@/lib/team-utils";
 
 function getInitials(name: string) {
@@ -118,13 +119,18 @@ export function TeamCard({ member }: { member: TeamMember }) {
       )}
     >
       {/* Portrait */}
-      <div className="relative aspect-square w-full overflow-hidden border-b-2 border-border-ink">
+      <div
+        className={cn(
+          "relative w-full overflow-hidden border-b-2 border-border-ink bg-muted/15",
+          hasPhoto ? "aspect-[3/4]" : "aspect-square"
+        )}
+      >
         {hasPhoto ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={member.image as string}
-            alt={`${member.name} — ${member.role}`}
-            className="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-[1.03]"
+            alt={`${member.name || member.team} team member`}
+            className="h-full w-full object-contain object-top grayscale transition-all duration-300 group-hover:grayscale-0"
             loading="lazy"
           />
         ) : (
@@ -255,7 +261,7 @@ export function TeamPreview({
 }: {
   team: TeamMember[];
 }) {
-  const preview = team.slice(0, 3);
+  const preview = sortTeamMembers(team).slice(0, 3);
 
   return (
     <section className="section-padding bg-background border-y border-border-ink relative overflow-hidden">
