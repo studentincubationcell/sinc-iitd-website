@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 
 const SESSION_KEY = "sinc-splash-seen";
+const MOTTO = "Your journey from idea to impact begins here.";
+
+type Phase = "logo" | "motto" | "split" | "done";
 
 export function SplashCurtain() {
   const [show, setShow] = useState(false);
-  const [phase, setPhase] = useState<"logo" | "split" | "done">("logo");
+  const [phase, setPhase] = useState<Phase>("logo");
 
   useEffect(() => {
     // Only show splash once per session
@@ -17,21 +20,29 @@ export function SplashCurtain() {
       return;
     }
     setShow(true);
-    // Phase 1: Show logo for 1s, then split
-    const t1 = setTimeout(() => setPhase("split"), 1000);
-    // Phase 2: After split animation, mark done
-    const t2 = setTimeout(() => {
+
+    // Phase 1: Logo punches in and holds (0 → 1.3s)
+    const t1 = setTimeout(() => setPhase("motto"), 1300);
+    // Phase 2: Motto is revealed and held (1.3s → 3.7s)
+    const t2 = setTimeout(() => setPhase("split"), 3700);
+    // Phase 3: Curtains split open, then unmount (3.7s → 4.6s)
+    const t3 = setTimeout(() => {
       setPhase("done");
       setShow(false);
       sessionStorage.setItem(SESSION_KEY, "1");
-    }, 1800);
+    }, 4600);
+
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
+      clearTimeout(t3);
     };
   }, []);
 
   if (phase === "done" && !show) return null;
+
+  const splitting = phase === "split";
+  const showMotto = phase === "motto" || phase === "split";
 
   return (
     <AnimatePresence>
@@ -46,14 +57,14 @@ export function SplashCurtain() {
           {/* Left curtain panel */}
           <m.div
             className="absolute top-0 left-0 w-1/2 h-full bg-foreground"
-            animate={phase === "split" ? { x: "-100%" } : { x: 0 }}
+            animate={splitting ? { x: "-100%" } : { x: 0 }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
           />
 
           {/* Right curtain panel */}
           <m.div
             className="absolute top-0 right-0 w-1/2 h-full bg-foreground"
-            animate={phase === "split" ? { x: "100%" } : { x: 0 }}
+            animate={splitting ? { x: "100%" } : { x: 0 }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
           />
 
@@ -61,55 +72,80 @@ export function SplashCurtain() {
           <m.div
             className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-accent-lime"
             animate={
-              phase === "split"
-                ? { opacity: 0, scaleX: 40 }
-                : { opacity: 1, scaleX: 1 }
+              splitting ? { opacity: 0, scaleX: 40 } : { opacity: 1, scaleX: 1 }
             }
             transition={{ duration: 0.5, ease: "easeOut" }}
           />
 
-          {/* Logo in center */}
+          {/* Center stage */}
           <m.div
-            className="absolute inset-0 flex items-center justify-center"
-            animate={
-              phase === "split"
-                ? { scale: 1.5, opacity: 0 }
-                : { scale: 1, opacity: 1 }
-            }
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+            animate={splitting ? { scale: 1.4, opacity: 0 } : { scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
+            {/* SInC wordmark — shrinks up to make room for the motto */}
             <m.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-col items-center gap-3"
+              className="relative flex flex-col items-center gap-3"
             >
-              {/* SInC Text Logo */}
-              <span className="editorial-display text-6xl sm:text-7xl text-background">
-                SInC
-              </span>
               <m.span
-                className="font-mono text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-lime"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.4 }}
+                className="editorial-display text-background leading-none"
+                animate={{ fontSize: showMotto ? "3rem" : "4.5rem" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                IIT Delhi
+                SInC
               </m.span>
-              {/* Pulse ring */}
-              <m.div
-                className="absolute w-28 h-28 rounded-none border border-accent-lime/40"
-                animate={{
-                  scale: [1, 1.6],
-                  opacity: [0.4, 0],
-                }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.2,
-                  ease: "easeOut",
-                }}
-              />
+              <span className="font-mono text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-accent-lime">
+                IIT Delhi
+              </span>
+
+              {/* Pulse ring (only during the logo phase) */}
+              {!showMotto && (
+                <m.div
+                  className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-none border border-accent-lime/40"
+                  animate={{ scale: [1, 1.6], opacity: [0.4, 0] }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                />
+              )}
             </m.div>
+
+            {/* Motto reveal */}
+            <AnimatePresence>
+              {showMotto && (
+                <m.div
+                  className="mt-8 flex max-w-xl flex-col items-center gap-5"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="h-px w-12 bg-accent-lime" />
+                  <p className="editorial-display text-2xl leading-tight text-background text-balance sm:text-3xl">
+                    {MOTTO.split(" ").map((word, i) => (
+                      <m.span
+                        key={`${word}-${i}`}
+                        className="inline-block"
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.25 + i * 0.08,
+                          duration: 0.4,
+                          ease: "easeOut",
+                        }}
+                      >
+                        {word}
+                        {"\u00A0"}
+                      </m.span>
+                    ))}
+                  </p>
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-background/50">
+                    Student Incubation Cell
+                  </span>
+                </m.div>
+              )}
+            </AnimatePresence>
           </m.div>
         </m.div>
       )}
