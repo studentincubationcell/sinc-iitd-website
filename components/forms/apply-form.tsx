@@ -22,8 +22,7 @@ const applySchema = z.object({
 
 type ApplyForm = z.infer<typeof applySchema>;
 
-const fieldClass =
-  "border-club-lavender/25 bg-background focus-visible:ring-club-gold/40 focus-visible:border-club-lavender/50";
+const fieldClass = "";
 
 export function ApplyForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -47,11 +46,11 @@ export function ApplyForm() {
       <m.div
         initial={reduceMotion ? false : { scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="rounded-2xl border border-club-lavender/25 bg-club-lavender/[0.06] p-12 text-center"
+        className="brutal-block-lg bg-accent-lime p-12 text-center"
       >
-        <CheckCircle2 className="h-16 w-16 text-club-gold mx-auto mb-6" />
-        <h3 className="text-2xl font-bold">Application received!</h3>
-        <p className="text-muted mt-3 max-w-md mx-auto">
+        <CheckCircle2 className="h-16 w-16 text-foreground mx-auto mb-6" />
+        <h3 className="text-2xl font-black tracking-tight">Application received!</h3>
+        <p className="text-foreground/75 mt-3 max-w-md mx-auto">
           Thanks for applying to SInC. Our team will review your application and
           reach out within 5–7 business days.
         </p>
@@ -72,7 +71,7 @@ export function ApplyForm() {
             {...register("name")}
           />
           {errors.name && (
-            <p className="text-sm text-accent mt-1">{errors.name.message}</p>
+            <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
           )}
         </div>
         <div>
@@ -87,7 +86,7 @@ export function ApplyForm() {
             {...register("email")}
           />
           {errors.email && (
-            <p className="text-sm text-accent mt-1">{errors.email.message}</p>
+            <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
           )}
         </div>
       </div>
@@ -98,8 +97,7 @@ export function ApplyForm() {
         <select
           id="apply-year"
           className={cn(
-            "mt-1.5 flex h-11 w-full rounded-xl border px-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1",
-            fieldClass
+            "mt-1.5 flex h-11 w-full rounded-none border-2 border-border-ink bg-background px-4 text-sm transition-all duration-150 focus-visible:outline-none focus-visible:border-foreground focus-visible:shadow-[3px_3px_0_0_#0a0a0a]"
           )}
           {...register("year")}
         >
@@ -112,7 +110,7 @@ export function ApplyForm() {
           <option value="phd">PhD</option>
         </select>
         {errors.year && (
-          <p className="text-sm text-accent mt-1">{errors.year.message}</p>
+          <p className="text-sm text-destructive mt-1">{errors.year.message}</p>
         )}
       </div>
       <div>
@@ -126,7 +124,7 @@ export function ApplyForm() {
           {...register("idea")}
         />
         {errors.idea && (
-          <p className="text-sm text-accent mt-1">{errors.idea.message}</p>
+          <p className="text-sm text-destructive mt-1">{errors.idea.message}</p>
         )}
       </div>
       <div>
@@ -140,7 +138,7 @@ export function ApplyForm() {
           {...register("why")}
         />
         {errors.why && (
-          <p className="text-sm text-accent mt-1">{errors.why.message}</p>
+          <p className="text-sm text-destructive mt-1">{errors.why.message}</p>
         )}
       </div>
       <Button type="submit" disabled={isSubmitting} variant="club" size="lg" className="w-full">

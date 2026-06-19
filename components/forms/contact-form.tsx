@@ -19,8 +19,7 @@ const contactSchema = z.object({
 
 type ContactForm = z.infer<typeof contactSchema>;
 
-const fieldClass =
-  "border-club-lavender/25 bg-background focus-visible:ring-club-gold/40 focus-visible:border-club-lavender/50";
+const fieldClass = "";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -40,10 +39,10 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-club-lavender/25 bg-club-lavender/[0.06] p-8 text-center">
-        <CheckCircle2 className="h-12 w-12 text-club-gold mx-auto mb-4" />
-        <h3 className="text-xl font-semibold">Message sent!</h3>
-        <p className="text-muted mt-2">We&apos;ll get back to you soon.</p>
+      <div className="brutal-block bg-accent-lime p-8 text-center">
+        <CheckCircle2 className="h-12 w-12 text-foreground mx-auto mb-4" />
+        <h3 className="text-xl font-black tracking-tight">Message sent!</h3>
+        <p className="text-foreground/75 mt-2">We&apos;ll get back to you soon.</p>
       </div>
     );
   }
@@ -56,7 +55,7 @@ export function ContactForm() {
         </Label>
         <Input id="name" className={cn("mt-1.5", fieldClass)} {...register("name")} />
         {errors.name && (
-          <p className="text-sm text-accent mt-1">{errors.name.message}</p>
+          <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
         )}
       </div>
       <div>
@@ -70,7 +69,7 @@ export function ContactForm() {
           {...register("email")}
         />
         {errors.email && (
-          <p className="text-sm text-accent mt-1">{errors.email.message}</p>
+          <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
         )}
       </div>
       <div>
@@ -83,7 +82,7 @@ export function ContactForm() {
           {...register("message")}
         />
         {errors.message && (
-          <p className="text-sm text-accent mt-1">{errors.message.message}</p>
+          <p className="text-sm text-destructive mt-1">{errors.message.message}</p>
         )}
       </div>
       <Button type="submit" disabled={isSubmitting} variant="club" className="w-full">

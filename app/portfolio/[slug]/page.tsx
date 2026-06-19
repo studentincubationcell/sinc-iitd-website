@@ -49,12 +49,7 @@ export default async function StartupDetailPage({ params }: Props) {
         description={startup.tagline}
       >
         <Reveal className="mt-4">
-          <Badge
-            variant="outline"
-            className="border-club-lavender/40 bg-white/5 text-white/70"
-          >
-            Founder: {startup.founder}
-          </Badge>
+          <Badge variant="dark">Founder: {startup.founder}</Badge>
         </Reveal>
       </PageHeader>
 

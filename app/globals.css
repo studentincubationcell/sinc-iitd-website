@@ -29,6 +29,7 @@
   --primary-foreground: #f4f3ee;
   --accent: #c8ff00;
   --maroon: #0a0a0a;
+  --destructive: #d92d20;
 
   /* Legacy "club" palette remapped to the editorial system.
      The classic pairing in components is bg-club-gold + text-club-purple,
@@ -70,6 +71,7 @@
   --color-primary-foreground:var(--primary-foreground);
   --color-accent:            var(--accent);
   --color-maroon:            var(--maroon);
+  --color-destructive:       var(--destructive);
   --color-accent-lime:       var(--accent-lime);
   --color-accent-lime-dark:  var(--accent-lime-dark);
   --color-accent-tint:       var(--accent-tint);

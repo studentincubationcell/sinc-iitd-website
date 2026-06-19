@@ -61,7 +61,7 @@ export default function ApplyPage() {
                   <ol className="space-y-4">
                     {steps.map((step, i) => (
                       <li key={step} className="flex gap-3">
-                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-bold">
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center border-2 border-border-ink bg-accent-lime font-mono text-sm font-bold text-foreground">
                           {i + 1}
                         </span>
                         <span className="text-muted pt-0.5">{step}</span>
@@ -73,8 +73,8 @@ export default function ApplyPage() {
 
               <Reveal>
                 <div className="framer-card p-8">
-                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <h3 className="text-lg font-black tracking-tight mb-4 flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-foreground" />
                     Eligibility
                   </h3>
                   <ul className="text-muted space-y-2 text-sm">

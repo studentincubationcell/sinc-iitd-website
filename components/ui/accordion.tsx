@@ -54,7 +54,7 @@ export function AccordionItem({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border bg-card overflow-hidden",
+        "rounded-none border-2 border-border-ink bg-card overflow-hidden shadow-[4px_4px_0_0_#0a0a0a]",
         className
       )}
     >
@@ -80,7 +80,8 @@ export function AccordionTrigger({
     <button
       type="button"
       className={cn(
-        "flex w-full items-center justify-between p-5 text-left font-semibold transition-colors hover:bg-foreground/5",
+        "flex w-full items-center justify-between p-5 text-left font-bold transition-colors hover:bg-accent-tint",
+        isOpen && "bg-accent-lime",
         className
       )}
       onClick={() => ctx.toggle(value)}
@@ -89,7 +90,7 @@ export function AccordionTrigger({
       {children}
       <ChevronDown
         className={cn(
-          "h-5 w-5 shrink-0 text-muted transition-transform duration-200",
+          "h-5 w-5 shrink-0 text-foreground transition-transform duration-200",
           isOpen && "rotate-180"
         )}
       />

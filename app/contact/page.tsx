@@ -25,13 +25,15 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="space-y-4">
               <Reveal>
-                <div className="framer-card p-6 flex gap-4">
-                  <Mail className="h-6 w-6 text-primary shrink-0" />
+                <div className="framer-card p-6 flex gap-4 bg-card">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-border-ink bg-accent-lime">
+                    <Mail className="h-5 w-5 text-foreground" />
+                  </span>
                   <div>
-                    <h3 className="font-semibold">Email</h3>
+                    <h3 className="font-black tracking-tight">Email</h3>
                     <a
                       href={`mailto:${site.contact.email}`}
-                      className="text-muted hover:text-primary transition-colors"
+                      className="text-muted hover:text-foreground transition-colors"
                     >
                       {site.contact.email}
                     </a>
@@ -39,26 +41,30 @@ export default function ContactPage() {
                 </div>
               </Reveal>
               <Reveal>
-                <div className="framer-card p-6 flex gap-4">
-                  <Phone className="h-6 w-6 text-primary shrink-0" />
+                <div className="framer-card p-6 flex gap-4 bg-card">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-border-ink bg-pop-pink">
+                    <Phone className="h-5 w-5 text-foreground" />
+                  </span>
                   <div>
-                    <h3 className="font-semibold">Phone</h3>
+                    <h3 className="font-black tracking-tight">Phone</h3>
                     <p className="text-muted">{site.contact.phone}</p>
                   </div>
                 </div>
               </Reveal>
               <Reveal>
-                <div className="framer-card p-6 flex gap-4">
-                  <MapPin className="h-6 w-6 text-primary shrink-0" />
+                <div className="framer-card p-6 flex gap-4 bg-card">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-border-ink bg-pop-sky">
+                    <MapPin className="h-5 w-5 text-foreground" />
+                  </span>
                   <div>
-                    <h3 className="font-semibold">Office</h3>
+                    <h3 className="font-black tracking-tight">Office</h3>
                     <p className="text-muted text-sm leading-relaxed">
                       {site.contact.address}
                     </p>
                   </div>
                 </div>
               </Reveal>
-              <Reveal className="framer-card overflow-hidden h-64 p-0">
+              <Reveal className="brutal-block overflow-hidden h-64 p-0">
                 <iframe
                   src={site.contact.mapEmbed}
                   width="100%"

@@ -31,10 +31,10 @@ export default function EventsPage() {
                 key={cat}
                 type="button"
                 onClick={() => setFilter(cat)}
-                className={`rounded-sm px-4 py-1.5 text-sm font-medium capitalize transition-all ${
+                className={`rounded-none border-2 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide transition-all ${
                   filter === cat
-                    ? "bg-club-gold text-club-purple font-semibold"
-                    : "bg-card border border-border hover:border-club-lavender/40"
+                    ? "border-foreground bg-accent-lime text-foreground shadow-[3px_3px_0_0_#0a0a0a]"
+                    : "border-border-ink bg-card text-muted hover:bg-accent-tint hover:text-foreground"
                 }`}
               >
                 {cat === "all" ? "All" : cat}

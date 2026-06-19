@@ -58,8 +58,8 @@ export default async function EventDetailPage({ params }: Props) {
         badge={categoryLabels[event.category]}
         title={event.title}
       >
-        <Reveal className="mt-6 flex items-center gap-2 text-white/60">
-          <Calendar className="h-4 w-4 text-club-gold" />
+        <Reveal className="mt-6 inline-flex items-center gap-2 border-2 border-border-ink bg-accent-lime px-4 py-2 font-mono text-sm font-semibold text-foreground">
+          <Calendar className="h-4 w-4 text-foreground" />
           <time dateTime={event.date}>{formattedDate}</time>
         </Reveal>
       </PageHeader>

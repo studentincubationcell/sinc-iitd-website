@@ -31,18 +31,18 @@ export default function AboutPage() {
               />
             </Reveal>
 
-            <StaggerContainer className="space-y-4">
+            <StaggerContainer className="space-y-6">
               {[
-                { title: "Mission", body: about.mission },
-                { title: "Vision", body: about.vision },
-                { title: "Values", body: about.values },
+                { title: "Mission", body: about.mission, pop: "bg-accent-lime" },
+                { title: "Vision", body: about.vision, pop: "bg-pop-pink" },
+                { title: "Values", body: about.values, pop: "bg-pop-sky" },
               ].map((item) => (
                 <StaggerItem key={item.title}>
-                  <div className="framer-card p-8">
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
+                  <div className={`${item.pop} brutal-block p-8 text-foreground`}>
+                    <h3 className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.16em] text-foreground">
                       {item.title}
                     </h3>
-                    <p className="text-muted leading-relaxed">{item.body}</p>
+                    <p className="leading-relaxed text-foreground/80">{item.body}</p>
                   </div>
                 </StaggerItem>
               ))}
@@ -62,11 +62,11 @@ export default function AboutPage() {
           <StaggerContainer className="grid md:grid-cols-3 gap-6">
             {about.timeline.map((item) => (
               <StaggerItem key={item.title}>
-                <div className="framer-card p-8 text-center h-full">
-                  <div className="text-sm font-bold text-primary mb-2">
+                <div className="framer-card p-8 text-center h-full bg-card">
+                  <div className="mb-3 inline-flex items-center justify-center border-2 border-border-ink bg-accent-lime px-3 py-1 font-mono text-sm font-bold text-foreground">
                     {item.year}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                  <h3 className="text-lg font-black tracking-tight mb-2">{item.title}</h3>
                   <p className="text-sm text-muted">{item.description}</p>
                 </div>
               </StaggerItem>
@@ -88,7 +88,7 @@ export default function AboutPage() {
             {about.partners.map((p) => (
               <div
                 key={p}
-                className="framer-card px-8 py-4 text-muted font-medium border-dashed"
+                className="rounded-none border-2 border-dashed border-border-ink bg-card px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide text-muted"
               >
                 {p}
               </div>
