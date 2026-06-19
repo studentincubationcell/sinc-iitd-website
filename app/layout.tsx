@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SplashCurtain } from "@/components/motion/splash-curtain";
+import { CustomCursor } from "@/components/motion/custom-cursor";
 import { site } from "@/lib/data";
 import "./globals.css";
 
@@ -70,9 +71,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${geistSans.variable} h-full antialiased bg-background`}>
       <body className="min-h-full flex flex-col">
         <MotionProvider>
+          <CustomCursor />
           <SplashCurtain />
           <Header />
           <main className="flex-1">{children}</main>

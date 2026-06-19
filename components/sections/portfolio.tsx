@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Rocket, Filter } from "lucide-react";
+import { Rocket, Filter, ArrowUpRight } from "lucide-react";
 import { StaggerContainer, StaggerItem } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
 import { ClubEmptyState } from "@/components/ui/club-empty-state";
@@ -54,14 +54,24 @@ export function PortfolioGrid({
         <StaggerItem key={startup.slug}>
           <Link
             href={`/portfolio/${startup.slug}`}
-            className="group block h-full framer-card p-6 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-framer-hover)]"
+            className="group relative flex h-full flex-col framer-card p-6 transition-all hover:shadow-[var(--shadow-framer-hover)]"
           >
-            <Badge variant="outline">{startup.sector}</Badge>
-            <h3 className="mt-4 text-xl font-semibold group-hover:text-primary transition-colors">
+            <div className="flex items-start justify-between">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-club-lavender/25 to-club-gold/15 text-lg font-black text-club-lavender ring-1 ring-club-lavender/20 transition-transform duration-300 group-hover:scale-110">
+                {startup.name.charAt(0)}
+              </div>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted transition-all duration-300 group-hover:border-club-lavender/50 group-hover:text-club-lavender group-hover:rotate-45">
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </div>
+            <h3 className="mt-5 text-xl font-semibold group-hover:text-primary transition-colors">
               {startup.name}
             </h3>
-            <p className="mt-2 text-sm text-muted line-clamp-2">{startup.tagline}</p>
-            <p className="mt-4 text-xs text-muted">Founder: {startup.founder}</p>
+            <p className="mt-2 text-sm text-muted line-clamp-2 flex-1">{startup.tagline}</p>
+            <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-4">
+              <span className="text-xs text-muted">Founder: {startup.founder}</span>
+              <Badge variant="outline" className="capitalize">{startup.sector}</Badge>
+            </div>
           </Link>
         </StaggerItem>
       ))}
@@ -88,10 +98,10 @@ export function SectorFilters({
           key={sector}
           type="button"
           onClick={() => onChange(sector)}
-          className={`rounded-sm px-4 py-1.5 text-sm font-medium transition-all capitalize ${
+          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all capitalize ${
             active === sector
-              ? "bg-club-gold text-club-purple font-semibold"
-              : "bg-card border border-border hover:border-club-lavender/40"
+              ? "bg-club-gold text-club-purple font-semibold shadow-[0_0_18px_rgba(245,158,11,0.35)]"
+              : "bg-card border border-border hover:border-club-lavender/40 hover:-translate-y-0.5"
           }`}
         >
           {sector === "all" ? "All" : sector}
