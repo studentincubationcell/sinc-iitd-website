@@ -130,7 +130,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
           <img
             src={member.image as string}
             alt={`${member.name || member.team} team member`}
-            className="h-full w-full object-contain object-top grayscale transition-all duration-300 group-hover:grayscale-0"
+            className="h-full w-full object-contain object-top transition-all duration-300 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0"
             loading="lazy"
           />
         ) : (
