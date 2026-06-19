@@ -28,10 +28,10 @@ export function Header() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-white",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-foreground",
           transparent
             ? "bg-transparent border-b border-transparent"
-            : "bg-[rgba(13,6,24,0.92)] backdrop-blur-xl border-b border-white/[0.07] shadow-[0_1px_0_rgba(167,139,250,0.08)]"
+            : "bg-[rgba(255,255,255,0.85)] backdrop-blur-xl border-b border-border shadow-sm"
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">

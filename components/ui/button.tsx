@@ -3,20 +3,20 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-club-gold/50 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "sheen bg-club-gold text-club-purple font-bold uppercase tracking-wide hover:bg-club-gold/90",
+          "bg-accent-blue text-white font-semibold hover:bg-accent-blue-dark shadow-sm",
         accent:
-          "sheen bg-accent text-club-purple font-bold hover:bg-accent/90",
+          "bg-accent-blue text-white font-semibold hover:bg-accent-blue-dark shadow-sm",
         outline:
-          "border border-club-lavender/35 bg-transparent hover:bg-club-lavender/10 hover:border-club-lavender/50",
-        ghost: "hover:bg-club-lavender/10",
+          "border border-border bg-card text-foreground hover:border-foreground/20 hover:bg-muted/5",
+        ghost: "text-foreground hover:bg-accent-tint",
         maroon:
-          "bg-maroon text-white hover:bg-maroon/90",
-        club: "sheen bg-club-gold text-club-purple font-bold uppercase tracking-wider hover:bg-club-gold/90",
+          "bg-accent-blue text-white hover:bg-accent-blue-dark",
+        club: "bg-accent-blue text-white font-semibold hover:bg-accent-blue-dark shadow-sm",
       },
       size: {
         default: "h-11 px-6 py-2",

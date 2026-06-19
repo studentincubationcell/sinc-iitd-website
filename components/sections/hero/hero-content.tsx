@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, GraduationCap, Building2, Briefcase, Rocket, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, GraduationCap, Building2, Briefcase, Rocket } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { HeroTypewriter } from "./hero-typewriter";
-import { HeroLaptopVisual } from "./hero-laptop-visual";
 import { HeroAnnouncement, type AnnouncementItem } from "./hero-announcement";
 import type { SocialLink } from "./hero-social-rail";
 
@@ -25,10 +24,15 @@ const TRUST_ITEMS = [
   { icon: Rocket, label: "40+ Startups" },
 ];
 
+const fadeUp = (delay: number, reduce: boolean | null) => ({
+  initial: reduce ? false : { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.3, delay, ease: "easeOut" as const },
+});
+
 export function HeroContent({
   eyebrow,
   title,
-  screenTagline,
   description,
   announcements,
 }: HeroContentProps) {
@@ -44,68 +48,43 @@ export function HeroContent({
 
             {/* Announcement pill */}
             {announcements.length > 0 && (
-              <m.div
-                className="mb-7"
-                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
+              <m.div className="mb-7" {...fadeUp(0, reduceMotion)}>
                 <HeroAnnouncement items={announcements} />
               </m.div>
             )}
 
             {/* Eyebrow */}
             <m.p
-              className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-club-lavender/60 mb-5 flex items-center gap-2"
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: 0.05 }}
+              className="mb-5 flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.24em] text-accent-blue"
+              {...fadeUp(0.05, reduceMotion)}
             >
-              <span className="inline-block h-px w-8 bg-club-lavender/40" />
+              <span className="inline-block h-px w-8 bg-accent-blue/50" />
               {eyebrow}
             </m.p>
 
-            {/* Headline */}
+            {/* Headline — massive, static, deep slate */}
             <m.h1
-              className="headline-tight text-glow-soft text-[2.85rem] sm:text-6xl lg:text-[4.35rem] font-black text-white"
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.08 }}
+              className="headline-tight text-balance text-[2.75rem] font-extrabold text-foreground sm:text-6xl lg:text-[4.25rem]"
+              {...fadeUp(0.08, reduceMotion)}
             >
               {title}
             </m.h1>
 
-            {/* Typewriter */}
-            <m.div
-              initial={reduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.22, duration: 0.4 }}
-            >
-              <HeroTypewriter />
-            </m.div>
-
             {/* Description */}
             <m.p
-              className="mt-6 text-base sm:text-lg text-white/45 leading-relaxed max-w-[26rem]"
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.32, duration: 0.4 }}
+              className="mt-6 max-w-[28rem] text-base leading-relaxed text-muted sm:text-lg"
+              {...fadeUp(0.16, reduceMotion)}
             >
               {description}
             </m.p>
 
             {/* CTAs */}
-            <m.div
-              className="mt-9 flex flex-wrap gap-3"
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.42 }}
-            >
+            <m.div className="mt-9 flex flex-wrap gap-3" {...fadeUp(0.24, reduceMotion)}>
               <Link href="/apply">
                 <Button
                   size="lg"
                   variant="club"
-                  className="sheen h-13 px-8 text-[15px] font-bold normal-case tracking-normal gap-2 shadow-[0_0_28px_rgba(245,158,11,0.4)] hover:shadow-[0_0_40px_rgba(245,158,11,0.6)] transition-shadow"
+                  className="h-13 gap-2 px-8 text-[15px] font-bold normal-case tracking-normal"
                 >
                   Apply now <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -114,7 +93,7 @@ export function HeroContent({
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-13 px-8 text-[15px] border-white/15 text-white/80 hover:bg-white/6 hover:border-white/30 hover:text-white"
+                  className="h-13 border-border bg-card px-8 text-[15px] text-foreground hover:bg-muted/5 hover:border-foreground/20"
                 >
                   Our programs
                 </Button>
@@ -124,15 +103,13 @@ export function HeroContent({
             {/* Trust bar */}
             <m.div
               className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2"
-              initial={reduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.58 }}
+              {...fadeUp(0.32, reduceMotion)}
             >
               {TRUST_ITEMS.map((item, i) => (
                 <span key={item.label} className="flex items-center gap-2">
-                  {i > 0 && <span className="h-1 w-1 rounded-full bg-white/20" />}
-                  <span className="flex items-center gap-1.5 text-xs text-white/45 font-medium">
-                    <item.icon className="h-3.5 w-3.5 text-club-lavender/70" strokeWidth={2} />
+                  {i > 0 && <span className="h-1 w-1 rounded-full bg-border" />}
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-muted">
+                    <item.icon className="h-3.5 w-3.5 text-accent-blue" strokeWidth={2} />
                     {item.label}
                   </span>
                 </span>
@@ -140,33 +117,26 @@ export function HeroContent({
             </m.div>
           </div>
 
-          {/* ── Right column — laptop ────────────────────── */}
+          {/* ── Right column — glassmorphism render ──────── */}
           <m.div
-            initial={reduceMotion ? false : { opacity: 0, x: 32, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ delay: 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12, duration: 0.5, ease: "easeOut" }}
           >
-            <HeroLaptopVisual screenTagline={screenTagline} announcement={null} />
+            <div className="relative mx-auto aspect-square w-full max-w-xl">
+              <Image
+                src="/hero-glass-render.png"
+                alt="Abstract glassmorphism render representing SInC's deep-tech engineering platform"
+                fill
+                priority
+                sizes="(max-width: 1024px) 90vw, 45vw"
+                className="object-contain animate-float"
+              />
+            </div>
           </m.div>
         </div>
       </div>
-
-      {/* Scroll cue */}
-      <m.div
-        className="pointer-events-none absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1.5 md:flex"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-      >
-        <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/30">Scroll</span>
-        <m.span
-          animate={reduceMotion ? undefined : { y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          className="text-club-lavender/60"
-        >
-          <ChevronDown className="h-4 w-4" />
-        </m.span>
-      </m.div>
     </div>
   );
 }

@@ -32,9 +32,9 @@ export function HeroAnnouncement({
   const current = items[index];
 
   return (
-    <div className="inline-flex items-center gap-0 rounded-full border border-club-gold/40 bg-club-gold/[0.08] pr-1 text-sm overflow-hidden">
+    <div className="inline-flex items-center gap-0 overflow-hidden rounded-full border border-border bg-card pr-1 text-sm shadow-sm">
       {/* Live badge */}
-      <span className="flex items-center gap-1.5 bg-club-gold text-club-purple font-bold text-[10px] uppercase tracking-widest px-3 py-1.5 shrink-0">
+      <span className="flex shrink-0 items-center gap-1.5 bg-accent-blue px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white">
         <Zap className="h-3 w-3" fill="currentColor" />
         Live
       </span>
@@ -48,7 +48,7 @@ export function HeroAnnouncement({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -12, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="text-white/80 text-xs font-medium whitespace-nowrap"
+            className="whitespace-nowrap text-xs font-medium text-foreground"
           >
             {current.text}
           </m.span>
@@ -59,7 +59,7 @@ export function HeroAnnouncement({
       {current.href && (
         <Link
           href={current.href}
-          className="flex items-center justify-center h-6 w-6 rounded-full bg-club-gold/20 hover:bg-club-gold/40 text-club-gold transition-colors shrink-0"
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent-blue transition-colors hover:bg-accent-blue hover:text-white"
           aria-label="View announcement"
         >
           <ArrowRight className="h-3 w-3" />
