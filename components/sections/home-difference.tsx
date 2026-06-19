@@ -100,7 +100,7 @@ export function HomeDifference() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: i * 0.1, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-8 flex flex-col gap-5 transition-all duration-300 ${pillar.borderAccent} ${pillar.glow}`}
+                className={`sheen group relative overflow-hidden rounded-2xl border border-border bg-card p-8 flex flex-col gap-5 transition-all duration-300 hover:-translate-y-1.5 ${pillar.borderAccent} ${pillar.glow}`}
               >
                 {/* Gradient fill on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />

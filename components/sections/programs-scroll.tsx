@@ -108,7 +108,7 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
                 transition={{ duration: 0.45 }}
                 className="xl:col-span-2"
               >
-                <Link href="/programs" className={`group relative flex flex-col h-full min-h-[260px] rounded-2xl overflow-hidden dark-card p-8 transition-all duration-300 ${c.cardGlow}`}>
+                <Link href="/programs" className={`sheen group relative flex flex-col h-full min-h-[260px] rounded-2xl overflow-hidden dark-card p-8 transition-all duration-300 hover:-translate-y-1.5 ${c.cardGlow}`}>
                   {/* Top gradient bar */}
                   <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${c.topBar}`} />
 
@@ -148,7 +148,7 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
                 viewport={{ once: true }}
                 transition={{ delay: (i + 1) * 0.09, duration: 0.45 }}
               >
-                <Link href="/programs" className={`group relative flex flex-col h-full min-h-[200px] rounded-2xl overflow-hidden dark-card p-7 transition-all duration-300 ${c.cardGlow}`}>
+                <Link href="/programs" className={`sheen group relative flex flex-col h-full min-h-[200px] rounded-2xl overflow-hidden dark-card p-7 transition-all duration-300 hover:-translate-y-1.5 ${c.cardGlow}`}>
                   <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${c.topBar} opacity-60 group-hover:opacity-100 transition-opacity`} />
 
                   <div className="flex items-start justify-between mb-5 mt-1">

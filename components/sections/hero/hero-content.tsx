@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, GraduationCap, Building2, Briefcase, Rocket, ChevronDown } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { HeroTypewriter } from "./hero-typewriter";
@@ -19,10 +19,10 @@ export type HeroContentProps = {
 };
 
 const TRUST_ITEMS = [
-  { emoji: "🎓", label: "IIT Delhi" },
-  { emoji: "🏗️", label: "R&I Park" },
-  { emoji: "💼", label: "Industry Mentors" },
-  { emoji: "🚀", label: "40+ Startups" },
+  { icon: GraduationCap, label: "IIT Delhi" },
+  { icon: Building2, label: "R&I Park" },
+  { icon: Briefcase, label: "Industry Mentors" },
+  { icon: Rocket, label: "40+ Startups" },
 ];
 
 export function HeroContent({
@@ -67,7 +67,7 @@ export function HeroContent({
 
             {/* Headline */}
             <m.h1
-              className="text-5xl sm:text-6xl lg:text-[4rem] font-black leading-[1.04] text-white tracking-tight"
+              className="headline-tight text-glow-soft text-[2.85rem] sm:text-6xl lg:text-[4.35rem] font-black text-white"
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
@@ -105,7 +105,7 @@ export function HeroContent({
                 <Button
                   size="lg"
                   variant="club"
-                  className="h-13 px-8 text-[15px] font-bold normal-case tracking-normal gap-2 shadow-[0_0_28px_rgba(245,158,11,0.4)] hover:shadow-[0_0_40px_rgba(245,158,11,0.6)] transition-shadow"
+                  className="sheen h-13 px-8 text-[15px] font-bold normal-case tracking-normal gap-2 shadow-[0_0_28px_rgba(245,158,11,0.4)] hover:shadow-[0_0_40px_rgba(245,158,11,0.6)] transition-shadow"
                 >
                   Apply now <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -123,14 +123,18 @@ export function HeroContent({
 
             {/* Trust bar */}
             <m.div
-              className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2"
+              className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2"
               initial={reduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.58 }}
             >
-              {TRUST_ITEMS.map((item) => (
-                <span key={item.label} className="flex items-center gap-1.5 text-xs text-white/35 font-medium">
-                  <span>{item.emoji}</span>{item.label}
+              {TRUST_ITEMS.map((item, i) => (
+                <span key={item.label} className="flex items-center gap-2">
+                  {i > 0 && <span className="h-1 w-1 rounded-full bg-white/20" />}
+                  <span className="flex items-center gap-1.5 text-xs text-white/45 font-medium">
+                    <item.icon className="h-3.5 w-3.5 text-club-lavender/70" strokeWidth={2} />
+                    {item.label}
+                  </span>
                 </span>
               ))}
             </m.div>
@@ -146,6 +150,23 @@ export function HeroContent({
           </m.div>
         </div>
       </div>
+
+      {/* Scroll cue */}
+      <m.div
+        className="pointer-events-none absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1.5 md:flex"
+        initial={reduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+      >
+        <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/30">Scroll</span>
+        <m.span
+          animate={reduceMotion ? undefined : { y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          className="text-club-lavender/60"
+        >
+          <ChevronDown className="h-4 w-4" />
+        </m.span>
+      </m.div>
     </div>
   );
 }

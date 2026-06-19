@@ -8,15 +8,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-club-gold text-club-purple font-bold uppercase tracking-wide hover:bg-club-gold/90",
+          "sheen bg-club-gold text-club-purple font-bold uppercase tracking-wide hover:bg-club-gold/90",
         accent:
-          "bg-accent text-club-purple font-bold hover:bg-accent/90",
+          "sheen bg-accent text-club-purple font-bold hover:bg-accent/90",
         outline:
           "border border-club-lavender/35 bg-transparent hover:bg-club-lavender/10 hover:border-club-lavender/50",
         ghost: "hover:bg-club-lavender/10",
         maroon:
           "bg-maroon text-white hover:bg-maroon/90",
-        club: "bg-club-gold text-club-purple font-bold uppercase tracking-wider hover:bg-club-gold/90",
+        club: "sheen bg-club-gold text-club-purple font-bold uppercase tracking-wider hover:bg-club-gold/90",
       },
       size: {
         default: "h-11 px-6 py-2",

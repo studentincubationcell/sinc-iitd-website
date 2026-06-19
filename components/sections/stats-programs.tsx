@@ -59,7 +59,7 @@ export function ClubStatsBand() {
                 <m.div
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 sm:p-8 flex flex-col items-center gap-4"
+                  className="sheen group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 sm:p-8 flex flex-col items-center gap-4"
                   style={{
                     boxShadow: reduceMotion ? "none" : `0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)`,
                   }}

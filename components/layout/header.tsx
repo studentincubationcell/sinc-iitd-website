@@ -56,7 +56,7 @@ export function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-0 lg:flex">
+          <nav className="hidden items-center gap-0.5 lg:flex rounded-full border border-white/[0.06] bg-white/[0.03] px-1.5 py-1 backdrop-blur-md">
             {site.nav.map((item) => {
               const active = pathname === item.href;
               return (
@@ -64,14 +64,18 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "relative px-3 py-2 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors duration-150",
+                    "relative rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors duration-200",
                     active ? "text-club-gold" : "text-white/50 hover:text-white"
                   )}
                 >
-                  {item.label}
                   {active && (
-                    <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-club-gold" />
+                    <m.span
+                      layoutId="nav-active-pill"
+                      className="absolute inset-0 rounded-full bg-club-gold/12 ring-1 ring-club-gold/30"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
                   )}
+                  <span className="relative z-10">{item.label}</span>
                 </Link>
               );
             })}
@@ -83,7 +87,7 @@ export function Header() {
               <Button
                 size="sm"
                 variant="club"
-                className="text-xs font-black normal-case tracking-normal shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] transition-shadow"
+                className="sheen text-xs font-black normal-case tracking-normal shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] transition-shadow"
               >
                 Apply now
               </Button>

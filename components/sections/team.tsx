@@ -113,7 +113,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
   return (
     <article
       className={cn(
-        "group framer-card flex flex-col h-full hover:-translate-y-0.5",
+        "sheen group framer-card flex flex-col h-full hover:-translate-y-1",
         isSlot && "border-dashed bg-background/50"
       )}
     >

@@ -1,23 +1,27 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Rocket } from "lucide-react";
+import { ArrowLeft, ArrowRight, Compass, Banknote, FlaskConical, Handshake } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 
 /* ─── ApplyCTA ─────────────────────────────────────────── */
 const FEATURES = [
-  { emoji: "🧭", label: "Mentorship" },
-  { emoji: "💰", label: "Funding Connect" },
-  { emoji: "🔬", label: "Lab Access" },
-  { emoji: "🤝", label: "Founder Community" },
+  { icon: Compass, label: "Mentorship" },
+  { icon: Banknote, label: "Funding Connect" },
+  { icon: FlaskConical, label: "Lab Access" },
+  { icon: Handshake, label: "Founder Community" },
 ];
 
 export function ApplyCTA() {
   return (
     <section
-      className="relative overflow-hidden py-28 lg:py-36 border-t border-white/[0.06]"
+      className="relative overflow-hidden py-28 lg:py-36 border-t border-white/[0.06] vignette"
       style={{ background: "linear-gradient(160deg, #09051a 0%, #130d2e 45%, #1e1247 100%)" }}
     >
+      {/* Iridescent halo */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="iridescent h-[640px] w-[640px] rounded-full opacity-[0.16]" style={{ filter: "blur(70px)" }} />
+      </div>
       {/* Layered glows */}
       <div
         className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full"
@@ -44,7 +48,7 @@ export function ApplyCTA() {
           </span>
 
           {/* Mega headline */}
-          <h2 className="text-5xl sm:text-6xl lg:text-[5rem] font-black tracking-tight leading-[1.02]">
+          <h2 className="headline-tight text-glow-soft text-5xl sm:text-6xl lg:text-[5rem] font-black">
             Ready to build
             <br />
             <span className="gradient-text-hero">something real?</span>
@@ -61,7 +65,8 @@ export function ApplyCTA() {
                 key={f.label}
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-semibold text-white/65 hover:border-club-lavender/40 hover:bg-white/[0.08] hover:text-white/90 transition-all"
               >
-                {f.emoji} {f.label}
+                <f.icon className="h-4 w-4 text-club-lavender/80" strokeWidth={2} />
+                {f.label}
               </span>
             ))}
           </div>
@@ -126,10 +131,17 @@ export function PageHeader({
     >
       {isClub && (
         <>
-          <div className="absolute inset-0 cross-grid pointer-events-none" />
           <div
-            className="pointer-events-none absolute top-0 right-1/4 w-96 h-96 rounded-full opacity-15"
+            className="absolute inset-0 cross-grid pointer-events-none"
+            style={{ maskImage: "radial-gradient(ellipse 90% 100% at 70% 0%, black 20%, transparent 80%)", WebkitMaskImage: "radial-gradient(ellipse 90% 100% at 70% 0%, black 20%, transparent 80%)" }}
+          />
+          <div
+            className="pointer-events-none absolute -top-10 right-1/4 w-96 h-96 rounded-full opacity-20 aurora-drift"
             style={{ background: "radial-gradient(circle, rgba(167,139,250,0.6) 0%, transparent 65%)", filter: "blur(64px)" }}
+          />
+          <div
+            className="pointer-events-none absolute top-0 -left-16 w-80 h-80 rounded-full opacity-15 aurora-drift-2"
+            style={{ background: "radial-gradient(circle, rgba(245,158,11,0.55) 0%, transparent 68%)", filter: "blur(70px)" }}
           />
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background/60 to-transparent pointer-events-none" />
         </>

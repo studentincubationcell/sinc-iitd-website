@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, ArrowUpRight, ArrowRight } from "lucide-react";
+import {
+  Calendar, ArrowUpRight, ArrowRight, Mic, Utensils, Rocket, Zap, Compass,
+  Lightbulb, Banknote, BookOpen, Scale, Handshake, BarChart3, ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
@@ -10,23 +14,23 @@ import type { SiteEvent } from "@/lib/schemas";
 
 /* ─── Marquee config ─────────────────────────────────────── */
 const ROW_A = [
-  { label: "Pitch Nights", emoji: "🎤", color: "from-amber-400/20 to-amber-400/5 border-amber-400/25 text-amber-300" },
-  { label: "Founder Dinners", emoji: "🍜", color: "from-rose-400/20 to-rose-400/5 border-rose-400/25 text-rose-300" },
-  { label: "Demo Days", emoji: "🚀", color: "from-sky-400/20 to-sky-400/5 border-sky-400/25 text-sky-300" },
-  { label: "Hackathons", emoji: "⚡", color: "from-yellow-400/20 to-yellow-400/5 border-yellow-400/25 text-yellow-300" },
-  { label: "Mentor Hours", emoji: "🧭", color: "from-violet-400/20 to-violet-400/5 border-violet-400/25 text-violet-300" },
-  { label: "Ideation Sprints", emoji: "💡", color: "from-emerald-400/20 to-emerald-400/5 border-emerald-400/25 text-emerald-300" },
+  { label: "Pitch Nights", icon: Mic, color: "from-amber-400/20 to-amber-400/5 border-amber-400/25 text-amber-300" },
+  { label: "Founder Dinners", icon: Utensils, color: "from-rose-400/20 to-rose-400/5 border-rose-400/25 text-rose-300" },
+  { label: "Demo Days", icon: Rocket, color: "from-sky-400/20 to-sky-400/5 border-sky-400/25 text-sky-300" },
+  { label: "Hackathons", icon: Zap, color: "from-yellow-400/20 to-yellow-400/5 border-yellow-400/25 text-yellow-300" },
+  { label: "Mentor Hours", icon: Compass, color: "from-violet-400/20 to-violet-400/5 border-violet-400/25 text-violet-300" },
+  { label: "Ideation Sprints", icon: Lightbulb, color: "from-emerald-400/20 to-emerald-400/5 border-emerald-400/25 text-emerald-300" },
 ];
 const ROW_B = [
-  { label: "Funding Frenzy", emoji: "💰", color: "from-green-400/20 to-green-400/5 border-green-400/25 text-green-300" },
-  { label: "Startup 101", emoji: "📖", color: "from-orange-400/20 to-orange-400/5 border-orange-400/25 text-orange-300" },
-  { label: "Legal Clinics", emoji: "⚖️", color: "from-red-400/20 to-red-400/5 border-red-400/25 text-red-300" },
-  { label: "Investor Connect", emoji: "🤝", color: "from-cyan-400/20 to-cyan-400/5 border-cyan-400/25 text-cyan-300" },
-  { label: "VC Workshops", emoji: "📊", color: "from-purple-400/20 to-purple-400/5 border-purple-400/25 text-purple-300" },
-  { label: "IP & Patents", emoji: "🔏", color: "from-pink-400/20 to-pink-400/5 border-pink-400/25 text-pink-300" },
+  { label: "Funding Frenzy", icon: Banknote, color: "from-green-400/20 to-green-400/5 border-green-400/25 text-green-300" },
+  { label: "Startup 101", icon: BookOpen, color: "from-orange-400/20 to-orange-400/5 border-orange-400/25 text-orange-300" },
+  { label: "Legal Clinics", icon: Scale, color: "from-red-400/20 to-red-400/5 border-red-400/25 text-red-300" },
+  { label: "Investor Connect", icon: Handshake, color: "from-cyan-400/20 to-cyan-400/5 border-cyan-400/25 text-cyan-300" },
+  { label: "VC Workshops", icon: BarChart3, color: "from-purple-400/20 to-purple-400/5 border-purple-400/25 text-purple-300" },
+  { label: "IP & Patents", icon: ShieldCheck, color: "from-pink-400/20 to-pink-400/5 border-pink-400/25 text-pink-300" },
 ];
 
-type MarqueeItem = { label: string; emoji: string; color: string };
+type MarqueeItem = { label: string; icon: LucideIcon; color: string };
 
 function MarqueeRow({ items, reverse = false, speed = "26s" }: { items: MarqueeItem[]; reverse?: boolean; speed?: string }) {
   const doubled = [...items, ...items];
@@ -36,15 +40,18 @@ function MarqueeRow({ items, reverse = false, speed = "26s" }: { items: MarqueeI
         className="flex gap-3 whitespace-nowrap"
         style={{ animation: `${reverse ? "marquee-reverse" : "marquee"} ${speed} linear infinite` }}
       >
-        {doubled.map((item, i) => (
-          <span
-            key={i}
-            className={`inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r ${item.color} border px-5 py-2.5 text-sm font-semibold cursor-default`}
-          >
-            <span className="text-base">{item.emoji}</span>
-            {item.label}
-          </span>
-        ))}
+        {doubled.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <span
+              key={i}
+              className={`inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r ${item.color} border px-5 py-2.5 text-sm font-semibold cursor-default`}
+            >
+              <Icon className="h-4 w-4" strokeWidth={2} />
+              {item.label}
+            </span>
+          );
+        })}
       </div>
     </div>
   );
