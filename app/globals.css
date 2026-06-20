@@ -144,11 +144,11 @@ body {
 .editorial-display {
   font-weight: 800;
   letter-spacing: -0.04em;
-  line-height: 0.92;
+  line-height: 1.12;
   text-wrap: balance;
 }
 
-.headline-tight { letter-spacing: -0.03em; line-height: 0.98; }
+.headline-tight { letter-spacing: -0.03em; line-height: 1.08; }
 
 /* Logo teal highlight behind ink text */
 .lime-mark,
@@ -157,7 +157,9 @@ body {
   color: #0a0a0a;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-  padding: 0 0.12em;
+  padding: 0.04em 0.14em;
+  line-height: 1;
+  vertical-align: baseline;
 }
 
 /* Solid logo-teal block */

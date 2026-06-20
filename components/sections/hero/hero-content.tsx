@@ -110,7 +110,7 @@ export function HeroContent({
 
             {/* Headline — oversized editorial */}
             <m.h1
-              className="editorial-display text-[3.25rem] leading-[0.9] text-foreground sm:text-7xl lg:text-[6.25rem]"
+              className="editorial-display text-[3.25rem] leading-[1.02] text-foreground sm:text-7xl lg:text-[6.25rem]"
               {...fadeUp(0.1, reduceMotion)}
             >
               {title}
