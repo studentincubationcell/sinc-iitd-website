@@ -60,7 +60,7 @@ export function PortfolioGrid({
               <div className="flex h-12 w-12 items-center justify-center rounded-none bg-foreground font-mono text-lg font-black text-background transition-transform duration-300 group-hover:scale-110">
                 {startup.name.charAt(0)}
               </div>
-              <span className="flex h-8 w-8 items-center justify-center rounded-none border border-border text-muted transition-all duration-300 group-hover:border-foreground group-hover:bg-foreground group-hover:text-background">
+              <span className="flex h-8 w-8 items-center justify-center rounded-none border border-border text-muted transition-all duration-300 group-hover:border-foreground group-hover:bg-inverse group-hover:text-inverse-foreground">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
             </div>

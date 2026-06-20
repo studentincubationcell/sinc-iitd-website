@@ -33,7 +33,7 @@ export default function EventsPage() {
                 onClick={() => setFilter(cat)}
                 className={`rounded-none border-2 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide transition-all ${
                   filter === cat
-                    ? "border-foreground bg-accent-lime text-foreground shadow-[3px_3px_0_0_#0a0a0a]"
+                    ? "border-foreground bg-accent-lime text-on-accent brutal-shadow"
                     : "border-border-ink bg-card text-muted hover:bg-accent-tint hover:text-foreground"
                 }`}
               >

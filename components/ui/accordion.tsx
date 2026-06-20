@@ -54,7 +54,7 @@ export function AccordionItem({
   return (
     <div
       className={cn(
-        "rounded-none border-2 border-border-ink bg-card overflow-hidden shadow-[4px_4px_0_0_#0a0a0a]",
+        "rounded-none border-2 border-border-ink bg-card overflow-hidden brutal-shadow",
         className
       )}
     >

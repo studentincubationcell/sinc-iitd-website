@@ -23,7 +23,10 @@ const geistMono = Geist_Mono({
 const siteUrl = "https://www.sinciitd.in";
 
 export const viewport: Viewport = {
-  themeColor: "#f4f3ee",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f3ee" },
+    { media: "(prefers-color-scheme: dark)", color: "#111110" },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -77,7 +80,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-background`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-background`}
+      suppressHydrationWarning
+    >
       <body className="min-h-full flex flex-col">
         <MotionProvider>
           <CustomCursor />

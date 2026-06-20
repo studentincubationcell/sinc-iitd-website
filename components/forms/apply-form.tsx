@@ -97,7 +97,7 @@ export function ApplyForm() {
         <select
           id="apply-year"
           className={cn(
-            "mt-1.5 flex h-11 w-full rounded-none border-2 border-border-ink bg-background px-4 text-sm transition-all duration-150 focus-visible:outline-none focus-visible:border-foreground focus-visible:shadow-[3px_3px_0_0_#0a0a0a]"
+            "mt-1.5 flex h-11 w-full rounded-none border-2 border-border-ink bg-background px-4 text-sm transition-all duration-150 focus-visible:outline-none focus-visible:border-foreground focus-visible:brutal-shadow-focus"
           )}
           {...register("year")}
         >

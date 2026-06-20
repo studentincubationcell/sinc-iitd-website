@@ -15,23 +15,22 @@ function Step({ step, i }: { step: JourneyStep; i: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ delay: i * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col gap-4 border-border-ink bg-card p-7 transition-colors duration-300 hover:bg-foreground lg:border-l lg:first:border-l-0 [&:not(:last-child)]:border-b lg:[&:not(:last-child)]:border-b-0"
+      className="group relative flex flex-col gap-4 border-border-ink bg-card p-7 transition-colors duration-300 hover:bg-inverse lg:border-l lg:first:border-l-0 [&:not(:last-child)]:border-b lg:[&:not(:last-child)]:border-b-0"
     >
-      {/* Number marker */}
       <div className="flex items-center gap-3">
-        <span className="flex h-12 w-12 items-center justify-center bg-accent-lime font-mono text-xl font-bold text-foreground">
+        <span className="flex h-12 w-12 items-center justify-center bg-accent-lime font-mono text-xl font-bold text-on-accent">
           {step.step}
         </span>
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-background/60">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-inverse-foreground/60">
           Step {step.step}
         </span>
       </div>
 
       <div>
-        <h3 className="text-lg font-black tracking-tight text-foreground transition-colors duration-300 group-hover:text-background">
+        <h3 className="text-lg font-black tracking-tight text-foreground transition-colors duration-300 group-hover:text-inverse-foreground">
           {step.title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-background/70">
+        <p className="mt-2 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-inverse-foreground/70">
           {step.description}
         </p>
       </div>

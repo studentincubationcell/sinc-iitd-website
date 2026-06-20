@@ -56,14 +56,14 @@ export function SplashCurtain() {
         >
           {/* Left curtain panel */}
           <m.div
-            className="absolute top-0 left-0 w-1/2 h-full bg-foreground"
+            className="absolute top-0 left-0 w-1/2 h-full bg-inverse"
             animate={splitting ? { x: "-100%" } : { x: 0 }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
           />
 
           {/* Right curtain panel */}
           <m.div
-            className="absolute top-0 right-0 w-1/2 h-full bg-foreground"
+            className="absolute top-0 right-0 w-1/2 h-full bg-inverse"
             animate={splitting ? { x: "100%" } : { x: 0 }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
           />
@@ -91,7 +91,7 @@ export function SplashCurtain() {
               className="relative flex flex-col items-center gap-3"
             >
               <m.span
-                className="editorial-display text-background leading-none"
+                className="editorial-display text-inverse-foreground leading-none"
                 animate={{ fontSize: showMotto ? "3rem" : "4.5rem" }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
@@ -122,7 +122,7 @@ export function SplashCurtain() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <span className="h-px w-12 bg-accent-lime" />
-                  <p className="editorial-display text-2xl leading-tight text-background text-balance sm:text-3xl">
+                  <p className="editorial-display text-2xl leading-tight text-inverse-foreground text-balance sm:text-3xl">
                     {MOTTO.split(" ").map((word, i) => (
                       <m.span
                         key={`${word}-${i}`}
@@ -140,7 +140,7 @@ export function SplashCurtain() {
                       </m.span>
                     ))}
                   </p>
-                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-background/50">
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-inverse-foreground/50">
                     Student Incubation Cell
                   </span>
                 </m.div>

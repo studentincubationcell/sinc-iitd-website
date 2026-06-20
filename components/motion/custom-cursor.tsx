@@ -147,11 +147,11 @@ export function CustomCursor() {
         }}
       >
         <div
-          className="rounded-full bg-foreground"
+          className="rounded-full bg-[var(--cursor-dot)]"
           style={{
             width: hovering ? "6px" : "8px",
             height: hovering ? "6px" : "8px",
-            boxShadow: "0 0 0 1px var(--background)",
+            boxShadow: "0 0 0 1px var(--cursor-dot-ring)",
             transition: "width 0.2s ease, height 0.2s ease",
           }}
         />
@@ -165,7 +165,7 @@ export function CustomCursor() {
           opacity: visible ? 1 : 0,
           border: hovering
             ? "1.5px solid var(--brand-teal)"
-            : "1.5px solid rgba(10, 10, 10, 0.45)",
+            : "1.5px solid var(--cursor-ring)",
           transition:
             "opacity 0.15s ease, border 0.2s ease, width 0.25s ease, height 0.25s ease, border-radius 0.25s ease",
           background: hovering

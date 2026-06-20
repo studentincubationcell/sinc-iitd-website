@@ -34,7 +34,7 @@ export function HeroAnnouncement({
   return (
     <div className="inline-flex items-center gap-0 overflow-hidden rounded-none border border-border-ink bg-card pr-1 text-sm">
       {/* Live badge */}
-      <span className="flex shrink-0 items-center gap-1.5 bg-accent-lime px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-foreground">
+      <span className="flex shrink-0 items-center gap-1.5 bg-accent-lime px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-on-accent">
         <Zap className="h-3 w-3" fill="currentColor" />
         Live
       </span>
@@ -59,7 +59,7 @@ export function HeroAnnouncement({
       {current.href && (
         <Link
           href={current.href}
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-none bg-foreground text-background transition-colors hover:bg-accent-lime hover:text-foreground"
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-none bg-foreground text-background transition-colors hover:bg-accent-lime hover:text-on-accent"
           aria-label="View announcement"
         >
           <ArrowRight className="h-3 w-3" />

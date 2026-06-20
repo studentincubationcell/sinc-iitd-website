@@ -74,7 +74,7 @@ export function ProgramsBento({ programs }: { programs: typeof import("@/lib/dat
             return (
               <StaggerItem key={program.id}>
                 <div
-                  className="program-card-link group relative flex h-full flex-col border-b border-r border-border-ink bg-card p-7 transition-colors duration-300 hover:bg-foreground"
+                  className="program-card-link group relative flex h-full flex-col border-b border-r border-border-ink bg-card p-7 transition-colors duration-300 hover:bg-inverse"
                 >
                   <div className="mb-5 flex items-start justify-between">
                     <div className="program-card-icon flex h-12 w-12 items-center justify-center border border-border-ink bg-background text-foreground transition-colors duration-300">
@@ -84,8 +84,8 @@ export function ProgramsBento({ programs }: { programs: typeof import("@/lib/dat
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="mb-2 text-lg font-black tracking-tight text-foreground transition-colors duration-300 group-hover:text-background">{program.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-background/70">{program.description}</p>
+                  <h3 className="mb-2 text-lg font-black tracking-tight text-foreground transition-colors duration-300 group-hover:text-inverse-foreground">{program.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-inverse-foreground/70">{program.description}</p>
                   <span className="program-card-accent mt-5 inline-flex items-center gap-1 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-foreground transition-colors">
                     Learn more <ArrowUpRight className="h-3.5 w-3.5" />
                   </span>

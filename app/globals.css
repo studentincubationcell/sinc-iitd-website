@@ -1,17 +1,44 @@
 @import "tailwindcss";
 
 /* ─── Design Tokens · Editorial / Swiss-Brutalist ───────── */
-/* Off-white paper + ink black + SInC logo teal/blue accents.
-   Teal is the primary block/highlight; blue is used for hover/secondary. */
+/* Light = paper canvas + ink type. Dark = charcoal canvas + cream type.
+   Inverse bands (programs, footer, CTA) use --inverse / --inverse-foreground
+   so they stay visually distinct in both system themes. */
 :root {
-  /* Surface */
-  --background: #f4f3ee;   /* warm off-white paper */
-  --foreground: #0a0a0a;   /* near-black ink */
-  --muted: #6b6b63;        /* warm grey body/labels */
-  --card: #faf9f4;         /* slightly raised paper */
+  color-scheme: light;
+
+  /* Canvas (page surface) */
+  --background: #f4f3ee;
+  --foreground: #0a0a0a;
+  --muted: #6b6b63;
+  --card: #faf9f4;
   --card-pure: #ffffff;
-  --border: #e3e1d6;       /* soft structural rule */
-  --border-ink: #0a0a0a;   /* hard brutalist rule */
+  --border: #e3e1d6;
+  --border-ink: #0a0a0a;
+
+  /* Inverted bands — always dark strip in light mode */
+  --inverse: #0a0a0a;
+  --inverse-foreground: #f4f3ee;
+  --inverse-muted: #9a9a92;
+  --hover-on-inverse: rgba(244, 243, 238, 0.06);
+  --grid-on-inverse: rgba(244, 243, 238, 0.14);
+
+  /* Overlays & chrome */
+  --shadow-color: #0a0a0a;
+  --header-surface: rgba(244, 243, 238, 0.92);
+  --glass-surface: rgba(244, 243, 238, 0.78);
+  --overlay-scrim: rgba(10, 10, 10, 0.3);
+  --hover-on-canvas: rgba(10, 10, 10, 0.05);
+  --grid-on-canvas: rgba(10, 10, 10, 0.13);
+  --grid-on-canvas-fine: rgba(10, 10, 10, 0.045);
+
+  /* Custom cursor */
+  --cursor-dot: #0a0a0a;
+  --cursor-dot-ring: #f4f3ee;
+  --cursor-ring: rgba(10, 10, 10, 0.45);
+
+  /* Text on teal / pop blocks */
+  --on-accent: #0a0a0a;
 
   /* SInC logo brand colors (from sinclogopng.png) */
   --brand-teal: #38d0e0;
@@ -19,24 +46,20 @@
   --brand-teal-light: #58dce8;
   --brand-blue-light: #5080d8;
 
-  /* Primary accent — logo teal (replaces electric lime across UI) */
   --accent-lime:      var(--brand-teal);
-  --accent-lime-dark: var(--brand-blue);      /* hover */
-  --accent-tint:      #e4f8fb;                /* faint teal wash */
+  --accent-lime-dark: var(--brand-blue);
+  --accent-tint:      #e4f8fb;
 
-  /* Gumroad-style pop accents — flat block fills behind ink text */
   --pop-pink:   #ff90e8;
   --pop-sky:    #90d8ff;
   --pop-peach:  #ffc890;
 
-  /* Brand roles */
   --primary: #0a0a0a;
   --primary-foreground: #f4f3ee;
   --accent: var(--brand-teal);
   --maroon: #0a0a0a;
   --destructive: #d92d20;
 
-  /* Legacy "club" palette remapped to logo teal/blue */
   --club-purple:       #0a0a0a;
   --club-purple-mid:   #1a1a1a;
   --club-purple-deep:  #000000;
@@ -46,20 +69,66 @@
   --club-gold-bright:  var(--brand-teal-light);
   --club-gold-dim:     var(--brand-blue);
 
-  /* Accents collapse to the logo system */
   --neon-purple:  #0a0a0a;
   --neon-blue:    #0a0a0a;
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
-  /* Brutalist hard-offset shadows — chunkier, Gumroad-style */
-  --shadow-sm:    3px 3px 0 0 #0a0a0a;
-  --shadow-md:    5px 5px 0 0 #0a0a0a;
-  --shadow-lg:    10px 10px 0 0 #0a0a0a;
-  --shadow-framer-hover: 7px 7px 0 0 #0a0a0a;
+  --shadow-sm:    3px 3px 0 0 var(--shadow-color);
+  --shadow-md:    5px 5px 0 0 var(--shadow-color);
+  --shadow-lg:    10px 10px 0 0 var(--shadow-color);
+  --shadow-framer-hover: 7px 7px 0 0 var(--shadow-color);
   --shadow-glow-gold:   var(--shadow-md);
   --shadow-glow-purple: var(--shadow-md);
-  --radius: 0rem;          /* sharp editorial corners */
+  --radius: 0rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --background: #111110;
+    --foreground: #f4f3ee;
+    --muted: #9a9a92;
+    --card: #181816;
+    --card-pure: #1e1e1c;
+    --border: #2e2e2a;
+    --border-ink: #f4f3ee;
+
+    /* Deeper black strips on dark canvas */
+    --inverse: #000000;
+    --inverse-foreground: #f4f3ee;
+    --inverse-muted: #8a8a82;
+    --hover-on-inverse: rgba(244, 243, 238, 0.07);
+    --grid-on-inverse: rgba(244, 243, 238, 0.08);
+
+    --shadow-color: rgba(244, 243, 238, 0.88);
+    --header-surface: rgba(17, 17, 16, 0.94);
+    --glass-surface: rgba(17, 17, 16, 0.82);
+    --overlay-scrim: rgba(0, 0, 0, 0.55);
+    --hover-on-canvas: rgba(244, 243, 238, 0.06);
+    --grid-on-canvas: rgba(244, 243, 238, 0.11);
+    --grid-on-canvas-fine: rgba(244, 243, 238, 0.05);
+
+    --cursor-dot: #f4f3ee;
+    --cursor-dot-ring: #111110;
+    --cursor-ring: rgba(244, 243, 238, 0.45);
+
+    --on-accent: #0a0a0a;
+    --accent-tint: rgba(56, 208, 224, 0.14);
+
+    --primary: #f4f3ee;
+    --primary-foreground: #0a0a0a;
+    --maroon: #f4f3ee;
+
+    --club-purple:       #f4f3ee;
+    --club-purple-mid:   #e8e8e0;
+    --club-purple-deep:  #ffffff;
+    --club-lavender:     #f4f3ee;
+    --club-lavender-dim: #b8b8b0;
+    --neon-purple:  #f4f3ee;
+    --neon-blue:    #f4f3ee;
+  }
 }
 
 @theme inline {
@@ -70,18 +139,22 @@
   --color-card-pure:         var(--card-pure);
   --color-border:            var(--border);
   --color-border-ink:        var(--border-ink);
+  --color-inverse:           var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+  --color-inverse-muted:     var(--inverse-muted);
+  --color-on-accent:         var(--on-accent);
   --color-primary:           var(--primary);
   --color-primary-foreground:var(--primary-foreground);
   --color-accent:            var(--accent);
   --color-maroon:            var(--maroon);
   --color-destructive:       var(--destructive);
-  --color-accent-lime:       #38d0e0;
-  --color-accent-lime-dark:  #4070d0;
-  --color-accent-tint:       #e4f8fb;
-  --color-brand-teal:        #38d0e0;
-  --color-brand-blue:        #4070d0;
-  --color-brand-teal-light:  #58dce8;
-  --color-brand-blue-light:  #5080d8;
+  --color-accent-lime:       var(--brand-teal);
+  --color-accent-lime-dark:  var(--brand-blue);
+  --color-accent-tint:       var(--accent-tint);
+  --color-brand-teal:        var(--brand-teal);
+  --color-brand-blue:        var(--brand-blue);
+  --color-brand-teal-light:  var(--brand-teal-light);
+  --color-brand-blue-light:  var(--brand-blue-light);
   --color-pop-pink:          var(--pop-pink);
   --color-pop-sky:           var(--pop-sky);
   --color-pop-peach:         var(--pop-peach);
@@ -125,7 +198,7 @@ body {
 
 ::selection {
   background: var(--accent-lime);
-  color: #0a0a0a;
+  color: var(--on-accent);
 }
 
 /* ─── Editorial Typography Utilities ──────────────────── */
@@ -154,7 +227,7 @@ body {
 .lime-mark,
 .brand-mark {
   background: var(--brand-teal);
-  color: #0a0a0a;
+  color: var(--on-accent);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   padding: 0.04em 0.14em;
@@ -164,8 +237,16 @@ body {
 
 /* Solid logo-teal block */
 .lime-block,
-.brand-block { background: var(--brand-teal); color: #0a0a0a; }
+.brand-block { background: var(--brand-teal); color: var(--on-accent); }
 .ink-block  { background: var(--foreground); color: var(--background); }
+
+/* Inverted section grid overlay (programs, footer, CTA) */
+.inverse-grid {
+  background-image:
+    linear-gradient(var(--grid-on-inverse) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-on-inverse) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
 
 /* No gradients in this system — render solid ink, with optional lime mark via markup */
 .gradient-text,
@@ -180,15 +261,14 @@ body {
 /* Blueprint dot grid (ink on paper) */
 .dot-grid {
   background-color: var(--background);
-  background-image: radial-gradient(circle, rgba(10,10,10,0.13) 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--grid-on-canvas) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
-/* Fine ink cross grid */
 .cross-grid {
   background-image:
-    linear-gradient(rgba(10,10,10,0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(10,10,10,0.045) 1px, transparent 1px);
+    linear-gradient(var(--grid-on-canvas-fine) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-on-canvas-fine) 1px, transparent 1px);
   background-size: 34px 34px;
 }
 
@@ -204,7 +284,7 @@ body {
 }
 .framer-card:hover {
   transform: translate(3px, 3px);
-  box-shadow: 0px 0px 0 0 #0a0a0a;
+  box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 
 .dark-card {
@@ -217,7 +297,7 @@ body {
 }
 .dark-card:hover {
   transform: translate(3px, 3px);
-  box-shadow: 0px 0px 0 0 #0a0a0a;
+  box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 
 /* Accent card — logo teal */
@@ -226,7 +306,7 @@ body {
   border: 2px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
-  color: #0a0a0a;
+  color: var(--on-accent);
 }
 
 /* Static bordered block (no hover press) */
@@ -241,10 +321,21 @@ body {
   border-radius: var(--radius);
 }
 
+/* Brutalist button / input shadow */
+.brutal-shadow {
+  box-shadow: 4px 4px 0 0 var(--shadow-color);
+}
+.brutal-shadow-hover:hover {
+  box-shadow: 2px 2px 0 0 var(--shadow-color);
+}
+.brutal-shadow-focus:focus-visible {
+  box-shadow: 3px 3px 0 0 var(--shadow-color);
+}
+
 /* Pop-color flat blocks behind ink text */
-.pop-pink  { background: var(--pop-pink);  color: #0a0a0a; }
-.pop-sky   { background: var(--pop-sky);   color: #0a0a0a; }
-.pop-peach { background: var(--pop-peach); color: #0a0a0a; }
+.pop-pink  { background: var(--pop-pink);  color: var(--on-accent); }
+.pop-sky   { background: var(--pop-sky);   color: var(--on-accent); }
+.pop-peach { background: var(--pop-peach); color: var(--on-accent); }
 
 .deep-tech-render-teal {
   filter: hue-rotate(132deg) saturate(1.08) brightness(1.02);
@@ -255,13 +346,13 @@ body {
 
 /* Programs grid — unified teal hover (all cards, including Funding Connect) */
 .programs-dark-grid .program-card-link:hover {
-  background-color: rgba(244, 243, 238, 0.06);
+  background-color: var(--hover-on-inverse);
   box-shadow: inset 0 0 0 2px rgba(56, 208, 224, 0.45);
 }
 .programs-dark-grid .program-card-link:hover .program-card-icon {
   border-color: var(--brand-teal);
   background-color: var(--brand-teal);
-  color: #0a0a0a;
+  color: var(--on-accent);
 }
 .programs-dark-grid .program-card-link:hover .program-card-accent {
   color: var(--brand-teal);
@@ -270,20 +361,20 @@ body {
 /* Light programs bento — same unified hover */
 .programs-bento-grid .program-card-link:hover .program-card-icon {
   background-color: var(--brand-teal);
-  color: #0a0a0a;
+  color: var(--on-accent);
 }
 .programs-bento-grid .program-card-link:hover .program-card-accent {
   color: var(--brand-teal);
 }
 
 .glass {
-  background: rgba(244,243,238,0.78);
+  background: var(--glass-surface);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
 }
 .glass-dark {
-  background: rgba(244,243,238,0.78);
+  background: var(--glass-surface);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
@@ -377,5 +468,5 @@ body {
 }
 .cine-card:hover {
   transform: translate(3px, 3px);
-  box-shadow: 0px 0px 0 0 #0a0a0a;
+  box-shadow: 0px 0px 0 0 var(--shadow-color);
 }

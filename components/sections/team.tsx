@@ -85,7 +85,7 @@ export function MemberSocials({
                 target={key === "email" ? undefined : "_blank"}
                 rel={key === "email" ? undefined : "noopener noreferrer"}
                 aria-label={`${member.name || "Team member"} on ${label}`}
-                className="flex h-9 w-9 items-center justify-center rounded-none border border-border text-muted transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
+                className="flex h-9 w-9 items-center justify-center rounded-none border border-border text-muted transition-all duration-200 hover:border-foreground hover:bg-inverse hover:text-inverse-foreground"
               >
                 <Icon className="h-4 w-4" />
               </a>

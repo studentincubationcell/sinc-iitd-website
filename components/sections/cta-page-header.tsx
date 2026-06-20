@@ -14,41 +14,30 @@ const FEATURES = [
 
 export function ApplyCTA() {
   return (
-    <section className="relative overflow-hidden border-t border-border-ink bg-foreground py-28 text-background lg:py-36">
-      {/* Cross-grid overlay (light lines on ink) */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(244,243,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(244,243,238,1) 1px, transparent 1px)",
-          backgroundSize: "34px 34px",
-        }}
-      />
+    <section className="relative overflow-hidden border-t border-border-ink bg-inverse py-28 text-inverse-foreground lg:py-36">
+      <div className="pointer-events-none absolute inset-0 inverse-grid opacity-[0.35]" />
 
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
-          {/* Eyebrow */}
-          <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background/60">
+          <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-inverse-foreground/60">
             <span className="inline-block h-3 w-3 bg-accent-lime" />
             Start your journey
           </span>
 
-          {/* Mega headline */}
           <h2 className="editorial-display text-5xl sm:text-6xl lg:text-[5rem]">
             Ready to build{" "}
             <span className="lime-mark">something real?</span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-background/55 sm:text-xl">
+          <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-inverse-foreground/55 sm:text-xl">
             Join SInC — mentorship, lab access, and a community of builders pushing from campus idea to funded startup.
           </p>
 
-          {/* Feature pills */}
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {FEATURES.map((f) => (
               <span
                 key={f.label}
-                className="inline-flex items-center gap-2 border border-background/30 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wide text-background/70 transition-colors hover:border-accent-lime hover:bg-accent-lime hover:text-foreground"
+                className="inline-flex items-center gap-2 border border-inverse-foreground/30 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wide text-inverse-foreground/70 transition-colors hover:border-accent-lime hover:bg-accent-lime hover:text-on-accent"
               >
                 <f.icon className="h-4 w-4" strokeWidth={2} />
                 {f.label}
@@ -56,7 +45,6 @@ export function ApplyCTA() {
             ))}
           </div>
 
-          {/* CTAs */}
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             <Link href="/apply">
               <Button
@@ -71,7 +59,7 @@ export function ApplyCTA() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-14 border-background bg-transparent px-12 text-base text-background hover:bg-background hover:text-foreground"
+                className="h-14 border-inverse-foreground bg-transparent px-12 text-base text-inverse-foreground hover:bg-inverse-foreground hover:text-inverse"
               >
                 Explore programs
               </Button>

@@ -3,14 +3,14 @@ import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 text-center bg-[#1a1033]">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center bg-inverse px-4 text-center text-inverse-foreground">
       <p className="text-8xl font-bold text-accent-lime">404</p>
-      <h1 className="mt-4 text-2xl font-semibold text-white">Page not found</h1>
-      <p className="mt-2 text-white/60 max-w-md">
+      <h1 className="mt-4 text-2xl font-semibold">Page not found</h1>
+      <p className="mt-2 max-w-md text-inverse-foreground/60">
         The page you&apos;re looking for doesn&apos;t exist or has moved.
       </p>
       <Link href="/" className="mt-8">
-        <Button className="rounded-sm bg-accent-lime text-foreground hover:bg-accent-lime-dark font-bold border-0">
+        <Button className="rounded-sm border-0 bg-accent-lime font-bold text-on-accent hover:bg-accent-lime-dark">
           Back to home
         </Button>
       </Link>

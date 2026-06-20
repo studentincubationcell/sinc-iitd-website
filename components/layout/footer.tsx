@@ -21,16 +21,8 @@ const FOOTER_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border-ink bg-foreground text-background">
-      {/* Cross-grid overlay (light lines on ink) */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(244,243,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(244,243,238,1) 1px, transparent 1px)",
-          backgroundSize: "34px 34px",
-        }}
-      />
+    <footer className="relative overflow-hidden border-t border-border-ink bg-inverse text-inverse-foreground">
+      <div className="pointer-events-none absolute inset-0 inverse-grid opacity-[0.3]" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -41,10 +33,10 @@ export function Footer() {
               <Image src="/logo.png" alt="SInC" width={38} height={38} className="group-hover:scale-105 transition-transform" />
               <div>
                 <span className="text-base font-black tracking-tight block">{site.name}</span>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-background/40 block">IIT Delhi</span>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-inverse-foreground/40 block">IIT Delhi</span>
               </div>
             </Link>
-            <p className="text-sm text-background/50 leading-relaxed mb-6 max-w-xs">
+            <p className="text-sm text-inverse-foreground/50 leading-relaxed mb-6 max-w-xs">
               Student Incubation Cell, IIT Delhi — empowering campus founders from idea to impact.
             </p>
             {/* Socials */}
@@ -56,7 +48,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-none border border-background/20 text-background/60 transition-all hover:bg-accent-lime hover:text-foreground hover:border-accent-lime"
+                  className="flex h-9 w-9 items-center justify-center rounded-none border border-inverse-foreground/20 text-inverse-foreground/60 transition-all hover:bg-accent-lime hover:text-on-accent hover:border-accent-lime"
                 >
                   {SOCIAL_ICONS[s.name]}
                 </a>
@@ -72,7 +64,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-background/55 hover:text-background transition-colors flex items-center gap-1 group"
+                    className="text-sm text-inverse-foreground/55 hover:text-inverse-foreground transition-colors flex items-center gap-1 group"
                   >
                     {item.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -82,7 +74,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/apply"
-                  className="text-sm font-bold text-accent-lime hover:text-background transition-colors flex items-center gap-1 group"
+                  className="text-sm font-bold text-accent-lime hover:text-inverse-foreground transition-colors flex items-center gap-1 group"
                 >
                   Apply now →
                 </Link>
@@ -93,9 +85,9 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-lime mb-5">Contact</h4>
-            <ul className="space-y-4 text-sm text-background/50">
+            <ul className="space-y-4 text-sm text-inverse-foreground/50">
               <li>
-                <a href={`mailto:${site.contact.email}`} className="flex items-start gap-2.5 hover:text-background transition-colors">
+                <a href={`mailto:${site.contact.email}`} className="flex items-start gap-2.5 hover:text-inverse-foreground transition-colors">
                   <Mail className="h-4 w-4 mt-0.5 shrink-0 text-accent-lime" />
                   {site.contact.email}
                 </a>
@@ -110,19 +102,19 @@ export function Footer() {
           {/* Newsletter */}
           <div>
             <h4 className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-lime mb-5">Stay in the loop</h4>
-            <p className="text-sm text-background/50 mb-4 leading-relaxed">
+            <p className="text-sm text-inverse-foreground/50 mb-4 leading-relaxed">
               Grants, funding, and campus startup news — straight to your inbox.
             </p>
             <form className="flex flex-col gap-2" action="#" method="post">
               <input
                 type="email"
                 placeholder="you@iitd.ac.in"
-                className="rounded-none border border-background/20 bg-transparent px-4 py-2.5 text-sm text-background placeholder:text-background/30 outline-none focus:border-accent-lime transition-all"
+                className="rounded-none border border-inverse-foreground/20 bg-transparent px-4 py-2.5 text-sm text-inverse-foreground placeholder:text-inverse-foreground/30 outline-none focus:border-accent-lime transition-all"
                 aria-label="Email for newsletter"
               />
               <button
                 type="submit"
-                className="rounded-none bg-accent-lime text-foreground font-bold text-sm py-2.5 px-4 hover:bg-background transition-colors"
+                className="rounded-none bg-accent-lime text-on-accent font-bold text-sm py-2.5 px-4 hover:bg-inverse-foreground hover:text-inverse transition-colors"
               >
                 Subscribe
               </button>
@@ -131,7 +123,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-background/10 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs uppercase tracking-wide text-background/30">
+        <div className="mt-14 pt-6 border-t border-inverse-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs uppercase tracking-wide text-inverse-foreground/30">
           <p>© {new Date().getFullYear()} SInC IIT Delhi. All rights reserved.</p>
           <p>Designed by Gagan Tak</p>
         </div>

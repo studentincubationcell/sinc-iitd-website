@@ -3,20 +3,20 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-sm font-semibold transition-[transform,box-shadow,background-color,color] duration-150 ease-out shadow-[4px_4px_0_0_#0a0a0a] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_#0a0a0a] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-sm font-semibold transition-[transform,box-shadow,background-color,color] duration-150 ease-out brutal-shadow hover:translate-x-[2px] hover:translate-y-[2px] brutal-shadow-hover active:translate-x-[4px] active:translate-y-[4px] active:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "border-2 border-foreground bg-brand-teal text-foreground font-bold hover:bg-brand-blue",
+          "border-2 border-foreground bg-brand-teal text-on-accent font-bold hover:bg-brand-blue",
         accent:
-          "border-2 border-foreground bg-pop-pink text-foreground font-bold hover:brightness-95",
+          "border-2 border-foreground bg-pop-pink text-on-accent font-bold hover:brightness-95",
         outline:
-          "border-2 border-foreground bg-card text-foreground hover:bg-brand-teal hover:text-foreground",
+          "border-2 border-foreground bg-card text-foreground hover:bg-brand-teal hover:text-on-accent",
         ghost: "shadow-none hover:shadow-none active:translate-x-0 active:translate-y-0 text-foreground hover:bg-accent-tint",
         maroon:
-          "border-2 border-foreground bg-foreground text-background hover:bg-brand-teal hover:text-foreground",
-        club: "border-2 border-foreground bg-brand-teal text-foreground font-bold hover:bg-brand-blue",
+          "border-2 border-foreground bg-foreground text-background hover:bg-brand-teal hover:text-on-accent",
+        club: "border-2 border-foreground bg-brand-teal text-on-accent font-bold hover:bg-brand-blue",
       },
       size: {
         default: "h-11 px-6 py-2",

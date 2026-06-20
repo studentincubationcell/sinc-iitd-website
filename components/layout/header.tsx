@@ -57,7 +57,7 @@ export function Header() {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-foreground",
           transparent
             ? "border-b border-transparent bg-transparent"
-            : "border-b border-border bg-[rgba(244,243,238,0.92)] backdrop-blur-xl"
+            : "border-b border-border backdrop-blur-xl [background:var(--header-surface)]"
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:gap-6 sm:px-6 lg:px-8">
@@ -129,7 +129,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-foreground/30 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 backdrop-blur-sm lg:hidden [background:var(--overlay-scrim)]"
               onClick={() => setOpen(false)}
             />
             <m.nav
