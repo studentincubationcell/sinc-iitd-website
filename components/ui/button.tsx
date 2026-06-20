@@ -8,15 +8,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border-2 border-foreground bg-accent-lime text-foreground font-bold hover:bg-accent-lime-dark",
+          "border-2 border-foreground bg-brand-teal text-foreground font-bold hover:bg-brand-blue",
         accent:
           "border-2 border-foreground bg-pop-pink text-foreground font-bold hover:brightness-95",
         outline:
-          "border-2 border-foreground bg-card text-foreground hover:bg-accent-lime",
+          "border-2 border-foreground bg-card text-foreground hover:bg-brand-teal hover:text-foreground",
         ghost: "shadow-none hover:shadow-none active:translate-x-0 active:translate-y-0 text-foreground hover:bg-accent-tint",
         maroon:
-          "border-2 border-foreground bg-foreground text-background hover:bg-accent-lime hover:text-foreground",
-        club: "border-2 border-foreground bg-accent-lime text-foreground font-bold hover:bg-accent-lime-dark",
+          "border-2 border-foreground bg-foreground text-background hover:bg-brand-teal hover:text-foreground",
+        club: "border-2 border-foreground bg-brand-teal text-foreground font-bold hover:bg-brand-blue",
       },
       size: {
         default: "h-11 px-6 py-2",
@@ -41,7 +41,7 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => (
     <button
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size }), className)}
       ref={ref}
       {...props}
     />

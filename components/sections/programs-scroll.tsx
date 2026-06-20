@@ -16,8 +16,7 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
   const [featured, ...rest] = programs;
 
   return (
-    <section className="relative overflow-hidden border-t border-border-ink bg-foreground py-24 text-background lg:py-32">
-      {/* Cross-grid overlay (light lines on ink) */}
+    <section className="programs-dark-grid relative overflow-hidden border-t border-border-ink bg-foreground py-24 text-background lg:py-32">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
@@ -28,8 +27,6 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-        {/* Header */}
         <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <m.div
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
@@ -38,7 +35,7 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
             transition={{ duration: 0.45 }}
           >
             <span className="mb-5 inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background/60">
-              <span className="inline-block h-3 w-3 bg-accent-lime" />
+              <span className="inline-block h-3 w-3 bg-brand-teal" />
               Programs
             </span>
             <h2 className="editorial-display text-4xl sm:text-5xl lg:text-[3.5rem]">
@@ -47,16 +44,16 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
             </h2>
           </m.div>
           <Link href="/programs" className="shrink-0">
-            <Button variant="outline" className="gap-2 border-background bg-transparent text-background hover:bg-accent-lime hover:text-foreground hover:border-accent-lime">
+            <Button
+              variant="outline"
+              className="gap-2 border-background bg-transparent text-background hover:bg-brand-teal hover:text-foreground hover:border-brand-teal"
+            >
               All programs <ArrowUpRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>
 
-        {/* Bordered grid */}
         <div className="grid grid-cols-1 border border-background/25 md:grid-cols-2 xl:grid-cols-3">
-
-          {/* Featured — lime block, spans 2 */}
           {featured && (() => {
             const Icon = iconMap[featured.icon] ?? Sparkles;
             return (
@@ -68,7 +65,10 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
                 transition={{ duration: 0.45 }}
                 className="border-b border-background/25 md:border-r xl:col-span-2"
               >
-                <Link href="/programs" className="group relative flex h-full min-h-[280px] flex-col bg-accent-lime p-8 text-foreground transition-colors duration-300">
+                <Link
+                  href="/programs"
+                  className="group relative flex h-full min-h-[280px] flex-col bg-brand-teal p-8 text-foreground transition-colors duration-300"
+                >
                   <div className="mb-auto flex items-start justify-between">
                     <div className="flex h-14 w-14 items-center justify-center border border-foreground bg-background text-foreground">
                       <Icon className="h-7 w-7" />
@@ -93,9 +93,9 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
             );
           })()}
 
-          {/* Rest */}
           {rest.map((program, i) => {
             const Icon = iconMap[program.icon] ?? Sparkles;
+
             return (
               <m.div
                 key={program.id}
@@ -105,19 +105,26 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
                 transition={{ delay: (i + 1) * 0.08, duration: 0.45 }}
                 className="border-b border-background/25 last:border-b-0 md:[&:nth-child(odd)]:border-r xl:border-r xl:[&:nth-child(odd)]:border-r"
               >
-                <Link href="/programs" className="group relative flex h-full min-h-[220px] flex-col p-7 transition-colors duration-300 hover:bg-background/[0.06]">
+                <Link
+                  href="/programs"
+                  className="program-card-link group relative flex h-full min-h-[220px] flex-col p-7 transition-colors duration-300"
+                >
                   <div className="mb-5 flex items-start justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center border border-background/40 text-background transition-colors duration-300 group-hover:border-accent-lime group-hover:bg-accent-lime group-hover:text-foreground">
+                    <div className="program-card-icon flex h-11 w-11 items-center justify-center border border-background/40 text-background transition-colors duration-300">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span className="font-mono text-3xl font-bold tabular-nums text-background/15 transition-colors group-hover:text-accent-lime">
+                    <span className="program-card-accent font-mono text-3xl font-bold tabular-nums text-background/15 transition-colors">
                       {String(i + 2).padStart(2, "0")}
                     </span>
                   </div>
 
-                  <h3 className="flex-1 text-lg font-black leading-snug tracking-tight text-background">{program.title}</h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-background/45">{program.description}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-background/80 transition-all group-hover:gap-2.5 group-hover:text-accent-lime">
+                  <h3 className="flex-1 text-lg font-black leading-snug tracking-tight text-background">
+                    {program.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-background/45">
+                    {program.description}
+                  </p>
+                  <span className="program-card-accent mt-5 inline-flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-background/80 transition-all group-hover:gap-2.5">
                     Explore <ArrowUpRight className="h-3.5 w-3.5" />
                   </span>
                 </Link>

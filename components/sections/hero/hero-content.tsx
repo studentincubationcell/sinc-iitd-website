@@ -30,6 +30,49 @@ const fadeUp = (delay: number, reduce: boolean | null) => ({
   transition: { duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
+function DeepTechFrame({
+  label,
+  tagClass,
+  accentClass,
+  imageClass,
+  caption,
+}: {
+  label: string;
+  tagClass: string;
+  accentClass: string;
+  imageClass: string;
+  caption: string;
+}) {
+  return (
+    <div className="relative w-full">
+      <div
+        className={`absolute -left-3 -top-3 z-10 border-2 border-border-ink px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-foreground ${tagClass}`}
+      >
+        Deep-Tech
+      </div>
+      <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted empty:hidden">
+        {label}
+      </p>
+      <div className="relative aspect-square w-full border border-border-ink bg-card-pure hard-shadow-lg">
+        <Image
+          src="/hero-glass-render.png"
+          alt="Abstract render representing SInC's deep-tech engineering platform"
+          fill
+          priority
+          sizes="(max-width: 1024px) 90vw, 40vw"
+          className={`object-contain p-2 ${imageClass}`}
+        />
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-border-ink bg-background px-4 py-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+            {caption}
+          </span>
+          <span className={`h-2 w-2 border border-border-ink ${accentClass}`} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function HeroContent({
   eyebrow,
   title,
@@ -120,7 +163,7 @@ export function HeroContent({
             </m.div>
           </div>
 
-          {/* ── Right column — framed render ─────────────── */}
+          {/* ── Right column — framed render (Combo A) ───── */}
           <m.div
             className="lg:col-span-5"
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -128,28 +171,13 @@ export function HeroContent({
             transition={{ delay: 0.14, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="relative mx-auto w-full max-w-md">
-              {/* Lime corner tab */}
-              <div className="absolute -left-3 -top-3 z-10 lime-block px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em]">
-                Deep-Tech
-              </div>
-              {/* Framed render */}
-              <div className="relative aspect-square w-full border border-border-ink bg-card-pure hard-shadow-lg">
-                <Image
-                  src="/hero-glass-render.png"
-                  alt="Abstract render representing SInC's deep-tech engineering platform"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 90vw, 40vw"
-                  className="object-contain p-2"
-                />
-                {/* Bottom caption bar */}
-                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-border-ink bg-background px-4 py-2">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                    {screenTagline}
-                  </span>
-                  <span className="h-2 w-2 bg-accent-lime" />
-                </div>
-              </div>
+              <DeepTechFrame
+                label=""
+                tagClass="bg-brand-teal"
+                accentClass="bg-brand-teal"
+                imageClass="deep-tech-render-teal"
+                caption={screenTagline}
+              />
             </div>
           </m.div>
         </div>

@@ -137,20 +137,21 @@ export function CustomCursor() {
         }
       `}</style>
 
-      {/* Dot */}
+      {/* Dot — black core + paper outline: visible on light, dark, and colored blocks (no mix-blend) */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 z-[9998] pointer-events-none mix-blend-difference"
+        className="fixed top-0 left-0 z-[9998] pointer-events-none"
         style={{
           opacity: visible ? 1 : 0,
           transition: "opacity 0.15s ease",
         }}
       >
         <div
-          className="rounded-full bg-white"
+          className="rounded-full bg-foreground"
           style={{
             width: hovering ? "6px" : "8px",
             height: hovering ? "6px" : "8px",
+            boxShadow: "0 0 0 1px var(--background)",
             transition: "width 0.2s ease, height 0.2s ease",
           }}
         />
@@ -163,11 +164,13 @@ export function CustomCursor() {
         style={{
           opacity: visible ? 1 : 0,
           border: hovering
-            ? "1.5px solid rgba(200, 255, 0, 0.9)"
+            ? "1.5px solid var(--brand-teal)"
             : "1.5px solid rgba(10, 10, 10, 0.45)",
           transition:
             "opacity 0.15s ease, border 0.2s ease, width 0.25s ease, height 0.25s ease, border-radius 0.25s ease",
-          background: hovering ? "rgba(200, 255, 0, 0.12)" : "transparent",
+          background: hovering
+            ? "color-mix(in srgb, var(--brand-teal) 14%, transparent)"
+            : "transparent",
         }}
       />
     </>
