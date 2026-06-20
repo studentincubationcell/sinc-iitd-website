@@ -23,17 +23,14 @@ function LogoWordmark({ gumroad, dense }: LogoWordmarkProps) {
 
   return (
     <Link href="/" className="flex items-center gap-3 group shrink-0 min-w-0">
-      <div className="relative shrink-0">
-        <Image
-          src="/logo.png"
-          alt=""
-          width={iconSize}
-          height={iconSize}
-          aria-hidden
-          className="transition-transform duration-300 group-hover:scale-105"
-        />
-        <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 bg-brand-teal ring-1 ring-foreground" />
-      </div>
+      <Image
+        src="/logo.png"
+        alt=""
+        width={iconSize}
+        height={iconSize}
+        aria-hidden
+        className="shrink-0 transition-transform duration-300 group-hover:scale-105"
+      />
       <div className="min-w-0 leading-none">
         <span
           className={cn(

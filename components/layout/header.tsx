@@ -14,17 +14,14 @@ const mainNav = site.nav.filter((item) => item.href !== "/contact");
 function HeaderLogo() {
   return (
     <Link href="/" className="flex min-w-0 shrink-0 items-center gap-3 group">
-      <div className="relative shrink-0">
-        <Image
-          src="/logo.png"
-          alt=""
-          width={36}
-          height={36}
-          aria-hidden
-          className="transition-transform duration-300 group-hover:scale-105"
-        />
-        <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 bg-brand-teal ring-1 ring-foreground" />
-      </div>
+      <Image
+        src="/logo.png"
+        alt=""
+        width={36}
+        height={36}
+        aria-hidden
+        className="shrink-0 transition-transform duration-300 group-hover:scale-105"
+      />
       <span className="text-xl font-black tracking-tight text-foreground sm:text-[1.35rem] leading-none">
         {site.name}
       </span>
