@@ -13,16 +13,16 @@
   --border: #e3e1d6;       /* soft structural rule */
   --border-ink: #0a0a0a;   /* hard brutalist rule */
 
-  /* SInC logo brand colors */
-  --brand-teal: #60c0d0;
-  --brand-blue: #5070b0;
-  --brand-teal-light: #90dce8;
-  --brand-blue-light: #6a8ec4;
+  /* SInC logo brand colors (from sinclogopng.png) */
+  --brand-teal: #38d0e0;
+  --brand-blue: #4070d0;
+  --brand-teal-light: #58dce8;
+  --brand-blue-light: #5080d8;
 
   /* Primary accent — logo teal (replaces electric lime across UI) */
   --accent-lime:      var(--brand-teal);
   --accent-lime-dark: var(--brand-blue);      /* hover */
-  --accent-tint:      #e8f6f9;                /* faint teal wash */
+  --accent-tint:      #e4f8fb;                /* faint teal wash */
 
   /* Gumroad-style pop accents — flat block fills behind ink text */
   --pop-pink:   #ff90e8;
@@ -75,13 +75,13 @@
   --color-accent:            var(--accent);
   --color-maroon:            var(--maroon);
   --color-destructive:       var(--destructive);
-  --color-accent-lime:       #60c0d0;
-  --color-accent-lime-dark:  #5070b0;
-  --color-accent-tint:       #e8f6f9;
-  --color-brand-teal:        #60c0d0;
-  --color-brand-blue:        #5070b0;
-  --color-brand-teal-light:  #90dce8;
-  --color-brand-blue-light:  #6a8ec4;
+  --color-accent-lime:       #38d0e0;
+  --color-accent-lime-dark:  #4070d0;
+  --color-accent-tint:       #e4f8fb;
+  --color-brand-teal:        #38d0e0;
+  --color-brand-blue:        #4070d0;
+  --color-brand-teal-light:  #58dce8;
+  --color-brand-blue-light:  #5080d8;
   --color-pop-pink:          var(--pop-pink);
   --color-pop-sky:           var(--pop-sky);
   --color-pop-peach:         var(--pop-peach);
@@ -254,24 +254,24 @@ body {
 /* Programs grid — unified teal hover (all cards, including Funding Connect) */
 .programs-dark-grid .program-card-link:hover {
   background-color: rgba(244, 243, 238, 0.06);
-  box-shadow: inset 0 0 0 2px rgba(96, 192, 208, 0.45);
+  box-shadow: inset 0 0 0 2px rgba(56, 208, 224, 0.45);
 }
 .programs-dark-grid .program-card-link:hover .program-card-icon {
-  border-color: #60c0d0;
-  background-color: #60c0d0;
+  border-color: var(--brand-teal);
+  background-color: var(--brand-teal);
   color: #0a0a0a;
 }
 .programs-dark-grid .program-card-link:hover .program-card-accent {
-  color: #60c0d0;
+  color: var(--brand-teal);
 }
 
 /* Light programs bento — same unified hover */
 .programs-bento-grid .program-card-link:hover .program-card-icon {
-  background-color: #60c0d0;
+  background-color: var(--brand-teal);
   color: #0a0a0a;
 }
 .programs-bento-grid .program-card-link:hover .program-card-accent {
-  color: #60c0d0;
+  color: var(--brand-teal);
 }
 
 .glass {

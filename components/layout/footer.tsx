@@ -38,7 +38,7 @@ export function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3 group mb-5">
-              <Image src="/logo.svg" alt="SInC" width={38} height={38} className="group-hover:scale-105 transition-transform" />
+              <Image src="/logo.png" alt="SInC" width={38} height={38} className="group-hover:scale-105 transition-transform" />
               <div>
                 <span className="text-base font-black tracking-tight block">{site.name}</span>
                 <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-background/40 block">IIT Delhi</span>

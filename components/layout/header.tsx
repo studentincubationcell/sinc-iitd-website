@@ -16,7 +16,7 @@ function HeaderLogo() {
     <Link href="/" className="flex min-w-0 shrink-0 items-center gap-3 group">
       <div className="relative shrink-0">
         <Image
-          src="/logo.svg"
+          src="/logo.png"
           alt=""
           width={36}
           height={36}

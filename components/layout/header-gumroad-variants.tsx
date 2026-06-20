@@ -25,7 +25,7 @@ function LogoWordmark({ gumroad, dense }: LogoWordmarkProps) {
     <Link href="/" className="flex items-center gap-3 group shrink-0 min-w-0">
       <div className="relative shrink-0">
         <Image
-          src="/logo.svg"
+          src="/logo.png"
           alt=""
           width={iconSize}
           height={iconSize}
