@@ -1,0 +1,96 @@
+{
+  "intro": "This map mirrors the SInC website skeleton. Each pillar is a section of the site — use it to know what content belongs where and what still needs real data.",
+  "pillars": [
+    {
+      "id": "portfolio",
+      "title": "Startup Portfolio",
+      "href": "/portfolio",
+      "summary": "Showcase every venture SInC supports — who built it, what they're building, and where they are today.",
+      "includes": [
+        "Founder name",
+        "Short background (2–3 lines)",
+        "One-line pitch",
+        "Company logo",
+        "Core idea (paragraph)",
+        "Current valuation or stage"
+      ],
+      "dataFile": "data/startups.json",
+      "editNote": "Add one object per startup. Logo goes in public/ and path in logo field."
+    },
+    {
+      "id": "calendar",
+      "title": "Master Calendar",
+      "href": "/events",
+      "summary": "One place for everything time-based — recurring founder meets, funding, networking, scheme deadlines, and cohort-only milestones.",
+      "includes": [
+        "Biweekly founder meets",
+        "Funding events & Demo Day",
+        "Networking dinners & sessions",
+        "Government scheme deadlines (DPIIT, Startup India, BIRAC, NIDHI-EIR)",
+        "Cohort 01 gates & application dates"
+      ],
+      "dataFile": "data/events.json",
+      "editNote": "Use category + cohortOnly + recurring fields. Month picker reads dates automatically."
+    },
+    {
+      "id": "network",
+      "title": "Network & Resources",
+      "href": "/network",
+      "summary": "Show off connections — alumni, investors, industrial experts, visits — plus open guides for founders.",
+      "includes": [
+        "Alumni & peer founders",
+        "Investors & institutional partners",
+        "Industry mentors & legal clinic",
+        "Upcoming & past industrial visits",
+        "Resource hub (legal, schemes, fundraising) → /resources"
+      ],
+      "dataFile": "data/network.json",
+      "secondaryHref": "/resources",
+      "editNote": "Replace placeholder names with real mentors and partners when cleared."
+    },
+    {
+      "id": "cohort",
+      "title": "Cohort 01",
+      "href": "/cohort",
+      "summary": "The Hacker House / Venture Lab — bold IIT Delhi founder story for students and investors. Rules, plan, what founders get.",
+      "includes": [
+        "Hero statement & duration (20 Sep – 20 Dec 2026)",
+        "Three objectives from operating proposal",
+        "Selection: talks → sprint → final pick",
+        "5 tracks + 1 open track",
+        "Benefits: ₹43k build budget, ₹20k fellowship, SAFE funding",
+        "Rules: IP ownership, weekly check-ins"
+      ],
+      "dataFile": "data/cohort.json",
+      "editNote": "Fill track titles/descriptions when tracks report is published."
+    },
+    {
+      "id": "opportunities",
+      "title": "Opportunities",
+      "href": "/opportunities",
+      "summary": "Team matching for co-builders and a bounty board for students who want to ship tasks for startups.",
+      "includes": [
+        "Founder posts: role, commitment, equity/reward",
+        "Student skill tags & screening before contact",
+        "Bounties: task, reward (money or treat), deadline"
+      ],
+      "dataFile": "data/opportunities.json",
+      "editNote": "Phase 2: backend for applications. For now, static listings + contact."
+    },
+    {
+      "id": "join",
+      "title": "Join & Connect",
+      "href": "/contact",
+      "summary": "How to join SInC as a founder, and clear paths for alumni, investors, and industry partners.",
+      "includes": [
+        "Founders → /apply",
+        "Alumni & investors → email with intro",
+        "Industry partners → visits, bounties, collaborations",
+        "Office location & contact form"
+      ],
+      "dataFile": "data/site.json",
+      "secondaryHref": "/apply",
+      "editNote": "Stakeholder paths live on /contact page."
+    }
+  ]
+}

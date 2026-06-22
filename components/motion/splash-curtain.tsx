@@ -21,16 +21,16 @@ export function SplashCurtain() {
     }
     setShow(true);
 
-    // Phase 1: Logo punches in and holds (0 → 1.3s)
-    const t1 = setTimeout(() => setPhase("motto"), 1300);
-    // Phase 2: Motto is revealed and held (1.3s → 3.7s)
-    const t2 = setTimeout(() => setPhase("split"), 3700);
-    // Phase 3: Curtains split open, then unmount (3.7s → 4.6s)
+    // Phase 1: Logo punches in and holds (0 → 0.7s)
+    const t1 = setTimeout(() => setPhase("motto"), 700);
+    // Phase 2: Motto is revealed and held (0.7s → 1.6s)
+    const t2 = setTimeout(() => setPhase("split"), 1600);
+    // Phase 3: Curtains split open, then unmount (1.6s → 2.2s)
     const t3 = setTimeout(() => {
       setPhase("done");
       setShow(false);
       sessionStorage.setItem(SESSION_KEY, "1");
-    }, 4600);
+    }, 2200);
 
     return () => {
       clearTimeout(t1);
@@ -44,11 +44,20 @@ export function SplashCurtain() {
   const splitting = phase === "split";
   const showMotto = phase === "motto" || phase === "split";
 
+  const skip = () => {
+    setPhase("done");
+    setShow(false);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(SESSION_KEY, "1");
+    }
+  };
+
   return (
     <AnimatePresence>
       {show && (
         <m.div
-          className="fixed inset-0 z-[9999] pointer-events-auto"
+          onClick={skip}
+          className="fixed inset-0 z-[9999] pointer-events-auto cursor-pointer"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
@@ -130,8 +139,8 @@ export function SplashCurtain() {
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          delay: 0.25 + i * 0.08,
-                          duration: 0.4,
+                          delay: 0.12 + i * 0.04,
+                          duration: 0.32,
                           ease: "easeOut",
                         }}
                       >

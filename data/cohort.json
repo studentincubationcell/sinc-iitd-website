@@ -1,0 +1,94 @@
+{
+  "name": "Cohort 01",
+  "status": "Applications opening soon",
+  "heroStatement": "We don't just build engineers. We build founders.",
+  "tagline": "A Hacker House / Venture Lab for IIT Delhi's most ambitious builders. 3 months. Real problems. No equity taken by SInC.",
+  "duration": "20 September – 20 December 2026",
+  "cohortSize": "5–10 ventures",
+  "objectives": [
+    {
+      "title": "Real learning by doing",
+      "description": "Pick a real problem and work on it for three months — not a thesis-for-the-sake-of-thesis project."
+    },
+    {
+      "title": "Ventures that get created",
+      "description": "The explicit goal is great ventures out of IIT Delhi in the next two to three years. Every structural choice compounds toward this."
+    },
+    {
+      "title": "Cross-border talent pollination",
+      "description": "Not everyone becomes a founder. Some join European or US startups, or work on licensed IP. The cohort opens founder and operator doors."
+    }
+  ],
+  "tracks": [
+    { "id": "track-1", "title": "Track 01", "description": "Pre-decided problem space — details published in the tracks report." },
+    { "id": "track-2", "title": "Track 02", "description": "Pre-decided problem space — details published in the tracks report." },
+    { "id": "track-3", "title": "Track 03", "description": "Pre-decided problem space — details published in the tracks report." },
+    { "id": "track-4", "title": "Track 04", "description": "Pre-decided problem space — details published in the tracks report." },
+    { "id": "track-5", "title": "Track 05", "description": "Pre-decided problem space — details published in the tracks report." },
+    { "id": "track-open", "title": "Open track", "description": "Bring your own hypothesis. Same bar — strong builder, sharp idea, early proof of concept." }
+  ],
+  "selection": [
+    {
+      "phase": 1,
+      "title": "Education & applications",
+      "description": "Tracks published in a documented report. Five on-campus talks — one per track. Applications open alongside."
+    },
+    {
+      "phase": 2,
+      "title": "Hackathon sprint",
+      "description": "One-week sprint. Teams ship a hypothesis with literature/validation and an early POC. Evaluated on builder strength and hypothesis strength."
+    },
+    {
+      "phase": 3,
+      "title": "Final selection",
+      "description": "5–10 ventures selected. Strong builder + strong hypothesis go through directly. Others may get a short retry window. Non-selected applicants feed builder and hypothesis reserves."
+    }
+  ],
+  "plan": [
+    {
+      "step": 1,
+      "title": "Selection sprint",
+      "description": "One-week hackathon. Build a hypothesis, ship an early POC. We're looking for strong builders and sharp hypotheses."
+    },
+    {
+      "step": 2,
+      "title": "Build & validate",
+      "description": "3 months of execution (20 Sep – 20 Dec). Weekly SInC check-ins, biweekly mentor reviews, monthly progress gates."
+    },
+    {
+      "step": 3,
+      "title": "Funding & growth",
+      "description": "Propose what you need at monthly gates. Capital via SAFEs or milestone tranches based on traction shown."
+    },
+    {
+      "step": 4,
+      "title": "Demo Day",
+      "description": "Present to seed investors, alumni, and partners. Don't raise? You retain full rights to your IP and entity."
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Build budget & cloud",
+      "description": "Up to ₹43,000/month per venture for APIs, AWS/GCP, AI tooling, and incorporation — reimbursed against actual bills."
+    },
+    {
+      "title": "Founder fellowship",
+      "description": "₹20,000/month stipend for every selected student, equity-free, separate from any venture investment."
+    },
+    {
+      "title": "Investor intros",
+      "description": "Investor Connect sessions, Demo Day exposure, and pre-seed conversations for the strongest ventures."
+    },
+    {
+      "title": "Legal & workspace",
+      "description": "IP assignment to your venture (not SInC), co-founder agreements, and optional FITT R&I Park workspace."
+    }
+  ],
+  "rules": [
+    "You own your IP. Every student signs an IP assignment to their own venture, not SInC.",
+    "Real learning by doing — you must ship, not just pitch.",
+    "Weekly check-ins are the floor. Disengagement without communication leads to removal.",
+    "Funding is proposal-based, primarily via SAFEs, at investor discretion.",
+    "5–10 ventures selected across 5 pre-decided tracks + 1 open track."
+  ]
+}

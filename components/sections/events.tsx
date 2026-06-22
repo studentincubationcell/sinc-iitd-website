@@ -10,6 +10,7 @@ import { Reveal, StaggerContainer, StaggerItem } from "@/components/motion/revea
 import { Button } from "@/components/ui/button";
 import { ClubEmptyState } from "@/components/ui/club-empty-state";
 import type { SiteEvent } from "@/lib/schemas";
+import { EVENT_CATEGORY_LABELS } from "@/lib/schemas";
 
 /* ─── Marquee config ─────────────────────────────────────── */
 const ROW_A = [
@@ -44,7 +45,7 @@ function MarqueeRow({ items, reverse = false, speed = "26s" }: { items: MarqueeI
           return (
             <span
               key={i}
-              className="group inline-flex cursor-default items-center gap-2.5 border border-border-ink bg-card px-5 py-2.5 font-mono text-sm font-semibold uppercase tracking-tight text-foreground transition-colors hover:bg-accent-lime"
+              className="group inline-flex cursor-default items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium uppercase tracking-wide text-foreground transition-colors hover:bg-accent-tint/50"
             >
               <Icon className="h-4 w-4" strokeWidth={2} />
               {item.label}
@@ -57,38 +58,34 @@ function MarqueeRow({ items, reverse = false, speed = "26s" }: { items: MarqueeI
 }
 
 /* ─── Category styling ───────────────────────────────────── */
-const CAT_CONFIG: Record<string, { label: string }> = {
-  workshop:   { label: "Workshop" },
-  hackathon:  { label: "Hackathon" },
-  networking: { label: "Networking" },
-  other:      { label: "Event" },
-};
+function getCategoryLabel(category: string) {
+  return (
+    EVENT_CATEGORY_LABELS[category as keyof typeof EVENT_CATEGORY_LABELS] ??
+    "Event"
+  );
+}
 
 /* ─── Marquee section ───────────────────────────────────── */
 export function EventsMarquee() {
   return (
-    <section className="relative overflow-hidden border-t border-border-ink bg-background py-24 lg:py-28">
-      <div className="dot-grid pointer-events-none absolute inset-0 opacity-60" />
-
-      {/* Header */}
-      <div className="relative mx-auto mb-14 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="section-padding border-t border-border bg-background overflow-hidden">
+      <div className="mx-auto mb-10 max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <span className="mb-5 inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-                <span className="inline-block h-3 w-3 bg-accent-lime" />
+            <div className="max-w-xl">
+              <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-muted">
                 Community
               </span>
-              <h2 className="editorial-display text-4xl text-foreground sm:text-5xl">
+              <h2 className="editorial-display text-3xl text-foreground sm:text-4xl">
                 Events that build{" "}
                 <span className="lime-mark">founders.</span>
               </h2>
-              <p className="mt-4 max-w-md text-base text-muted">
+              <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
                 Workshops, hackathons, investor nights — curated for builders, not spectators.
               </p>
             </div>
             <Link href="/events" className="shrink-0">
-              <Button variant="outline" className="gap-2">
+              <Button variant="outline" className="gap-2 bg-card">
                 All events <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -96,12 +93,11 @@ export function EventsMarquee() {
         </Reveal>
       </div>
 
-      {/* Dual-row marquee */}
-      <div className="relative space-y-3 border-y border-border-ink py-5">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
-        <MarqueeRow items={ROW_A} speed="24s" />
-        <MarqueeRow items={ROW_B} reverse speed="30s" />
+      <div className="relative space-y-2 border-y border-border py-4">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
+        <MarqueeRow items={ROW_A} speed="32s" />
+        <MarqueeRow items={ROW_B} reverse speed="38s" />
       </div>
     </section>
   );
@@ -136,7 +132,7 @@ export function EventsGrid({
   return (
     <StaggerContainer className="grid border-l border-t border-border-ink sm:grid-cols-2 lg:grid-cols-3">
       {events.map((event) => {
-        const cat = CAT_CONFIG[event.category] ?? CAT_CONFIG.other;
+        const catLabel = getCategoryLabel(event.category);
         return (
           <StaggerItem key={event.slug}>
             <Link href={`/events/${event.slug}`} className="group block h-full border-b border-r border-border-ink">
@@ -157,7 +153,7 @@ export function EventsGrid({
                     </div>
                   )}
                   <span className="absolute left-3 top-3 inline-flex items-center border-2 border-border-ink bg-accent-lime px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-foreground">
-                    {cat.label}
+                    {catLabel}
                   </span>
                 </div>
                 {/* Body */}

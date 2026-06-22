@@ -1,0 +1,58 @@
+[
+  {
+    "id": "incorporation-101",
+    "title": "How to incorporate a startup in India",
+    "description": "Private limited vs LLP, DPIIT recognition, and the documents you need before you file.",
+    "category": "incorporation",
+    "href": "https://www.startupindia.gov.in/",
+    "readingTime": "8 min"
+  },
+  {
+    "id": "cofounder-agreement",
+    "title": "Co-founder agreement essentials",
+    "description": "Equity splits, vesting, IP assignment, and exit clauses — what to nail down before you build.",
+    "category": "legal",
+    "href": "/contact",
+    "readingTime": "6 min"
+  },
+  {
+    "id": "dpiit-registration",
+    "title": "DPIIT startup recognition",
+    "description": "Step-by-step guide to registering on the Startup India portal and unlocking tax benefits.",
+    "category": "schemes",
+    "href": "https://www.startupindia.gov.in/registration",
+    "readingTime": "5 min"
+  },
+  {
+    "id": "fundraising-basics",
+    "title": "Fundraising 101 for campus founders",
+    "description": "Pre-seed vs seed, SAFE notes, cap tables, and how to prepare a one-pager investors actually read.",
+    "category": "fundraising",
+    "href": "/programs",
+    "readingTime": "10 min"
+  },
+  {
+    "id": "ip-basics",
+    "title": "IP & patents for early-stage teams",
+    "description": "When to file, what to protect, and how to avoid giving away your core tech in early partnerships.",
+    "category": "legal",
+    "href": "/events/legal-clinic-sep-2026",
+    "readingTime": "7 min"
+  },
+  {
+    "id": "govt-schemes",
+    "title": "Government schemes & grants",
+    "description": "Startup India seed fund, BIRAC, DST grants — a starter map of schemes relevant to IIT Delhi founders.",
+    "category": "schemes",
+    "href": "https://www.startupindia.gov.in/content/sih/en/government-schemes.html",
+    "readingTime": "12 min"
+  },
+  {
+    "id": "ops-checklist",
+    "title": "First 90 days ops checklist",
+    "description": "Bank account, accounting basics, founder agreements filed, and a simple cap table — before you scale.",
+    "category": "operations",
+    "href": "/resources",
+    "readingTime": "4 min"
+  }
+]

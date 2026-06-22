@@ -1,0 +1,61 @@
+{
+  "bounties": [
+    {
+      "id": "b-1",
+      "title": "Build a React Native prototype",
+      "startup": "MedFlow",
+      "reward": "₹15,000",
+      "type": "Money",
+      "deadline": "2026-07-15",
+      "description": "We have the Figma designs for our rural health tablet app. Need a frontend dev to wire up the UI and basic navigation in React Native.",
+      "skills": ["React Native", "Figma", "Frontend"],
+      "status": "open"
+    },
+    {
+      "id": "b-2",
+      "title": "Data scraping script for commodity prices",
+      "startup": "AgriLink",
+      "reward": "Pizza + Coffee + ₹2,000",
+      "type": "Treat",
+      "deadline": "2026-06-30",
+      "description": "Need a Python script to scrape daily mandi prices from government portals and dump them into a CSV/Postgres DB.",
+      "skills": ["Python", "BeautifulSoup", "Data Scraping"],
+      "status": "open"
+    },
+    {
+      "id": "b-3",
+      "title": "Design a pitch deck template",
+      "startup": "CarbonTrace",
+      "reward": "₹5,000",
+      "type": "Money",
+      "deadline": "2026-07-05",
+      "description": "We have the content. Need a sharp, investor-ready 10-slide pitch deck in Canva or Figma.",
+      "skills": ["Figma", "Graphic Design", "Presentations"],
+      "status": "closed"
+    }
+  ],
+  "teamMatching": [
+    {
+      "id": "tm-1",
+      "startup": "StudyLoop",
+      "role": "Technical Co-Founder (CTO)",
+      "commitment": "20 hrs/week",
+      "equity": "15-20%",
+      "description": "Looking for a full-stack engineer to lead the development of our peer-to-peer tutoring marketplace. Must be comfortable with Next.js and Firebase.",
+      "requirements": ["Next.js", "Firebase", "Leadership"],
+      "gains": "Equity, direct access to SInC incubation, and a chance to build a product from scratch.",
+      "status": "open"
+    },
+    {
+      "id": "tm-2",
+      "startup": "LogixAI",
+      "role": "Machine Learning Intern",
+      "commitment": "10-15 hrs/week",
+      "equity": "Paid Internship",
+      "description": "Help us train our predictive routing models. You'll work directly with real traffic data and our core algorithm team.",
+      "requirements": ["Python", "PyTorch", "Data Science"],
+      "gains": "Real-world ML experience, letter of recommendation, and potential for full-time role.",
+      "status": "open"
+    }
+  ]
+}

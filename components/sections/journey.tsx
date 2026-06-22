@@ -15,22 +15,22 @@ function Step({ step, i }: { step: JourneyStep; i: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ delay: i * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col gap-4 border-border-ink bg-card p-7 transition-colors duration-300 hover:bg-inverse lg:border-l lg:first:border-l-0 [&:not(:last-child)]:border-b lg:[&:not(:last-child)]:border-b-0"
+      className="group relative flex flex-col gap-4 bg-card p-6 transition-colors duration-300 hover:bg-accent-tint/30 lg:rounded-none lg:border-l lg:border-border lg:first:border-l-0 lg:p-7 [&:not(:last-child)]:border-b lg:[&:not(:last-child)]:border-b-0 lg:[&:not(:last-child)]:border-border"
     >
       <div className="flex items-center gap-3">
-        <span className="flex h-12 w-12 items-center justify-center bg-accent-lime font-mono text-xl font-bold text-on-accent">
+        <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-lime font-mono text-lg font-bold text-on-accent">
           {step.step}
         </span>
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-inverse-foreground/60">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">
           Step {step.step}
         </span>
       </div>
 
       <div>
-        <h3 className="text-lg font-black tracking-tight text-foreground transition-colors duration-300 group-hover:text-inverse-foreground">
+        <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
           {step.title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-inverse-foreground/70">
+        <p className="mt-2 text-sm leading-relaxed text-muted">
           {step.description}
         </p>
       </div>
@@ -45,27 +45,22 @@ export function JourneySection({
   variant?: "dark" | "light";
 }) {
   return (
-    <section className="relative overflow-hidden border-t border-border-ink bg-background py-24 lg:py-32">
-      <div className="dot-grid pointer-events-none absolute inset-0 opacity-50" />
-
+    <section className="section-padding border-t border-border bg-card/30">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <Reveal className="mb-16 text-center">
-          <span className="mb-5 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-            <span className="inline-block h-3 w-3 bg-accent-lime" />
+        <Reveal className="mb-14 text-center">
+          <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-muted">
             The path
           </span>
-          <h2 className="editorial-display text-4xl text-foreground sm:text-5xl">
+          <h2 className="editorial-display text-3xl text-foreground sm:text-4xl lg:text-5xl">
             Idea, to MVP, to{" "}
             <span className="lime-mark">funded.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-base text-muted">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted sm:text-base">
             Five steps from a late-night idea to a funded company — we&apos;re with you the whole way.
           </p>
         </Reveal>
 
-        {/* Steps */}
-        <div className="grid border border-border-ink lg:grid-cols-5">
+        <div className="grid gap-4 lg:grid-cols-5 lg:gap-0 lg:overflow-hidden lg:rounded-lg lg:border lg:border-border">
           {steps.map((step, i) => (
             <Step key={step.step} step={step} i={i} />
           ))}

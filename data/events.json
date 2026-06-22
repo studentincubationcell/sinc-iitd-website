@@ -1,5 +1,29 @@
 [
   {
+    "slug": "cohort-01-kickoff",
+    "title": "Cohort 01 — Kickoff",
+    "description": "Official start of the 3-month Hacker House / Venture Lab. Teams align on monthly gates, mentors, and weekly reporting rhythm.",
+    "date": "2026-09-20",
+    "category": "other",
+    "cohortOnly": true
+  },
+  {
+    "slug": "cohort-01-selection-sprint",
+    "title": "Cohort 01 — Selection hackathon sprint",
+    "description": "One-week sprint before cohort start. Ship a hypothesis with validation and an early POC. Final selection of 5–10 ventures from this pool.",
+    "date": "2026-09-01",
+    "category": "hackathon",
+    "registrationUrl": "https://lu.ma/sinciitd"
+  },
+  {
+    "slug": "track-talk-series",
+    "title": "Cohort tracks — On-campus talk series",
+    "description": "Five talks, one per pre-decided track. Walk through the opportunity, the gap, and what building in that space looks like. Applications open alongside.",
+    "date": "2026-08-10",
+    "category": "workshop",
+    "recurring": "Five sessions through August"
+  },
+  {
     "slug": "startup-101-workshop-2026",
     "title": "Startup 101 — From Idea to MVP",
     "description": "A hands-on workshop covering customer discovery, value proposition design, and getting to your first prototype. Led by IIT Delhi alumni founders.",
@@ -31,7 +55,7 @@
     "title": "Investor Connect — Seed Stage",
     "description": "Meet angel investors and seed-stage VCs actively looking at IIT Delhi deals. Bring your one-pager and deck.",
     "date": "2026-08-20",
-    "category": "networking",
+    "category": "funding",
     "image": "/events/investor-connect.png",
     "registrationUrl": "https://lu.ma/sinciitd"
   },
@@ -45,12 +69,72 @@
     "registrationUrl": "https://lu.ma/sinciitd"
   },
   {
-    "slug": "demo-day-cohort-1",
-    "title": "Demo Day — Cohort 1",
-    "description": "SInC's first official Demo Day. Six founding teams present to a room of investors, mentors, and campus founders. Open to IIT Delhi community.",
-    "date": "2026-09-28",
-    "category": "other",
+    "slug": "demo-day-cohort-01",
+    "title": "Demo Day — Cohort 01",
+    "description": "Cohort 01 closing Demo Day. Selected ventures present to investors, mentors, and the IIT Delhi community.",
+    "date": "2026-12-20",
+    "category": "funding",
     "image": "/events/demo-day.png",
     "registrationUrl": "https://lu.ma/sinciitd"
+  },
+  {
+    "slug": "founder-meet-biweekly",
+    "title": "Biweekly Founder Meet",
+    "description": "Standing check-in for cohort and SInC founders — progress updates, blockers, and peer feedback.",
+    "date": "2026-07-10",
+    "category": "founder-meet",
+    "recurring": "Every 2nd and 4th Thursday, 6 PM"
+  },
+  {
+    "slug": "dpiit-registration-deadline",
+    "title": "DPIIT Startup Recognition — Recommended deadline",
+    "description": "Complete DPIIT registration on Startup India to unlock seed fund and tax benefit windows.",
+    "date": "2026-08-31",
+    "category": "deadline"
+  },
+  {
+    "slug": "startup-india-seed-fund-window",
+    "title": "Startup India Seed Fund — Application window",
+    "description": "Central scheme for early-stage startups with DPIIT recognition. Check current tranche dates on the Startup India portal.",
+    "date": "2026-09-15",
+    "category": "deadline"
+  },
+  {
+    "slug": "birac-big-scheme",
+    "title": "BIRAC BIG scheme — Cohort reminder",
+    "description": "Biotechnology Ignition Grant for deep-tech and life-sciences ventures. Relevant for lab-to-market teams in cohort tracks.",
+    "date": "2026-10-01",
+    "category": "deadline"
+  },
+  {
+    "slug": "nidhi-eir-deadline",
+    "title": "NIDHI-EIR — Fellowship application",
+    "description": "DST programme offering up to ₹30k/month for idea-stage founders. Useful parallel path while building in the cohort.",
+    "date": "2026-11-01",
+    "category": "deadline"
+  },
+  {
+    "slug": "cohort-01-application-close",
+    "title": "Cohort 01 — Application deadline",
+    "description": "Final date to submit your cohort application before the selection sprint.",
+    "date": "2026-08-25",
+    "category": "deadline",
+    "cohortOnly": true
+  },
+  {
+    "slug": "cohort-01-month-1-gate",
+    "title": "Cohort 01 — Month 1 progress gate",
+    "description": "First monthly gate: traction check, expenditure report, and optional funding proposal per venture.",
+    "date": "2026-10-20",
+    "category": "deadline",
+    "cohortOnly": true
+  },
+  {
+    "slug": "cohort-01-month-2-gate",
+    "title": "Cohort 01 — Month 2 progress gate",
+    "description": "Second monthly gate: prototype or validation milestone plus spend reconciliation.",
+    "date": "2026-11-20",
+    "category": "deadline",
+    "cohortOnly": true
   }
 ]

@@ -13,15 +13,19 @@ const SOCIAL_ICONS: Record<string, React.ReactNode> = {
 const FOOTER_LINKS = [
   { label: "About", href: "/about" },
   { label: "Programs", href: "/programs" },
-  { label: "Events", href: "/events" },
+  { label: "Calendar", href: "/events" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Network", href: "/network" },
+  { label: "Opportunities", href: "/opportunities" },
+  { label: "Resources", href: "/resources" },
+  { label: "Cohort 01", href: "/cohort" },
   { label: "Team", href: "/team" },
   { label: "Contact", href: "/contact" },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border-ink bg-inverse text-inverse-foreground">
+    <footer data-site-footer className="relative overflow-hidden border-t border-border-ink bg-inverse text-inverse-foreground">
       <div className="pointer-events-none absolute inset-0 inverse-grid opacity-[0.3]" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

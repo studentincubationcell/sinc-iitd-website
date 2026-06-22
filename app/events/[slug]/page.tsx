@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Calendar, ExternalLink } from "lucide-react";
 import { getEvent, events } from "@/lib/data";
+import { EVENT_CATEGORY_LABELS } from "@/lib/schemas";
 import { PageHeader } from "@/components/sections/cta-page-header";
 import { Button } from "@/components/ui/button";
 import { ClubEmptyState } from "@/components/ui/club-empty-state";
@@ -9,12 +10,7 @@ import { Reveal } from "@/components/motion/reveal";
 
 type Props = { params: Promise<{ slug: string }> };
 
-const categoryLabels = {
-  workshop: "Workshop",
-  hackathon: "Hackathon",
-  networking: "Networking",
-  other: "Event",
-} as const;
+const categoryLabels = EVENT_CATEGORY_LABELS;
 
 export async function generateStaticParams() {
   return events.map((e) => ({ slug: e.slug }));
@@ -54,13 +50,25 @@ export default async function EventDetailPage({ params }: Props) {
         variant="club"
         narrow
         backHref="/events"
-        backLabel="Back to events"
+        backLabel="Back to calendar"
         badge={categoryLabels[event.category]}
         title={event.title}
       >
-        <Reveal className="mt-6 inline-flex items-center gap-2 border-2 border-border-ink bg-accent-lime px-4 py-2 font-mono text-sm font-semibold text-foreground">
-          <Calendar className="h-4 w-4 text-foreground" />
-          <time dateTime={event.date}>{formattedDate}</time>
+        <Reveal className="mt-6 flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2 border-2 border-border-ink bg-accent-lime px-4 py-2 font-mono text-sm font-semibold text-foreground">
+            <Calendar className="h-4 w-4 text-foreground" />
+            <time dateTime={event.date}>{formattedDate}</time>
+          </span>
+          {event.recurring && (
+            <span className="font-mono text-xs font-semibold uppercase tracking-wide text-muted">
+              {event.recurring}
+            </span>
+          )}
+          {event.cohortOnly && (
+            <span className="inline-flex border-2 border-border-ink bg-pop-pink px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider">
+              Cohort 1.0
+            </span>
+          )}
         </Reveal>
       </PageHeader>
 

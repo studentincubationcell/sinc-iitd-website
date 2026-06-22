@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/sections/cta-page-header";
 import { ApplyForm } from "@/components/forms/apply-form";
 import {
@@ -9,44 +10,63 @@ import {
 } from "@/components/ui/accordion";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
+import { cohort } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Apply",
-  description: "Apply to join SInC — IIT Delhi's Student Incubation Cell.",
+  description: "Apply to SInC Cohort 01 — IIT Delhi's Hacker House / Venture Lab.",
 };
-
-const steps = [
-  "Submit your application with your idea and motivation",
-  "Our team reviews applications on a rolling basis",
-  "Shortlisted candidates get an intro call with coordinators",
-  "Accepted founders get full access to SInC programs and resources",
-];
 
 const faqs = [
   {
     q: "When will I hear back?",
-    a: "Within 5–7 business days of submitting your application.",
+    a: "Rolling review through the selection sprint. Shortlisted teams enter the one-week hackathon phase before final cohort selection.",
   },
   {
     q: "Do I need a team?",
-    a: "Solo founders are welcome. Teams are great too — apply as a group lead.",
+    a: "Solo builders can apply. Teams are encouraged — apply as a group lead and list co-builders.",
   },
   {
     q: "What if my idea is early-stage?",
-    a: "Perfect. SInC is built for ideation through pre-seed. We meet you where you are.",
+    a: "That's the point. Cohort 01 is built for ideation through pre-seed. The selection sprint is where you prove builder + hypothesis strength.",
+  },
+  {
+    q: "Do I keep my IP?",
+    a: "Yes. You sign IP to your own venture, not SInC. See the full rules on the Cohort 01 page.",
   },
 ];
 
 export default function ApplyPage() {
+  const steps = cohort.selection
+    ? [
+        ...cohort.selection.map((s) => s.title + " — " + s.description.split(".")[0] + "."),
+        "If selected: " + (cohort.duration ?? "3-month") + " build phase with weekly check-ins and monthly gates.",
+      ]
+    : [
+        "Submit your application with your idea and motivation",
+        "Our team reviews applications on a rolling basis",
+        "Shortlisted candidates enter the selection sprint",
+        "Accepted founders join Cohort 01",
+      ];
+
   return (
     <>
       <PageHeader
         variant="club"
-        badge="Apply"
-        title="Join SInC"
-        description="Open to all IIT Delhi students with a startup idea or early venture."
-      />
+        badge={cohort.status}
+        title={`Apply — ${cohort.name}`}
+        description="Open to IIT Delhi students. 5 pre-decided tracks + 1 open track. 5–10 ventures selected."
+      >
+        <Reveal className="mt-4">
+          <Link
+            href="/cohort"
+            className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-muted hover:text-foreground transition-colors"
+          >
+            Full cohort proposal <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </Reveal>
+      </PageHeader>
       <section className="section-padding pb-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
@@ -54,17 +74,17 @@ export default function ApplyPage() {
               <Reveal>
                 <div className="framer-card p-8">
                   <SectionHeading
-                    label="Process"
+                    label="Selection"
                     title="What happens next"
                     className="mb-6"
                   />
                   <ol className="space-y-4">
                     {steps.map((step, i) => (
-                      <li key={step} className="flex gap-3">
+                      <li key={i} className="flex gap-3">
                         <span className="flex h-7 w-7 shrink-0 items-center justify-center border-2 border-border-ink bg-accent-lime font-mono text-sm font-bold text-foreground">
                           {i + 1}
                         </span>
-                        <span className="text-muted pt-0.5">{step}</span>
+                        <span className="text-muted pt-0.5 text-sm leading-relaxed">{step}</span>
                       </li>
                     ))}
                   </ol>
@@ -79,8 +99,9 @@ export default function ApplyPage() {
                   </h3>
                   <ul className="text-muted space-y-2 text-sm">
                     <li>• Current IIT Delhi student (any program)</li>
-                    <li>• Startup idea or early-stage venture</li>
-                    <li>• Commitment to engage with SInC programs</li>
+                    <li>• Strong builder or sharp hypothesis (or both)</li>
+                    <li>• Commitment to weekly check-ins if selected</li>
+                    <li>• {cohort.cohortSize ?? "5–10 ventures"} will be selected</li>
                   </ul>
                 </div>
               </Reveal>
@@ -105,10 +126,11 @@ export default function ApplyPage() {
 
             <div className="lg:col-span-3">
               <Reveal>
-                <div className="framer-card p-8 sm:p-10">
+                <div className="framer-card p-8 sm:p-10 border-t-4 border-t-accent-lime">
                   <SectionHeading
                     label="Application"
                     title="Tell us about your idea"
+                    description="Track preference, team, and why you're building. We'll follow up before the selection sprint."
                     className="mb-8"
                   />
                   <ApplyForm />

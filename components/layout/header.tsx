@@ -3,13 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/data";
 
 const mainNav = site.nav.filter((item) => item.href !== "/contact");
+
+const moreNav = [
+  { label: "Opportunities", href: "/opportunities" },
+  { label: "Resources", href: "/resources" },
+  { label: "Programs", href: "/programs" },
+  { label: "About", href: "/about" },
+  { label: "Team", href: "/team" },
+];
 
 function HeaderLogo() {
   return (
@@ -32,9 +40,12 @@ function HeaderLogo() {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const isHome = pathname === "/";
   const transparent = isHome && !scrolled;
+  const moreActive = moreNav.some((item) => item.href === pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -45,11 +56,24 @@ export function Header() {
 
   useEffect(() => {
     setOpen(false);
+    setMoreOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    const onClick = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [moreOpen]);
 
   return (
     <>
       <header
+        data-site-header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-foreground",
           transparent
@@ -83,6 +107,63 @@ export function Header() {
                 </Link>
               );
             })}
+
+            <div
+              ref={moreRef}
+              className="relative"
+              onMouseEnter={() => setMoreOpen(true)}
+              onMouseLeave={() => setMoreOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setMoreOpen((v) => !v)}
+                aria-expanded={moreOpen}
+                aria-haspopup="true"
+                className={cn(
+                  "flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200",
+                  moreActive
+                    ? "bg-foreground text-background"
+                    : "text-muted hover:text-foreground"
+                )}
+              >
+                More
+                <ChevronDown
+                  className={cn("h-3.5 w-3.5 transition-transform", moreOpen && "rotate-180")}
+                />
+              </button>
+
+              <AnimatePresence>
+                {moreOpen && (
+                  <m.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute right-0 top-full w-52 pt-2"
+                  >
+                    <div className="overflow-hidden rounded-xl border border-border bg-background p-1.5 shadow-lg [background:var(--header-surface)] backdrop-blur-xl">
+                      {moreNav.map((item) => {
+                        const active = pathname === item.href;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className={cn(
+                              "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                              active
+                                ? "bg-foreground text-background"
+                                : "text-muted hover:bg-foreground/5 hover:text-foreground"
+                            )}
+                          >
+                            {item.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </m.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-4">
@@ -155,6 +236,29 @@ export function Header() {
                     </Link>
                   );
                 })}
+
+                <span className="mt-3 px-4 text-[10px] font-semibold uppercase tracking-widest text-muted">
+                  More
+                </span>
+                {moreNav.map((item) => {
+                  const active = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "flex items-center justify-between rounded-full px-4 py-3 text-sm font-medium transition-colors",
+                        active
+                          ? "bg-foreground text-background"
+                          : "text-muted hover:bg-foreground/5 hover:text-foreground"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+
                 <Link
                   href="/apply"
                   className="mt-2 inline-flex w-full items-center justify-center bg-foreground px-5 py-3 text-sm font-semibold text-background"

@@ -1,0 +1,91 @@
+{
+  "intro": "SInC sits at the intersection of campus innovation and India's startup ecosystem. Our network spans IIT Delhi alumni, industry mentors, seed investors, and partners who show up for founders.",
+  "connections": [
+    { "id": "conn-1", "name": "IIT Delhi", "category": "institution" },
+    { "id": "conn-2", "name": "FITT, IIT Delhi", "category": "institution" },
+    { "id": "conn-3", "name": "R&I Park", "category": "institution" },
+    { "id": "conn-4", "name": "IIT Delhi Alumni Association", "category": "alumni-company" },
+    { "id": "conn-5", "name": "[Add investor firm]", "category": "investor" },
+    { "id": "conn-6", "name": "[Add alumni startup]", "category": "alumni-company" },
+    { "id": "conn-7", "name": "[Add industry partner]", "category": "partner" },
+    { "id": "conn-8", "name": "[Add angel network]", "category": "investor" }
+  ],
+  "alumni": [
+    {
+      "id": "alumni-1",
+      "name": "IIT Delhi Alumni Founders",
+      "role": "Mentor pool",
+      "affiliation": "R&I Park & beyond",
+      "bio": "Alumni who've built and scaled startups — available for office hours, pitch feedback, and warm intros."
+    },
+    {
+      "id": "alumni-2",
+      "name": "Campus E-Cell Network",
+      "role": "Peer founders",
+      "affiliation": "IIT Delhi",
+      "bio": "Cross-club collaboration with E-Cell and domain clubs for hackathons, ideation sprints, and co-building."
+    }
+  ],
+  "investors": [
+    {
+      "id": "inv-1",
+      "name": "Seed-stage angel network",
+      "role": "Active angels",
+      "affiliation": "Investor Connect sessions",
+      "bio": "Angels and micro-VCs who attend SInC pitch nights and Demo Day — actively scouting IIT Delhi deals."
+    },
+    {
+      "id": "inv-2",
+      "name": "R&I Park, IIT Delhi",
+      "role": "Institutional partner",
+      "affiliation": "IIT Delhi",
+      "bio": "Research & Innovation Park provides infrastructure, lab access, and a bridge to deep-tech commercialization."
+    }
+  ],
+  "experts": [
+    {
+      "id": "exp-1",
+      "name": "Startup legal clinic",
+      "role": "Legal mentors",
+      "affiliation": "External counsel partners",
+      "bio": "Lawyers covering incorporation, co-founder agreements, and IP — open clinic format for cohort teams."
+    },
+    {
+      "id": "exp-2",
+      "name": "Industry mentors",
+      "role": "Domain experts",
+      "affiliation": "AgriTech, HealthTech, DeepTech",
+      "bio": "Practitioners from target sectors who stress-test product, GTM, and unit economics with founders."
+    }
+  ],
+  "visits": {
+    "upcoming": [
+      {
+        "id": "visit-1",
+        "company": "Industrial partner visit",
+        "date": "2026-08-15",
+        "description": "Site visit with an industrial partner — open to Cohort 1.0 teams. Details shared with accepted founders.",
+        "status": "upcoming"
+      }
+    ],
+    "past": [
+      {
+        "id": "visit-past-1",
+        "company": "R&I Park tour",
+        "date": "2026-05-10",
+        "description": "Orientation visit for early SInC founders — labs, incubation space, and mentor introductions.",
+        "status": "past"
+      }
+    ]
+  },
+  "comingSoon": [
+    {
+      "title": "Team matching",
+      "description": "Founders post role requirements; students apply with skill tags. Screening before contact is shared."
+    },
+    {
+      "title": "Bounty board",
+      "description": "Startups post tasks for students — solve a problem, earn a reward. Launching with Cohort 1.0."
+    }
+  ]
+}

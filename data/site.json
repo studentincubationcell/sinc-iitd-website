@@ -28,17 +28,16 @@
   ],
   "nav": [
     { "label": "Home", "href": "/" },
-    { "label": "About", "href": "/about" },
-    { "label": "Programs", "href": "/programs" },
-    { "label": "Events", "href": "/events" },
+    { "label": "Cohort", "href": "/cohort" },
     { "label": "Portfolio", "href": "/portfolio" },
-    { "label": "Team", "href": "/team" },
+    { "label": "Calendar", "href": "/events" },
+    { "label": "Network", "href": "/network" },
     { "label": "Contact", "href": "/contact" }
   ],
   "stats": [
     { "value": 40, "suffix": "+", "label": "Startups supported" },
     { "value": 60, "suffix": "+", "label": "Events hosted" },
-    { "value": 30, "suffix": "+", "label": "Mentors & partners" },
-    { "value": 5, "suffix": "+", "label": "Years of impact" }
+    { "value": 120, "suffix": "+", "label": "People in our network", "note": "Alumni, mentors, investors & founders" },
+    { "value": 50, "suffix": "L+", "label": "Incubation deployed", "note": "Money spent on startup incubation" }
   ]
 }

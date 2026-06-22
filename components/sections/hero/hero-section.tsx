@@ -4,13 +4,13 @@ import type { HeroContentProps } from "./hero-content";
 
 const HERO_COPY = {
   eyebrow: "Student Incubation Cell · IIT Delhi",
-  title: "Your journey from idea to impact begins here.",
-  screenTagline: "together, we build.",
+  title: "We don't just build engineers. We build founders.",
+  screenTagline: "cohort 1.0 is live.",
   description:
-    "IIT Delhi's pre-incubation home for deep-tech founders — mentorship, lab-to-market support, and a community that ships.",
+    "SInC is the starting line for IIT Delhi's most ambitious startups. We back deep-tech builders with term-sheet readiness, R&I lab access, and a network of investors that actually show up.",
   announcements: [
-    { text: "Applications open for new cohort", href: "/apply" },
-    { text: "Follow us on Instagram for updates", href: "https://www.instagram.com/sinciitd/" },
+    { text: "Applications open for Cohort 1.0", href: "/cohort" },
+    { text: "Meet us at the Biweekly Founder Meet", href: "/events" },
   ],
 } satisfies Pick<
   HeroContentProps,
