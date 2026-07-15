@@ -2,14 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Rocket } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { getStartup, startups } from "@/lib/data";
-import { PageHeader } from "@/components/sections/cta-page-header";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ClubEmptyState } from "@/components/ui/club-empty-state";
+import { DetailIndexLayout, HairlineGrid } from "@/components/sections/detail-shell";
 import { Reveal } from "@/components/motion/reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -38,100 +34,115 @@ export default async function StartupDetailPage({ params }: Props) {
   const startup = getStartup(slug);
   if (!startup) notFound();
 
-  const hasRichContent = Boolean(startup.idea || startup.founderBio);
   const valuation = startup.valuation ?? "Undisclosed";
 
-  return (
-    <article>
-      <PageHeader
-        variant="club"
-        narrow
-        backHref="/portfolio"
-        backLabel="Back to portfolio"
-        badge={startup.sector}
-        title={startup.name}
-        description={startup.tagline}
-      >
-        <Reveal className="mt-4 flex flex-wrap gap-2">
-          <Badge variant="dark">Founder: {startup.founder}</Badge>
-          <Badge variant="outline">Valuation: {valuation}</Badge>
-        </Reveal>
-      </PageHeader>
+  /* Index = the full portfolio, current venture highlighted */
+  const siblings = startups.slice(0, 8);
 
-      <section className="py-12 pb-24">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 space-y-10">
+  /* Related = other ventures, hairline grid */
+  const related = startups
+    .filter((s) => s.slug !== startup.slug)
+    .slice(0, 4)
+    .map((s) => ({
+      href: `/portfolio/${s.slug}`,
+      title: s.name,
+      description: s.tagline,
+    }));
+
+  const meta = [
+    { label: "Sector", value: startup.sector },
+    { label: "Founder", value: startup.founder },
+    { label: "Stage", value: valuation },
+  ];
+
+  return (
+    <article className="pb-24 pt-36">
+      <div className="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12">
+        <Link
+          href="/portfolio"
+          className="mb-12 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to portfolio
+        </Link>
+      </div>
+
+      <DetailIndexLayout
+        indexTitle="The Portfolio"
+        items={siblings.map((s) => ({ href: `/portfolio/${s.slug}`, label: s.name }))}
+        activeHref={`/portfolio/${startup.slug}`}
+        cta={
+          startup.website
+            ? { href: startup.website, label: "Visit website", external: true }
+            : { href: "/apply", label: "Apply to SInC" }
+        }
+        meta={meta}
+      >
+        <Reveal>
           {startup.logo && (
-            <Reveal>
-              <Image
-                src={startup.logo}
-                alt={`${startup.name} logo`}
-                width={80}
-                height={80}
-                className="border-2 border-border-ink"
-              />
-            </Reveal>
+            <Image
+              src={startup.logo}
+              alt={`${startup.name} logo`}
+              width={72}
+              height={72}
+              className="mb-10"
+            />
+          )}
+
+          <h1 className="mega-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+            {startup.name}
+          </h1>
+
+          <p className="mt-8 max-w-2xl text-pretty text-2xl leading-snug tracking-[-0.01em] text-brand-blue sm:text-3xl">
+            {startup.tagline}
+          </p>
+
+          {startup.idea && (
+            <div className="mt-14 max-w-2xl">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                What they&apos;re building
+              </p>
+              <p className="mt-5 text-lg leading-relaxed text-foreground">{startup.idea}</p>
+            </div>
           )}
 
           {startup.founderBio && (
-            <Reveal>
-              <SectionHeading label="Founder" title={startup.founder} className="mb-4" />
-              <p className="text-muted leading-relaxed">{startup.founderBio}</p>
+            <div className="mt-12 max-w-2xl border-t border-border pt-8">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                Founder — {startup.founder}
+              </p>
+              <p className="mt-5 leading-relaxed text-foreground">{startup.founderBio}</p>
               {startup.founderLinkedin && (
                 <a
                   href={startup.founderLinkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold hover:text-primary transition-colors"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue transition-colors hover:text-foreground"
                 >
                   LinkedIn →
                 </a>
               )}
-            </Reveal>
+            </div>
           )}
 
-          {startup.idea && (
-            <Reveal>
-              <SectionHeading label="The idea" title="What they're building" className="mb-4" />
-              <p className="text-lg leading-relaxed text-muted">{startup.idea}</p>
-            </Reveal>
+          {!startup.idea && !startup.founderBio && (
+            <div className="mt-14 max-w-2xl border-t border-border pt-6">
+              <p className="text-lg leading-relaxed text-muted">
+                This venture profile is still being set up. Check back soon for more details.
+              </p>
+            </div>
           )}
+        </Reveal>
+      </DetailIndexLayout>
 
-          {startup.website ? (
-            <Reveal>
-              <a
-                href={startup.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <Button className="gap-2">
-                  Visit website <ExternalLink className="h-4 w-4" />
-                </Button>
-              </a>
-            </Reveal>
-          ) : hasRichContent ? (
-            <ClubEmptyState
-              icon={Rocket}
-              title="Website coming soon"
-              description={`${startup.name} is building in public. Their website will be linked here once it's live.`}
-              action={{ href: "/portfolio", label: "Browse portfolio", variant: "outline" }}
-            />
-          ) : (
-            <ClubEmptyState
-              icon={Rocket}
-              title="Profile in progress"
-              description="This startup profile is still being set up. Check back soon for more details."
-              action={{ href: "/apply", label: "Apply to SInC" }}
-            />
-          )}
-
-          <Reveal className="pt-4 border-t border-border">
-            <Link href="/cohort" className="text-sm text-muted hover:text-foreground transition-colors">
-              Building something similar? See Cohort 1.0 →
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+      {related.length > 0 && (
+        <section className="mx-auto mt-28 max-w-[90rem] border-t border-border px-5 pt-16 sm:px-8 lg:px-12">
+          <p className="mb-12 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+            More from the portfolio
+          </p>
+          <HairlineGrid items={related} />
+        </section>
+      )}
     </article>
   );
 }
