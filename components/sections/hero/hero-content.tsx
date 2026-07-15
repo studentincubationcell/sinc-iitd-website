@@ -1,9 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, GraduationCap, Building2, Briefcase, Rocket } from "lucide-react";
-import { m, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { HeroAnnouncement, type AnnouncementItem } from "./hero-announcement";
 import type { SocialLink } from "./hero-social-rail";
@@ -17,12 +18,7 @@ export type HeroContentProps = {
   socials: SocialLink[];
 };
 
-const TRUST_ITEMS = [
-  { icon: GraduationCap, label: "IIT Delhi" },
-  { icon: Building2, label: "R&I Park" },
-  { icon: Briefcase, label: "Industry Mentors" },
-  { icon: Rocket, label: "40+ Startups" },
-];
+const ROTATING_WORDS = ["idea", "prototype", "startup", "patent", "product"];
 
 const fadeUp = (delay: number, reduce: boolean | null) => ({
   initial: reduce ? false : { opacity: 0, y: 14 },
@@ -30,155 +26,116 @@ const fadeUp = (delay: number, reduce: boolean | null) => ({
   transition: { duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
-function DeepTechFrame({
-  label,
-  tagClass,
-  accentClass,
-  imageClass,
-  caption,
-}: {
-  label: string;
-  tagClass: string;
-  accentClass: string;
-  imageClass: string;
-  caption: string;
-}) {
+function RotatingWord({ reduce }: { reduce: boolean | null }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % ROTATING_WORDS.length);
+    }, 2200);
+    return () => clearInterval(id);
+  }, [reduce]);
+
   return (
-    <div className="relative w-full">
-      <div
-        className={`absolute -left-3 -top-3 z-10 border-2 border-border-ink px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-foreground ${tagClass}`}
-      >
-        Deep-Tech
-      </div>
-      <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted empty:hidden">
-        {label}
-      </p>
-      <div className="relative aspect-square w-full border border-border-ink bg-card-pure hard-shadow-lg">
-        <Image
-          src="/hero-glass-render.png"
-          alt="Abstract render representing SInC's deep-tech engineering platform"
-          fill
-          priority
-          sizes="(max-width: 1024px) 90vw, 40vw"
-          className={`object-contain p-2 ${imageClass}`}
-        />
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-border-ink bg-background px-4 py-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            {caption}
-          </span>
-          <span className={`h-2 w-2 border border-border-ink ${accentClass}`} />
-        </div>
-      </div>
-    </div>
+    <span className="relative inline-flex justify-center overflow-hidden rounded-lg border border-brand-teal/40 bg-brand-teal/10 px-3 align-baseline text-brand-teal">
+      <AnimatePresence mode="wait" initial={false}>
+        <m.span
+          key={ROTATING_WORDS[index]}
+          initial={reduce ? false : { y: "70%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={reduce ? undefined : { y: "-70%", opacity: 0 }}
+          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block font-semibold"
+        >
+          {ROTATING_WORDS[index]}
+        </m.span>
+      </AnimatePresence>
+    </span>
   );
 }
 
 export function HeroContent({
-  eyebrow,
   title,
   screenTagline,
-  description,
   announcements,
 }: HeroContentProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative z-10 min-h-[100svh] flex items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8 md:pl-20">
-      <div className="mx-auto w-full max-w-[90rem]">
-        <div className="grid items-center gap-10 md:grid-cols-12 md:gap-8 lg:gap-14">
+    <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-4 pt-36 sm:px-6 lg:px-8">
+      {/* Announcement pill */}
+      {announcements.length > 0 && (
+        <m.div className="mb-9" {...fadeUp(0, reduceMotion)}>
+          <HeroAnnouncement items={announcements} />
+        </m.div>
+      )}
 
-          {/* ── Left column ─────────────────────────────── */}
-          <div className="md:col-span-7">
+      {/* Headline — giant, centered */}
+      <m.h1
+        className="editorial-display max-w-5xl text-center text-[3rem] leading-[1.02] text-foreground sm:text-6xl lg:text-[5.25rem] xl:text-[6.25rem]"
+        {...fadeUp(0.08, reduceMotion)}
+      >
+        {title}
+      </m.h1>
 
-            {/* Mono kicker */}
-            <m.div
-              className="mb-7 flex items-center gap-3"
-              {...fadeUp(0, reduceMotion)}
-            >
-              <span className="lime-block px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
-                01 / SInC
-              </span>
-              <span className="mono-label">{eyebrow}</span>
-            </m.div>
+      {/* Subline with rotating word */}
+      <m.p
+        className="mt-8 flex flex-wrap items-baseline justify-center gap-x-2 text-center text-lg leading-relaxed text-foreground/85 sm:text-2xl"
+        {...fadeUp(0.16, reduceMotion)}
+      >
+        <span>We turn your</span>
+        <RotatingWord reduce={reduceMotion} />
+        <span>into a company, right on campus.</span>
+      </m.p>
 
-            {/* Announcement pill */}
-            {announcements.length > 0 && (
-              <m.div className="mb-7" {...fadeUp(0.05, reduceMotion)}>
-                <HeroAnnouncement items={announcements} />
-              </m.div>
-            )}
-
-            {/* Headline — oversized editorial */}
-            <m.h1
-              className="editorial-display text-[2.9rem] leading-[1.02] text-foreground sm:text-6xl md:text-[3.4rem] lg:text-[4.75rem] xl:text-[6rem]"
-              {...fadeUp(0.1, reduceMotion)}
-            >
-              {title}
-            </m.h1>
-
-            {/* Tagline with lime mark */}
-            <m.p
-              className="mt-7 max-w-[34rem] text-lg leading-relaxed text-foreground/80 sm:text-xl"
-              {...fadeUp(0.18, reduceMotion)}
-            >
-              {description}
-            </m.p>
-
-            {/* CTAs */}
-            <m.div className="mt-9 flex flex-wrap items-center gap-4" {...fadeUp(0.26, reduceMotion)}>
-              <Link href="/apply">
-                <Button
-                  size="lg"
-                  variant="club"
-                  className="group/btn h-13 gap-2 px-8 text-[15px] font-bold normal-case tracking-normal"
-                >
-                  Apply now
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
-                </Button>
-              </Link>
-              <Link
-                href="/programs"
-                className="cine-link font-mono text-sm font-semibold uppercase tracking-[0.16em] text-foreground"
-              >
-                Our programs
-              </Link>
-            </m.div>
-
-            {/* Trust row — slim inline mono strip */}
-            <m.div
-              className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-foreground/15 pt-5"
-              {...fadeUp(0.34, reduceMotion)}
-            >
-              {TRUST_ITEMS.map((item) => (
-                <span key={item.label} className="flex items-center gap-2">
-                  <item.icon className="h-3.5 w-3.5 text-brand-teal" strokeWidth={2} />
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-                    {item.label}
-                  </span>
-                </span>
-              ))}
-            </m.div>
-          </div>
-
-          {/* ── Right column — framed render (Combo A) ───── */}
-          <m.div
-            className="md:col-span-5"
-            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.14, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      {/* CTAs — centered pair */}
+      <m.div
+        className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        {...fadeUp(0.24, reduceMotion)}
+      >
+        <Link href="/apply">
+          <Button
+            size="lg"
+            variant="club"
+            className="group/btn h-13 gap-2 rounded-full px-9 text-[15px] font-bold normal-case tracking-normal"
           >
-            <div className="relative mx-auto w-full max-w-md">
-              <DeepTechFrame
-                label=""
-                tagClass="bg-brand-teal"
-                accentClass="bg-brand-teal"
-                imageClass="deep-tech-render-teal"
-                caption={screenTagline}
-              />
-            </div>
-          </m.div>
+            Apply now
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
+          </Button>
+        </Link>
+        <Link
+          href="/programs"
+          className="cine-link font-mono text-sm font-semibold uppercase tracking-[0.16em] text-foreground"
+        >
+          Our programs
+        </Link>
+      </m.div>
+
+      {/* Visual — anchored bottom-center, bleeding past the fold */}
+      <m.div
+        className="mt-14 w-full max-w-md sm:max-w-lg"
+        initial={reduceMotion ? false : { opacity: 0, y: 32 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="relative aspect-square w-full overflow-hidden rounded-t-2xl border border-b-0 border-foreground/20 bg-card-pure/95">
+          <Image
+            src="/hero-glass-render.png"
+            alt="Abstract render representing SInC's deep-tech engineering platform"
+            fill
+            priority
+            sizes="(max-width: 640px) 90vw, 32rem"
+            className="deep-tech-render-teal object-contain p-4"
+          />
+          <div className="absolute inset-x-0 top-0 flex items-center justify-between border-b border-foreground/15 bg-background/80 px-4 py-2 backdrop-blur-sm">
+            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+              {screenTagline}
+            </span>
+            <span className="h-2 w-2 rounded-full bg-brand-teal" />
+          </div>
         </div>
-      </div>
+      </m.div>
     </div>
   );
 }
