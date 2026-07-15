@@ -37,26 +37,28 @@
   --cursor-dot-ring: #f5f6f2;
   --cursor-ring: rgba(36, 51, 58, 0.45);
 
-  /* Text on gold accent fills */
-  --on-accent: #15243d;
+  /* Text on cobalt accent fills */
+  --on-accent: #f4f3ec;
 
-  /* Lumena accents: elegant gold + logo cobalt (used sparingly) */
-  --brand-teal: #d9a337;
+  /* Blue-led accents (logo cobalt) + elegant Lumena gold as garnish */
+  --brand-teal: #2453c4;
   --brand-blue: #2453c4;
-  --brand-teal-light: #e3b452;
-  --brand-blue-light: #2453c4;
+  --brand-teal-light: #3d68d8;
+  --brand-blue-light: #3d68d8;
+  --gold: #d9a337;
+  --gold-tint: #f3ead2;
 
-  --accent-lime:      var(--brand-teal);
+  --accent-lime:      var(--brand-blue);
   --accent-lime-dark: var(--brand-blue);
-  --accent-tint:      #f3ead2;
+  --accent-tint:      #e3e9f8;
 
-  --pop-pink:   #d9a337;
-  --pop-sky:    #f3ead2;
+  --pop-pink:   #2453c4;
+  --pop-sky:    #e3e9f8;
   --pop-peach:  #f3ead2;
 
   --primary: #15243d;
   --primary-foreground: #f4f3ec;
-  --accent: var(--brand-teal);
+  --accent: var(--brand-blue);
   --maroon: #15243d;
   --destructive: #d92d20;
 
@@ -65,9 +67,9 @@
   --club-purple-deep:  #101d33;
   --club-lavender:     #2453c4;
   --club-lavender-dim: #5d6675;
-  --club-gold:         var(--brand-teal);
-  --club-gold-bright:  var(--brand-teal-light);
-  --club-gold-dim:     var(--brand-blue);
+  --club-gold:         var(--gold);
+  --club-gold-bright:  #e3b452;
+  --club-gold-dim:     var(--gold);
 
   --neon-purple:  #15243d;
   --neon-blue:    #2453c4;
@@ -114,17 +116,19 @@
     --cursor-dot-ring: #111110;
     --cursor-ring: rgba(244, 243, 238, 0.45);
 
-    /* Gold brightens, cobalt lightens for legibility on navy */
-    --brand-teal: #e3b452;
+    /* Cobalt lightens, gold brightens for legibility on navy */
+    --brand-teal: #7d9df0;
     --brand-blue: #7d9df0;
-    --brand-teal-light: #ecc76e;
-    --brand-blue-light: #7d9df0;
-    --pop-pink: #e3b452;
+    --brand-teal-light: #96b0f4;
+    --brand-blue-light: #96b0f4;
+    --gold: #e3b452;
+    --gold-tint: rgba(227, 180, 82, 0.12);
+    --pop-pink: #7d9df0;
     --pop-sky: #1c2d4a;
     --pop-peach: #1c2d4a;
 
     --on-accent: #101d33;
-    --accent-tint: rgba(227, 180, 82, 0.1);
+    --accent-tint: rgba(125, 157, 240, 0.12);
 
     --primary: #f4f3ee;
     --primary-foreground: #0a0a0a;
@@ -306,6 +310,23 @@ body {
     linear-gradient(var(--grid-on-canvas-fine) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-on-canvas-fine) 1px, transparent 1px);
   background-size: 34px 34px;
+}
+
+/* ─── Blank mind → filled with thoughts ────────────────── */
+@keyframes thought-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: var(--glyph-opacity, 0.6); transform: scale(1); }
+}
+.thought-glyph {
+  opacity: 0;
+  animation: thought-in 0.9s ease-out forwards;
+  animation-delay: var(--glyph-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .thought-glyph {
+    animation: none;
+    opacity: var(--glyph-opacity, 0.6);
+  }
 }
 
 /* ─── Editorial primitives (Lumena-caliber) ────────────── */
