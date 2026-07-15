@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -57,16 +56,15 @@ function RotatingWord({ reduce }: { reduce: boolean | null }) {
 
 export function HeroContent({
   title,
-  screenTagline,
   announcements,
 }: HeroContentProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-4 pt-36 sm:px-6 lg:px-8">
+    <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-4 pt-40 sm:px-6 lg:px-8 lg:pt-48">
       {/* Announcement pill */}
       {announcements.length > 0 && (
-        <m.div className="mb-9" {...fadeUp(0, reduceMotion)}>
+        <m.div className="mb-10" {...fadeUp(0, reduceMotion)}>
           <HeroAnnouncement items={announcements} />
         </m.div>
       )}
@@ -112,29 +110,22 @@ export function HeroContent({
         </Link>
       </m.div>
 
-      {/* Visual — anchored bottom-center, bleeding past the fold */}
+      {/* Grounding line — trust strip anchored to the fold */}
       <m.div
-        className="mt-14 w-full max-w-md sm:max-w-lg"
-        initial={reduceMotion ? false : { opacity: 0, y: 32 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-auto flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-border-ink/15 py-8"
+        {...fadeUp(0.32, reduceMotion)}
       >
-        <div className="relative aspect-square w-full overflow-hidden rounded-t-2xl border border-b-0 border-foreground/20 bg-card-pure/95">
-          <Image
-            src="/hero-glass-render.png"
-            alt="Abstract render representing SInC's deep-tech engineering platform"
-            fill
-            priority
-            sizes="(max-width: 640px) 90vw, 32rem"
-            className="deep-tech-render-teal object-contain p-4"
-          />
-          <div className="absolute inset-x-0 top-0 flex items-center justify-between border-b border-foreground/15 bg-background/80 px-4 py-2 backdrop-blur-sm">
-            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-              {screenTagline}
+        {["Student-run, IIT Delhi", "Idea to incorporation", "Zero equity taken"].map(
+          (item) => (
+            <span
+              key={item}
+              className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-teal" />
+              {item}
             </span>
-            <span className="h-2 w-2 rounded-full bg-brand-teal" />
-          </div>
-        </div>
+          )
+        )}
       </m.div>
     </div>
   );

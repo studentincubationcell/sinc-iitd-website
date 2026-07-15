@@ -9,11 +9,11 @@ import { CountUp } from "@/components/motion/count-up";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { site } from "@/lib/data";
 
-/* ─── ClubStatsBand (dark editorial numbers band) ──────── */
+/* ─── ClubStatsBand (light editorial numbers band) ─────── */
 export function ClubStatsBand() {
   return (
-    <section className="theme-inverse relative overflow-hidden bg-background py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-30" />
+    <section className="relative overflow-hidden border-t border-border-ink/10 bg-card py-20 lg:py-28">
+      <div className="pointer-events-none absolute inset-0 dot-grid opacity-40" />
 
       <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-14 flex max-w-2xl flex-col gap-3">

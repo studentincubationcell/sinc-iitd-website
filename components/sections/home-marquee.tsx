@@ -19,7 +19,7 @@ export function HomeMarquee() {
   return (
     <section
       aria-label="Build, ship, scale, fund, repeat"
-      className="theme-inverse overflow-hidden border-b border-foreground/10 bg-background py-8 md:py-10"
+      className="overflow-hidden border-y border-border-ink/10 bg-card py-8 md:py-10"
     >
       <div className="flex w-max animate-marquee">
         <MarqueeRun />

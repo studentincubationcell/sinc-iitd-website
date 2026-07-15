@@ -136,7 +136,7 @@ export function EventsGrid({
         return (
           <StaggerItem key={event.slug}>
             <Link href={`/events/${event.slug}`} className="group block h-full border-b border-r border-border-ink">
-              <article className="flex h-full flex-col bg-card transition-colors duration-300 hover:bg-inverse">
+              <article className="flex h-full flex-col bg-card transition-colors duration-300 hover:bg-accent-tint">
                 {/* Image header */}
                 <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border-ink">
                   {event.image ? (
@@ -159,15 +159,15 @@ export function EventsGrid({
                 {/* Body */}
                 <div className="flex flex-1 flex-col p-7">
                   <div className="flex items-center justify-between">
-                    <time className="font-mono text-xs font-bold tracking-wide text-muted transition-colors group-hover:text-accent-lime">
-                      {new Date(event.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
-                    </time>
-                    <ArrowUpRight className="h-4 w-4 text-muted transition-colors group-hover:text-accent-lime" />
-                  </div>
-                  <h3 className="mt-2 text-lg font-black leading-snug tracking-tight text-foreground transition-colors group-hover:text-inverse-foreground">
-                    {event.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted transition-colors group-hover:text-inverse-foreground/70">{event.description}</p>
+                  <time className="font-mono text-xs font-bold tracking-wide text-muted transition-colors group-hover:text-brand-blue">
+                    {new Date(event.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
+                  </time>
+                  <ArrowUpRight className="h-4 w-4 text-muted transition-colors group-hover:text-brand-blue" />
+                </div>
+                <h3 className="mt-2 text-lg font-black leading-snug tracking-tight text-foreground">
+                  {event.title}
+                </h3>
+                <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">{event.description}</p>
                 </div>
               </article>
             </Link>

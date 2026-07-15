@@ -58,7 +58,7 @@ export function EventsTimeline({
               {/* Event Card */}
               <div className={`w-full pl-20 md:pl-0 md:w-[45%] ${isEven ? 'md:order-3 md:text-left' : 'md:order-1 md:text-right'}`}>
                 <Link href={`/events/${event.slug}`} className="block group">
-                  <article className={`relative p-6 border-[3px] border-border-ink bg-card transition-[transform,box-shadow,background-color] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[7px_7px_0_0_#0a0a0a] hover:bg-inverse group`}>
+                  <article className={`relative p-6 border-[3px] border-border-ink bg-card transition-[transform,box-shadow,background-color] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[7px_7px_0_0_var(--shadow-color)] hover:bg-accent-tint group`}>
                     
                     <div className={`flex flex-col gap-3 mb-4 ${isEven ? 'items-start' : 'md:items-end items-start'}`}>
                       <div className="flex flex-wrap gap-2">
@@ -71,22 +71,22 @@ export function EventsTimeline({
                           </span>
                         )}
                       </div>
-                      <time className="font-mono text-sm font-bold text-muted transition-colors group-hover:text-accent-lime">
+                      <time className="font-mono text-sm font-bold text-muted transition-colors group-hover:text-brand-blue">
                         {new Date(event.date).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}
                       </time>
                     </div>
 
-                    <h3 className="text-xl font-black leading-snug tracking-tight text-foreground transition-colors group-hover:text-inverse-foreground flex items-start gap-2 justify-between">
+                    <h3 className="text-xl font-black leading-snug tracking-tight text-foreground transition-colors  flex items-start gap-2 justify-between">
                       {event.title}
                       <ArrowUpRight className="h-5 w-5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-accent-lime" />
                     </h3>
                     
-                    <p className="mt-3 text-sm leading-relaxed text-muted line-clamp-3 transition-colors group-hover:text-inverse-foreground/70">
+                    <p className="mt-3 text-sm leading-relaxed text-muted line-clamp-3 transition-colors group-hover:text-foreground/80">
                       {event.description}
                     </p>
                     
                     {event.recurring && (
-                      <p className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-wide text-foreground/50 transition-colors group-hover:text-inverse-foreground/50 border-t-2 border-dashed border-border-ink/20 group-hover:border-inverse-foreground/20 pt-3">
+                      <p className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-wide text-foreground/50 transition-colors group-hover:text-foreground/60 border-t-2 border-dashed border-border-ink/20 group-hover:border-border-ink/30 pt-3">
                         ↻ {event.recurring}
                       </p>
                     )}
