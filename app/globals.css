@@ -7,70 +7,72 @@
 :root {
   color-scheme: light;
 
-  /* Editorial paper canvas + deep navy ink (logo cobalt/cyan as accents) */
-  --background: #f4f4ee;
-  --foreground: #0e1c33;
-  --muted: #5b6472;
-  --card: #fbfbf7;
+  /* Lumena formula: warm paper canvas + deep navy ink (never black) */
+  --background: #f4f3ec;
+  --foreground: #15243d;
+  --muted: #5d6675;
+  --card: #fbfaf5;
   --card-pure: #ffffff;
-  --border: #e0e1d6;
-  --border-ink: #0e1c33;
+  --border: #e1e0d4;
+  --border-ink: #15243d;
 
   /* Deep navy inverse bands */
-  --inverse: #0a1730;
-  --inverse-foreground: #f4f4ee;
-  --inverse-muted: #9ba9c4;
-  --hover-on-inverse: rgba(39, 215, 244, 0.1);
-  --grid-on-inverse: rgba(39, 215, 244, 0.14);
+  --inverse: #101d33;
+  --inverse-foreground: #f4f3ec;
+  --inverse-muted: #9aa7bd;
+  --hover-on-inverse: rgba(244, 243, 236, 0.07);
+  --grid-on-inverse: rgba(244, 243, 236, 0.1);
 
   /* Overlays & chrome */
-  --shadow-color: rgba(14, 28, 51, 0.1);
-  --header-surface: rgba(244, 244, 238, 0.92);
-  --glass-surface: rgba(244, 244, 238, 0.82);
-  --overlay-scrim: rgba(10, 23, 48, 0.46);
-  --hover-on-canvas: rgba(25, 85, 232, 0.05);
-  --grid-on-canvas: rgba(14, 28, 51, 0.14);
-  --grid-on-canvas-fine: rgba(14, 28, 51, 0.06);
+  --shadow-color: rgba(21, 36, 61, 0.1);
+  --header-surface: rgba(244, 243, 236, 0.92);
+  --glass-surface: rgba(244, 243, 236, 0.82);
+  --overlay-scrim: rgba(16, 29, 51, 0.46);
+  --hover-on-canvas: rgba(21, 36, 61, 0.05);
+  --grid-on-canvas: rgba(21, 36, 61, 0.14);
+  --grid-on-canvas-fine: rgba(21, 36, 61, 0.06);
 
   /* Custom cursor */
   --cursor-dot: #24333a;
   --cursor-dot-ring: #f5f6f2;
   --cursor-ring: rgba(36, 51, 58, 0.45);
 
-  /* Text on teal / pop blocks */
-  --on-accent: #10272f;
+  /* Text on cobalt accent fills */
+  --on-accent: #f4f3ec;
 
-  /* SInC logo colors. Legacy aliases intentionally map into this system. */
-  --brand-teal: #27d7f4;
-  --brand-blue: #1955e8;
-  --brand-teal-light: #27d7f4;
-  --brand-blue-light: #1955e8;
+  /* Blue-led accents (logo cobalt) + elegant Lumena gold as garnish */
+  --brand-teal: #2453c4;
+  --brand-blue: #2453c4;
+  --brand-teal-light: #3d68d8;
+  --brand-blue-light: #3d68d8;
+  --gold: #d9a337;
+  --gold-tint: #f3ead2;
 
-  --accent-lime:      var(--brand-teal);
+  --accent-lime:      var(--brand-blue);
   --accent-lime-dark: var(--brand-blue);
-  --accent-tint:      #ddf1f8;
+  --accent-tint:      #e3e9f8;
 
-  --pop-pink:   #27d7f4;
-  --pop-sky:    #ddf1f8;
-  --pop-peach:  #ddf1f8;
+  --pop-pink:   #2453c4;
+  --pop-sky:    #e3e9f8;
+  --pop-peach:  #f3ead2;
 
-  --primary: #1955e8;
-  --primary-foreground: #f6f8ff;
-  --accent: var(--brand-teal);
-  --maroon: #1955e8;
+  --primary: #15243d;
+  --primary-foreground: #f4f3ec;
+  --accent: var(--brand-blue);
+  --maroon: #15243d;
   --destructive: #d92d20;
 
-  --club-purple:       #1955e8;
-  --club-purple-mid:   #1955e8;
-  --club-purple-deep:  #071b3a;
-  --club-lavender:     #1955e8;
-  --club-lavender-dim: #52637f;
-  --club-gold:         var(--brand-teal);
-  --club-gold-bright:  var(--brand-teal-light);
-  --club-gold-dim:     var(--brand-blue);
+  --club-purple:       #15243d;
+  --club-purple-mid:   #2453c4;
+  --club-purple-deep:  #101d33;
+  --club-lavender:     #2453c4;
+  --club-lavender-dim: #5d6675;
+  --club-gold:         var(--gold);
+  --club-gold-bright:  #e3b452;
+  --club-gold-dim:     var(--gold);
 
-  --neon-purple:  #1955e8;
-  --neon-blue:    #1955e8;
+  --neon-purple:  #15243d;
+  --neon-blue:    #2453c4;
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
@@ -87,22 +89,22 @@
   :root {
     color-scheme: dark;
 
-    --background: #071b3a;
-    --foreground: #f6f8ff;
-    --muted: #aab8d2;
-    --card: #0d2856;
-    --card-pure: #0d2856;
-    --border: #27446f;
-    --border-ink: #f6f8ff;
+    --background: #101d33;
+    --foreground: #f0efe8;
+    --muted: #9aa7bd;
+    --card: #17263f;
+    --card-pure: #17263f;
+    --border: #2b3c58;
+    --border-ink: #f0efe8;
 
-    /* Deep ocean strips on dark canvas */
-    --inverse: #0e2731;
-    --inverse-foreground: #f2f7f6;
-    --inverse-muted: #8fa5ab;
+    /* Slightly lifted strips on dark navy canvas */
+    --inverse: #17263f;
+    --inverse-foreground: #f0efe8;
+    --inverse-muted: #9aa7bd;
     --hover-on-inverse: rgba(244, 243, 238, 0.07);
     --grid-on-inverse: rgba(244, 243, 238, 0.08);
 
-    --shadow-color: rgba(244, 243, 238, 0.88);
+    --shadow-color: rgba(0, 0, 0, 0.45);
     --header-surface: rgba(17, 17, 16, 0.94);
     --glass-surface: rgba(17, 17, 16, 0.82);
     --overlay-scrim: rgba(0, 0, 0, 0.55);
@@ -114,8 +116,19 @@
     --cursor-dot-ring: #111110;
     --cursor-ring: rgba(244, 243, 238, 0.45);
 
-    --on-accent: #0a0a0a;
-    --accent-tint: rgba(56, 208, 224, 0.14);
+    /* Cobalt lightens, gold brightens for legibility on navy */
+    --brand-teal: #7d9df0;
+    --brand-blue: #7d9df0;
+    --brand-teal-light: #96b0f4;
+    --brand-blue-light: #96b0f4;
+    --gold: #e3b452;
+    --gold-tint: rgba(227, 180, 82, 0.12);
+    --pop-pink: #7d9df0;
+    --pop-sky: #1c2d4a;
+    --pop-peach: #1c2d4a;
+
+    --on-accent: #101d33;
+    --accent-tint: rgba(125, 157, 240, 0.12);
 
     --primary: #f4f3ee;
     --primary-foreground: #0a0a0a;
@@ -299,6 +312,23 @@ body {
   background-size: 34px 34px;
 }
 
+/* ─── Blank mind → filled with thoughts ────────────────── */
+@keyframes thought-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: var(--glyph-opacity, 0.6); transform: scale(1); }
+}
+.thought-glyph {
+  opacity: 0;
+  animation: thought-in 0.9s ease-out forwards;
+  animation-delay: var(--glyph-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .thought-glyph {
+    animation: none;
+    opacity: var(--glyph-opacity, 0.6);
+  }
+}
+
 /* ─── Editorial primitives (Lumena-caliber) ────────────── */
 .pill-cta {
   display: inline-flex;
@@ -306,7 +336,8 @@ body {
   justify-content: center;
   gap: 0.5rem;
   min-height: 3rem;
-  padding: 0 1.75rem;
+  padding: 0 1.25rem;
+  white-space: nowrap;
   border-radius: 999px;
   background: var(--foreground);
   color: var(--background);
@@ -371,31 +402,33 @@ body {
   50% { box-shadow: 0 0 0 12px color-mix(in srgb, var(--brand-teal) 18%, transparent); }
 }
 
-/* ─── Cards — crisp editorial surfaces ─────────────────── */
+/* ─── Cards — sharp white Lumena surfaces ──────────────── */
 .framer-card {
   position: relative;
-  background: var(--card);
-  border: 1.5px solid var(--border-ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  background: var(--card-pure);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .framer-card:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0 0 var(--shadow-color);
+  transform: translateY(-3px);
+  border-color: var(--border-ink);
+  box-shadow: var(--shadow-lg);
 }
 
 .dark-card {
   position: relative;
-  background: var(--card);
-  border: 1.5px solid var(--border-ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  background: var(--card-pure);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .dark-card:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0 0 var(--shadow-color);
+  transform: translateY(-3px);
+  border-color: var(--border-ink);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Accent card — logo teal */

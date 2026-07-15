@@ -12,9 +12,17 @@ function mulberry32(seed: number) {
   };
 }
 
-type Glyph = { left: string; top: string; opacity: string; size: number; text: string };
+type Glyph = {
+  left: string;
+  top: string;
+  opacity: string;
+  size: number;
+  text: string;
+  delay: number;
+  spark: boolean;
+};
 
-function buildRing(seed: number, count: number): Glyph[] {
+function buildRing(seed: number, count: number, fillDuration: number): Glyph[] {
   const rand = mulberry32(seed);
   const glyphs: Glyph[] = [];
   for (let i = 0; i < count; i++) {
@@ -29,6 +37,10 @@ function buildRing(seed: number, count: number): Glyph[] {
     const top = 50 + Math.sin(angle) * radius * 0.86;
     if (left < 1 || left > 97 || top < 1 || top > 97) continue;
     const run = rand();
+    /* Blank mind → thoughts arrive slowly at first, then rush in.
+       Ease-in distribution: most glyphs land in the later part of the window. */
+    const t = rand();
+    const delay = Math.round(t * t * fillDuration);
     /* Fixed-precision strings keep SSR and client markup identical */
     glyphs.push({
       left: `${left.toFixed(2)}%`,
@@ -36,6 +48,8 @@ function buildRing(seed: number, count: number): Glyph[] {
       opacity: (0.12 + rand() * 0.78).toFixed(2),
       size: 8 + Math.floor(rand() * 5),
       text: run > 0.72 ? ">>>" : run > 0.42 ? ">>" : ">",
+      delay,
+      spark: rand() > 0.9,
     });
   }
   return glyphs;
@@ -46,13 +60,16 @@ export function AsciiField({
   count = 460,
   className = "",
   color,
+  fillDuration = 4200,
 }: {
   seed?: number;
   count?: number;
   className?: string;
   color?: string;
+  /** Total ms for the "mind" to fill with thoughts. 0 disables the reveal. */
+  fillDuration?: number;
 }) {
-  const glyphs = buildRing(seed, count);
+  const glyphs = buildRing(seed, count, fillDuration);
   return (
     <div
       aria-hidden="true"
@@ -62,13 +79,18 @@ export function AsciiField({
       {glyphs.map((g, i) => (
         <span
           key={i}
-          className="absolute leading-none"
-          style={{
-            left: g.left,
-            top: g.top,
-            opacity: g.opacity,
-            fontSize: `${g.size}px`,
-          }}
+          className={`absolute leading-none ${fillDuration > 0 ? "thought-glyph" : ""}`}
+          style={
+            {
+              left: g.left,
+              top: g.top,
+              fontSize: `${g.size}px`,
+              color: g.spark ? "var(--brand-blue)" : undefined,
+              ...(fillDuration > 0
+                ? { "--glyph-opacity": g.opacity, "--glyph-delay": `${g.delay}ms` }
+                : { opacity: g.opacity }),
+            } as CSSProperties
+          }
         >
           {g.text}
         </span>

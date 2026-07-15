@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Calendar, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { getEvent, events } from "@/lib/data";
 import { EVENT_CATEGORY_LABELS } from "@/lib/schemas";
-import { PageHeader } from "@/components/sections/cta-page-header";
-import { Button } from "@/components/ui/button";
-import { ClubEmptyState } from "@/components/ui/club-empty-state";
+import { DetailIndexLayout, HairlineGrid } from "@/components/sections/detail-shell";
 import { Reveal } from "@/components/motion/reveal";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -44,73 +43,99 @@ export default async function EventDetailPage({ params }: Props) {
     year: "numeric",
   });
 
-  return (
-    <article>
-      <PageHeader
-        variant="club"
-        narrow
-        backHref="/events"
-        backLabel="Back to calendar"
-        badge={categoryLabels[event.category]}
-        title={event.title}
-      >
-        <Reveal className="mt-6 flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 border-2 border-border-ink bg-accent-lime px-4 py-2 font-mono text-sm font-semibold text-foreground">
-            <Calendar className="h-4 w-4 text-foreground" />
-            <time dateTime={event.date}>{formattedDate}</time>
-          </span>
-          {event.recurring && (
-            <span className="font-mono text-xs font-semibold uppercase tracking-wide text-muted">
-              {event.recurring}
-            </span>
-          )}
-          {event.cohortOnly && (
-            <span className="inline-flex border-2 border-border-ink bg-pop-pink px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider">
-              Cohort 1.0
-            </span>
-          )}
-        </Reveal>
-      </PageHeader>
+  /* Index = events in the same category, chronological */
+  const siblings = events
+    .filter((e) => e.category === event.category)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, 6);
 
-      <section className="py-12 pb-24">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+  /* Related = other upcoming events outside this category */
+  const related = events
+    .filter((e) => e.category !== event.category && e.description.trim())
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, 4)
+    .map((e) => ({
+      href: `/events/${e.slug}`,
+      title: e.title,
+      description: e.description,
+    }));
+
+  const meta = [
+    { label: "Date", value: formattedDate },
+    { label: "Category", value: categoryLabels[event.category] },
+    ...(event.recurring ? [{ label: "Schedule", value: event.recurring }] : []),
+    ...(event.cohortOnly
+      ? [{ label: "Audience", value: "Cohort 1.0 founders" }]
+      : [{ label: "Audience", value: "Open to the IIT Delhi community" }]),
+  ];
+
+  return (
+    <article className="pb-24 pt-36">
+      <div className="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12">
+        <Link
+          href="/events"
+          className="mb-12 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to calendar
+        </Link>
+      </div>
+
+      <DetailIndexLayout
+        indexTitle={categoryLabels[event.category]}
+        items={siblings.map((e) => ({ href: `/events/${e.slug}`, label: e.title }))}
+        activeHref={`/events/${event.slug}`}
+        cta={
+          event.registrationUrl
+            ? { href: event.registrationUrl, label: "Register now", external: true }
+            : { href: "/contact", label: "Get notified" }
+        }
+        meta={meta}
+      >
+        <Reveal>
           {event.image && (
-            <Reveal className="mb-10 overflow-hidden border-2 border-border-ink hard-shadow-lg">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={event.image}
-                alt={event.title}
-                className="aspect-[16/9] w-full object-cover"
-              />
-            </Reveal>
-          )}
-          {event.description.trim() ? (
-            <Reveal>
-              <p className="text-lg leading-relaxed text-muted">{event.description}</p>
-              {event.registrationUrl && (
-                <a
-                  href={event.registrationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-block"
-                >
-                  <Button size="lg" className="gap-2">
-                    Register now <ExternalLink className="h-4 w-4" />
-                  </Button>
-                </a>
-              )}
-            </Reveal>
-          ) : (
-            <ClubEmptyState
-              icon={Calendar}
-              title="Details coming soon"
-              description="We're still finalizing the details for this event. Check back shortly or follow SInC on social media for updates."
-              hint={`Add a description in data/events.json for "${event.title}".`}
-              action={{ href: "/contact", label: "Get notified", variant: "outline" }}
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={event.image}
+              alt={event.title}
+              className="mb-12 aspect-[16/9] w-full object-cover"
             />
           )}
-        </div>
-      </section>
+
+          <h1 className="mega-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+            {event.title}
+          </h1>
+
+          <p className="mt-8 max-w-2xl text-pretty text-2xl leading-snug tracking-[-0.01em] text-brand-blue sm:text-3xl">
+            <time dateTime={event.date}>{formattedDate}</time>
+          </p>
+
+          {event.description.trim() ? (
+            <div className="mt-14 max-w-2xl">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                About the event
+              </p>
+              <p className="mt-5 text-lg leading-relaxed text-foreground">{event.description}</p>
+            </div>
+          ) : (
+            <div className="mt-14 max-w-2xl border-t border-border pt-6">
+              <p className="text-lg leading-relaxed text-muted">
+                We&apos;re still finalizing the details for this event. Check back shortly or
+                follow SInC for updates.
+              </p>
+            </div>
+          )}
+        </Reveal>
+      </DetailIndexLayout>
+
+      {related.length > 0 && (
+        <section className="mx-auto mt-28 max-w-[90rem] border-t border-border px-5 pt-16 sm:px-8 lg:px-12">
+          <p className="mb-12 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+            Also happening
+          </p>
+          <HairlineGrid items={related} />
+        </section>
+      )}
     </article>
   );
 }
