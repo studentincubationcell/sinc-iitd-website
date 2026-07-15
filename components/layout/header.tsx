@@ -80,8 +80,8 @@ export function Header() {
           className={cn(
             "mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl border px-4 py-2.5 sm:gap-6 sm:px-5 transition-all duration-300",
             transparent
-              ? "border-border-ink/15 bg-background/40 backdrop-blur-md"
-              : "border-border-ink/25 bg-background/70 backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(0,0,0,0.25)]"
+              ? "theme-inverse border-inverse-foreground/15 bg-inverse/40 text-foreground backdrop-blur-md"
+              : "border-border-ink/25 bg-background/85 backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(0,0,0,0.25)]"
           )}
         >
           <div className="flex shrink-0 items-center gap-3">

@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/sections/hero";
+import { HomeMarquee } from "@/components/sections/home-marquee";
 import { CohortStrip } from "@/components/sections/cohort-strip";
 import { HomeDifference } from "@/components/sections/home-difference";
 import { PortfolioPreview } from "@/components/sections/portfolio-preview";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <HomeMarquee />
       <CohortStrip />
       <HomeDifference />
       <ProgramsScroll programs={programs} />

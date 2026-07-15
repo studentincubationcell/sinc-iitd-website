@@ -110,7 +110,7 @@ export function HeroContent({
 
             {/* Headline — oversized editorial */}
             <m.h1
-              className="editorial-display text-[2.75rem] leading-[1.03] text-foreground sm:text-6xl md:text-[3.25rem] lg:text-[4.5rem] xl:text-[5.75rem]"
+              className="editorial-display text-[2.9rem] leading-[1.02] text-foreground sm:text-6xl md:text-[3.4rem] lg:text-[4.75rem] xl:text-[6rem]"
               {...fadeUp(0.1, reduceMotion)}
             >
               {title}
@@ -144,21 +144,18 @@ export function HeroContent({
               </Link>
             </m.div>
 
-            {/* Trust bar — ruled mono row */}
+            {/* Trust row — slim inline mono strip */}
             <m.div
-              className="mt-12 grid max-w-2xl grid-cols-2 border-t border-border-ink sm:grid-cols-4"
+              className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-foreground/15 pt-5"
               {...fadeUp(0.34, reduceMotion)}
             >
               {TRUST_ITEMS.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex flex-col gap-2 border-b border-r border-border-ink px-3 py-4 sm:border-b-0"
-                >
-                  <item.icon className="h-4 w-4 text-foreground" strokeWidth={2} />
-                  <span className="font-mono text-[10px] font-semibold uppercase leading-tight tracking-[0.1em] text-muted">
+                <span key={item.label} className="flex items-center gap-2">
+                  <item.icon className="h-3.5 w-3.5 text-brand-teal" strokeWidth={2} />
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
                     {item.label}
                   </span>
-                </div>
+                </span>
               ))}
             </m.div>
           </div>
