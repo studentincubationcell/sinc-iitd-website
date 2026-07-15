@@ -145,7 +145,7 @@ export function BigTypeBand() {
             </p>
           </Reveal>
           <Reveal>
-            <p className="mega-display text-right text-6xl text-foreground sm:text-8xl lg:text-[9rem]">
+            <p className="mega-display text-5xl text-foreground sm:text-8xl lg:text-right lg:text-[9rem]">
               Built on Campus
             </p>
           </Reveal>

@@ -40,21 +40,21 @@ export function HeroContent({ eyebrow, title, description }: HeroContentProps) {
           </m.h1>
         </div>
 
-        {/* Generative particle ring — the "signal" */}
-        <m.div className="relative hidden lg:block" {...fadeUp(0.25, reduceMotion)}>
+        {/* Generative particle ring — the "signal" (compact on mobile, full on desktop) */}
+        <m.div className="relative h-52 sm:h-64 lg:h-auto" {...fadeUp(0.25, reduceMotion)}>
           <AsciiField seed={11} count={520} className="absolute inset-0" />
         </m.div>
       </div>
 
       {/* Baseline row — small descriptor left, big intro paragraph right */}
-      <div className="mt-16 grid items-end gap-10 lg:mt-0 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="mt-10 grid items-end gap-8 sm:mt-14 lg:mt-0 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
         <m.p className="max-w-xs text-base leading-relaxed text-foreground lg:pb-2" {...fadeUp(0.35, reduceMotion)}>
           {eyebrow}
         </m.p>
 
         <div>
           <m.p
-            className="text-pretty text-2xl leading-snug tracking-[-0.015em] text-foreground sm:text-[1.75rem]"
+            className="text-pretty text-xl leading-snug tracking-[-0.015em] text-foreground sm:text-[1.75rem]"
             {...fadeUp(0.45, reduceMotion)}
           >
             {description}

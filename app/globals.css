@@ -7,70 +7,70 @@
 :root {
   color-scheme: light;
 
-  /* Editorial paper canvas + deep navy ink (logo cobalt/cyan as accents) */
+  /* Editorial paper canvas + near-black ink. Greytone-first system. */
   --background: #f4f4ee;
-  --foreground: #0e1c33;
-  --muted: #5b6472;
+  --foreground: #1a1d21;
+  --muted: #61666d;
   --card: #fbfbf7;
   --card-pure: #ffffff;
   --border: #e0e1d6;
-  --border-ink: #0e1c33;
+  --border-ink: #1a1d21;
 
-  /* Deep navy inverse bands */
-  --inverse: #0a1730;
+  /* Deep charcoal inverse bands */
+  --inverse: #16181c;
   --inverse-foreground: #f4f4ee;
-  --inverse-muted: #9ba9c4;
-  --hover-on-inverse: rgba(39, 215, 244, 0.1);
-  --grid-on-inverse: rgba(39, 215, 244, 0.14);
+  --inverse-muted: #a2a8b0;
+  --hover-on-inverse: rgba(244, 244, 238, 0.07);
+  --grid-on-inverse: rgba(244, 244, 238, 0.1);
 
   /* Overlays & chrome */
-  --shadow-color: rgba(14, 28, 51, 0.1);
+  --shadow-color: rgba(26, 29, 33, 0.1);
   --header-surface: rgba(244, 244, 238, 0.92);
   --glass-surface: rgba(244, 244, 238, 0.82);
-  --overlay-scrim: rgba(10, 23, 48, 0.46);
-  --hover-on-canvas: rgba(25, 85, 232, 0.05);
-  --grid-on-canvas: rgba(14, 28, 51, 0.14);
-  --grid-on-canvas-fine: rgba(14, 28, 51, 0.06);
+  --overlay-scrim: rgba(22, 24, 28, 0.46);
+  --hover-on-canvas: rgba(26, 29, 33, 0.05);
+  --grid-on-canvas: rgba(26, 29, 33, 0.14);
+  --grid-on-canvas-fine: rgba(26, 29, 33, 0.06);
 
   /* Custom cursor */
   --cursor-dot: #24333a;
   --cursor-dot-ring: #f5f6f2;
   --cursor-ring: rgba(36, 51, 58, 0.45);
 
-  /* Text on teal / pop blocks */
-  --on-accent: #10272f;
+  /* Text on accent fills (accents are now dark slate) */
+  --on-accent: #f4f4ee;
 
-  /* SInC logo colors. Legacy aliases intentionally map into this system. */
-  --brand-teal: #27d7f4;
-  --brand-blue: #1955e8;
-  --brand-teal-light: #27d7f4;
-  --brand-blue-light: #1955e8;
+  /* Restrained slate-blue accents — a nod to the logo, never forced */
+  --brand-teal: #46586a;
+  --brand-blue: #35414e;
+  --brand-teal-light: #46586a;
+  --brand-blue-light: #35414e;
 
   --accent-lime:      var(--brand-teal);
   --accent-lime-dark: var(--brand-blue);
-  --accent-tint:      #ddf1f8;
+  --accent-tint:      #e8eae3;
 
-  --pop-pink:   #27d7f4;
-  --pop-sky:    #ddf1f8;
-  --pop-peach:  #ddf1f8;
+  --pop-pink:   #46586a;
+  --pop-sky:    #e8eae3;
+  --pop-peach:  #e8eae3;
 
-  --primary: #1955e8;
-  --primary-foreground: #f6f8ff;
+  --primary: #35414e;
+  --primary-foreground: #f4f4ee;
   --accent: var(--brand-teal);
-  --maroon: #1955e8;
+  --maroon: #35414e;
   --destructive: #d92d20;
 
-  --club-purple:       #1955e8;
-  --club-purple-mid:   #1955e8;
-  --club-purple-deep:  #071b3a;
-  --club-lavender:     #1955e8;
-  --club-lavender-dim: #52637f;
+  --club-purple:       #35414e;
+  --club-purple-mid:   #35414e;
+  --club-purple-deep:  #16181c;
+  --club-lavender:     #35414e;
+  --club-lavender-dim: #61666d;
   --club-gold:         var(--brand-teal);
   --club-gold-bright:  var(--brand-teal-light);
   --club-gold-dim:     var(--brand-blue);
 
-  --neon-purple:  #1955e8;
-  --neon-blue:    #1955e8;
+  --neon-purple:  #35414e;
+  --neon-blue:    #35414e;
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
@@ -87,22 +87,22 @@
   :root {
     color-scheme: dark;
 
-    --background: #071b3a;
-    --foreground: #f6f8ff;
-    --muted: #aab8d2;
-    --card: #0d2856;
-    --card-pure: #0d2856;
-    --border: #27446f;
-    --border-ink: #f6f8ff;
+    --background: #16181c;
+    --foreground: #f0f1ec;
+    --muted: #9aa0a8;
+    --card: #1d2025;
+    --card-pure: #1d2025;
+    --border: #2e323a;
+    --border-ink: #f0f1ec;
 
-    /* Deep ocean strips on dark canvas */
-    --inverse: #0e2731;
-    --inverse-foreground: #f2f7f6;
-    --inverse-muted: #8fa5ab;
+    /* Slightly lifted strips on dark canvas */
+    --inverse: #1d2025;
+    --inverse-foreground: #f0f1ec;
+    --inverse-muted: #9aa0a8;
     --hover-on-inverse: rgba(244, 243, 238, 0.07);
     --grid-on-inverse: rgba(244, 243, 238, 0.08);
 
-    --shadow-color: rgba(244, 243, 238, 0.88);
+    --shadow-color: rgba(0, 0, 0, 0.45);
     --header-surface: rgba(17, 17, 16, 0.94);
     --glass-surface: rgba(17, 17, 16, 0.82);
     --overlay-scrim: rgba(0, 0, 0, 0.55);
@@ -114,8 +114,17 @@
     --cursor-dot-ring: #111110;
     --cursor-ring: rgba(244, 243, 238, 0.45);
 
-    --on-accent: #0a0a0a;
-    --accent-tint: rgba(56, 208, 224, 0.14);
+    /* Accents flip to light slate on dark canvas for legible fills/text */
+    --brand-teal: #a9b9c7;
+    --brand-blue: #c3cdd7;
+    --brand-teal-light: #a9b9c7;
+    --brand-blue-light: #c3cdd7;
+    --pop-pink: #a9b9c7;
+    --pop-sky: #262a30;
+    --pop-peach: #262a30;
+
+    --on-accent: #16181c;
+    --accent-tint: rgba(169, 185, 199, 0.12);
 
     --primary: #f4f3ee;
     --primary-foreground: #0a0a0a;
@@ -306,7 +315,8 @@ body {
   justify-content: center;
   gap: 0.5rem;
   min-height: 3rem;
-  padding: 0 1.75rem;
+  padding: 0 1.25rem;
+  white-space: nowrap;
   border-radius: 999px;
   background: var(--foreground);
   color: var(--background);
