@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { m, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { ArrowDownRight, ArrowUpRight, CalendarDays, Network, Rocket } from "lucide-react";
+import { m, useReducedMotion } from "framer-motion";
 import { HeroAnnouncement, type AnnouncementItem } from "./hero-announcement";
 import type { SocialLink } from "./hero-social-rail";
 
@@ -17,115 +15,54 @@ export type HeroContentProps = {
   socials: SocialLink[];
 };
 
-const ROTATING_WORDS = ["idea", "prototype", "startup", "patent", "product"];
+const routes = [
+  { label: "Meet the ventures", href: "/portfolio", icon: Rocket },
+  { label: "Find an event", href: "/events", icon: CalendarDays },
+  { label: "Enter the network", href: "/network", icon: Network },
+];
 
 const fadeUp = (delay: number, reduce: boolean | null) => ({
-  initial: reduce ? false : { opacity: 0, y: 14 },
+  initial: reduce ? false : { opacity: 0, y: 18 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] as const },
+  transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
-function RotatingWord({ reduce }: { reduce: boolean | null }) {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (reduce) return;
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % ROTATING_WORDS.length);
-    }, 2200);
-    return () => clearInterval(id);
-  }, [reduce]);
-
-  return (
-    <span className="relative inline-flex justify-center overflow-hidden rounded-lg border border-brand-teal/40 bg-brand-teal/10 px-3 align-baseline text-brand-teal">
-      <AnimatePresence mode="wait" initial={false}>
-        <m.span
-          key={ROTATING_WORDS[index]}
-          initial={reduce ? false : { y: "70%", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={reduce ? undefined : { y: "-70%", opacity: 0 }}
-          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block font-semibold"
-        >
-          {ROTATING_WORDS[index]}
-        </m.span>
-      </AnimatePresence>
-    </span>
-  );
-}
-
-export function HeroContent({
-  title,
-  announcements,
-}: HeroContentProps) {
+export function HeroContent({ eyebrow, title, description, announcements }: HeroContentProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-4 pt-40 sm:px-6 lg:px-8 lg:pt-48">
-      {/* Announcement pill */}
-      {announcements.length > 0 && (
-        <m.div className="mb-10" {...fadeUp(0, reduceMotion)}>
-          <HeroAnnouncement items={announcements} />
-        </m.div>
-      )}
+    <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[90rem] flex-col px-4 pb-8 pt-32 sm:px-6 lg:px-8 lg:pb-10 lg:pt-40">
+      <div className="grid flex-1 items-center gap-12 lg:grid-cols-[1.35fr_0.65fr]">
+        <div>
+          <m.div {...fadeUp(0, reduceMotion)}>
+            <p className="mono-label text-foreground">{eyebrow}</p>
+            <div className="mt-5 h-1 w-20 bg-accent" aria-hidden />
+          </m.div>
+          <m.h1 className="mt-8 max-w-5xl text-balance font-display text-5xl font-semibold leading-[0.96] tracking-[-0.055em] text-foreground sm:text-7xl lg:text-[6.6rem]" {...fadeUp(0.08, reduceMotion)}>
+            {title}
+          </m.h1>
+          <m.p className="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-muted sm:text-xl" {...fadeUp(0.16, reduceMotion)}>{description}</m.p>
+          <m.div className="mt-9 flex flex-wrap gap-3" {...fadeUp(0.24, reduceMotion)}>
+            <Link href="/events" className="inline-flex min-h-12 items-center bg-foreground px-6 text-sm font-bold text-background transition-colors hover:bg-accent hover:text-on-accent">Explore the ecosystem <ArrowUpRight className="ml-2 h-4 w-4" /></Link>
+            <Link href="/apply" className="inline-flex min-h-12 items-center border border-border-ink bg-background px-6 text-sm font-bold text-foreground transition-colors hover:bg-accent-tint">Find your place</Link>
+          </m.div>
+        </div>
 
-      {/* Headline — giant, centered */}
-      <m.h1
-        className="editorial-display max-w-5xl text-center text-[3rem] leading-[1.02] text-foreground sm:text-6xl lg:text-[5.25rem] xl:text-[6.25rem]"
-        {...fadeUp(0.08, reduceMotion)}
-      >
-        {title}
-      </m.h1>
+        <m.aside className="border-t border-border-ink lg:border-l lg:border-t-0 lg:pl-10" {...fadeUp(0.28, reduceMotion)} aria-label="Ways to explore SInC">
+          <p className="mono-label mb-3 text-foreground">Choose a direction</p>
+          {routes.map(({ label, href, icon: Icon }, index) => (
+            <Link key={href} href={href} className="group flex items-center justify-between gap-4 border-b border-border py-5">
+              <span className="flex items-center gap-3 text-sm font-bold"><span className="flex h-9 w-9 items-center justify-center bg-accent-tint"><Icon className="h-4 w-4" /></span>{label}</span>
+              <span className="font-mono text-xs text-muted">0{index + 1}</span>
+            </Link>
+          ))}
+          {announcements.length > 0 && <div className="mt-7"><HeroAnnouncement items={announcements} /></div>}
+        </m.aside>
+      </div>
 
-      {/* Subline with rotating word */}
-      <m.p
-        className="mt-8 flex flex-wrap items-baseline justify-center gap-x-2 text-center text-lg leading-relaxed text-foreground/85 sm:text-2xl"
-        {...fadeUp(0.16, reduceMotion)}
-      >
-        <span>We turn your</span>
-        <RotatingWord reduce={reduceMotion} />
-        <span>into a company, right on campus.</span>
-      </m.p>
-
-      {/* CTAs — centered pair */}
-      <m.div
-        className="mt-10 flex flex-wrap items-center justify-center gap-4"
-        {...fadeUp(0.24, reduceMotion)}
-      >
-        <Link href="/apply">
-          <Button
-            size="lg"
-            variant="club"
-            className="group/btn h-13 gap-2 rounded-full px-9 text-[15px] font-bold normal-case tracking-normal"
-          >
-            Apply now
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
-          </Button>
-        </Link>
-        <Link
-          href="/programs"
-          className="cine-link font-mono text-sm font-semibold uppercase tracking-[0.16em] text-foreground"
-        >
-          Our programs
-        </Link>
-      </m.div>
-
-      {/* Grounding line — trust strip anchored to the fold */}
-      <m.div
-        className="mt-auto flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-border-ink/15 py-8"
-        {...fadeUp(0.32, reduceMotion)}
-      >
-        {["Student-run, IIT Delhi", "Idea to incorporation", "Zero equity taken"].map(
-          (item) => (
-            <span
-              key={item}
-              className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-teal" />
-              {item}
-            </span>
-          )
-        )}
+      <m.div className="flex items-center justify-between border-t border-border-ink pt-6" {...fadeUp(0.34, reduceMotion)}>
+        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">Built by students · Open to the ecosystem</p>
+        <a href="#community" className="hidden items-center gap-2 text-xs font-semibold sm:flex">Scroll to discover <ArrowDownRight className="h-4 w-4" /></a>
       </m.div>
     </div>
   );

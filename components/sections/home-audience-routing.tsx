@@ -40,14 +40,14 @@ const DOORS = [
 
 export function HomeAudienceRouting() {
   return (
-    <section className="section-padding border-t border-border bg-background">
+    <section id="community" className="section-padding scroll-mt-20 border-t border-border bg-background">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12 max-w-2xl">
           <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-muted">
             Start here
           </span>
           <h2 className="editorial-display text-3xl text-foreground sm:text-4xl">
-            Whoever you are, there&apos;s a{" "}
+            Whoever you are, there&apos;s a<span aria-hidden="true">&nbsp;</span>
             <span className="lime-mark">door for you.</span>
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">

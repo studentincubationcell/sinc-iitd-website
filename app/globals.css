@@ -8,13 +8,13 @@
   color-scheme: light;
 
   /* Canvas (page surface) */
-  --background: #f5f6f2;
-  --foreground: #24333a;
-  --muted: #64737a;
-  --card: #fbfcf9;
-  --card-pure: #ffffff;
-  --border: #e0e4dd;
-  --border-ink: #24333a;
+  --background: #f4f1e8;
+  --foreground: #132e35;
+  --muted: #617177;
+  --card: #faf8f2;
+  --card-pure: #faf8f2;
+  --border: #d8ddd7;
+  --border-ink: #132e35;
 
   /* Inverted bands — smooth deep ocean-slate strip in light mode */
   --inverse: #16333e;
@@ -41,18 +41,18 @@
   --on-accent: #10272f;
 
   /* SInC logo brand colors (from sinclogopng.png) */
-  --brand-teal: #38d0e0;
-  --brand-blue: #4070d0;
-  --brand-teal-light: #58dce8;
-  --brand-blue-light: #5080d8;
+  --brand-teal: #2dd4bf;
+  --brand-blue: #132e35;
+  --brand-teal-light: #2dd4bf;
+  --brand-blue-light: #132e35;
 
   --accent-lime:      var(--brand-teal);
   --accent-lime-dark: var(--brand-blue);
   --accent-tint:      #e4f8fb;
 
-  --pop-pink:   #ff90e8;
-  --pop-sky:    #90d8ff;
-  --pop-peach:  #ffc890;
+  --pop-pink:   #2dd4bf;
+  --pop-sky:    #2dd4bf;
+  --pop-peach:  #f2b84b;
 
   --primary: #24333a;
   --primary-foreground: #f5f6f2;
@@ -80,7 +80,7 @@
   --shadow-framer-hover: 4px 4px 0 0 var(--shadow-color);
   --shadow-glow-gold:   var(--shadow-md);
   --shadow-glow-purple: var(--shadow-md);
-  --radius: 0rem;
+  --radius: 0.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
