@@ -1,135 +1,58 @@
-import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, ArrowUpRight } from "lucide-react";
-import { LinkedInIcon, InstagramIcon, FacebookIcon } from "@/components/icons/social";
+import Link from "next/link";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { FacebookIcon, InstagramIcon, LinkedInIcon } from "@/components/icons/social";
 import { site } from "@/lib/data";
 
-const SOCIAL_ICONS: Record<string, React.ReactNode> = {
-  linkedin:  <LinkedInIcon className="h-4 w-4" />,
+const socialIcons: Record<string, React.ReactNode> = {
+  linkedin: <LinkedInIcon className="h-4 w-4" />,
   instagram: <InstagramIcon className="h-4 w-4" />,
-  facebook:  <FacebookIcon className="h-4 w-4" />,
+  facebook: <FacebookIcon className="h-4 w-4" />,
 };
 
-const FOOTER_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Programs", href: "/programs" },
-  { label: "Calendar", href: "/events" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Network", href: "/network" },
-  { label: "Opportunities", href: "/opportunities" },
-  { label: "Resources", href: "/resources" },
-  { label: "Cohort 01", href: "/cohort" },
-  { label: "Team", href: "/team" },
-  { label: "Contact", href: "/contact" },
-];
+const directories = [
+  { title: "Discover", links: [["Events", "/events"], ["Portfolio", "/portfolio"], ["Resources", "/resources"]] },
+  { title: "Participate", links: [["Programs", "/programs"], ["Opportunities", "/opportunities"], ["Cohort 01", "/cohort"], ["Apply", "/apply"]] },
+  { title: "SInC", links: [["Network", "/network"], ["About", "/about"], ["Team", "/team"], ["Contact", "/contact"]] },
+] as const;
 
 export function Footer() {
   return (
-    <footer data-site-footer className="relative overflow-hidden border-t border-border-ink/15 bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-30" />
-
-      <div className="relative mx-auto max-w-[90rem] px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-3 group mb-5">
-              <Image src="/logo.png" alt="SInC" width={38} height={38} className="group-hover:scale-105 transition-transform" />
-              <div>
-                <span className="text-base font-black tracking-tight block">{site.name}</span>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted block">IIT Delhi</span>
-              </div>
+    <footer data-site-footer className="theme-inverse border-t border-border bg-background text-foreground">
+      <div className="mx-auto max-w-[90rem] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="grid gap-12 border-b border-border pb-14 lg:grid-cols-[1.4fr_2fr]">
+          <div className="max-w-xl">
+            <Link href="/" className="inline-flex items-center gap-3" aria-label="SInC home">
+              <Image src="/logo.png" alt="" width={44} height={44} />
+              <span><span className="block font-display text-2xl font-extrabold">SInC</span><span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">IIT Delhi</span></span>
             </Link>
-            <p className="text-sm text-muted leading-relaxed mb-6 max-w-xs">
-              Student Incubation Cell, IIT Delhi — empowering campus founders from idea to impact.
-            </p>
-            {/* Socials */}
-            <div className="flex gap-2">
-              {site.socials.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-none border border-border-ink/20 text-muted transition-all hover:bg-accent-lime hover:text-on-accent hover:border-accent-lime"
-                >
-                  {SOCIAL_ICONS[s.name]}
-                </a>
-              ))}
-            </div>
+            <h2 className="mt-8 text-balance font-display text-3xl font-semibold leading-tight sm:text-4xl">The campus is full of ideas. Let&apos;s help the right ones move.</h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted sm:text-base">Discover people to build with, rooms to learn in, and pathways that turn early ambition into real momentum.</p>
+            <Link href="/apply" className="mt-8 inline-flex min-h-12 items-center bg-accent px-6 text-sm font-bold text-on-accent transition-colors hover:bg-foreground">Find your way in <ArrowUpRight className="ml-2 h-4 w-4" /></Link>
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-lime mb-5">Navigation</h4>
-            <ul className="space-y-3">
-              {FOOTER_LINKS.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-muted hover:text-foreground transition-colors flex items-center gap-1 group"
-                  >
-                    {item.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/apply"
-                  className="text-sm font-bold text-accent-lime hover:text-foreground transition-colors flex items-center gap-1 group"
-                >
-                  Apply now →
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-lime mb-5">Contact</h4>
-            <ul className="space-y-4 text-sm text-muted">
-              <li>
-                <a href={`mailto:${site.contact.email}`} className="flex items-start gap-2.5 hover:text-foreground transition-colors">
-                  <Mail className="h-4 w-4 mt-0.5 shrink-0 text-accent-lime" />
-                  {site.contact.email}
-                </a>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-accent-lime" />
-                <span className="leading-relaxed">{site.contact.address}</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-lime mb-5">Stay in the loop</h4>
-            <p className="text-sm text-muted mb-4 leading-relaxed">
-              Grants, funding, and campus startup news — straight to your inbox.
-            </p>
-            <form className="flex flex-col gap-2" action="#" method="post">
-              <input
-                type="email"
-                placeholder="you@iitd.ac.in"
-                className="rounded-none border border-border-ink/20 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted/70 outline-none focus:border-accent-lime transition-all"
-                aria-label="Email for newsletter"
-              />
-              <button
-                type="submit"
-                className="rounded-none bg-accent-lime text-on-accent font-bold text-sm py-2.5 px-4 hover:bg-foreground hover:text-background transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
+          <div className="grid gap-10 sm:grid-cols-3">
+            {directories.map((directory) => (
+              <div key={directory.title}>
+                <h3 className="mono-label mb-5 text-foreground">{directory.title}</h3>
+                <ul className="flex flex-col gap-3">
+                  {directory.links.map(([label, href]) => <li key={href}><Link href={href} className="text-sm text-muted transition-colors hover:text-foreground">{label}</Link></li>)}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-border-ink/10 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs uppercase tracking-wide text-muted/70">
-          <p>© {new Date().getFullYear()} SInC IIT Delhi. All rights reserved.</p>
-          <p>Designed by Gagan Tak</p>
+        <div className="grid gap-8 border-b border-border py-10 md:grid-cols-2">
+          <a href={`mailto:${site.contact.email}`} className="group flex items-start gap-3 text-sm text-muted hover:text-foreground"><Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" /><span><span className="mb-1 block font-mono text-[10px] uppercase tracking-widest">Write to us</span>{site.contact.email}</span></a>
+          <div className="flex items-start gap-3 text-sm text-muted"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" /><span><span className="mb-1 block font-mono text-[10px] uppercase tracking-widest">Find us</span>{site.contact.address}</span></div>
+        </div>
+
+        <div className="flex flex-col gap-5 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted">© {new Date().getFullYear()} Student Incubation Cell, IIT Delhi</p>
+          <div className="flex gap-2">
+            {site.socials.map((social) => <a key={social.name} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="flex h-10 w-10 items-center justify-center border border-border text-muted transition-colors hover:border-accent hover:bg-accent hover:text-on-accent">{socialIcons[social.name]}</a>)}
+          </div>
         </div>
       </div>
     </footer>

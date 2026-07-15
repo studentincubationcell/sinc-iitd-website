@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Compass, Banknote, FlaskConical, Handshake } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Button } from "@/components/ui/button";
 
 /* ─── ApplyCTA ─────────────────────────────────────────── */
 const FEATURES = [
@@ -52,23 +51,11 @@ export function ApplyCTA() {
           </div>
 
           <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Link href="/apply">
-              <Button
-                size="lg"
-                variant="club"
-                className="h-14 gap-2 rounded-full px-12 text-base font-bold normal-case tracking-normal"
-              >
-                Apply now <ArrowRight className="h-5 w-5" />
-              </Button>
+            <Link href="/apply" className="pill-cta h-14 px-12 text-sm">
+              Apply now <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/programs">
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-14 rounded-full border-border-ink bg-transparent px-12 text-base text-foreground hover:bg-foreground hover:text-background"
-              >
-                Explore programs
-              </Button>
+            <Link href="/programs" className="pill-cta pill-cta-outline h-14 px-12 text-sm">
+              Explore programs
             </Link>
           </div>
         </Reveal>
@@ -98,13 +85,8 @@ export function PageHeader({
   narrow?: boolean;
 }) {
   return (
-    <section
-      className="relative overflow-hidden border-b border-border-ink bg-background"
-      style={{ paddingTop: "9rem", paddingBottom: "4rem" }}
-    >
-      <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
-
-      <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-[90rem]"}`}>
+    <section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-40">
+      <div className={`relative mx-auto px-5 sm:px-8 lg:px-12 ${narrow ? "max-w-3xl" : "max-w-[96rem]"}`}>
         {backHref && (
           <Link
             href={backHref}
@@ -114,11 +96,7 @@ export function PageHeader({
             {backLabel ?? "Back"}
           </Link>
         )}
-        <SectionHeading
-          label={badge ?? "SInC"}
-          title={title}
-          description={description}
-        />
+        <SectionHeading label={badge ?? "SInC"} title={title} description={description} />
         {children}
       </div>
     </section>

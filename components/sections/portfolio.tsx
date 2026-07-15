@@ -48,24 +48,16 @@ export function PortfolioGrid({
     );
   }
 
-  const bands = [
-    "from-accent-tint to-card",
-    "from-pop-sky/25 to-card",
-    "from-pop-pink/20 to-card",
-    "from-pop-peach/30 to-card",
-    "from-brand-teal/15 to-card",
-  ];
-
   return (
     <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {filtered.map((startup, i) => (
+      {filtered.map((startup) => (
         <StaggerItem key={startup.slug}>
           <Link
             href={`/portfolio/${startup.slug}`}
             className="group soft-card flex h-full flex-col overflow-hidden transition-transform hover:-translate-y-1"
           >
             {/* Header band */}
-            <div className={`relative flex items-end gap-3 bg-gradient-to-br ${bands[i % bands.length]} p-5 pb-4`}>
+            <div className="signal-grid relative flex items-end gap-3 border-b border-brand-blue bg-accent-tint p-5 pb-4">
               {startup.logo ? (
                 <div className="h-14 w-14 shrink-0 rounded-xl border border-border bg-background p-1.5 shadow-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

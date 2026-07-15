@@ -1,25 +1,24 @@
 import { HeroSection } from "@/components/sections/hero";
-import { HomeMarquee } from "@/components/sections/home-marquee";
-import { CohortStrip } from "@/components/sections/cohort-strip";
-import { HomeDifference } from "@/components/sections/home-difference";
+import {
+  ManifestoBand,
+  StatementBand,
+  PathwaysIndex,
+  BigTypeBand,
+} from "@/components/sections/home-editorial";
 import { PortfolioPreview } from "@/components/sections/portfolio-preview";
-import { ProgramsScroll } from "@/components/sections/programs-scroll";
 import { EventsMarquee } from "@/components/sections/events";
-import { ClubStatsBand } from "@/components/sections/stats-programs";
 import { ApplyCTA } from "@/components/sections/cta-page-header";
-import { programs } from "@/lib/data";
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <HomeMarquee />
-      <CohortStrip />
-      <HomeDifference />
-      <ProgramsScroll programs={programs} />
+      <ManifestoBand />
+      <PathwaysIndex />
+      <StatementBand />
       <PortfolioPreview />
-      <ClubStatsBand />
       <EventsMarquee />
+      <BigTypeBand />
       <ApplyCTA />
     </>
   );

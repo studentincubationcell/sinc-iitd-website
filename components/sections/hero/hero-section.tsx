@@ -3,14 +3,14 @@ import { HeroShell } from "./hero-shell";
 import type { HeroContentProps } from "./hero-content";
 
 const HERO_COPY = {
-  eyebrow: "Student Incubation Cell · IIT Delhi",
-  title: "We don't just build engineers. We build founders.",
-  screenTagline: "cohort 1.0 is live.",
+  eyebrow: "Student Incubation & Entrepreneurship, IIT Delhi",
+  title: "Engineering Ideas. Into Ventures.",
+  screenTagline: "The community is listening.",
   description:
-    "SInC is the starting line for IIT Delhi's most ambitious startups. We back deep-tech builders with term-sheet readiness, R&I lab access, and a network of investors that actually show up.",
+    "SInC helps IIT Delhi students turn early sparks into real companies: connecting them with people, labs, capital, and the community that gets ideas built.",
   announcements: [
-    { text: "Applications open for Cohort 1.0", href: "/cohort" },
-    { text: "Meet us at the Biweekly Founder Meet", href: "/events" },
+    { text: "Explore the current founder cohort", href: "/cohort" },
+    { text: "See what is happening across the community", href: "/events" },
   ],
 } satisfies Pick<
   HeroContentProps,

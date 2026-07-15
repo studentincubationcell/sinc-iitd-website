@@ -3,8 +3,6 @@ import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MotionProvider } from "@/components/motion/motion-provider";
-import { SplashCurtain } from "@/components/motion/splash-curtain";
-import { CustomCursor } from "@/components/motion/custom-cursor";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { site } from "@/lib/data";
 import "./globals.css";
@@ -43,7 +41,7 @@ export const metadata: Metadata = {
     default: `${site.name} | ${site.fullName}, IIT Delhi`,
     template: `%s | ${site.name} IIT Delhi`,
   },
-  description: site.description,
+  description: "Discover events, startups, programs, resources, and people across IIT Delhi's student entrepreneurship community.",
   keywords: [
     "SInC",
     "Student Incubation Cell",
@@ -95,8 +93,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <MotionProvider>
-          <CustomCursor />
-          <SplashCurtain />
           <ScrollProgress />
           <Header />
           <main className="flex-1">{children}</main>

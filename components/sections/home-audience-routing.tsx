@@ -40,18 +40,18 @@ const DOORS = [
 
 export function HomeAudienceRouting() {
   return (
-    <section className="section-padding border-t border-border bg-background">
+    <section id="community" className="section-padding scroll-mt-20 border-t border-border bg-background">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12 max-w-2xl">
           <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-muted">
             Start here
           </span>
           <h2 className="editorial-display text-3xl text-foreground sm:text-4xl">
-            Whoever you are, there&apos;s a{" "}
-            <span className="lime-mark">door for you.</span>
+            Every signal needs the{" "}
+            <span className="lime-mark">right connection.</span>
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
-            SInC serves three kinds of people. Pick the one that fits — the rest of the site follows from here.
+            Choose the role that feels closest today. The ecosystem is designed to help you find the next person, room, or opportunity.
           </p>
         </Reveal>
 
