@@ -37,7 +37,7 @@ const LINKS = [
 export function HomeDiscoverGrid() {
   return (
     <section className="section-padding bg-card/50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12 max-w-2xl">
           <SectionHeading
             label="Explore"

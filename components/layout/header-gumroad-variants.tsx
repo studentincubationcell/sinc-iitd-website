@@ -92,7 +92,7 @@ export function HeaderVariantA({ className }: VariantProps) {
         className
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 shrink-0">
           <LogoWordmark gumroad />
           <span className="hidden sm:inline-flex items-center rounded-full border border-border-ink px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-muted">
@@ -146,7 +146,7 @@ export function HeaderVariantB({ className }: VariantProps) {
           backgroundSize: "18px 18px",
         }}
       />
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex max-w-[90rem] items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <LogoWordmark />
 
         <nav className="hidden lg:flex items-center gap-1">

@@ -98,7 +98,7 @@ export function PageHeader({
     >
       <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
 
-      <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-7xl"}`}>
+      <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-[90rem]"}`}>
         {backHref && (
           <Link
             href={backHref}

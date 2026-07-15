@@ -13,7 +13,7 @@ import { site } from "@/lib/data";
 export function ClubStatsBand() {
   return (
     <section className="border-t border-border bg-card/30 py-16 lg:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-10 max-w-2xl">
           <span className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted">
             <span className="relative flex h-2 w-2">
@@ -61,7 +61,7 @@ const iconMap: Record<string, LucideIcon> = { Users, Building2, Scale, TrendingU
 export function ProgramsBento({ programs }: { programs: typeof import("@/lib/data").programs }) {
   return (
     <section className="programs-bento-grid border-t border-border-ink bg-background py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="Programs"
           title="What SInC gives you"

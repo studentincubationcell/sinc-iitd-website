@@ -19,7 +19,7 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
     <section className="programs-dark-grid relative overflow-hidden border-t border-border-ink bg-inverse py-24 text-inverse-foreground lg:py-32">
       <div className="pointer-events-none absolute inset-0 inverse-grid opacity-[0.35]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <m.div
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}

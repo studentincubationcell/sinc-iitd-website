@@ -46,7 +46,7 @@ export function ConnectionsWall({ connections }: { connections: Connection[] }) 
 
   return (
     <section className="section-padding border-t border-border bg-card/30">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-10 max-w-2xl">
           <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-muted">
             Show off our connections

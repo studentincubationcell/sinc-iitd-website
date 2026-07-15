@@ -265,7 +265,7 @@ export function TeamPreview({
 
   return (
     <section className="section-padding bg-background border-y border-border-ink relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8 relative">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <SectionHeading
             label="Team"

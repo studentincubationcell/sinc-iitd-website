@@ -84,7 +84,7 @@ export function HeroContent({
 
   return (
     <div className="relative z-10 min-h-[100svh] flex items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8 md:pl-20">
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto w-full max-w-[90rem]">
         <div className="grid items-center gap-10 md:grid-cols-12 md:gap-8 lg:gap-14">
 
           {/* ── Left column ─────────────────────────────── */}

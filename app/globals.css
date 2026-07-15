@@ -74,10 +74,10 @@
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
-  --shadow-sm:    3px 3px 0 0 var(--shadow-color);
-  --shadow-md:    5px 5px 0 0 var(--shadow-color);
-  --shadow-lg:    10px 10px 0 0 var(--shadow-color);
-  --shadow-framer-hover: 7px 7px 0 0 var(--shadow-color);
+  --shadow-sm:    2px 2px 0 0 var(--shadow-color);
+  --shadow-md:    3px 3px 0 0 var(--shadow-color);
+  --shadow-lg:    5px 5px 0 0 var(--shadow-color);
+  --shadow-framer-hover: 4px 4px 0 0 var(--shadow-color);
   --shadow-glow-gold:   var(--shadow-md);
   --shadow-glow-purple: var(--shadow-md);
   --radius: 0rem;
@@ -172,6 +172,7 @@
   --color-hot-orange:        var(--hot-orange);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
   --radius-lg: var(--radius);
 }
 
@@ -215,13 +216,18 @@ body {
 
 /* Oversized editorial display headline */
 .editorial-display {
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.12;
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
   text-wrap: balance;
 }
 
-.headline-tight { letter-spacing: -0.03em; line-height: 1.08; }
+.headline-tight {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
 
 /* Logo teal highlight behind ink text */
 .lime-mark,
@@ -277,33 +283,33 @@ body {
 .framer-card {
   position: relative;
   background: var(--card);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 .framer-card:hover {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 
 .dark-card {
   position: relative;
   background: var(--card);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 .dark-card:hover {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 
 /* Accent card — logo teal */
 .gold-card {
   background: var(--accent-lime);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   color: var(--on-accent);
@@ -311,22 +317,22 @@ body {
 
 /* Static bordered block (no hover press) */
 .brutal-block {
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   box-shadow: var(--shadow-md);
   border-radius: var(--radius);
 }
 .brutal-block-lg {
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   box-shadow: var(--shadow-lg);
   border-radius: var(--radius);
 }
 
 /* Brutalist button / input shadow */
 .brutal-shadow {
-  box-shadow: 4px 4px 0 0 var(--shadow-color);
+  box-shadow: 3px 3px 0 0 var(--shadow-color);
 }
 .brutal-shadow-hover:hover {
-  box-shadow: 2px 2px 0 0 var(--shadow-color);
+  box-shadow: 1px 1px 0 0 var(--shadow-color);
 }
 .brutal-shadow-focus:focus-visible {
   box-shadow: 3px 3px 0 0 var(--shadow-color);
@@ -381,9 +387,9 @@ body {
 }
 
 /* ─── Layout Helpers ──────────────────────────────────── */
-.section-padding { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+.section-padding { padding-top: 4rem; padding-bottom: 4rem; }
 @media (min-width: 1024px) {
-  .section-padding { padding-top: 7.5rem; padding-bottom: 7.5rem; }
+  .section-padding { padding-top: 5.5rem; padding-bottom: 5.5rem; }
 }
 
 /* Gumroad-inspired soft surfaces — readable, airy, not cramped */
@@ -476,13 +482,13 @@ body {
 .cine-card {
   position: relative;
   background: var(--card);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 .cine-card:hover {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 

@@ -50,7 +50,7 @@ export default function CohortPage() {
 
       {cohort.objectives && cohort.objectives.length > 0 && (
         <section className="section-padding border-b border-border-ink">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Objectives"
               title="Why this cohort exists"
@@ -77,7 +77,7 @@ export default function CohortPage() {
 
       {cohort.selection && cohort.selection.length > 0 && (
         <section className="section-padding border-b border-border dot-grid">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Selection"
               title="How you get in"
@@ -102,7 +102,7 @@ export default function CohortPage() {
       )}
 
       <section className="section-padding border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="The plan"
             title="Sprint to Demo Day"
@@ -127,7 +127,7 @@ export default function CohortPage() {
 
       {cohort.tracks && cohort.tracks.length > 0 && (
         <section className="section-padding border-b border-border-ink bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Tracks"
               title="5 tracks + 1 open"
@@ -153,7 +153,7 @@ export default function CohortPage() {
       )}
 
       <section className="section-padding">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <Reveal>
               <SectionHeading

@@ -10,7 +10,7 @@ export function PortfolioPreview() {
 
   return (
     <section className="section-padding border-t border-border bg-card/30">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <Reveal className="max-w-2xl">
             <SectionHeading

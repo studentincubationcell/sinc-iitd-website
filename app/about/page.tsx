@@ -21,7 +21,7 @@ export default function AboutPage() {
       />
 
       <section className="section-padding">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <Reveal className="lg:sticky lg:top-32 lg:self-start">
               <SectionHeading
@@ -52,7 +52,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section-padding bg-background border-y border-border dot-grid">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="Timeline"
             title="Our journey"
@@ -76,7 +76,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section-padding">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="Partners"
             title="Ecosystem partners"

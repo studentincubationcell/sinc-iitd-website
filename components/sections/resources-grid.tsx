@@ -81,7 +81,7 @@ export function ResourcesGrid() {
       />
 
       <section className="py-16 pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2 mb-10">
             <BookOpen className="h-5 w-5 text-muted self-center mr-2" />
             {categories.map((cat) => (

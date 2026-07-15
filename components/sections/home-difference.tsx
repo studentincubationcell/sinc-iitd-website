@@ -35,7 +35,7 @@ export function HomeDifference() {
 
   return (
     <section className="section-padding bg-background border-t border-border">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="mb-14 grid items-end gap-10 lg:grid-cols-2">
           <Reveal>
             <span className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">

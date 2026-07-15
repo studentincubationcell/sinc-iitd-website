@@ -7,7 +7,7 @@ import { cohort } from "@/lib/data";
 export function CohortStrip() {
   return (
     <section className="border-y border-border bg-accent-tint/40">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-4 py-8 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-widest text-muted">

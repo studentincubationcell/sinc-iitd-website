@@ -62,7 +62,7 @@ export default function NetworkPage() {
       {network.connections && <ConnectionsWall connections={network.connections} />}
 
       <section className="section-padding">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <PageGuide title="Network is split into four areas">
             <p><strong>Alumni & peers</strong> — IIT Delhi founders and campus builder network.</p>
             <p><strong>Investors</strong> — angels, micro-VCs, R&I Park and institutional partners.</p>
@@ -94,7 +94,7 @@ export default function NetworkPage() {
       </section>
 
       <section className="section-padding border-t border-border bg-card/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="Industrial visits"
             title="Learning outside the campus"
@@ -154,7 +154,7 @@ export default function NetworkPage() {
       </section>
 
       <section className="section-padding border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="Build with us"
             title="Team matching & bounties"

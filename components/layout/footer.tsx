@@ -28,7 +28,7 @@ export function Footer() {
     <footer data-site-footer className="relative overflow-hidden border-t border-border-ink bg-inverse text-inverse-foreground">
       <div className="pointer-events-none absolute inset-0 inverse-grid opacity-[0.3]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[90rem] px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 
           {/* Brand column */}

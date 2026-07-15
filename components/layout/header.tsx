@@ -81,7 +81,7 @@ export function Header() {
             : "border-b border-border backdrop-blur-xl [background:var(--header-surface)]"
         )}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:gap-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-4 px-4 py-3.5 sm:gap-6 sm:px-6 lg:px-8">
           <div className="flex shrink-0 items-center gap-3">
             <HeaderLogo />
             <span className="hidden items-center rounded-full border border-border-ink px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-muted sm:inline-flex">

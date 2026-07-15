@@ -69,7 +69,7 @@ function getCategoryLabel(category: string) {
 export function EventsMarquee() {
   return (
     <section className="section-padding border-t border-border bg-background overflow-hidden">
-      <div className="mx-auto mb-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mb-10 max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-xl">
