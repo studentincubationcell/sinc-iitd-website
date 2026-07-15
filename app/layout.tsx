@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SplashCurtain } from "@/components/motion/splash-curtain";
 import { CustomCursor } from "@/components/motion/custom-cursor";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { site } from "@/lib/data";
 import "./globals.css";
 
@@ -96,6 +97,7 @@ export default function RootLayout({
         <MotionProvider>
           <CustomCursor />
           <SplashCurtain />
+          <ScrollProgress />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

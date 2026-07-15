@@ -9,43 +9,55 @@ import { CountUp } from "@/components/motion/count-up";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { site } from "@/lib/data";
 
-/* ─── ClubStatsBand (transparency dashboard) ───────────── */
+/* ─── ClubStatsBand (dark editorial numbers band) ──────── */
 export function ClubStatsBand() {
   return (
-    <section className="border-t border-border bg-card/30 py-16 lg:py-20">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <Reveal className="mb-10 max-w-2xl">
-          <span className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted">
+    <section className="theme-inverse relative overflow-hidden bg-background py-20 lg:py-28">
+      <div className="pointer-events-none absolute inset-0 dot-grid opacity-30" />
+
+      <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <Reveal className="mb-14 flex max-w-2xl flex-col gap-3">
+          <span className="inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-lime opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-lime" />
             </span>
-            Transparency
+            Honest numbers
           </span>
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Where we are, in honest numbers
+          <h2 className="editorial-display text-3xl text-foreground sm:text-4xl lg:text-[2.75rem]">
+            Where we are, no vanity metrics
           </h2>
-          <p className="mt-2 text-sm text-muted">
-            No vanity metrics. What SInC has deployed, who&apos;s in the room, and what we&apos;ve shipped — updated as we grow.
-          </p>
         </Reveal>
 
-        <StaggerContainer className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
-          {site.stats.map((stat) => (
+        <StaggerContainer
+          className="grid grid-cols-2 lg:grid-cols-4"
+          stagger={0.08}
+        >
+          {site.stats.map((stat, i) => (
             <StaggerItem key={stat.label}>
-              <div className="soft-card flex h-full flex-col p-6 sm:p-7">
-                <div className="flex items-baseline font-bold tabular-nums text-foreground">
-                  <span className="text-4xl sm:text-5xl">
-                    <CountUp value={stat.value} duration={1400} />
+              <div
+                className={`flex h-full flex-col gap-3 border-foreground/15 px-1 py-8 sm:px-6 lg:py-2 ${
+                  i > 0 ? "lg:border-l" : ""
+                } ${i % 2 === 1 ? "border-l pl-6 lg:pl-6" : ""} ${
+                  i < 2 ? "border-b pb-8 lg:border-b-0 lg:pb-2" : "pt-8 lg:pt-2"
+                }`}
+              >
+                <div className="flex items-baseline tabular-nums text-foreground">
+                  <span className="editorial-display text-6xl sm:text-7xl lg:text-[5.25rem]">
+                    <CountUp value={stat.value} duration={1600} />
                   </span>
-                  <span className="text-2xl sm:text-3xl text-muted">{stat.suffix}</span>
+                  <span className="editorial-display text-4xl text-brand-teal sm:text-5xl">
+                    {stat.suffix}
+                  </span>
                 </div>
-                <p className="mt-3 text-sm font-semibold tracking-tight text-foreground">
-                  {stat.label}
-                </p>
-                {stat.note && (
-                  <p className="mt-1 text-xs leading-relaxed text-muted">{stat.note}</p>
-                )}
+                <div>
+                  <p className="text-sm font-semibold tracking-tight text-foreground">
+                    {stat.label}
+                  </p>
+                  {stat.note && (
+                    <p className="mt-1 text-xs leading-relaxed text-muted">{stat.note}</p>
+                  )}
+                </div>
               </div>
             </StaggerItem>
           ))}
