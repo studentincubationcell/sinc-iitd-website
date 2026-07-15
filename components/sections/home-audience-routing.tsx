@@ -47,11 +47,11 @@ export function HomeAudienceRouting() {
             Start here
           </span>
           <h2 className="editorial-display text-3xl text-foreground sm:text-4xl">
-            Whoever you are, there&apos;s a<span aria-hidden="true">&nbsp;</span>
-            <span className="lime-mark">door for you.</span>
+            Every signal needs the{" "}
+            <span className="lime-mark">right connection.</span>
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
-            SInC serves three kinds of people. Pick the one that fits — the rest of the site follows from here.
+            Choose the role that feels closest today. The ecosystem is designed to help you find the next person, room, or opportunity.
           </p>
         </Reveal>
 

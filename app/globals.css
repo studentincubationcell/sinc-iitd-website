@@ -7,30 +7,30 @@
 :root {
   color-scheme: light;
 
-  /* Canvas (page surface) */
-  --background: #f4f1e8;
-  --foreground: #132e35;
-  --muted: #617177;
-  --card: #faf8f2;
-  --card-pure: #faf8f2;
-  --border: #d8ddd7;
-  --border-ink: #132e35;
+  /* Logo-derived canvas: cool white, blue-black ink, cobalt, cyan */
+  --background: #f6f8ff;
+  --foreground: #071b3a;
+  --muted: #52637f;
+  --card: #ffffff;
+  --card-pure: #ffffff;
+  --border: #d8e0f2;
+  --border-ink: #071b3a;
 
-  /* Inverted bands — smooth deep ocean-slate strip in light mode */
-  --inverse: #16333e;
-  --inverse-foreground: #f2f7f6;
-  --inverse-muted: #94aab0;
-  --hover-on-inverse: rgba(242, 247, 246, 0.06);
-  --grid-on-inverse: rgba(242, 247, 246, 0.14);
+  /* Cobalt inverse bands */
+  --inverse: #071b3a;
+  --inverse-foreground: #f6f8ff;
+  --inverse-muted: #aab8d2;
+  --hover-on-inverse: rgba(39, 215, 244, 0.1);
+  --grid-on-inverse: rgba(39, 215, 244, 0.18);
 
   /* Overlays & chrome */
-  --shadow-color: #24333a;
-  --header-surface: rgba(245, 246, 242, 0.92);
-  --glass-surface: rgba(245, 246, 242, 0.78);
-  --overlay-scrim: rgba(22, 51, 62, 0.3);
-  --hover-on-canvas: rgba(36, 51, 58, 0.05);
-  --grid-on-canvas: rgba(36, 51, 58, 0.13);
-  --grid-on-canvas-fine: rgba(36, 51, 58, 0.045);
+  --shadow-color: #071b3a;
+  --header-surface: rgba(246, 248, 255, 0.92);
+  --glass-surface: rgba(246, 248, 255, 0.82);
+  --overlay-scrim: rgba(7, 27, 58, 0.42);
+  --hover-on-canvas: rgba(25, 85, 232, 0.06);
+  --grid-on-canvas: rgba(25, 85, 232, 0.18);
+  --grid-on-canvas-fine: rgba(25, 85, 232, 0.07);
 
   /* Custom cursor */
   --cursor-dot: #24333a;
@@ -40,37 +40,37 @@
   /* Text on teal / pop blocks */
   --on-accent: #10272f;
 
-  /* SInC logo brand colors (from sinclogopng.png) */
-  --brand-teal: #2dd4bf;
-  --brand-blue: #132e35;
-  --brand-teal-light: #2dd4bf;
-  --brand-blue-light: #132e35;
+  /* SInC logo colors. Legacy aliases intentionally map into this system. */
+  --brand-teal: #27d7f4;
+  --brand-blue: #1955e8;
+  --brand-teal-light: #27d7f4;
+  --brand-blue-light: #1955e8;
 
   --accent-lime:      var(--brand-teal);
   --accent-lime-dark: var(--brand-blue);
-  --accent-tint:      #e4f8fb;
+  --accent-tint:      #e8f7ff;
 
-  --pop-pink:   #2dd4bf;
-  --pop-sky:    #2dd4bf;
-  --pop-peach:  #f2b84b;
+  --pop-pink:   #27d7f4;
+  --pop-sky:    #e8f7ff;
+  --pop-peach:  #e8f7ff;
 
-  --primary: #24333a;
-  --primary-foreground: #f5f6f2;
+  --primary: #1955e8;
+  --primary-foreground: #f6f8ff;
   --accent: var(--brand-teal);
-  --maroon: #24333a;
+  --maroon: #1955e8;
   --destructive: #d92d20;
 
-  --club-purple:       #24333a;
-  --club-purple-mid:   #2c3f47;
-  --club-purple-deep:  #10272f;
-  --club-lavender:     #24333a;
-  --club-lavender-dim: #52646b;
+  --club-purple:       #1955e8;
+  --club-purple-mid:   #1955e8;
+  --club-purple-deep:  #071b3a;
+  --club-lavender:     #1955e8;
+  --club-lavender-dim: #52637f;
   --club-gold:         var(--brand-teal);
   --club-gold-bright:  var(--brand-teal-light);
   --club-gold-dim:     var(--brand-blue);
 
-  --neon-purple:  #24333a;
-  --neon-blue:    #24333a;
+  --neon-purple:  #1955e8;
+  --neon-blue:    #1955e8;
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
@@ -87,13 +87,13 @@
   :root {
     color-scheme: dark;
 
-    --background: #111110;
-    --foreground: #f4f3ee;
-    --muted: #9a9a92;
-    --card: #181816;
-    --card-pure: #1e1e1c;
-    --border: #2e2e2a;
-    --border-ink: #f4f3ee;
+    --background: #071b3a;
+    --foreground: #f6f8ff;
+    --muted: #aab8d2;
+    --card: #0d2856;
+    --card-pure: #0d2856;
+    --border: #27446f;
+    --border-ink: #f6f8ff;
 
     /* Deep ocean strips on dark canvas */
     --inverse: #0e2731;
@@ -299,8 +299,39 @@ body {
   background-size: 34px 34px;
 }
 
-/* ─── Cards — Gumroad neobrutalist: 2px border, resting hard
-   shadow, tactile press INTO the shadow on hover ───────── */
+/* ─── Eureka signal primitives ─────────────────────────── */
+.signal-grid {
+  background-image:
+    linear-gradient(var(--grid-on-canvas-fine) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-on-canvas-fine) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.signal-node {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--brand-blue);
+  background: var(--card-pure);
+  color: var(--brand-blue);
+}
+.signal-node::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--brand-teal);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand-teal) 18%, transparent);
+}
+.signal-line { background: var(--brand-blue); }
+.signal-pulse { animation: signal-pulse 2.8s ease-in-out infinite; }
+@keyframes signal-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand-teal) 0%, transparent); }
+  50% { box-shadow: 0 0 0 12px color-mix(in srgb, var(--brand-teal) 18%, transparent); }
+}
+
+/* ─── Cards — crisp editorial surfaces ─────────────────── */
 .framer-card {
   position: relative;
   background: var(--card);

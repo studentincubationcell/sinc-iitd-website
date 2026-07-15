@@ -40,9 +40,9 @@ export function HomeDiscoverGrid() {
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12 max-w-2xl">
           <SectionHeading
-            label="Explore"
-            title="Everything in one place"
-            description="Pick a door — each section has the full detail. No clutter on the home page."
+            label="Follow the signal"
+            title="Find what gives your idea momentum"
+            description="Move from what is happening now to who is building, who can help, and where you can contribute."
           />
         </Reveal>
 

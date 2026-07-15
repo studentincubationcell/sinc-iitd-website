@@ -98,27 +98,31 @@ export function PageHeader({
   narrow?: boolean;
 }) {
   return (
-    <section
-      className="relative overflow-hidden border-b border-border-ink bg-background"
-      style={{ paddingTop: "9rem", paddingBottom: "4rem" }}
-    >
-      <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
+    <section className="relative overflow-hidden border-b border-brand-blue bg-background pt-36 pb-16">
+      <div className="signal-grid pointer-events-none absolute inset-0 opacity-60" />
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-2 bg-brand-blue" aria-hidden />
 
       <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-[90rem]"}`}>
         {backHref && (
           <Link
             href={backHref}
-            className="mb-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-foreground"
+            className="mb-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-brand-blue transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             {backLabel ?? "Back"}
           </Link>
         )}
-        <SectionHeading
-          label={badge ?? "SInC"}
-          title={title}
-          description={description}
-        />
+        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <SectionHeading
+            label={badge ?? "SInC / Signal"}
+            title={title}
+            description={description}
+          />
+          <div className="hidden items-center gap-3 border border-brand-blue bg-card px-4 py-3 font-mono text-[10px] uppercase tracking-widest text-brand-blue lg:flex">
+            <span className="h-2 w-2 rounded-full bg-accent signal-pulse" aria-hidden />
+            Live ecosystem
+          </div>
+        </div>
         {children}
       </div>
     </section>
