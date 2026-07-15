@@ -114,10 +114,10 @@ export function Footer() {
         {/* Massive Lumena-style wordmark bleeding off the bottom */}
         <div className="relative -mb-4 overflow-hidden pt-6 lg:-mb-6" aria-hidden="true">
           <p
-            className="mega-display select-none whitespace-nowrap text-center text-[19vw] leading-[0.78] tracking-[-0.05em] lg:text-[15.5rem]"
+            className="mega-display select-none whitespace-nowrap text-center text-[19vw] uppercase leading-[0.78] tracking-[-0.02em] lg:text-[15.5rem]"
             style={{ color: "var(--grid-on-inverse)" }}
           >
-            SInC
+            sinc
           </p>
         </div>
       </div>
