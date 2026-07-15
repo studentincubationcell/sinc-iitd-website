@@ -7,70 +7,70 @@
 :root {
   color-scheme: light;
 
-  /* Editorial paper canvas + near-black ink. Greytone-first system. */
-  --background: #f4f4ee;
-  --foreground: #1a1d21;
-  --muted: #61666d;
-  --card: #fbfbf7;
+  /* Lumena formula: warm paper canvas + deep navy ink (never black) */
+  --background: #f4f3ec;
+  --foreground: #15243d;
+  --muted: #5d6675;
+  --card: #fbfaf5;
   --card-pure: #ffffff;
-  --border: #e0e1d6;
-  --border-ink: #1a1d21;
+  --border: #e1e0d4;
+  --border-ink: #15243d;
 
-  /* Deep charcoal inverse bands */
-  --inverse: #16181c;
-  --inverse-foreground: #f4f4ee;
-  --inverse-muted: #a2a8b0;
-  --hover-on-inverse: rgba(244, 244, 238, 0.07);
-  --grid-on-inverse: rgba(244, 244, 238, 0.1);
+  /* Deep navy inverse bands */
+  --inverse: #101d33;
+  --inverse-foreground: #f4f3ec;
+  --inverse-muted: #9aa7bd;
+  --hover-on-inverse: rgba(244, 243, 236, 0.07);
+  --grid-on-inverse: rgba(244, 243, 236, 0.1);
 
   /* Overlays & chrome */
-  --shadow-color: rgba(26, 29, 33, 0.1);
-  --header-surface: rgba(244, 244, 238, 0.92);
-  --glass-surface: rgba(244, 244, 238, 0.82);
-  --overlay-scrim: rgba(22, 24, 28, 0.46);
-  --hover-on-canvas: rgba(26, 29, 33, 0.05);
-  --grid-on-canvas: rgba(26, 29, 33, 0.14);
-  --grid-on-canvas-fine: rgba(26, 29, 33, 0.06);
+  --shadow-color: rgba(21, 36, 61, 0.1);
+  --header-surface: rgba(244, 243, 236, 0.92);
+  --glass-surface: rgba(244, 243, 236, 0.82);
+  --overlay-scrim: rgba(16, 29, 51, 0.46);
+  --hover-on-canvas: rgba(21, 36, 61, 0.05);
+  --grid-on-canvas: rgba(21, 36, 61, 0.14);
+  --grid-on-canvas-fine: rgba(21, 36, 61, 0.06);
 
   /* Custom cursor */
   --cursor-dot: #24333a;
   --cursor-dot-ring: #f5f6f2;
   --cursor-ring: rgba(36, 51, 58, 0.45);
 
-  /* Text on accent fills (accents are now dark slate) */
-  --on-accent: #f4f4ee;
+  /* Text on gold accent fills */
+  --on-accent: #15243d;
 
-  /* Restrained slate-blue accents — a nod to the logo, never forced */
-  --brand-teal: #46586a;
-  --brand-blue: #35414e;
-  --brand-teal-light: #46586a;
-  --brand-blue-light: #35414e;
+  /* Lumena accents: elegant gold + logo cobalt (used sparingly) */
+  --brand-teal: #d9a337;
+  --brand-blue: #2453c4;
+  --brand-teal-light: #e3b452;
+  --brand-blue-light: #2453c4;
 
   --accent-lime:      var(--brand-teal);
   --accent-lime-dark: var(--brand-blue);
-  --accent-tint:      #e8eae3;
+  --accent-tint:      #f3ead2;
 
-  --pop-pink:   #46586a;
-  --pop-sky:    #e8eae3;
-  --pop-peach:  #e8eae3;
+  --pop-pink:   #d9a337;
+  --pop-sky:    #f3ead2;
+  --pop-peach:  #f3ead2;
 
-  --primary: #35414e;
-  --primary-foreground: #f4f4ee;
+  --primary: #15243d;
+  --primary-foreground: #f4f3ec;
   --accent: var(--brand-teal);
-  --maroon: #35414e;
+  --maroon: #15243d;
   --destructive: #d92d20;
 
-  --club-purple:       #35414e;
-  --club-purple-mid:   #35414e;
-  --club-purple-deep:  #16181c;
-  --club-lavender:     #35414e;
-  --club-lavender-dim: #61666d;
+  --club-purple:       #15243d;
+  --club-purple-mid:   #2453c4;
+  --club-purple-deep:  #101d33;
+  --club-lavender:     #2453c4;
+  --club-lavender-dim: #5d6675;
   --club-gold:         var(--brand-teal);
   --club-gold-bright:  var(--brand-teal-light);
   --club-gold-dim:     var(--brand-blue);
 
-  --neon-purple:  #35414e;
-  --neon-blue:    #35414e;
+  --neon-purple:  #15243d;
+  --neon-blue:    #2453c4;
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
@@ -87,18 +87,18 @@
   :root {
     color-scheme: dark;
 
-    --background: #16181c;
-    --foreground: #f0f1ec;
-    --muted: #9aa0a8;
-    --card: #1d2025;
-    --card-pure: #1d2025;
-    --border: #2e323a;
-    --border-ink: #f0f1ec;
+    --background: #101d33;
+    --foreground: #f0efe8;
+    --muted: #9aa7bd;
+    --card: #17263f;
+    --card-pure: #17263f;
+    --border: #2b3c58;
+    --border-ink: #f0efe8;
 
-    /* Slightly lifted strips on dark canvas */
-    --inverse: #1d2025;
-    --inverse-foreground: #f0f1ec;
-    --inverse-muted: #9aa0a8;
+    /* Slightly lifted strips on dark navy canvas */
+    --inverse: #17263f;
+    --inverse-foreground: #f0efe8;
+    --inverse-muted: #9aa7bd;
     --hover-on-inverse: rgba(244, 243, 238, 0.07);
     --grid-on-inverse: rgba(244, 243, 238, 0.08);
 
@@ -114,17 +114,17 @@
     --cursor-dot-ring: #111110;
     --cursor-ring: rgba(244, 243, 238, 0.45);
 
-    /* Accents flip to light slate on dark canvas for legible fills/text */
-    --brand-teal: #a9b9c7;
-    --brand-blue: #c3cdd7;
-    --brand-teal-light: #a9b9c7;
-    --brand-blue-light: #c3cdd7;
-    --pop-pink: #a9b9c7;
-    --pop-sky: #262a30;
-    --pop-peach: #262a30;
+    /* Gold brightens, cobalt lightens for legibility on navy */
+    --brand-teal: #e3b452;
+    --brand-blue: #7d9df0;
+    --brand-teal-light: #ecc76e;
+    --brand-blue-light: #7d9df0;
+    --pop-pink: #e3b452;
+    --pop-sky: #1c2d4a;
+    --pop-peach: #1c2d4a;
 
-    --on-accent: #16181c;
-    --accent-tint: rgba(169, 185, 199, 0.12);
+    --on-accent: #101d33;
+    --accent-tint: rgba(227, 180, 82, 0.1);
 
     --primary: #f4f3ee;
     --primary-foreground: #0a0a0a;
@@ -381,31 +381,33 @@ body {
   50% { box-shadow: 0 0 0 12px color-mix(in srgb, var(--brand-teal) 18%, transparent); }
 }
 
-/* ─── Cards — crisp editorial surfaces ─────────────────── */
+/* ─── Cards — sharp white Lumena surfaces ──────────────── */
 .framer-card {
   position: relative;
-  background: var(--card);
-  border: 1.5px solid var(--border-ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  background: var(--card-pure);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .framer-card:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0 0 var(--shadow-color);
+  transform: translateY(-3px);
+  border-color: var(--border-ink);
+  box-shadow: var(--shadow-lg);
 }
 
 .dark-card {
   position: relative;
-  background: var(--card);
-  border: 1.5px solid var(--border-ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  background: var(--card-pure);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .dark-card:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0 0 var(--shadow-color);
+  transform: translateY(-3px);
+  border-color: var(--border-ink);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Accent card — logo teal */
