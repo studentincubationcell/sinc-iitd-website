@@ -83,12 +83,12 @@ export function HeroContent({
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative z-10 min-h-[100svh] flex items-center px-4 pt-28 pb-16 sm:px-6 lg:px-8 md:pl-20">
+    <div className="relative z-10 min-h-[100svh] flex items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8 md:pl-20">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="grid items-center gap-10 md:grid-cols-12 md:gap-8 lg:gap-14">
 
           {/* ── Left column ─────────────────────────────── */}
-          <div className="lg:col-span-7">
+          <div className="md:col-span-7">
 
             {/* Mono kicker */}
             <m.div
@@ -110,7 +110,7 @@ export function HeroContent({
 
             {/* Headline — oversized editorial */}
             <m.h1
-              className="editorial-display text-[3.25rem] leading-[1.02] text-foreground sm:text-7xl lg:text-[6.25rem]"
+              className="editorial-display text-[2.75rem] leading-[1.03] text-foreground sm:text-6xl md:text-[3.25rem] lg:text-[4.5rem] xl:text-[5.75rem]"
               {...fadeUp(0.1, reduceMotion)}
             >
               {title}
@@ -165,7 +165,7 @@ export function HeroContent({
 
           {/* ── Right column — framed render (Combo A) ───── */}
           <m.div
-            className="lg:col-span-5"
+            className="md:col-span-5"
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.14, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}

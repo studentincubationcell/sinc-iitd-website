@@ -381,9 +381,9 @@ body {
 }
 
 /* ─── Layout Helpers ──────────────────────────────────── */
-.section-padding { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+.section-padding { padding-top: 5.5rem; padding-bottom: 5.5rem; }
 @media (min-width: 1024px) {
-  .section-padding { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+  .section-padding { padding-top: 7.5rem; padding-bottom: 7.5rem; }
 }
 
 /* Gumroad-inspired soft surfaces — readable, airy, not cramped */
