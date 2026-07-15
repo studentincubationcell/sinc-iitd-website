@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Compass, Banknote, FlaskConical, Handshake } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Button } from "@/components/ui/button";
 
 /* ─── ApplyCTA ─────────────────────────────────────────── */
 const FEATURES = [
@@ -52,23 +51,11 @@ export function ApplyCTA() {
           </div>
 
           <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Link href="/apply">
-              <Button
-                size="lg"
-                variant="club"
-                className="h-14 gap-2 rounded-full px-12 text-base font-bold normal-case tracking-normal"
-              >
-                Apply now <ArrowRight className="h-5 w-5" />
-              </Button>
+            <Link href="/apply" className="pill-cta h-14 px-12 text-sm">
+              Apply now <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/programs">
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-14 rounded-full border-border-ink bg-transparent px-12 text-base text-foreground hover:bg-foreground hover:text-background"
-              >
-                Explore programs
-              </Button>
+            <Link href="/programs" className="pill-cta pill-cta-outline h-14 px-12 text-sm">
+              Explore programs
             </Link>
           </div>
         </Reveal>
@@ -98,31 +85,18 @@ export function PageHeader({
   narrow?: boolean;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-brand-blue bg-background pt-36 pb-16">
-      <div className="signal-grid pointer-events-none absolute inset-0 opacity-60" />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-2 bg-brand-blue" aria-hidden />
-
-      <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-[90rem]"}`}>
+    <section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-40">
+      <div className={`relative mx-auto px-5 sm:px-8 lg:px-12 ${narrow ? "max-w-3xl" : "max-w-[96rem]"}`}>
         {backHref && (
           <Link
             href={backHref}
-            className="mb-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-brand-blue transition-colors hover:text-foreground"
+            className="mb-8 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             {backLabel ?? "Back"}
           </Link>
         )}
-        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-          <SectionHeading
-            label={badge ?? "SInC / Signal"}
-            title={title}
-            description={description}
-          />
-          <div className="hidden items-center gap-3 border border-brand-blue bg-card px-4 py-3 font-mono text-[10px] uppercase tracking-widest text-brand-blue lg:flex">
-            <span className="h-2 w-2 rounded-full bg-accent signal-pulse" aria-hidden />
-            Live ecosystem
-          </div>
-        </div>
+        <SectionHeading label={badge ?? "SInC"} title={title} description={description} />
         {children}
       </div>
     </section>

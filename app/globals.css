@@ -7,30 +7,30 @@
 :root {
   color-scheme: light;
 
-  /* Logo-derived canvas: cool white, blue-black ink, cobalt, cyan */
-  --background: #f6f8ff;
-  --foreground: #071b3a;
-  --muted: #52637f;
-  --card: #ffffff;
+  /* Editorial paper canvas + deep navy ink (logo cobalt/cyan as accents) */
+  --background: #f4f4ee;
+  --foreground: #0e1c33;
+  --muted: #5b6472;
+  --card: #fbfbf7;
   --card-pure: #ffffff;
-  --border: #d8e0f2;
-  --border-ink: #071b3a;
+  --border: #e0e1d6;
+  --border-ink: #0e1c33;
 
-  /* Cobalt inverse bands */
-  --inverse: #071b3a;
-  --inverse-foreground: #f6f8ff;
-  --inverse-muted: #aab8d2;
+  /* Deep navy inverse bands */
+  --inverse: #0a1730;
+  --inverse-foreground: #f4f4ee;
+  --inverse-muted: #9ba9c4;
   --hover-on-inverse: rgba(39, 215, 244, 0.1);
-  --grid-on-inverse: rgba(39, 215, 244, 0.18);
+  --grid-on-inverse: rgba(39, 215, 244, 0.14);
 
   /* Overlays & chrome */
-  --shadow-color: #071b3a;
-  --header-surface: rgba(246, 248, 255, 0.92);
-  --glass-surface: rgba(246, 248, 255, 0.82);
-  --overlay-scrim: rgba(7, 27, 58, 0.42);
-  --hover-on-canvas: rgba(25, 85, 232, 0.06);
-  --grid-on-canvas: rgba(25, 85, 232, 0.18);
-  --grid-on-canvas-fine: rgba(25, 85, 232, 0.07);
+  --shadow-color: rgba(14, 28, 51, 0.1);
+  --header-surface: rgba(244, 244, 238, 0.92);
+  --glass-surface: rgba(244, 244, 238, 0.82);
+  --overlay-scrim: rgba(10, 23, 48, 0.46);
+  --hover-on-canvas: rgba(25, 85, 232, 0.05);
+  --grid-on-canvas: rgba(14, 28, 51, 0.14);
+  --grid-on-canvas-fine: rgba(14, 28, 51, 0.06);
 
   /* Custom cursor */
   --cursor-dot: #24333a;
@@ -48,11 +48,11 @@
 
   --accent-lime:      var(--brand-teal);
   --accent-lime-dark: var(--brand-blue);
-  --accent-tint:      #e8f7ff;
+  --accent-tint:      #ddf1f8;
 
   --pop-pink:   #27d7f4;
-  --pop-sky:    #e8f7ff;
-  --pop-peach:  #e8f7ff;
+  --pop-sky:    #ddf1f8;
+  --pop-peach:  #ddf1f8;
 
   --primary: #1955e8;
   --primary-foreground: #f6f8ff;
@@ -74,10 +74,10 @@
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
-  --shadow-sm:    2px 2px 0 0 var(--shadow-color);
-  --shadow-md:    3px 3px 0 0 var(--shadow-color);
-  --shadow-lg:    5px 5px 0 0 var(--shadow-color);
-  --shadow-framer-hover: 4px 4px 0 0 var(--shadow-color);
+  --shadow-sm:    0 1px 2px var(--shadow-color);
+  --shadow-md:    0 2px 8px var(--shadow-color);
+  --shadow-lg:    0 8px 28px var(--shadow-color);
+  --shadow-framer-hover: 0 6px 20px var(--shadow-color);
   --shadow-glow-gold:   var(--shadow-md);
   --shadow-glow-purple: var(--shadow-md);
   --radius: 0.75rem;
@@ -297,6 +297,46 @@ body {
     linear-gradient(var(--grid-on-canvas-fine) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-on-canvas-fine) 1px, transparent 1px);
   background-size: 34px 34px;
+}
+
+/* ─── Editorial primitives (Lumena-caliber) ────────────── */
+.pill-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0 1.75rem;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: var(--background);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+.pill-cta:hover { background: var(--brand-blue); }
+.pill-cta-outline {
+  background: transparent;
+  color: var(--foreground);
+  box-shadow: inset 0 0 0 1px var(--foreground);
+}
+.pill-cta-outline:hover { background: var(--foreground); color: var(--background); }
+.pill-cta-inverse {
+  background: var(--inverse-foreground);
+  color: var(--inverse);
+}
+.pill-cta-inverse:hover { background: var(--brand-teal); color: var(--inverse); }
+
+/* Massive editorial headline (Lumena scale) */
+.mega-display {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  text-wrap: balance;
 }
 
 /* ─── Eureka signal primitives ─────────────────────────── */

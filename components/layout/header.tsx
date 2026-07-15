@@ -106,10 +106,10 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href="/apply" className="hidden min-h-11 items-center justify-center bg-foreground px-5 text-sm font-bold text-background transition-colors hover:bg-accent hover:text-on-accent sm:inline-flex">
-            Join the community <ArrowUpRight className="ml-2 h-4 w-4" />
+          <Link href="/apply" className="pill-cta hidden sm:inline-flex">
+            Join the community
           </Link>
-          <button type="button" className="flex h-11 w-11 items-center justify-center border border-border-ink lg:hidden" onClick={() => setMobileOpen((value) => !value)} aria-expanded={mobileOpen} aria-controls="mobile-navigation" aria-label={mobileOpen ? "Close navigation" : "Open navigation"}>
+          <button type="button" className="flex h-11 w-11 items-center justify-center rounded-full border border-border lg:hidden" onClick={() => setMobileOpen((value) => !value)} aria-expanded={mobileOpen} aria-controls="mobile-navigation" aria-label={mobileOpen ? "Close navigation" : "Open navigation"}>
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
@@ -131,7 +131,7 @@ export function Header() {
                   </div>
                 </div>
               ))}
-              <Link href="/apply" className="flex min-h-12 items-center justify-center bg-foreground px-5 font-bold text-background sm:hidden">Join the community</Link>
+              <Link href="/apply" className="pill-cta sm:hidden">Join the community</Link>
             </div>
           </m.nav>
         )}

@@ -1,18 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowDownRight,
-  ArrowUpRight,
-  CalendarDays,
-  FlaskConical,
-  Lightbulb,
-  Network,
-  Rocket,
-  Users,
-} from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
-import { HeroAnnouncement, type AnnouncementItem } from "./hero-announcement";
+import { AsciiField } from "@/components/ui/ascii-field";
+import type { AnnouncementItem } from "./hero-announcement";
 import type { SocialLink } from "./hero-social-rail";
 
 export type HeroContentProps = {
@@ -24,94 +16,65 @@ export type HeroContentProps = {
   socials: SocialLink[];
 };
 
-const signalStops = [
-  { label: "People", icon: Users, className: "md:translate-y-8" },
-  { label: "Labs", icon: FlaskConical, className: "md:-translate-y-6" },
-  { label: "Programs", icon: Network, className: "md:translate-y-12" },
-  { label: "Venture", icon: Rocket, className: "md:-translate-y-2" },
-];
-
 const fadeUp = (delay: number, reduce: boolean | null) => ({
-  initial: reduce ? false : { opacity: 0, y: 18 },
+  initial: reduce ? false : { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as const },
+  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
-export function HeroContent({ eyebrow, title, description, announcements }: HeroContentProps) {
+export function HeroContent({ eyebrow, title, description }: HeroContentProps) {
   const reduceMotion = useReducedMotion();
+  const lines = title.split(". ").map((l, i, arr) => (i < arr.length - 1 ? `${l}.` : l));
 
   return (
-    <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[90rem] flex-col px-4 pb-8 pt-28 sm:px-6 lg:px-8 lg:pt-36">
-      <div className="grid flex-1 items-center gap-12 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        <div>
-          <m.div {...fadeUp(0, reduceMotion)} className="flex items-center gap-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-accent signal-pulse" aria-hidden />
-            <p className="mono-label text-brand-blue">{eyebrow}</p>
-          </m.div>
-
-          <m.h1
-            className="mt-7 max-w-4xl text-balance font-display text-5xl font-semibold leading-[0.94] tracking-[-0.055em] text-foreground sm:text-7xl lg:text-[6.2rem]"
-            {...fadeUp(0.08, reduceMotion)}
-          >
-            {title}
+    <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[96rem] flex-col px-5 pb-10 pt-28 sm:px-8 lg:px-12 lg:pt-32">
+      <div className="grid flex-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* Headline — top-left, enormous */}
+        <div className="pt-6 lg:pt-14">
+          <m.h1 className="mega-display text-[13.5vw] text-foreground sm:text-7xl lg:text-[6.6rem] xl:text-[7.5rem]" {...fadeUp(0.05, reduceMotion)}>
+            {lines.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </m.h1>
-
-          <m.div className="mt-7 flex max-w-2xl items-start gap-4 border-l-2 border-brand-blue pl-5" {...fadeUp(0.16, reduceMotion)}>
-            <Lightbulb className="mt-1 h-5 w-5 shrink-0 text-brand-blue" aria-hidden />
-            <p className="text-pretty text-base leading-relaxed text-muted sm:text-xl">{description}</p>
-          </m.div>
-
-          <m.div className="mt-9 flex flex-wrap gap-3" {...fadeUp(0.24, reduceMotion)}>
-            <Link href="/events" className="inline-flex min-h-12 items-center bg-brand-blue px-6 text-sm font-bold text-primary-foreground transition-colors hover:bg-foreground">
-              Follow the signal <ArrowUpRight className="ml-2 h-4 w-4" />
-            </Link>
-            <Link href="/apply" className="inline-flex min-h-12 items-center border border-brand-blue bg-card px-6 text-sm font-bold text-brand-blue transition-colors hover:bg-accent-tint">
-              Bring an idea
-            </Link>
-          </m.div>
         </div>
 
-        <m.aside
-          className="signal-grid border border-brand-blue bg-card p-5 shadow-[8px_8px_0_0_var(--brand-blue)] sm:p-8"
-          {...fadeUp(0.22, reduceMotion)}
-          aria-label="How an idea moves through SInC"
-        >
-          <div className="flex items-center justify-between border-b border-border pb-4">
-            <div>
-              <p className="mono-label text-brand-blue">Idea signal / 01</p>
-              <p className="mt-2 text-sm text-muted">One spark. A connected campus.</p>
-            </div>
-            <CalendarDays className="h-5 w-5 text-brand-blue" aria-hidden />
-          </div>
-
-          <div className="py-10 sm:py-14">
-            <div className="flex items-center gap-2">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-accent text-on-accent ring-4 ring-accent/20">
-                <Lightbulb className="h-6 w-6" aria-hidden />
-                <span className="sr-only">Idea</span>
-              </div>
-              <div className="h-px flex-1 bg-brand-blue" aria-hidden />
-            </div>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {signalStops.map(({ label, icon: Icon, className }, index) => (
-                <div key={label} className={`relative bg-card ${className}`}>
-                  <div className="flex min-h-24 flex-col justify-between border border-border p-3 transition-colors hover:border-brand-blue hover:bg-accent-tint">
-                    <span className="font-mono text-[10px] text-muted">0{index + 2}</span>
-                    <span className="flex items-center gap-2 text-xs font-bold text-foreground"><Icon className="h-4 w-4 text-brand-blue" />{label}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {announcements.length > 0 && <HeroAnnouncement items={announcements} />}
-        </m.aside>
+        {/* Generative particle ring — the "signal" */}
+        <m.div className="relative hidden lg:block" {...fadeUp(0.25, reduceMotion)}>
+          <AsciiField seed={11} count={520} className="absolute inset-0" />
+        </m.div>
       </div>
 
-      <m.div className="flex items-center justify-between border-t border-brand-blue py-6" {...fadeUp(0.34, reduceMotion)}>
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">Spark → connect → test → build</p>
-        <a href="#community" className="hidden items-center gap-2 text-xs font-semibold text-brand-blue sm:flex">Explore the ecosystem <ArrowDownRight className="h-4 w-4" /></a>
-      </m.div>
+      {/* Baseline row — small descriptor left, big intro paragraph right */}
+      <div className="mt-16 grid items-end gap-10 lg:mt-0 lg:grid-cols-[1.1fr_0.9fr]">
+        <m.p className="max-w-xs text-base leading-relaxed text-foreground lg:pb-2" {...fadeUp(0.35, reduceMotion)}>
+          {eyebrow}
+        </m.p>
+
+        <div>
+          <m.p
+            className="text-pretty text-2xl leading-snug tracking-[-0.015em] text-foreground sm:text-[1.75rem]"
+            {...fadeUp(0.45, reduceMotion)}
+          >
+            {description}
+          </m.p>
+          <m.div className="mt-8 flex flex-wrap items-center gap-6" {...fadeUp(0.55, reduceMotion)}>
+            <Link href="/apply" className="pill-cta">
+              Start building
+            </Link>
+            <a
+              href="#manifesto"
+              className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-brand-blue"
+            >
+              Discover more
+              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card">
+                <ArrowDown className="h-4 w-4" aria-hidden />
+              </span>
+            </a>
+          </m.div>
+        </div>
+      </div>
     </div>
   );
 }
