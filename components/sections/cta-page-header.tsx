@@ -14,22 +14,28 @@ const FEATURES = [
 
 export function ApplyCTA() {
   return (
-    <section className="relative overflow-hidden border-t border-border-ink bg-inverse py-28 text-inverse-foreground lg:py-36">
-      <div className="pointer-events-none absolute inset-0 inverse-grid opacity-[0.35]" />
+    <section className="relative overflow-hidden border-t border-border-ink/10 bg-card py-28 lg:py-36">
+      <div
+        className="pointer-events-none absolute inset-0 dot-grid opacity-50"
+        style={{
+          maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 90%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 90%)",
+        }}
+      />
 
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
-          <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-inverse-foreground/60">
+          <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
             <span className="inline-block h-3 w-3 bg-accent-lime" />
             Start your journey
           </span>
 
-          <h2 className="editorial-display text-5xl sm:text-6xl lg:text-[5rem]">
+          <h2 className="editorial-display text-5xl text-foreground sm:text-6xl lg:text-[5rem]">
             Ready to build{" "}
             <span className="lime-mark">something real?</span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-inverse-foreground/55 sm:text-xl">
+          <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-muted sm:text-xl">
             Join SInC — mentorship, lab access, and a community of builders pushing from campus idea to funded startup.
           </p>
 
@@ -37,7 +43,7 @@ export function ApplyCTA() {
             {FEATURES.map((f) => (
               <span
                 key={f.label}
-                className="inline-flex items-center gap-2 border border-inverse-foreground/30 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wide text-inverse-foreground/70 transition-colors hover:border-accent-lime hover:bg-accent-lime hover:text-on-accent"
+                className="inline-flex items-center gap-2 rounded-full border border-border-ink/30 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wide text-muted transition-colors hover:border-accent-lime hover:bg-accent-lime hover:text-on-accent"
               >
                 <f.icon className="h-4 w-4" strokeWidth={2} />
                 {f.label}
@@ -50,7 +56,7 @@ export function ApplyCTA() {
               <Button
                 size="lg"
                 variant="club"
-                className="h-14 gap-2 px-12 text-base font-bold normal-case tracking-normal"
+                className="h-14 gap-2 rounded-full px-12 text-base font-bold normal-case tracking-normal"
               >
                 Apply now <ArrowRight className="h-5 w-5" />
               </Button>
@@ -59,7 +65,7 @@ export function ApplyCTA() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-14 border-inverse-foreground bg-transparent px-12 text-base text-inverse-foreground hover:bg-inverse-foreground hover:text-inverse"
+                className="h-14 rounded-full border-border-ink bg-transparent px-12 text-base text-foreground hover:bg-foreground hover:text-background"
               >
                 Explore programs
               </Button>
@@ -98,7 +104,7 @@ export function PageHeader({
     >
       <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
 
-      <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-7xl"}`}>
+      <div className={`relative mx-auto px-4 sm:px-6 lg:px-8 ${narrow ? "max-w-3xl" : "max-w-[90rem]"}`}>
         {backHref && (
           <Link
             href={backHref}

@@ -50,7 +50,7 @@ export default function ContactPage() {
       />
 
       <section className="section-padding border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="How to connect"
             title="Pick your path"
@@ -85,7 +85,7 @@ export default function ContactPage() {
       </section>
 
       <section className="section-padding pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="space-y-4">
               <Reveal>

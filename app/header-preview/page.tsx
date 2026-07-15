@@ -39,7 +39,7 @@ const variants = [
 export default function HeaderPreviewPage() {
   return (
     <div className="min-h-screen bg-card-pure pt-20 pb-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="mb-12 border-b border-border-ink pb-8">
           <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
             Design exploration

@@ -24,7 +24,7 @@ export default function OpportunitiesPage() {
       />
 
       <section className="section-padding border-y border-border-ink bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12">
             
             {/* Team Matching Section */}
@@ -112,10 +112,10 @@ export default function OpportunitiesPage() {
                   const isClosed = bounty.status === "closed";
                   return (
                     <StaggerItem key={bounty.id}>
-                      <article className={`group relative border-[3px] border-border-ink bg-card p-6 transition-all hover:bg-inverse hover:text-inverse-foreground ${isClosed ? "opacity-60 grayscale" : "shadow-md"}`}>
+                      <article className={`group relative border-[3px] border-border-ink bg-card p-6 transition-all hover:bg-accent-tint ${isClosed ? "opacity-60 grayscale" : "shadow-md"}`}>
                         <div className="mb-4 flex items-start justify-between">
                           <div>
-                            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-teal group-hover:text-accent-lime transition-colors">
+                            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-teal group-hover:text-brand-blue transition-colors">
                               {bounty.startup}
                             </span>
                             <h3 className="mt-1 text-lg font-black leading-snug">
@@ -127,28 +127,28 @@ export default function OpportunitiesPage() {
                               Claimed
                             </span>
                           ) : (
-                            <span className="border-2 border-border-ink bg-brand-teal px-2 py-1 font-mono text-[10px] font-bold uppercase text-on-accent transition-colors group-hover:bg-accent-lime">
+                            <span className="border-2 border-border-ink bg-brand-teal px-2 py-1 font-mono text-[10px] font-bold uppercase text-on-accent transition-colors group-hover:bg-brand-teal-light">
                               Bounty
                             </span>
                           )}
                         </div>
-                        <p className="text-sm leading-relaxed text-muted group-hover:text-inverse-foreground/70 transition-colors mb-6">
+                        <p className="text-sm leading-relaxed text-muted group-hover:text-foreground/80 transition-colors mb-6">
                           {bounty.description}
                         </p>
 
                         <div className="mb-6 flex flex-wrap gap-2">
                           {bounty.skills.map((skill) => (
-                            <span key={skill} className="border border-border-ink/50 bg-background px-2 py-1 font-mono text-[10px] uppercase text-muted group-hover:bg-inverse-muted group-hover:text-inverse group-hover:border-inverse-foreground/50 transition-colors">
+                            <span key={skill} className="border border-border-ink/50 bg-background px-2 py-1 font-mono text-[10px] uppercase text-muted  transition-colors">
                               {skill}
                             </span>
                           ))}
                         </div>
 
                         <div className="flex items-center justify-between border-t-2 border-dashed border-border-ink pt-4">
-                          <div className="font-mono text-xs font-semibold text-muted group-hover:text-inverse-foreground/60 transition-colors">
+                          <div className="font-mono text-xs font-semibold text-muted group-hover:text-foreground/70 transition-colors">
                             Due: {new Date(bounty.deadline).toLocaleDateString("en-IN", { month: "short", day: "numeric" })}
                           </div>
-                          <div className="flex items-center gap-1.5 font-bold text-foreground group-hover:text-accent-lime transition-colors">
+                          <div className="flex items-center gap-1.5 font-bold text-foreground group-hover:text-brand-blue transition-colors">
                             <RewardIcon className="h-4 w-4" />
                             {bounty.reward}
                           </div>

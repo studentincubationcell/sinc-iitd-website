@@ -8,37 +8,37 @@
   color-scheme: light;
 
   /* Canvas (page surface) */
-  --background: #f4f3ee;
-  --foreground: #0a0a0a;
-  --muted: #6b6b63;
-  --card: #faf9f4;
+  --background: #f5f6f2;
+  --foreground: #24333a;
+  --muted: #64737a;
+  --card: #fbfcf9;
   --card-pure: #ffffff;
-  --border: #e3e1d6;
-  --border-ink: #0a0a0a;
+  --border: #e0e4dd;
+  --border-ink: #24333a;
 
-  /* Inverted bands — always dark strip in light mode */
-  --inverse: #0a0a0a;
-  --inverse-foreground: #f4f3ee;
-  --inverse-muted: #9a9a92;
-  --hover-on-inverse: rgba(244, 243, 238, 0.06);
-  --grid-on-inverse: rgba(244, 243, 238, 0.14);
+  /* Inverted bands — smooth deep ocean-slate strip in light mode */
+  --inverse: #16333e;
+  --inverse-foreground: #f2f7f6;
+  --inverse-muted: #94aab0;
+  --hover-on-inverse: rgba(242, 247, 246, 0.06);
+  --grid-on-inverse: rgba(242, 247, 246, 0.14);
 
   /* Overlays & chrome */
-  --shadow-color: #0a0a0a;
-  --header-surface: rgba(244, 243, 238, 0.92);
-  --glass-surface: rgba(244, 243, 238, 0.78);
-  --overlay-scrim: rgba(10, 10, 10, 0.3);
-  --hover-on-canvas: rgba(10, 10, 10, 0.05);
-  --grid-on-canvas: rgba(10, 10, 10, 0.13);
-  --grid-on-canvas-fine: rgba(10, 10, 10, 0.045);
+  --shadow-color: #24333a;
+  --header-surface: rgba(245, 246, 242, 0.92);
+  --glass-surface: rgba(245, 246, 242, 0.78);
+  --overlay-scrim: rgba(22, 51, 62, 0.3);
+  --hover-on-canvas: rgba(36, 51, 58, 0.05);
+  --grid-on-canvas: rgba(36, 51, 58, 0.13);
+  --grid-on-canvas-fine: rgba(36, 51, 58, 0.045);
 
   /* Custom cursor */
-  --cursor-dot: #0a0a0a;
-  --cursor-dot-ring: #f4f3ee;
-  --cursor-ring: rgba(10, 10, 10, 0.45);
+  --cursor-dot: #24333a;
+  --cursor-dot-ring: #f5f6f2;
+  --cursor-ring: rgba(36, 51, 58, 0.45);
 
   /* Text on teal / pop blocks */
-  --on-accent: #0a0a0a;
+  --on-accent: #10272f;
 
   /* SInC logo brand colors (from sinclogopng.png) */
   --brand-teal: #38d0e0;
@@ -54,30 +54,30 @@
   --pop-sky:    #90d8ff;
   --pop-peach:  #ffc890;
 
-  --primary: #0a0a0a;
-  --primary-foreground: #f4f3ee;
+  --primary: #24333a;
+  --primary-foreground: #f5f6f2;
   --accent: var(--brand-teal);
-  --maroon: #0a0a0a;
+  --maroon: #24333a;
   --destructive: #d92d20;
 
-  --club-purple:       #0a0a0a;
-  --club-purple-mid:   #1a1a1a;
-  --club-purple-deep:  #000000;
-  --club-lavender:     #0a0a0a;
-  --club-lavender-dim: #3a3a36;
+  --club-purple:       #24333a;
+  --club-purple-mid:   #2c3f47;
+  --club-purple-deep:  #10272f;
+  --club-lavender:     #24333a;
+  --club-lavender-dim: #52646b;
   --club-gold:         var(--brand-teal);
   --club-gold-bright:  var(--brand-teal-light);
   --club-gold-dim:     var(--brand-blue);
 
-  --neon-purple:  #0a0a0a;
-  --neon-blue:    #0a0a0a;
+  --neon-purple:  #24333a;
+  --neon-blue:    #24333a;
   --neon-green:   var(--brand-teal);
   --hot-orange:   var(--brand-teal);
 
-  --shadow-sm:    3px 3px 0 0 var(--shadow-color);
-  --shadow-md:    5px 5px 0 0 var(--shadow-color);
-  --shadow-lg:    10px 10px 0 0 var(--shadow-color);
-  --shadow-framer-hover: 7px 7px 0 0 var(--shadow-color);
+  --shadow-sm:    2px 2px 0 0 var(--shadow-color);
+  --shadow-md:    3px 3px 0 0 var(--shadow-color);
+  --shadow-lg:    5px 5px 0 0 var(--shadow-color);
+  --shadow-framer-hover: 4px 4px 0 0 var(--shadow-color);
   --shadow-glow-gold:   var(--shadow-md);
   --shadow-glow-purple: var(--shadow-md);
   --radius: 0rem;
@@ -95,10 +95,10 @@
     --border: #2e2e2a;
     --border-ink: #f4f3ee;
 
-    /* Deeper black strips on dark canvas */
-    --inverse: #000000;
-    --inverse-foreground: #f4f3ee;
-    --inverse-muted: #8a8a82;
+    /* Deep ocean strips on dark canvas */
+    --inverse: #0e2731;
+    --inverse-foreground: #f2f7f6;
+    --inverse-muted: #8fa5ab;
     --hover-on-inverse: rgba(244, 243, 238, 0.07);
     --grid-on-inverse: rgba(244, 243, 238, 0.08);
 
@@ -172,6 +172,7 @@
   --color-hot-orange:        var(--hot-orange);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
   --radius-lg: var(--radius);
 }
 
@@ -215,13 +216,18 @@ body {
 
 /* Oversized editorial display headline */
 .editorial-display {
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.12;
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
   text-wrap: balance;
 }
 
-.headline-tight { letter-spacing: -0.03em; line-height: 1.08; }
+.headline-tight {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
 
 /* Logo teal highlight behind ink text */
 .lime-mark,
@@ -256,6 +262,27 @@ body {
   -webkit-text-fill-color: currentColor;
 }
 
+/* ─── Inverse theme scope — flips tokens for dark bands ── */
+.theme-inverse {
+  --background: var(--inverse);
+  --foreground: var(--inverse-foreground);
+  --muted: var(--inverse-muted);
+  --card: #1b3a46;
+  --card-pure: #20414e;
+  --border: #2c4c58;
+  --border-ink: var(--inverse-foreground);
+  --shadow-color: rgba(242, 247, 246, 0.85);
+  --grid-on-canvas: var(--grid-on-inverse);
+  --hover-on-canvas: var(--hover-on-inverse);
+  color-scheme: dark;
+}
+
+/* Outlined display text (marquee / signature moments) */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--foreground) 55%, transparent);
+}
+
 /* ─── Background Patterns ─────────────────────────────── */
 
 /* Blueprint dot grid (ink on paper) */
@@ -277,33 +304,33 @@ body {
 .framer-card {
   position: relative;
   background: var(--card);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 .framer-card:hover {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 
 .dark-card {
   position: relative;
   background: var(--card);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 .dark-card:hover {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 
 /* Accent card — logo teal */
 .gold-card {
   background: var(--accent-lime);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   color: var(--on-accent);
@@ -311,22 +338,22 @@ body {
 
 /* Static bordered block (no hover press) */
 .brutal-block {
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   box-shadow: var(--shadow-md);
   border-radius: var(--radius);
 }
 .brutal-block-lg {
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   box-shadow: var(--shadow-lg);
   border-radius: var(--radius);
 }
 
 /* Brutalist button / input shadow */
 .brutal-shadow {
-  box-shadow: 4px 4px 0 0 var(--shadow-color);
+  box-shadow: 3px 3px 0 0 var(--shadow-color);
 }
 .brutal-shadow-hover:hover {
-  box-shadow: 2px 2px 0 0 var(--shadow-color);
+  box-shadow: 1px 1px 0 0 var(--shadow-color);
 }
 .brutal-shadow-focus:focus-visible {
   box-shadow: 3px 3px 0 0 var(--shadow-color);
@@ -381,7 +408,7 @@ body {
 }
 
 /* ─── Layout Helpers ──────────────────────────────────── */
-.section-padding { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+.section-padding { padding-top: 4rem; padding-bottom: 4rem; }
 @media (min-width: 1024px) {
   .section-padding { padding-top: 5.5rem; padding-bottom: 5.5rem; }
 }
@@ -476,13 +503,13 @@ body {
 .cine-card {
   position: relative;
   background: var(--card);
-  border: 2px solid var(--border-ink);
+  border: 1.5px solid var(--border-ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 .cine-card:hover {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 0px 0px 0 0 var(--shadow-color);
 }
 

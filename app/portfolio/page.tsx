@@ -23,7 +23,7 @@ export default function PortfolioPage() {
         description="Founder name, background, one-line pitch, logo, idea, and valuation — add startups in data/startups.json."
       />
       <section className="py-12 pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <PageGuide title="Each startup profile includes">
             <ul className="list-disc pl-5 space-y-1">
               <li><strong>Founder</strong> — name + short background</li>

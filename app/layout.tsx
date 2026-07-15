@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SplashCurtain } from "@/components/motion/splash-curtain";
 import { CustomCursor } from "@/components/motion/custom-cursor";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { site } from "@/lib/data";
 import "./globals.css";
 
@@ -17,6 +18,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const displayFont = Bricolage_Grotesque({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -82,13 +90,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-background`}
+      className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} h-full antialiased bg-background`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <MotionProvider>
           <CustomCursor />
           <SplashCurtain />
+          <ScrollProgress />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

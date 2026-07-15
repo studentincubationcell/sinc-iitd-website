@@ -85,7 +85,7 @@ export function MemberSocials({
                 target={key === "email" ? undefined : "_blank"}
                 rel={key === "email" ? undefined : "noopener noreferrer"}
                 aria-label={`${member.name || "Team member"} on ${label}`}
-                className="flex h-9 w-9 items-center justify-center rounded-none border border-border text-muted transition-all duration-200 hover:border-foreground hover:bg-inverse hover:text-inverse-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-none border border-border text-muted transition-all duration-200 hover:border-brand-teal hover:bg-accent-lime hover:text-on-accent"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -265,7 +265,7 @@ export function TeamPreview({
 
   return (
     <section className="section-padding bg-background border-y border-border-ink relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8 relative">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <SectionHeading
             label="Team"

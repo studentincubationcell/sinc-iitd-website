@@ -45,7 +45,7 @@ export default function EventsPage() {
         description="Biweekly founder meets, funding, networking, government scheme cutoffs, and Cohort 01 milestones — grouped by purpose."
       />
       <section className="py-12 pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <PageGuide title="How this calendar is organized">
             <p>
               <strong>Month view</strong> — click a day to filter. Colored dots show event types.

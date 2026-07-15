@@ -68,7 +68,7 @@ export default function ApplyPage() {
         </Reveal>
       </PageHeader>
       <section className="section-padding pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
             <div className="lg:col-span-2 space-y-6">
               <Reveal>

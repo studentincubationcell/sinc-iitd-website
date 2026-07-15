@@ -74,14 +74,16 @@ export function Header() {
     <>
       <header
         data-site-header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-foreground",
-          transparent
-            ? "border-b border-transparent bg-transparent"
-            : "border-b border-border backdrop-blur-xl [background:var(--header-surface)]"
-        )}
+        className="fixed top-0 left-0 right-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4 text-foreground"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:gap-6 sm:px-6 lg:px-8">
+        <div
+          className={cn(
+            "mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl border px-4 py-2.5 sm:gap-6 sm:px-5 transition-all duration-300",
+            transparent
+              ? "border-border-ink/10 bg-background/40 backdrop-blur-md"
+              : "border-border-ink/25 bg-background/85 backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(0,0,0,0.15)]"
+          )}
+        >
           <div className="flex shrink-0 items-center gap-3">
             <HeaderLogo />
             <span className="hidden items-center rounded-full border border-border-ink px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-muted sm:inline-flex">
@@ -182,7 +184,7 @@ export function Header() {
               </Link>
               <Link
                 href="/apply"
-                className="inline-flex items-center justify-center bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+                className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90"
               >
                 Apply now
               </Link>

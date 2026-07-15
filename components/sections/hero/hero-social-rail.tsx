@@ -22,7 +22,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export function HeroSocialRail({ socials }: { socials: SocialLink[] }) {
   return (
     <aside
-      className="hidden md:flex fixed left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-5"
+      className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-5"
       aria-label="Social links"
     >
       {socials.map((s) => {
