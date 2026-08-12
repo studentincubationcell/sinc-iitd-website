@@ -1,4 +1,4 @@
-# SInC IIT Delhi — Website
+# SInC IIT Delhi — Website deployed
 
 Premium marketing site for the **Student Incubation Cell (SInC)**, IIT Delhi.
 
