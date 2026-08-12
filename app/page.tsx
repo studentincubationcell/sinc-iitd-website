@@ -1,8 +1,10 @@
 import { HeroSection } from "@/components/sections/hero";
 import {
+  NetworkSignalBand,
   ManifestoBand,
   StatementBand,
   PathwaysIndex,
+  CampusAtmosphereBand,
   BigTypeBand,
 } from "@/components/sections/home-editorial";
 import { PortfolioPreview } from "@/components/sections/portfolio-preview";
@@ -14,11 +16,13 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ManifestoBand />
+      <NetworkSignalBand />
       <PathwaysIndex />
       <StatementBand />
       <PortfolioPreview />
       <EventsMarquee />
       <BigTypeBand />
+      <CampusAtmosphereBand />
       <ApplyCTA />
     </>
   );

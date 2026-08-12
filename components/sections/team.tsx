@@ -108,113 +108,75 @@ export function TeamCard({ member }: { member: TeamMember }) {
   const nameEmpty = !isTeamFieldFilled(member.name);
   const roleEmpty = !isTeamFieldFilled(member.role);
   const bioEmpty = !isTeamFieldFilled(member.bio);
-  const isSlot = nameEmpty && roleEmpty && bioEmpty;
   const hasPhoto = isTeamFieldFilled(member.image);
 
   return (
-    <article
-      className={cn(
-        "sheen group framer-card flex flex-col h-full overflow-hidden hover:-translate-y-1",
-        isSlot && "border-dashed bg-background/50"
-      )}
-    >
-      {/* Portrait */}
+    <article className="group flex flex-col items-center text-center px-2 py-4">
       <div
         className={cn(
-          "relative w-full overflow-hidden border-b-2 border-border-ink bg-muted/15",
-          hasPhoto ? "aspect-[3/4]" : "aspect-square"
+          "relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-border bg-card sm:h-28 sm:w-28",
+          nameEmpty && "border-dashed bg-background"
         )}
       >
         {hasPhoto ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={member.image as string}
-            alt={`${member.name || member.team} team member`}
-            className="h-full w-full object-contain object-top transition-all duration-300 [@media(hover:hover)]:grayscale [@media(hover:hover)]:group-hover:grayscale-0"
+            alt={member.name || member.team}
+            className="h-full w-full object-cover object-top"
             loading="lazy"
           />
         ) : (
-          <div
+          <span
             className={cn(
-              "flex h-full w-full items-center justify-center",
-              nameEmpty
-                ? "bg-background text-muted/30"
-                : "bg-foreground text-background"
+              "font-mono text-2xl font-bold tracking-tight",
+              nameEmpty ? "text-muted/35" : "text-foreground"
             )}
           >
-            <span className="font-mono text-5xl font-bold tracking-tight">
-              {getInitials(member.name)}
-            </span>
-          </div>
-        )}
-        {/* Department tag overlay */}
-        <span className="absolute left-3 top-3 inline-flex items-center border-2 border-border-ink bg-accent-lime px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wide text-foreground">
-          {member.team}
-        </span>
-        {!nameEmpty && (
-          <span className="absolute right-3 top-3 h-3.5 w-3.5 bg-accent-lime border-2 border-foreground" />
+            {getInitials(member.name)}
+          </span>
         )}
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className="text-lg font-bold tracking-tight truncate">
-          <PlaceholderText empty={nameEmpty}>
-            {nameEmpty ? "Name" : member.name}
-          </PlaceholderText>
-        </h3>
-        <p className="text-sm font-medium mt-0.5">
-          <PlaceholderText empty={roleEmpty}>
-            <span className={roleEmpty ? "" : "text-foreground"}>
-              {roleEmpty ? "Role" : member.role}
-            </span>
-          </PlaceholderText>
+      <h3 className="mt-4 text-base font-bold tracking-tight text-foreground">
+        <PlaceholderText empty={nameEmpty}>
+          {nameEmpty ? "Coming soon" : member.name}
+        </PlaceholderText>
+      </h3>
+      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+        <PlaceholderText empty={roleEmpty}>
+          {roleEmpty ? member.team : member.role}
+        </PlaceholderText>
+      </p>
+      {!bioEmpty && (
+        <p className="mt-2 max-w-[16rem] text-sm leading-relaxed text-muted line-clamp-2">
+          {member.bio}
         </p>
-
-        <p
-          className={cn(
-            "mt-3 text-sm leading-relaxed line-clamp-3 min-h-[3.75rem]",
-            bioEmpty ? "text-muted/35 italic" : "text-muted"
-          )}
-        >
-          {bioEmpty ? "Bio coming soon." : member.bio}
-        </p>
-
-        <div className="mt-auto pt-5 border-t border-border/50">
-          <MemberSocials member={member} />
-        </div>
-      </div>
+      )}
+      {!nameEmpty && (
+        <MemberSocials member={member} className="mt-3 justify-center" />
+      )}
     </article>
   );
 }
 
 export function TeamIntro({
   count,
-  slots,
 }: {
   count: number;
-  slots: number;
+  slots?: number;
 }) {
   return (
-    <Reveal className="max-w-3xl mx-auto text-center mb-16">
-      <p className="text-lg text-muted leading-relaxed">
-        SInC is run by students who believe campus founders deserve world-class
-        support. Meet the coordinators and leads across events, tech, outreach,
-        and incubation.
+    <Reveal className="max-w-2xl mx-auto text-center mb-14">
+      <p className="text-base text-muted leading-relaxed sm:text-lg">
+        A dedicated team of students building the ecosystem for campus founders —
+        mentorship, events, tech, and incubation.
       </p>
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <span className="inline-flex items-center gap-2 rounded-none bg-foreground px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-background">
-          <Users className="h-4 w-4" />
-          {count > 0 ? `${count} members` : "Team growing"}
-        </span>
-        {TEAM_DEPARTMENTS.map((dept) => (
-          <span
-            key={dept}
-            className="rounded-none border border-border px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-wide text-muted"
-          >
-            {dept}
-          </span>
-        ))}
-      </div>
+      {count > 0 && (
+        <p className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-muted">
+          {count} members listed
+        </p>
+      )}
     </Reveal>
   );
 }
@@ -231,18 +193,19 @@ export function TeamByDepartment({ members }: { members: TeamMember[] }) {
     <div className="space-y-16">
       {departments.map((dept) => {
         const deptMembers = members.filter((m) => m.team === dept);
+        const filled = deptMembers.filter(isTeamMemberFilled).length;
         return (
           <div key={dept}>
-            <Reveal className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold">{dept}</h2>
-              <div className="h-px flex-1 bg-border" />
-              <span className="text-sm text-muted font-medium">
-                {deptMembers.filter(isTeamMemberFilled).length > 0
-                  ? `${deptMembers.filter(isTeamMemberFilled).length} members`
-                  : "Coming soon"}
-              </span>
+            <Reveal className="mb-8 text-center">
+              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-brand-teal">
+                {dept}
+              </h2>
+              <div className="mx-auto mt-2 h-px w-12 bg-brand-teal/50" />
+              <p className="mt-2 text-xs text-muted">
+                {filled > 0 ? `${filled} members` : "Coming soon"}
+              </p>
             </Reveal>
-            <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <StaggerContainer className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {deptMembers.map((member) => (
                 <StaggerItem key={member.id}>
                   <TeamCard member={member} />
@@ -261,53 +224,33 @@ export function TeamPreview({
 }: {
   team: TeamMember[];
 }) {
-  const preview = sortTeamMembers(team).slice(0, 3);
+  const preview = sortTeamMembers(team.filter(isTeamMemberFilled)).slice(0, 5);
+  if (preview.length === 0) return null;
 
   return (
-    <section className="section-padding bg-background border-y border-border-ink relative overflow-hidden">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8 relative">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+    <section className="section-padding border-t border-border bg-accent-tint/40">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 flex flex-col items-center text-center gap-4">
           <SectionHeading
             label="Team"
-            title="Meet the people behind SInC."
+            title="Meet the people behind SInC"
             description="Students building the ecosystem for campus founders."
+            align="center"
             className="mb-0"
           />
-          <Link href="/team" className="shrink-0">
-            <Button variant="outline">
+          <Link href="/team">
+            <Button variant="outline" className="bg-card">
               View full team
             </Button>
           </Link>
         </div>
-
-        {preview.length === 0 ? (
-          <Reveal>
-            <div className="grid gap-6 sm:grid-cols-3">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="rounded-none border border-dashed border-border p-8 text-center"
-                >
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-none border border-dashed border-border text-2xl font-bold text-muted/40 mb-4">
-                    ?
-                  </div>
-                  <p className="font-semibold text-muted">Team member</p>
-                  <p className="text-sm text-muted/70 mt-1">
-                    Profile coming soon
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        ) : (
-          <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {preview.map((member) => (
-              <StaggerItem key={member.id}>
-                <TeamCard member={member} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        )}
+        <StaggerContainer className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+          {preview.map((member) => (
+            <StaggerItem key={member.id}>
+              <TeamCard member={member} />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );
@@ -315,12 +258,10 @@ export function TeamPreview({
 
 export function TeamEmptyState() {
   return (
-    <div className="rounded-none border border-dashed border-border bg-card p-16 text-center">
-      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-none border border-border mb-6">
-        <Users className="h-8 w-8 text-foreground" />
-      </div>
+    <div className="py-16 text-center">
+      <Users className="mx-auto h-10 w-10 text-muted mb-4" />
       <h3 className="text-xl font-semibold mb-2">Team profiles coming soon</h3>
-      <p className="text-muted max-w-md mx-auto">
+      <p className="text-muted max-w-md mx-auto text-sm leading-relaxed">
         We&apos;re updating this page with our coordinators and leads across
         events, tech, outreach, and incubation.
       </p>
@@ -330,10 +271,10 @@ export function TeamEmptyState() {
 
 export function JoinTeamCTA() {
   return (
-    <Reveal className="mt-20 rounded-none border border-border-ink bg-card p-10 sm:p-12 text-center hard-shadow">
-      <Mail className="h-10 w-10 text-foreground mx-auto mb-4" />
-      <h3 className="text-2xl font-bold">Want to join the team?</h3>
-      <p className="text-muted mt-3 mb-8 max-w-lg mx-auto">
+    <Reveal className="mt-20 border-t border-border pt-14 text-center">
+      <Mail className="h-8 w-8 text-foreground mx-auto mb-4" />
+      <h3 className="text-2xl font-bold tracking-tight">Want to join the team?</h3>
+      <p className="text-muted mt-3 mb-8 max-w-lg mx-auto text-sm leading-relaxed">
         We&apos;re always looking for passionate builders across events, tech,
         outreach, and incubation.
       </p>
@@ -341,8 +282,8 @@ export function JoinTeamCTA() {
         <Link href="/contact">
           <Button variant="outline">Get in touch</Button>
         </Link>
-        <Link href="/apply">
-          <Button variant="club">Apply to SInC</Button>
+        <Link href="/registry">
+          <Button variant="club">List on registry</Button>
         </Link>
       </div>
     </Reveal>

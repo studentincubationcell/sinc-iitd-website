@@ -46,7 +46,7 @@ export function ApplyForm() {
       <m.div
         initial={reduceMotion ? false : { scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="brutal-block-lg bg-accent-lime p-12 text-center"
+        className="soft-card bg-accent-tint p-12 text-center"
       >
         <CheckCircle2 className="h-16 w-16 text-foreground mx-auto mb-6" />
         <h3 className="text-2xl font-black tracking-tight">Application received!</h3>

@@ -31,11 +31,30 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.local
+.env.*.local
+!.env.example
 
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+.data/
+*.local.json
+*.db
+*.db-journal
+
+# Local design references / scratch
+.refs/
+current desigh/
+content-review/*.docx
+
+# Heavy / unused motion variants (site uses .mp4)
+public/motion/*.gif
+public/motion/people-source.mp4
+public/motion/ascii-campus.png
+
+# Local script screenshots
+scripts/*.png
+
+
