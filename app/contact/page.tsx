@@ -16,10 +16,9 @@ const STAKEHOLDER_PATHS = [
   {
     icon: GraduationCap,
     title: "Join as a founder",
-    description: "Current IIT Delhi student with a startup idea? Apply to Cohort 1.0 or explore SInC programs.",
-    href: "/apply",
-    cta: "Apply now",
-    accent: "bg-accent-lime",
+    description: "Current IIT Delhi student with a startup idea? List on the registry or apply to Cohort 01.",
+    href: "/registry",
+    cta: "Join the registry",
   },
   {
     icon: TrendingUp,
@@ -27,7 +26,6 @@ const STAKEHOLDER_PATHS = [
     description: "Mentor founders, attend Demo Day, or scout IIT Delhi deals. We'll set up the right intro.",
     href: `mailto:${site.contact.email}?subject=SInC%20—%20Investor%20/%20Alumni%20interest`,
     cta: "Email us",
-    accent: "bg-pop-pink",
   },
   {
     icon: Handshake,
@@ -35,7 +33,6 @@ const STAKEHOLDER_PATHS = [
     description: "Host an industrial visit, post bounties for students, or collaborate on campus programs.",
     href: `mailto:${site.contact.email}?subject=SInC%20—%20Partnership%20inquiry`,
     cta: "Partner with us",
-    accent: "bg-pop-sky",
   },
 ];
 
@@ -60,19 +57,17 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-3 gap-6">
             {STAKEHOLDER_PATHS.map((path) => {
               const Icon = path.icon;
-              const isExternal = path.href.startsWith("mailto:");
               return (
                 <Reveal key={path.title}>
-                  <div className="framer-card p-6 h-full flex flex-col bg-card">
-                    <span className={`flex h-10 w-10 items-center justify-center border-2 border-border-ink ${path.accent}`}>
+                  <div className="soft-card p-6 h-full flex flex-col">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-accent-tint">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <h3 className="mt-4 font-black tracking-tight">{path.title}</h3>
+                    <h3 className="mt-4 font-bold tracking-tight">{path.title}</h3>
                     <p className="mt-2 text-sm text-muted leading-relaxed flex-1">{path.description}</p>
                     <Link
                       href={path.href}
-                      {...(isExternal ? {} : {})}
-                      className="mt-4 font-mono text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                      className="mt-4 text-sm font-semibold hover:text-primary transition-colors"
                     >
                       {path.cta} →
                     </Link>
@@ -89,12 +84,12 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="space-y-4">
               <Reveal>
-                <div className="framer-card p-6 flex gap-4 bg-card">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-border-ink bg-accent-lime">
-                    <Mail className="h-5 w-5 text-foreground" />
+                <div className="soft-card flex gap-4 p-6">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent">
+                    <Mail className="h-5 w-5" />
                   </span>
                   <div>
-                    <h3 className="font-black tracking-tight">Email</h3>
+                    <h3 className="font-display text-lg font-bold tracking-tight">Email</h3>
                     <a
                       href={`mailto:${site.contact.email}`}
                       className="text-muted hover:text-foreground transition-colors"
@@ -105,30 +100,30 @@ export default function ContactPage() {
                 </div>
               </Reveal>
               <Reveal>
-                <div className="framer-card p-6 flex gap-4 bg-card">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-border-ink bg-pop-pink">
-                    <Phone className="h-5 w-5 text-foreground" />
+                <div className="soft-card flex gap-4 p-6">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent">
+                    <Phone className="h-5 w-5" />
                   </span>
                   <div>
-                    <h3 className="font-black tracking-tight">Phone</h3>
+                    <h3 className="font-display text-lg font-bold tracking-tight">Phone</h3>
                     <p className="text-muted">{site.contact.phone}</p>
                   </div>
                 </div>
               </Reveal>
               <Reveal>
-                <div className="framer-card p-6 flex gap-4 bg-card">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-border-ink bg-pop-sky">
-                    <MapPin className="h-5 w-5 text-foreground" />
+                <div className="soft-card flex gap-4 p-6">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent">
+                    <MapPin className="h-5 w-5" />
                   </span>
                   <div>
-                    <h3 className="font-black tracking-tight">Office</h3>
+                    <h3 className="font-display text-lg font-bold tracking-tight">Office</h3>
                     <p className="text-muted text-sm leading-relaxed">
                       {site.contact.address}
                     </p>
                   </div>
                 </div>
               </Reveal>
-              <Reveal className="brutal-block overflow-hidden h-64 p-0">
+              <Reveal className="h-64 overflow-hidden rounded-2xl border border-border">
                 <iframe
                   src={site.contact.mapEmbed}
                   width="100%"
@@ -142,7 +137,7 @@ export default function ContactPage() {
               </Reveal>
             </div>
             <Reveal>
-              <div className="framer-card p-8 sm:p-10">
+              <div className="soft-card p-8 sm:p-10">
                 <SectionHeading
                   label="Message"
                   title="Send a note"

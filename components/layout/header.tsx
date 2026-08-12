@@ -23,6 +23,7 @@ const groups = [
       { label: "Programs", href: "/programs", note: "Support for every stage" },
       { label: "Opportunities", href: "/opportunities", note: "Roles, bounties and calls" },
       { label: "Cohort 01", href: "/cohort", note: "The current founder cohort" },
+      { label: "Registry", href: "/registry", note: "List your campus venture" },
     ],
   },
   {
@@ -106,9 +107,9 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href="/apply" className="pill-cta">
+          <Link href="/registry" className="pill-cta">
             <span className="sm:hidden">Join us</span>
-            <span className="hidden sm:inline">Join the community</span>
+            <span className="hidden sm:inline">Join the registry</span>
           </Link>
           <button type="button" className="flex h-11 w-11 items-center justify-center rounded-full border border-border lg:hidden" onClick={() => setMobileOpen((value) => !value)} aria-expanded={mobileOpen} aria-controls="mobile-navigation" aria-label={mobileOpen ? "Close navigation" : "Open navigation"}>
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

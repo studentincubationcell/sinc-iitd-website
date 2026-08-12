@@ -16,7 +16,7 @@
 - Cohort → /cohort
 - Portfolio → /portfolio
 - Calendar → /events
-- About → /about
+- Network → /network
 - Contact → /contact
 
 ## Impact stats (home)
