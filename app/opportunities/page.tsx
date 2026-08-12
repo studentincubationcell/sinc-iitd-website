@@ -31,8 +31,8 @@ export default function OpportunitiesPage() {
             <div className="lg:col-span-6 space-y-8">
               <Reveal>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-tint text-accent">
-                    <Users className="h-6 w-6" strokeWidth={2} />
+                  <span className="flex h-12 w-12 items-center justify-center border-2 border-border-ink bg-pop-pink text-foreground">
+                    <Users className="h-6 w-6" strokeWidth={2.5} />
                   </span>
                   <div>
                     <h2 className="text-2xl font-black tracking-tight">Team matching</h2>
@@ -47,7 +47,7 @@ export default function OpportunitiesPage() {
                     <article className="group relative border-2 border-border-ink bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-framer-hover">
                       <div className="mb-4 flex items-start justify-between border-b border-border-ink pb-4">
                         <div>
-                          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-accent">
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-pop-pink">
                             {tm.startup}
                           </span>
                           <h3 className="mt-1 text-xl font-black leading-snug text-foreground">
@@ -55,7 +55,7 @@ export default function OpportunitiesPage() {
                           </h3>
                         </div>
                         {tm.status === "open" ? (
-                          <span className="rounded-full border border-border bg-accent-tint px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-accent">
+                          <span className="rounded-full border border-border-ink bg-accent-lime px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-on-accent">
                             Open
                           </span>
                         ) : (
@@ -82,7 +82,7 @@ export default function OpportunitiesPage() {
                           {tm.commitment}
                         </div>
                         <div className="flex items-center gap-1.5 text-foreground font-bold">
-                          <Sparkles className="h-3.5 w-3.5 text-accent" />
+                          <Sparkles className="h-3.5 w-3.5 text-pop-pink" />
                           {tm.equity}
                         </div>
                       </div>
@@ -96,8 +96,8 @@ export default function OpportunitiesPage() {
             <div className="lg:col-span-6 space-y-8">
               <Reveal>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-tint text-accent">
-                    <Code2 className="h-6 w-6" strokeWidth={2} />
+                  <span className="flex h-12 w-12 items-center justify-center border-2 border-border-ink bg-brand-teal text-foreground">
+                    <Code2 className="h-6 w-6" strokeWidth={2.5} />
                   </span>
                   <div>
                     <h2 className="text-2xl font-black tracking-tight">Bounty board</h2>

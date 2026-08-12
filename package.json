@@ -4,19 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "postinstall": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:push": "prisma db push",
-    "db:studio": "prisma studio",
-    "export:content": "node scripts/export-content-review.mjs",
-    "export:docx": "node scripts/export-content-docx.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
-    "@prisma/client": "^6.19.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "class-variance-authority": "^0.7.1",
@@ -38,10 +31,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.184.1",
-    "docx": "^9.7.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
-    "prisma": "^6.19.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -58,13 +58,14 @@ export default function CohortPage() {
               className="mb-10"
             />
             <StaggerContainer className="grid md:grid-cols-3 gap-6">
-              {cohort.objectives.map((obj) => {
+              {cohort.objectives.map((obj, i) => {
+                const pops = ["bg-accent-lime", "bg-pop-pink", "bg-pop-sky"];
                 return (
                   <StaggerItem key={obj.title}>
-                    <div className="soft-card p-8 h-full">
-                      <Target className="h-5 w-5 mb-4 text-brand-teal" />
-                      <h3 className="font-bold tracking-tight">{obj.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-muted">{obj.description}</p>
+                    <div className={`${pops[i % pops.length]} brutal-block p-8 h-full`}>
+                      <Target className="h-5 w-5 mb-4" />
+                      <h3 className="font-black tracking-tight">{obj.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-foreground/80">{obj.description}</p>
                     </div>
                   </StaggerItem>
                 );
@@ -86,11 +87,11 @@ export default function CohortPage() {
             <StaggerContainer className="grid md:grid-cols-3 gap-6">
               {cohort.selection.map((phase) => (
                 <StaggerItem key={phase.phase}>
-                  <div className="soft-card p-8 h-full border-l-4 border-l-brand-teal">
+                  <div className="framer-card p-8 h-full bg-card border-l-4 border-l-accent-lime">
                     <span className="font-mono text-3xl font-bold text-foreground/20">
                       {String(phase.phase).padStart(2, "0")}
                     </span>
-                    <h3 className="mt-2 text-lg font-bold">{phase.title}</h3>
+                    <h3 className="mt-2 text-lg font-black">{phase.title}</h3>
                     <p className="mt-3 text-sm text-muted leading-relaxed">{phase.description}</p>
                   </div>
                 </StaggerItem>
@@ -111,11 +112,11 @@ export default function CohortPage() {
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {cohort.plan.map((step) => (
               <StaggerItem key={step.step}>
-                <div className="soft-card p-8 h-full">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-accent-tint font-mono text-sm font-bold">
+                <div className="framer-card p-8 h-full bg-card">
+                  <span className="inline-flex h-8 w-8 items-center justify-center border-2 border-border-ink bg-accent-lime font-mono text-sm font-bold">
                     {step.step}
                   </span>
-                  <h3 className="mt-4 text-lg font-bold tracking-tight">{step.title}</h3>
+                  <h3 className="mt-4 text-lg font-black tracking-tight">{step.title}</h3>
                   <p className="mt-2 text-sm text-muted leading-relaxed">{step.description}</p>
                 </div>
               </StaggerItem>
@@ -137,11 +138,11 @@ export default function CohortPage() {
               {cohort.tracks.map((track, i) => (
                 <Reveal key={track.id} delay={i * 0.05}>
                   <div
-                    className={`soft-card p-5 h-full ${
-                      track.id === "track-open" ? "bg-accent-tint/50" : ""
+                    className={`border-2 border-border-ink p-5 h-full ${
+                      track.id === "track-open" ? "bg-pop-peach/30" : "bg-card"
                     }`}
                   >
-                    <h3 className="text-sm font-semibold uppercase tracking-wide">{track.title}</h3>
+                    <h3 className="font-mono text-sm font-bold uppercase tracking-wide">{track.title}</h3>
                     <p className="mt-2 text-sm text-muted leading-relaxed">{track.description}</p>
                   </div>
                 </Reveal>
@@ -162,12 +163,13 @@ export default function CohortPage() {
               />
             </Reveal>
             <StaggerContainer className="space-y-4">
-              {cohort.benefits.map((item) => {
+              {cohort.benefits.map((item, i) => {
+                const pops = ["bg-accent-lime", "bg-pop-pink", "bg-pop-sky", "bg-accent-tint"];
                 return (
                   <StaggerItem key={item.title}>
-                    <div className="soft-card p-6">
-                      <h3 className="font-bold tracking-tight">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">{item.description}</p>
+                    <div className={`${pops[i % pops.length]} brutal-block p-6 text-foreground`}>
+                      <h3 className="font-black tracking-tight">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-foreground/80">{item.description}</p>
                     </div>
                   </StaggerItem>
                 );
@@ -188,8 +190,8 @@ export default function CohortPage() {
           <Reveal>
             <ul className="space-y-3">
               {cohort.rules.map((rule) => (
-                <li key={rule} className="flex gap-3 soft-card p-4">
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-teal mt-0.5" />
+                <li key={rule} className="flex gap-3 framer-card p-4 bg-card">
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-foreground mt-0.5" />
                   <span className="text-sm text-muted leading-relaxed">{rule}</span>
                 </li>
               ))}

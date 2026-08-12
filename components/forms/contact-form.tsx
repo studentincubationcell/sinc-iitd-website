@@ -39,10 +39,10 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="soft-card bg-accent-tint p-8 text-center">
+      <div className="brutal-block bg-accent-lime p-8 text-center">
         <CheckCircle2 className="h-12 w-12 text-foreground mx-auto mb-4" />
-        <h3 className="text-xl font-bold tracking-tight">Message sent!</h3>
-        <p className="text-muted mt-2">We&apos;ll get back to you soon.</p>
+        <h3 className="text-xl font-black tracking-tight">Message sent!</h3>
+        <p className="text-foreground/75 mt-2">We&apos;ll get back to you soon.</p>
       </div>
     );
   }

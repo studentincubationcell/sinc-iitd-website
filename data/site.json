@@ -32,7 +32,6 @@
     { "label": "Portfolio", "href": "/portfolio" },
     { "label": "Calendar", "href": "/events" },
     { "label": "Network", "href": "/network" },
-    { "label": "Registry", "href": "/registry" },
     { "label": "Contact", "href": "/contact" }
   ],
   "stats": [

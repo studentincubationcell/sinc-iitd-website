@@ -24,25 +24,25 @@ export function ApplyCTA() {
 
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
-            <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+          <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
+            <span className="inline-block h-3 w-3 bg-accent-lime" />
             Start your journey
           </span>
 
           <h2 className="editorial-display text-5xl text-foreground sm:text-6xl lg:text-[5rem]">
             Ready to build{" "}
-            <span className="text-accent">something real?</span>
+            <span className="lime-mark">something real?</span>
           </h2>
 
           <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-muted sm:text-xl">
-            List your venture on the registry in minutes — or apply to Cohort 01 for structured mentorship and momentum.
+            Join SInC — mentorship, lab access, and a community of builders pushing from campus idea to funded startup.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {FEATURES.map((f) => (
               <span
                 key={f.label}
-                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wide text-muted transition-colors hover:border-accent hover:bg-accent-tint hover:text-foreground"
+                className="inline-flex items-center gap-2 rounded-full border border-border-ink/30 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wide text-muted transition-colors hover:border-accent-lime hover:bg-accent-lime hover:text-on-accent"
               >
                 <f.icon className="h-4 w-4" strokeWidth={2} />
                 {f.label}
@@ -51,11 +51,11 @@ export function ApplyCTA() {
           </div>
 
           <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Link href="/registry" className="pill-cta h-14 px-12 text-sm">
-              Join the registry <ArrowRight className="h-4 w-4" />
+            <Link href="/apply" className="pill-cta h-14 px-12 text-sm">
+              Apply now <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/apply" className="pill-cta pill-cta-outline h-14 px-12 text-sm">
-              Apply to Cohort
+            <Link href="/programs" className="pill-cta pill-cta-outline h-14 px-12 text-sm">
+              Explore programs
             </Link>
           </div>
         </Reveal>

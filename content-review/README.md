@@ -8,8 +8,6 @@ All website copy in one place for manual review and editing.
 
 **[CONTENT-CHECKLIST.md](./CONTENT-CHECKLIST.md)** — what to fill in to go from "thin" to "impressive", in priority order.
 
-**[SInC-Website-Content.docx](./SInC-Website-Content.docx)** — same content as a Word doc for sharing with the team. Regenerate: `node scripts/export-content-docx.mjs`
-
 ## How to use
 
 1. Open **ALL-CONTENT.md** and read or search (Ctrl+F) through the full site copy.

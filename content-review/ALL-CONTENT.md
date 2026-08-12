@@ -136,7 +136,7 @@ How to join SInC as a founder, and clear paths for alumni, investors, and indust
 - Cohort → /cohort
 - Portfolio → /portfolio
 - Calendar → /events
-- Network → /network
+- About → /about
 - Contact → /contact
 
 ## Impact stats (home)

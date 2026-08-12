@@ -1,69 +1,22 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { AsciiPeopleLoopMedia } from "@/components/ui/ascii-people-reel";
+import { AsciiField } from "@/components/ui/ascii-field";
 
-/* ─── 00 · Network signal — top-left / large people / bottom-right ─── */
-export function NetworkSignalBand() {
-  return (
-    <section
-      id="network-signal"
-      className="relative scroll-mt-20 border-b border-border bg-background"
-    >
-      <div className="relative mx-auto max-w-[96rem] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="relative min-h-[70vh] lg:min-h-[78vh]">
-          {/* Top-left */}
-          <Reveal>
-            <div className="relative z-20 max-w-sm">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-                Founders
-              </p>
-              <p className="mt-3 text-lg leading-snug tracking-[-0.015em] text-foreground sm:text-xl">
-                Students with an idea — or the itch to start — finding the room where building
-                begins.
-              </p>
-            </div>
-          </Reveal>
-
-          {/* Middle — large people, soft-dissolved into paper */}
-          <Reveal>
-            <div className="pointer-events-none absolute inset-x-0 top-[12%] bottom-[14%] z-0 sm:top-[8%] lg:top-[4%] lg:bottom-[10%]">
-              <AsciiPeopleLoopMedia className="h-full w-full" showCaption={false} />
-            </div>
-          </Reveal>
-
-          {/* Bottom-right */}
-          <Reveal>
-            <div className="relative z-20 mt-[58vh] flex justify-end sm:mt-[62vh] lg:mt-[64vh]">
-              <div className="max-w-sm text-left sm:text-right">
-                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-                  Mentors · Investors
-                </p>
-                <p className="mt-3 text-lg leading-snug tracking-[-0.015em] text-foreground sm:text-xl">
-                  Operators and capital that show up for campus ventures — feedback, intros, and
-                  real doors.
-                </p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 01 · Manifesto — quote only ─── */
+/* ─── 01 · Full-bleed manifesto quote band (deep navy) ─── */
 export function ManifestoBand() {
   return (
     <section id="manifesto" className="relative scroll-mt-20 overflow-hidden bg-inverse">
-      <div className="relative mx-auto max-w-[96rem] px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-36">
+      <AsciiField
+        seed={23}
+        count={420}
+        className="absolute -right-[10%] top-0 h-full w-[70%] opacity-50"
+        color="var(--brand-teal)"
+      />
+      <div className="relative mx-auto max-w-[96rem] px-5 py-28 sm:px-8 sm:py-40 lg:px-12">
         <Reveal>
-          <blockquote className="relative z-10 max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-teal/80">
-              10,000 engineers · one campus
-            </p>
-            <p className="headline-tight text-balance text-3xl leading-[1.15] text-brand-teal sm:text-5xl lg:text-[3.2rem]">
+          <blockquote className="max-w-4xl">
+            <p className="headline-tight text-balance text-3xl leading-[1.15] text-brand-teal sm:text-5xl lg:text-[3.4rem]">
               &ldquo;A campus with 10,000 engineers doesn&apos;t have an idea problem. It has a
               starting problem &mdash; and starting is exactly what a community can fix.&rdquo;
             </p>
@@ -98,13 +51,6 @@ export function StatementBand() {
 /* ─── 03 · Selected pathways — numbered editorial index ── */
 const PATHWAYS = [
   {
-    href: "/registry",
-    title: "List on the startup registry",
-    description:
-      "Three minutes. Your venture goes into IIT Delhi's founder registry — mentors and coordinators look here first.",
-    audience: "Builders with an idea or venture",
-  },
-  {
     href: "/cohort",
     title: "Join the founder cohort",
     description:
@@ -112,108 +58,98 @@ const PATHWAYS = [
     audience: "Builders ready to commit",
   },
   {
-    href: "/opportunities",
-    title: "Find a role or bounty",
+    href: "/events",
+    title: "Show up to what's happening",
     description:
-      "Team matching and paid bounties — contribute to campus ventures before starting your own.",
-    audience: "Builders looking for a way in",
+      "Founder meets, funding events, industrial visits, and rooms where the right people actually meet.",
+    audience: "Everyone on campus",
   },
   {
-    href: "/programs",
-    title: "Explore the programs",
-    description: "Mentorship, space, legal, funding connect — the operating system around founders.",
-    audience: "Anyone mapping the path",
+    href: "/opportunities",
+    title: "Work inside a startup",
+    description:
+      "Team matching and paid bounties — contribute to campus ventures before starting your own.",
+    audience: "Students exploring the craft",
   },
-];
+  {
+    href: "/network",
+    title: "Back the next generation",
+    description:
+      "Alumni, investors, and industry partners plug in as mentors, hosts, and early believers.",
+    audience: "Alumni, investors & industry",
+  },
+] as const;
 
 export function PathwaysIndex() {
   return (
-    <section className="border-b border-border bg-background">
+    <section id="community" className="scroll-mt-20 border-t border-border bg-background">
       <div className="mx-auto max-w-[96rem] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <Reveal>
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-            Ways in
-          </p>
-          <h2 className="mt-3 max-w-xl text-3xl tracking-tight text-foreground sm:text-4xl">
-            Pick a door. Start moving.
-          </h2>
+          <h2 className="mega-display text-4xl text-foreground sm:text-6xl">Selected Pathways</h2>
         </Reveal>
-        <ol className="mt-14 divide-y divide-border border-y border-border">
-          {PATHWAYS.map((item, i) => (
-            <li key={item.href}>
-              <Reveal>
-                <Link
-                  href={item.href}
-                  className="group grid gap-3 py-8 transition-colors sm:grid-cols-[4rem_1fr_auto] sm:items-baseline sm:gap-8"
-                >
-                  <span className="font-mono text-sm text-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-blue sm:text-2xl">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 max-w-2xl text-base text-muted">{item.description}</p>
-                    <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-                      {item.audience}
-                    </p>
-                  </div>
-                  <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-blue" />
-                </Link>
-              </Reveal>
-            </li>
+
+        <div className="mt-16 border-t border-border">
+          {PATHWAYS.map((p, i) => (
+            <Reveal key={p.href}>
+              <Link
+                href={p.href}
+                className="group grid gap-4 border-b border-border py-8 transition-colors hover:bg-[var(--hover-on-canvas)] sm:py-10 lg:grid-cols-[5rem_1fr_1fr_auto] lg:items-baseline lg:gap-8"
+              >
+                <span className="font-mono text-sm text-muted">({String(i + 1).padStart(2, "0")})</span>
+                <h3 className="headline-tight text-2xl text-foreground sm:text-3xl">{p.title}</h3>
+                <div>
+                  <p className="text-base leading-relaxed text-muted">{p.description}</p>
+                  <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-brand-blue">
+                    {p.audience}
+                  </p>
+                </div>
+                <span className="hidden h-11 w-11 items-center justify-center rounded-full border border-border transition-colors group-hover:border-foreground group-hover:bg-foreground group-hover:text-background lg:flex">
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </span>
+              </Link>
+            </Reveal>
           ))}
-        </ol>
+        </div>
+
+        <Reveal>
+          <div className="mt-14 flex flex-wrap items-center gap-6">
+            <Link href="/apply" className="pill-cta">
+              Start a conversation
+            </Link>
+            <p className="max-w-sm text-sm leading-relaxed text-muted">
+              Not sure where you fit? Write to us — we route every serious message to a real person.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-/* ─── Campus atmosphere — full-bleed main building (page bottom) ─── */
-export function CampusAtmosphereBand() {
-  return (
-    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden">
-      <div className="relative aspect-[21/9] min-h-[280px] w-full sm:min-h-[360px] lg:min-h-[520px]">
-        <Image
-          src="/campus/iitd-atmosphere-softlight.png"
-          alt="IIT Delhi main building"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-          priority={false}
-        />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
-        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background/90 mix-blend-difference sm:bottom-8 sm:text-foreground/70 sm:mix-blend-normal">
-          IIT Delhi · Main building
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Big type band — full-viewport, heavily blurred campus wash ─── */
+/* ─── 04 · Giant typographic closer ─────────────────────── */
 export function BigTypeBand() {
   return (
-    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] flex min-h-[100svh] w-screen items-center overflow-hidden bg-background">
-      <div className="pointer-events-none absolute inset-0">
-        <Image
-          src="/campus/iitd-atmosphere-cartoon.png"
-          alt=""
-          fill
-          className="scale-110 object-cover object-center opacity-[0.22] blur-2xl sm:blur-3xl"
-          sizes="100vw"
-          aria-hidden
-        />
-        <div className="absolute inset-0 bg-background/55" />
-      </div>
-      <div className="relative mx-auto w-full max-w-[96rem] px-5 py-24 sm:px-8 lg:px-12">
-        <Reveal>
-          <p className="headline-tight max-w-4xl text-balance text-4xl leading-[1.1] text-foreground sm:text-5xl lg:text-[3.8rem]">
-            Built on campus.
-            <span className="mt-2 block text-brand-blue">Aimed at the world.</span>
-          </p>
-        </Reveal>
+    <section className="relative overflow-hidden border-t border-border bg-background">
+      <AsciiField
+        seed={41}
+        count={380}
+        className="absolute -left-[14%] top-0 h-full w-[60%] opacity-70"
+        color="var(--brand-blue)"
+      />
+      <div className="relative mx-auto max-w-[96rem] px-5 py-28 sm:px-8 sm:py-36 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <Reveal>
+            <p className="max-w-xs text-base leading-relaxed text-foreground">
+              Exams end. Placements end. What you build with other people is the part of college
+              that keeps compounding — and it starts with walking into one room.
+            </p>
+          </Reveal>
+          <Reveal>
+            <p className="mega-display text-5xl text-foreground sm:text-8xl lg:text-right lg:text-[9rem]">
+              Built on Campus
+            </p>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
