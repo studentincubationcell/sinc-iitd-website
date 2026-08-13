@@ -285,10 +285,20 @@ export const REGISTRY_STAGES = [
 
 export const REGISTRY_SECTORS = [
   "Consumer",
+  "B2B / SaaS",
   "Deep tech",
+  "AI / ML",
   "Fintech",
   "Climate / Energy",
   "HealthTech",
+  "EdTech",
+  "AgriTech",
+  "Hardware / Robotics",
+  "Mobility / EV",
+  "Biotech",
+  "Space / Defence",
+  "Marketplace",
+  "Social impact",
   "Other",
 ] as const;
 
@@ -309,6 +319,7 @@ export const registryEntrySchema = z.object({
   pitch: z.string().min(10),
   stage: z.enum(REGISTRY_STAGES),
   sector: z.enum(REGISTRY_SECTORS),
+  sectorOther: z.string().optional(),
   phone: z.string().optional(),
   whatsapp: z.string().optional(),
   linkedin: z.string().optional(),
@@ -326,11 +337,15 @@ export const registryCreateSchema = z.object({
   pitch: z.string().min(10),
   stage: z.enum(REGISTRY_STAGES),
   sector: z.enum(REGISTRY_SECTORS),
+  sectorOther: z.preprocess(emptyToUndefined, z.string().trim().max(80).optional()),
   phone: z.string().trim().min(10, "Phone is required").max(24),
   whatsapp: z.preprocess(emptyToUndefined, z.string().trim().max(24).optional()),
   linkedin: optionalUrl,
   link: z.string().optional(),
   referral: z.string().optional(),
+}).refine((data) => data.sector !== "Other" || (data.sectorOther && data.sectorOther.length >= 2), {
+  message: "Tell us the sector",
+  path: ["sectorOther"],
 });
 
 export type Site = z.infer<typeof siteSchema>;

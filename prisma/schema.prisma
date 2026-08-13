@@ -18,6 +18,7 @@ model RegistryEntry {
   pitch     String
   stage     String
   sector    String
+  sectorOther String?
   link      String?
   referral  String?
   phone     String?

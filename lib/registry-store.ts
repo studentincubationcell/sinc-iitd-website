@@ -17,6 +17,7 @@ type Row = {
   pitch: string;
   stage: string;
   sector: string;
+  sectorOther?: string | null;
   link: string | null;
   referral: string | null;
   phone: string | null;
@@ -42,7 +43,7 @@ function mapRow(row: Row, includeToken = false): RegistryEntry {
     : REGISTRY_STAGES[0];
   const sector = REGISTRY_SECTORS.includes(row.sector as (typeof REGISTRY_SECTORS)[number])
     ? (row.sector as RegistryEntry["sector"])
-    : REGISTRY_SECTORS[0];
+    : "Other";
 
   return {
     id: row.id,
@@ -52,6 +53,10 @@ function mapRow(row: Row, includeToken = false): RegistryEntry {
     pitch: row.pitch,
     stage,
     sector,
+    sectorOther:
+      sector === "Other"
+        ? (row.sectorOther ?? (row.sector !== "Other" ? row.sector : undefined))
+        : undefined,
     link: row.link ?? undefined,
     referral: row.referral ?? undefined,
     phone: row.phone ?? undefined,
@@ -86,21 +91,23 @@ export async function nextRegistryNumber(): Promise<number> {
 export async function createRegistryEntry(
   input: RegistryCreate
 ): Promise<RegistryEntry> {
+  const data = {
+    name: input.name.trim(),
+    email: input.email.trim().toLowerCase(),
+    venture: input.venture.trim(),
+    pitch: input.pitch.trim(),
+    stage: input.stage,
+    sector: input.sector,
+    sectorOther: input.sector === "Other" ? input.sectorOther?.trim() || null : null,
+    link: input.link?.trim() || null,
+    referral: input.referral?.trim() || null,
+    phone: input.phone.trim(),
+    whatsapp: input.whatsapp?.trim() || null,
+    linkedin: input.linkedin?.trim() || null,
+    manageToken: newManageToken(),
+  };
   const row = await prisma.registryEntry.create({
-    data: {
-      name: input.name.trim(),
-      email: input.email.trim().toLowerCase(),
-      venture: input.venture.trim(),
-      pitch: input.pitch.trim(),
-      stage: input.stage,
-      sector: input.sector,
-      link: input.link?.trim() || null,
-      referral: input.referral?.trim() || null,
-      phone: input.phone.trim(),
-      whatsapp: input.whatsapp?.trim() || null,
-      linkedin: input.linkedin?.trim() || null,
-      manageToken: newManageToken(),
-    },
+    data: data as never,
   });
   return mapRow(row, true);
 }

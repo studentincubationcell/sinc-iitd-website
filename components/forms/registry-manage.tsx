@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import type { RegistryEntry } from "@/lib/schemas";
 import { writeCachedListing } from "@/lib/registry-cache";
-import { listingStatus, padRegistryId } from "@/lib/registry-status";
+import { listingStatus, padRegistryId, sectorLabel } from "@/lib/registry-status";
 import {
   registryAreaClass,
   registryFieldClass,
@@ -128,7 +128,7 @@ export function RegistryManage({ token }: { token: string }) {
     ["Venture", entry.venture],
     ["Pitch", entry.pitch],
     ["Stage", entry.stage],
-    ["Sector", entry.sector],
+    ["Sector", sectorLabel(entry)],
   ];
   if (entry.phone) basics.push(["Phone", entry.phone]);
   if (entry.whatsapp) basics.push(["WhatsApp", entry.whatsapp]);

@@ -9,6 +9,7 @@ import {
   REGISTRY_STAGES,
   type RegistryEntry,
 } from "@/lib/schemas";
+import { sectorLabel } from "@/lib/registry-status";
 import { cn } from "@/lib/utils";
 import {
   managePath,
@@ -35,7 +36,8 @@ export function RegistryExperience() {
   const [venture, setVenture] = useState("");
   const [pitch, setPitch] = useState("");
   const [stage, setStage] = useState<string>(REGISTRY_STAGES[0]);
-  const [sector, setSector] = useState<string>(REGISTRY_SECTORS[0]);
+  const [sector, setSector] = useState<string>("");
+  const [sectorOther, setSectorOther] = useState("");
   const [link, setLink] = useState("");
   const [referral, setReferral] = useState("");
   const [phone, setPhone] = useState("");
@@ -85,6 +87,7 @@ export function RegistryExperience() {
           pitch,
           stage,
           sector,
+          sectorOther: sector === "Other" ? sectorOther || undefined : undefined,
           phone,
           whatsapp: whatsapp || undefined,
           linkedin: linkedin || undefined,
@@ -349,6 +352,9 @@ export function RegistryExperience() {
                     onChange={(e) => setSector(e.target.value)}
                     required
                   >
+                    <option value="" disabled>
+                      Select sector
+                    </option>
                     {REGISTRY_SECTORS.map((s) => (
                       <option key={s} value={s}>
                         {s}
@@ -357,6 +363,23 @@ export function RegistryExperience() {
                   </select>
                 </div>
               </div>
+
+              {sector === "Other" ? (
+                <div>
+                  <label className={registryLabelClass} htmlFor="reg-sector-other">
+                    Which sector?
+                  </label>
+                  <input
+                    id="reg-sector-other"
+                    className={registryFieldClass}
+                    placeholder="e.g. LegalTech, Sports, Gaming"
+                    value={sectorOther}
+                    onChange={(e) => setSectorOther(e.target.value)}
+                    required
+                    minLength={2}
+                  />
+                </div>
+              ) : null}
 
               <div>
                 <label className={registryLabelClass} htmlFor="reg-link">
@@ -478,7 +501,7 @@ export function RegistryExperience() {
                   </div>
                   <p className="mt-1 text-sm leading-relaxed text-muted">{e.pitch}</p>
                   <p className="mt-2 text-xs text-muted">
-                    {e.stage} · {e.sector}
+                    {e.stage} · {sectorLabel(e)}
                     {e.deep ? " · Full profile" : ""}
                   </p>
                   <p className="mt-1 font-mono text-[11px] text-muted">

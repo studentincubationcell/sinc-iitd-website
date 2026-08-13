@@ -1,6 +1,6 @@
 import type { RegistryEntry } from "@/lib/schemas";
 import { sendMail, siteUrl } from "@/lib/mail";
-import { listingStatus, padRegistryId } from "@/lib/registry-status";
+import { listingStatus, padRegistryId, sectorLabel } from "@/lib/registry-status";
 
 function escapeHtml(value: string): string {
   return value
@@ -58,7 +58,7 @@ function listingRows(entry: RegistryEntry): { label: string; value: string }[] {
     { label: "Venture", value: entry.venture },
     { label: "Pitch", value: entry.pitch },
     { label: "Stage", value: entry.stage },
-    { label: "Sector", value: entry.sector },
+    { label: "Sector", value: sectorLabel(entry) },
     { label: "Listed", value: listedAt(entry.timestamp) },
   ];
   if (entry.phone) rows.push({ label: "Phone", value: entry.phone });
