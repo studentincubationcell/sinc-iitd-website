@@ -22,6 +22,8 @@ model RegistryEntry {
   referral  String?
   /// Optional deep profile JSON: problem, solution, funds, deck, revenue, future
   deepJson  String?
+  /// Unlisted secret for the founder manage link (no login)
+  manageToken String? @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

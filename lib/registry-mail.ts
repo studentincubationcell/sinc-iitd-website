@@ -1,5 +1,6 @@
 import type { RegistryEntry } from "@/lib/schemas";
 import { sendMail, siteUrl } from "@/lib/mail";
+import { listingStatus, padRegistryId } from "@/lib/registry-status";
 
 function escapeHtml(value: string): string {
   return value
@@ -7,10 +8,6 @@ function escapeHtml(value: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-}
-
-function padId(id: number): string {
-  return String(id).padStart(3, "0");
 }
 
 function listedAt(iso: string): string {
@@ -23,6 +20,14 @@ function listedAt(iso: string): string {
   } catch {
     return iso;
   }
+}
+
+function manageUrl(entry: RegistryEntry, hash?: "profile"): string {
+  const origin = siteUrl();
+  const token = entry.manageToken;
+  if (!token) return `${origin}/registry`;
+  const base = `${origin}/registry/m/${token}`;
+  return hash === "profile" ? `${base}#profile` : base;
 }
 
 const DEEP_LABELS: { key: keyof NonNullable<RegistryEntry["deep"]>; label: string }[] =
@@ -46,7 +51,8 @@ function deepRows(entry: RegistryEntry): { label: string; value: string }[] {
 
 function listingRows(entry: RegistryEntry): { label: string; value: string }[] {
   const rows: { label: string; value: string }[] = [
-    { label: "Entry", value: `№${padId(entry.id)}` },
+    { label: "Status", value: listingStatus(entry) },
+    { label: "Entry", value: `№${padRegistryId(entry.id)}` },
     { label: "Founder", value: entry.name },
     { label: "Email", value: entry.email },
     { label: "Venture", value: entry.venture },
@@ -61,13 +67,15 @@ function listingRows(entry: RegistryEntry): { label: string; value: string }[] {
 }
 
 function textBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
-  const origin = siteUrl();
+  const manage = manageUrl(entry);
+  const profile = manageUrl(entry, "profile");
   const lines = [
     `Hello ${entry.name},`,
     "",
     kind === "profile"
-      ? `Your SInC Startup Registry listing (entry №${padId(entry.id)}) now includes the full founder profile.`
-      : `You're listed in the IIT Delhi SInC Startup Registry as entry №${padId(entry.id)}.`,
+      ? `Your SInC Startup Registry listing (entry №${padRegistryId(entry.id)}) now includes the full founder profile.`
+      : `You're listed in the IIT Delhi SInC Startup Registry as entry №${padRegistryId(entry.id)}.`,
+    `Status: ${listingStatus(entry)}`,
     "",
     "— Listing —",
     ...listingRows(entry).map((r) => `${r.label}: ${r.value}`),
@@ -76,18 +84,19 @@ function textBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
   const deep = deepRows(entry);
   if (deep.length) {
     lines.push("", "— Founder profile —", ...deep.map((r) => `${r.label}: ${r.value}`));
-  } else if (kind === "listing") {
-    lines.push(
-      "",
-      `You can add a fuller profile (problem, solution, funds, deck, revenue, next 6–12 months) at ${origin}/registry`
-    );
   }
 
   lines.push(
     "",
+    `Manage this listing (no login — keep this link): ${manage}`
+  );
+  if (!deep.length) {
+    lines.push(`Add a full profile (problem, solution, funds, deck, revenue, plans): ${profile}`);
+  }
+  lines.push(
+    "",
     "This listing is private to the SInC team — it is not published on the website.",
-    `Cohort 01 applications: ${origin}/apply`,
-    `Questions: studentincubationcell@gmail.com`,
+    "Questions: studentincubationcell@gmail.com",
     "",
     "— Student Incubation Cell, IIT Delhi"
   );
@@ -96,7 +105,8 @@ function textBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
 }
 
 function htmlBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
-  const origin = siteUrl();
+  const manage = manageUrl(entry);
+  const profile = manageUrl(entry, "profile");
   const rowsHtml = (rows: { label: string; value: string }[]) =>
     rows
       .map(
@@ -110,17 +120,16 @@ function htmlBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
   const deep = deepRows(entry);
   const headline =
     kind === "profile"
-      ? `Full profile saved — entry №${padId(entry.id)}`
-      : `You're listed — entry №${padId(entry.id)}`;
+      ? `Full profile saved — entry №${padRegistryId(entry.id)}`
+      : `You're listed — entry №${padRegistryId(entry.id)}`;
   const intro =
     kind === "profile"
-      ? `Hi ${escapeHtml(entry.name)}, your founder profile is now attached to <strong>${escapeHtml(entry.venture)}</strong> in the SInC Startup Registry.`
-      : `Hi ${escapeHtml(entry.name)}, <strong>${escapeHtml(entry.venture)}</strong> is in the IIT Delhi SInC Startup Registry. Mentors and coordinators review listings privately.`;
+      ? `Hi ${escapeHtml(entry.name)}, your founder profile is now attached to <strong>${escapeHtml(entry.venture)}</strong>. Status: ${escapeHtml(listingStatus(entry))}.`
+      : `Hi ${escapeHtml(entry.name)}, <strong>${escapeHtml(entry.venture)}</strong> is in the IIT Delhi SInC Startup Registry. Status: ${escapeHtml(listingStatus(entry))}. Mentors review listings privately.`;
 
-  const profileHint =
-    !deep.length && kind === "listing"
-      ? `<p style="margin:20px 0 0;font-size:14px;line-height:1.55;color:#5c6578;">You can add problem, solution, funds, deck, revenue, and 6–12 month plans at <a href="${origin}/registry" style="color:#2453c4;">${origin}/registry</a>.</p>`
-      : "";
+  const profileBtn = !deep.length
+    ? `<a href="${escapeHtml(profile)}" style="display:inline-block;margin:0 8px 8px 0;padding:12px 18px;border:1px solid #15243d;color:#15243d;text-decoration:none;font-size:14px;font-weight:600;">Add full profile</a>`
+    : "";
 
   return `<!DOCTYPE html>
 <html>
@@ -129,6 +138,10 @@ function htmlBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
     <p style="margin:0 0 16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5c6578;">SInC · IIT Delhi</p>
     <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;color:#15243d;">${escapeHtml(headline)}</h1>
     <p style="margin:0 0 20px;font-size:15px;line-height:1.55;color:#15243d;">${intro}</p>
+    <p style="margin:0 0 20px;">
+      <a href="${escapeHtml(manage)}" style="display:inline-block;margin:0 8px 8px 0;padding:12px 18px;background:#15243d;color:#ffffff;text-decoration:none;font-size:14px;font-weight:600;">Manage listing</a>
+      ${profileBtn}
+    </p>
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#fff;border:1px solid #e6e4dc;border-collapse:collapse;">
       ${rowsHtml(listingRows(entry))}
     </table>
@@ -138,9 +151,9 @@ function htmlBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#fff;border:1px solid #e6e4dc;border-collapse:collapse;">
              ${rowsHtml(deep)}
            </table>`
-        : profileHint
+        : ""
     }
-    <p style="margin:20px 0 0;font-size:13px;line-height:1.55;color:#5c6578;">This listing is not public. Cohort 01 is a separate path: <a href="${origin}/apply" style="color:#2453c4;">${origin}/apply</a>. Questions: <a href="mailto:studentincubationcell@gmail.com" style="color:#2453c4;">studentincubationcell@gmail.com</a>.</p>
+    <p style="margin:20px 0 0;font-size:13px;line-height:1.55;color:#5c6578;">No login. Keep the manage link from this email, or reopen it on this browser — we’ll remember this listing. It is not public. Questions: <a href="mailto:studentincubationcell@gmail.com" style="color:#2453c4;">studentincubationcell@gmail.com</a>.</p>
   </div>
 </body>
 </html>`;
@@ -150,7 +163,7 @@ export async function sendRegistryConfirmation(
   entry: RegistryEntry,
   kind: "listing" | "profile" = "listing"
 ): Promise<boolean> {
-  const n = padId(entry.id);
+  const n = padRegistryId(entry.id);
   const subject =
     kind === "profile"
       ? `SInC registry — full profile on file (entry №${n})`

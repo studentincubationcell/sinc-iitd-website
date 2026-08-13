@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CheckCircle2, Lock } from "lucide-react";
 import {
   REGISTRY_SECTORS,
@@ -9,27 +10,24 @@ import {
   type RegistryEntry,
 } from "@/lib/schemas";
 import { cn } from "@/lib/utils";
+import {
+  managePath,
+  readCachedListing,
+  writeCachedListing,
+  type CachedListing,
+} from "@/lib/registry-cache";
+import {
+  registryAreaClass,
+  registryFieldClass,
+  registryLabelClass,
+  registryPrimaryBtn,
+  registrySelectClass,
+} from "@/components/forms/registry-styles";
 
 type Tab = "apply" | "registry";
 
-const fieldClass =
-  "mt-1.5 flex h-11 w-full rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-foreground";
-
-const areaClass =
-  "mt-1.5 flex min-h-[100px] w-full resize-y rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-foreground";
-
-const selectClass =
-  "mt-1.5 flex h-11 w-full appearance-none rounded-md border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-foreground";
-
-const labelClass = "block text-sm font-medium text-foreground";
-
-const primaryBtn =
-  "inline-flex h-11 items-center justify-center rounded-md bg-foreground px-5 text-sm font-semibold text-background transition-colors hover:bg-brand-blue disabled:opacity-50";
-
-const secondaryBtn =
-  "inline-flex h-11 items-center justify-center rounded-md border border-border bg-background px-5 text-sm font-medium text-foreground transition-colors hover:border-foreground disabled:opacity-50";
-
 export function RegistryExperience() {
+  const router = useRouter();
   const [tab, setTab] = useState<Tab>("apply");
   const [nextId, setNextId] = useState(1);
   const [name, setName] = useState("");
@@ -44,22 +42,17 @@ export function RegistryExperience() {
   const [error, setError] = useState<string | null>(null);
   const [entry, setEntry] = useState<RegistryEntry | null>(null);
   const [mailed, setMailed] = useState(false);
-  const [showDeep, setShowDeep] = useState(false);
-  const [deepSaved, setDeepSaved] = useState(false);
-  const [deep, setDeep] = useState({
-    problem: "",
-    solution: "",
-    funds: "",
-    deck: "",
-    revenue: "",
-    future: "",
-  });
+  const [cached, setCached] = useState<CachedListing | null>(null);
 
   const [passcode, setPasscode] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [entries, setEntries] = useState<RegistryEntry[]>([]);
   const [gateError, setGateError] = useState(false);
   const [loadingList, setLoadingList] = useState(false);
+
+  useEffect(() => {
+    setCached(readCachedListing());
+  }, []);
 
   useEffect(() => {
     fetch("/api/registry/next")
@@ -89,30 +82,17 @@ export function RegistryExperience() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Could not save");
-      setEntry(data.entry);
+      const saved = data.entry as RegistryEntry;
+      setEntry(saved);
       setMailed(Boolean(data.mailed));
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not save");
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  async function saveDeep() {
-    if (!entry) return;
-    setSubmitting(true);
-    setError(null);
-    try {
-      const res = await fetch(`/api/registry/${entry.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(deep),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Could not save");
-      setEntry(data.entry);
-      setDeepSaved(true);
-      setMailed(Boolean(data.mailed));
+      if (saved.manageToken) {
+        writeCachedListing({
+          token: saved.manageToken,
+          id: saved.id,
+          venture: saved.venture,
+        });
+        router.push(managePath(saved.manageToken));
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save");
     } finally {
@@ -156,11 +136,7 @@ export function RegistryExperience() {
           {tab === "apply" ? (
             <>
               List your venture in a few minutes. Mentors and coordinators review
-              submissions here. Cohort 01 is a separate path on{" "}
-              <Link href="/apply" className="text-foreground underline underline-offset-2">
-                Apply
-              </Link>
-              .
+              submissions here. Nothing is published publicly.
             </>
           ) : (
             <>Coordinator view of registry submissions. Passcode required.</>
@@ -191,6 +167,20 @@ export function RegistryExperience() {
         </div>
       </header>
 
+      {cached && tab === "apply" && !entry ? (
+        <p className="mt-6 border border-border px-4 py-3 text-sm text-foreground">
+          This browser already has a listing for{" "}
+          <span className="font-medium">{cached.venture}</span>
+          {" · "}
+          <Link
+            href={managePath(cached.token)}
+            className="underline underline-offset-2"
+          >
+            Manage listing
+          </Link>
+        </p>
+      ) : null}
+
       {tab === "apply" && (
         <div className="pt-8">
           {!entry ? (
@@ -201,12 +191,12 @@ export function RegistryExperience() {
 
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="sm:col-span-1">
-                  <label className={labelClass} htmlFor="reg-name">
+                  <label className={registryLabelClass} htmlFor="reg-name">
                     Full name
                   </label>
                   <input
                     id="reg-name"
-                    className={fieldClass}
+                    className={registryFieldClass}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -214,13 +204,13 @@ export function RegistryExperience() {
                   />
                 </div>
                 <div className="sm:col-span-1">
-                  <label className={labelClass} htmlFor="reg-email">
+                  <label className={registryLabelClass} htmlFor="reg-email">
                     IIT Delhi email
                   </label>
                   <input
                     id="reg-email"
                     type="email"
-                    className={fieldClass}
+                    className={registryFieldClass}
                     placeholder="entrynumber@iitd.ac.in"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -231,12 +221,12 @@ export function RegistryExperience() {
               </div>
 
               <div>
-                <label className={labelClass} htmlFor="reg-venture">
+                <label className={registryLabelClass} htmlFor="reg-venture">
                   Venture name
                 </label>
                 <input
                   id="reg-venture"
-                  className={fieldClass}
+                  className={registryFieldClass}
                   value={venture}
                   onChange={(e) => setVenture(e.target.value)}
                   required
@@ -244,12 +234,12 @@ export function RegistryExperience() {
               </div>
 
               <div>
-                <label className={labelClass} htmlFor="reg-pitch">
+                <label className={registryLabelClass} htmlFor="reg-pitch">
                   One-line pitch
                 </label>
                 <textarea
                   id="reg-pitch"
-                  className={areaClass}
+                  className={registryAreaClass}
                   placeholder="What you build, for whom, and why it matters."
                   value={pitch}
                   onChange={(e) => setPitch(e.target.value)}
@@ -260,12 +250,12 @@ export function RegistryExperience() {
 
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label className={labelClass} htmlFor="reg-stage">
+                  <label className={registryLabelClass} htmlFor="reg-stage">
                     Stage
                   </label>
                   <select
                     id="reg-stage"
-                    className={selectClass}
+                    className={registrySelectClass}
                     value={stage}
                     onChange={(e) => setStage(e.target.value)}
                     required
@@ -278,12 +268,12 @@ export function RegistryExperience() {
                   </select>
                 </div>
                 <div>
-                  <label className={labelClass} htmlFor="reg-sector">
+                  <label className={registryLabelClass} htmlFor="reg-sector">
                     Sector
                   </label>
                   <select
                     id="reg-sector"
-                    className={selectClass}
+                    className={registrySelectClass}
                     value={sector}
                     onChange={(e) => setSector(e.target.value)}
                     required
@@ -298,14 +288,14 @@ export function RegistryExperience() {
               </div>
 
               <div>
-                <label className={labelClass} htmlFor="reg-link">
+                <label className={registryLabelClass} htmlFor="reg-link">
                   Website or deck link{" "}
                   <span className="font-normal text-muted">(optional)</span>
                 </label>
                 <input
                   id="reg-link"
                   type="url"
-                  className={fieldClass}
+                  className={registryFieldClass}
                   placeholder="https://"
                   value={link}
                   onChange={(e) => setLink(e.target.value)}
@@ -313,13 +303,13 @@ export function RegistryExperience() {
               </div>
 
               <div>
-                <label className={labelClass} htmlFor="reg-referral">
+                <label className={registryLabelClass} htmlFor="reg-referral">
                   Refer another founder{" "}
                   <span className="font-normal text-muted">(optional)</span>
                 </label>
                 <input
                   id="reg-referral"
-                  className={fieldClass}
+                  className={registryFieldClass}
                   placeholder="Name or IITD email"
                   value={referral}
                   onChange={(e) => setReferral(e.target.value)}
@@ -332,7 +322,7 @@ export function RegistryExperience() {
                 <p className="text-xs text-muted">
                   Submissions are private to the SInC team.
                 </p>
-                <button type="submit" className={primaryBtn} disabled={submitting}>
+                <button type="submit" className={registryPrimaryBtn} disabled={submitting}>
                   {submitting ? "Saving…" : "Submit listing"}
                 </button>
               </div>
@@ -346,109 +336,19 @@ export function RegistryExperience() {
                     Listed as entry №{String(entry.id).padStart(3, "0")}
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {entry.venture} is saved. The SInC team reviews listings from the
-                    internal registry — nothing is published publicly.
+                    {entry.venture} is saved. Check your email for a manage link
+                    {mailed ? ` sent to ${entry.email}` : ""}.
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground">
-                    {mailed
-                      ? deepSaved
-                        ? `Updated confirmation with your full profile sent to ${entry.email}.`
-                        : `Confirmation sent to ${entry.email} with your listing details.`
-                      : `We couldn't send email just now. Keep this page as your record, or write to studentincubationcell@gmail.com.`}
-                  </p>
-                  <dl className="mt-5 space-y-2 text-sm">
-                    {(
-                      [
-                        ["Venture", entry.venture],
-                        ["Pitch", entry.pitch],
-                        ["Stage", entry.stage],
-                        ["Sector", entry.sector],
-                        entry.link ? ["Link", entry.link] : null,
-                        entry.referral ? ["Referral", entry.referral] : null,
-                      ] as ([string, string] | null)[]
-                    )
-                      .filter((row): row is [string, string] => Boolean(row))
-                      .map(([label, value]) => (
-                        <div key={label}>
-                          <dt className="text-xs text-muted">{label}</dt>
-                          <dd className="text-foreground">{value}</dd>
-                        </div>
-                      ))}
-                  </dl>
+                  {entry.manageToken ? (
+                    <Link
+                      href={managePath(entry.manageToken)}
+                      className={`${registryPrimaryBtn} mt-6`}
+                    >
+                      Manage listing
+                    </Link>
+                  ) : null}
                 </div>
               </div>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                {!showDeep && !deepSaved ? (
-                  <button
-                    type="button"
-                    className={primaryBtn}
-                    onClick={() => setShowDeep(true)}
-                  >
-                    Add full profile
-                  </button>
-                ) : null}
-                <Link href="/apply" className={secondaryBtn}>
-                  Apply to Cohort
-                </Link>
-              </div>
-
-              {showDeep && !deepSaved ? (
-                <div className="mt-8 space-y-5 border-t border-border pt-6">
-                  <p className="text-sm text-muted">
-                    Optional detail for mentors — problem, solution, funds, deck,
-                    revenue, and next 6–12 months. We email you a copy when you save.
-                  </p>
-                  {(
-                    [
-                      ["problem", "What problem are you solving?", true],
-                      ["solution", "What's your proposed solution?", true],
-                      ["funds", "Funds raised (₹, optional)", false],
-                      ["deck", "Pitch deck or demo link", false],
-                      ["revenue", "Revenue / customers", false],
-                      ["future", "Plans for the next 6–12 months", true],
-                    ] as const
-                  ).map(([key, label, multiline]) => (
-                    <div key={key}>
-                      <label className={labelClass} htmlFor={`deep-${key}`}>
-                        {label}
-                      </label>
-                      {multiline ? (
-                        <textarea
-                          id={`deep-${key}`}
-                          className={areaClass}
-                          value={deep[key]}
-                          onChange={(e) =>
-                            setDeep((d) => ({ ...d, [key]: e.target.value }))
-                          }
-                        />
-                      ) : (
-                        <input
-                          id={`deep-${key}`}
-                          className={fieldClass}
-                          value={deep[key]}
-                          onChange={(e) =>
-                            setDeep((d) => ({ ...d, [key]: e.target.value }))
-                          }
-                        />
-                      )}
-                    </div>
-                  ))}
-                  {error ? <p className="text-sm text-destructive">{error}</p> : null}
-                  <button
-                    type="button"
-                    className={primaryBtn}
-                    disabled={submitting}
-                    onClick={saveDeep}
-                  >
-                    {submitting ? "Saving…" : "Save full profile"}
-                  </button>
-                </div>
-              ) : null}
-
-              {deepSaved ? (
-                <p className="mt-6 text-sm text-foreground">Full profile saved.</p>
-              ) : null}
             </div>
           )}
         </div>
@@ -464,13 +364,13 @@ export function RegistryExperience() {
               </div>
               <p className="text-sm text-muted">Enter the passcode to view submissions.</p>
               <div>
-                <label className={labelClass} htmlFor="reg-pass">
+                <label className={registryLabelClass} htmlFor="reg-pass">
                   Passcode
                 </label>
                 <input
                   id="reg-pass"
                   type="password"
-                  className={fieldClass}
+                  className={registryFieldClass}
                   value={passcode}
                   onChange={(e) => setPasscode(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && unlockRegistry()}
@@ -478,7 +378,7 @@ export function RegistryExperience() {
               </div>
               <button
                 type="button"
-                className={primaryBtn}
+                className={registryPrimaryBtn}
                 disabled={loadingList}
                 onClick={unlockRegistry}
               >

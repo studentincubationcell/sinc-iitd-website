@@ -313,6 +313,7 @@ export const registryEntrySchema = z.object({
   referral: z.string().optional(),
   timestamp: z.string(),
   deep: registryDeepSchema.optional(),
+  manageToken: z.string().optional(),
 });
 
 export const registryCreateSchema = z.object({

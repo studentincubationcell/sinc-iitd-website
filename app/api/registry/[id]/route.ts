@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { registryDeepSchema } from "@/lib/schemas";
-import { attachDeepProfile } from "@/lib/registry-store";
+import {
+  attachDeepProfile,
+  checkRegistryPasscode,
+} from "@/lib/registry-store";
 import { sendRegistryConfirmation } from "@/lib/registry-mail";
 
 export const runtime = "nodejs";
@@ -10,6 +13,10 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const passcode = request.headers.get("x-registry-passcode") || "";
+    if (!checkRegistryPasscode(passcode)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { id: idParam } = await context.params;
     const id = Number(idParam);
     if (!Number.isFinite(id)) {

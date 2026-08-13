@@ -7,8 +7,9 @@ import {
   REGISTRY_SECTORS,
   REGISTRY_STAGES,
 } from "./schemas";
+import { newManageToken } from "./registry-token";
 
-function mapRow(row: {
+type Row = {
   id: number;
   name: string;
   email: string;
@@ -19,8 +20,11 @@ function mapRow(row: {
   link: string | null;
   referral: string | null;
   deepJson: string | null;
+  manageToken: string | null;
   createdAt: Date;
-}): RegistryEntry {
+};
+
+function mapRow(row: Row, includeToken = false): RegistryEntry {
   let deep: RegistryEntry["deep"];
   if (row.deepJson) {
     try {
@@ -49,14 +53,23 @@ function mapRow(row: {
     referral: row.referral ?? undefined,
     timestamp: row.createdAt.toISOString(),
     deep,
+    ...(includeToken && row.manageToken ? { manageToken: row.manageToken } : {}),
   };
+}
+
+async function withToken(row: Row): Promise<Row> {
+  if (row.manageToken) return row;
+  return prisma.registryEntry.update({
+    where: { id: row.id },
+    data: { manageToken: newManageToken() },
+  });
 }
 
 export async function listRegistryEntries(): Promise<RegistryEntry[]> {
   const rows = await prisma.registryEntry.findMany({
     orderBy: { id: "asc" },
   });
-  return rows.map(mapRow);
+  return rows.map((row) => mapRow(row, false));
 }
 
 export async function nextRegistryNumber(): Promise<number> {
@@ -77,9 +90,23 @@ export async function createRegistryEntry(
       sector: input.sector,
       link: input.link?.trim() || null,
       referral: input.referral?.trim() || null,
+      manageToken: newManageToken(),
     },
   });
-  return mapRow(row);
+  return mapRow(row, true);
+}
+
+export async function getRegistryEntryByToken(
+  token: string
+): Promise<RegistryEntry | null> {
+  const trimmed = token.trim();
+  if (trimmed.length < 16) return null;
+  const found = await prisma.registryEntry.findUnique({
+    where: { manageToken: trimmed },
+  });
+  if (!found) return null;
+  const row = await withToken(found);
+  return mapRow(row, true);
 }
 
 export async function attachDeepProfile(
@@ -88,7 +115,23 @@ export async function attachDeepProfile(
 ): Promise<RegistryEntry | null> {
   const existing = await prisma.registryEntry.findUnique({ where: { id } });
   if (!existing) return null;
+  return saveDeep(existing.id, deep);
+}
 
+export async function attachDeepProfileByToken(
+  token: string,
+  deep: RegistryDeep
+): Promise<RegistryEntry | null> {
+  const trimmed = token.trim();
+  if (trimmed.length < 16) return null;
+  const existing = await prisma.registryEntry.findUnique({
+    where: { manageToken: trimmed },
+  });
+  if (!existing) return null;
+  return saveDeep(existing.id, deep);
+}
+
+async function saveDeep(id: number, deep: RegistryDeep): Promise<RegistryEntry> {
   const payload = {
     problem: deep.problem?.trim() || undefined,
     solution: deep.solution?.trim() || undefined,
@@ -102,8 +145,10 @@ export async function attachDeepProfile(
     where: { id },
     data: { deepJson: JSON.stringify(payload) },
   });
-  return mapRow(row);
+  return mapRow(row, true);
 }
+
+import { listingStatus } from "./registry-status";
 
 export function checkRegistryPasscode(code: string): boolean {
   const expected = process.env.REGISTRY_PASSCODE || "sinc2026";
