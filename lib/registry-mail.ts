@@ -1,6 +1,6 @@
 import type { RegistryEntry } from "@/lib/schemas";
 import { sendMail, siteUrl } from "@/lib/mail";
-import { listingStatus, padRegistryId, sectorLabel } from "@/lib/registry-status";
+import { listingStatus, sectorLabel, entryLabel } from "@/lib/registry-status";
 
 function escapeHtml(value: string): string {
   return value
@@ -52,7 +52,7 @@ function deepRows(entry: RegistryEntry): { label: string; value: string }[] {
 function listingRows(entry: RegistryEntry): { label: string; value: string }[] {
   const rows: { label: string; value: string }[] = [
     { label: "Status", value: listingStatus(entry) },
-    { label: "Entry", value: `№${padRegistryId(entry.id)}` },
+    { label: "Entry", value: entryLabel(entry.id) },
     { label: "Founder", value: entry.name },
     { label: "Kerberos mail", value: entry.email },
     { label: "Venture", value: entry.venture },
@@ -76,8 +76,8 @@ function textBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
     `Hello ${entry.name},`,
     "",
     kind === "profile"
-      ? `Your SInC Startup Registry listing (entry №${padRegistryId(entry.id)}) now includes the full founder profile.`
-      : `You're listed in the IIT Delhi SInC Startup Registry as entry №${padRegistryId(entry.id)}.`,
+      ? `Your SInC Startup Registry listing (${entryLabel(entry.id)}) now includes the full founder profile.`
+      : `You're listed in the IIT Delhi SInC Startup Registry as ${entryLabel(entry.id)}.`,
     `Status: ${listingStatus(entry)}`,
     "",
     "— Listing —",
@@ -123,8 +123,8 @@ function htmlBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
   const deep = deepRows(entry);
   const headline =
     kind === "profile"
-      ? `Full profile saved — entry №${padRegistryId(entry.id)}`
-      : `You're listed — entry №${padRegistryId(entry.id)}`;
+      ? `Full profile saved — ${entryLabel(entry.id)}`
+      : `You're listed — ${entryLabel(entry.id)}`;
   const intro =
     kind === "profile"
       ? `Hi ${escapeHtml(entry.name)}, your founder profile is now attached to <strong>${escapeHtml(entry.venture)}</strong>. Status: ${escapeHtml(listingStatus(entry))}.`
@@ -166,11 +166,11 @@ export async function sendRegistryConfirmation(
   entry: RegistryEntry,
   kind: "listing" | "profile" = "listing"
 ): Promise<boolean> {
-  const n = padRegistryId(entry.id);
+  const n = entryLabel(entry.id);
   const subject =
     kind === "profile"
-      ? `SInC registry — full profile on file (entry №${n})`
-      : `You're listed in the SInC Startup Registry — entry №${n}`;
+      ? `SInC registry — full profile on file (${n})`
+      : `You're listed in the SInC Startup Registry — ${n}`;
 
   return sendMail({
     to: entry.email,

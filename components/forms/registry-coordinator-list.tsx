@@ -5,7 +5,6 @@ import type { RegistryEntry } from "@/lib/schemas";
 import {
   listingStatus,
   listedAt,
-  padRegistryId,
   sectorLabel,
   REGISTRY_DEEP_LABELS,
 } from "@/lib/registry-status";
@@ -68,14 +67,15 @@ function CoordinatorCard({
         onClick={onToggle}
         aria-expanded={open}
       >
-        <div>
-          <h3 className="text-base font-semibold text-foreground">{entry.venture}</h3>
+        <div className="min-w-0">
+          <p className="text-sm text-muted">Entry {entry.id}</p>
+          <h3 className="mt-0.5 text-base font-semibold text-foreground">{entry.venture}</h3>
           <p className="mt-1 text-sm text-muted">
             {listingStatus(entry)} · {sectorLabel(entry)} · {entry.name}
           </p>
         </div>
-        <span className="shrink-0 font-mono text-[11px] text-muted">
-          №{padRegistryId(entry.id)} · {open ? "Hide" : "Open"}
+        <span className="shrink-0 pt-0.5 text-sm text-muted">
+          {open ? "Hide" : "Open"}
         </span>
       </button>
       {open ? (

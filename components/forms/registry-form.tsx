@@ -10,6 +10,7 @@ import {
   type RegistryEntry,
 } from "@/lib/schemas";
 import { RegistryCoordinatorList } from "@/components/forms/registry-coordinator-list";
+import { entryLabel } from "@/lib/registry-status";
 import { cn } from "@/lib/utils";
 import {
   managePath,
@@ -212,7 +213,7 @@ export function RegistryExperience() {
           {!entry ? (
             <form onSubmit={submitQuick} className="space-y-6">
               <p className="font-mono text-xs text-muted">
-                Next entry · №{String(nextId).padStart(3, "0")}
+                Next listing · Entry {nextId}
               </p>
 
               <div className="grid gap-6 sm:grid-cols-2">
@@ -427,7 +428,7 @@ export function RegistryExperience() {
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-teal" />
                 <div>
                   <h2 className="text-xl font-semibold tracking-tight text-foreground">
-                    Listed as entry №{String(entry.id).padStart(3, "0")}
+                    Listed as {entryLabel(entry.id)}
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-muted">
                     {entry.venture} is saved. Check your email for a manage link

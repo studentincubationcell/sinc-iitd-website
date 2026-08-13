@@ -2,8 +2,8 @@ export function listingStatus(entry: { deep?: unknown } | null | undefined): str
   return entry?.deep ? "Listed · full profile" : "Listed · basic details";
 }
 
-export function padRegistryId(id: number): string {
-  return String(id).padStart(3, "0");
+export function entryLabel(id: number): string {
+  return `Entry ${id}`;
 }
 
 export function listedAt(iso: string): string {

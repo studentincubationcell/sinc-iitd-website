@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import type { RegistryEntry } from "@/lib/schemas";
 import { writeCachedListing } from "@/lib/registry-cache";
-import { listingStatus, padRegistryId, sectorLabel } from "@/lib/registry-status";
+import { listingStatus, sectorLabel, entryLabel } from "@/lib/registry-status";
 import {
   registryAreaClass,
   registryFieldClass,
@@ -122,7 +122,7 @@ export function RegistryManage({ token }: { token: string }) {
 
   const basics: [string, string][] = [
     ["Status", listingStatus(entry)],
-    ["Entry", `№${padRegistryId(entry.id)}`],
+    ["Entry", entryLabel(entry.id)],
     ["Founder", entry.name],
     ["Kerberos mail", entry.email],
     ["Venture", entry.venture],
