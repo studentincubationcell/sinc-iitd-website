@@ -275,6 +275,57 @@ export const teamMemberSchema = z.object({
   image: optionalImage,
 });
 
+export const REGISTRY_STAGES = [
+  "Ideation",
+  "Prototype / POC",
+  "MVP, early users",
+  "Revenue-generating",
+  "Research project",
+] as const;
+
+export const REGISTRY_SECTORS = [
+  "Consumer",
+  "Deep tech",
+  "Fintech",
+  "Climate / Energy",
+  "HealthTech",
+  "Other",
+] as const;
+
+export const registryDeepSchema = z.object({
+  problem: z.string().optional(),
+  solution: z.string().optional(),
+  funds: z.string().optional(),
+  deck: z.string().optional(),
+  revenue: z.string().optional(),
+  future: z.string().optional(),
+});
+
+export const registryEntrySchema = z.object({
+  id: z.number(),
+  name: z.string().min(2),
+  email: z.string().email(),
+  venture: z.string().min(2),
+  pitch: z.string().min(10),
+  stage: z.enum(REGISTRY_STAGES),
+  sector: z.enum(REGISTRY_SECTORS),
+  link: z.string().optional(),
+  referral: z.string().optional(),
+  timestamp: z.string(),
+  deep: registryDeepSchema.optional(),
+});
+
+export const registryCreateSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  venture: z.string().min(2),
+  pitch: z.string().min(10),
+  stage: z.enum(REGISTRY_STAGES),
+  sector: z.enum(REGISTRY_SECTORS),
+  link: z.string().optional(),
+  referral: z.string().optional(),
+});
+
 export type Site = z.infer<typeof siteSchema>;
 export type Program = z.infer<typeof programSchema>;
 export type JourneyStep = z.infer<typeof journeyStepSchema>;
@@ -291,6 +342,9 @@ export type Bounty = z.infer<typeof bountySchema>;
 export type TeamMatching = z.infer<typeof teamMatchingSchema>;
 export type Opportunities = z.infer<typeof opportunitiesSchema>;
 export type ContentMap = z.infer<typeof contentMapSchema>;
+export type RegistryEntry = z.infer<typeof registryEntrySchema>;
+export type RegistryCreate = z.infer<typeof registryCreateSchema>;
+export type RegistryDeep = z.infer<typeof registryDeepSchema>;
 
 export const EVENT_CATEGORY_LABELS: Record<
   (typeof EVENT_CATEGORIES)[number],

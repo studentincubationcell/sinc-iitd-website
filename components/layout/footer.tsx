@@ -12,7 +12,7 @@ const socialIcons: Record<string, React.ReactNode> = {
 
 const directories = [
   { title: "Discover", links: [["Events", "/events"], ["Portfolio", "/portfolio"], ["Resources", "/resources"]] },
-  { title: "Participate", links: [["Programs", "/programs"], ["Opportunities", "/opportunities"], ["Cohort 01", "/cohort"], ["Apply", "/apply"]] },
+  { title: "Participate", links: [["Programs", "/programs"], ["Opportunities", "/opportunities"], ["Cohort 01", "/cohort"], ["Registry", "/registry"], ["Apply", "/apply"]] },
   { title: "SInC", links: [["Network", "/network"], ["About", "/about"], ["Team", "/team"], ["Contact", "/contact"]] },
 ] as const;
 
@@ -33,8 +33,8 @@ export function Footer() {
             <h2 className="mega-display mt-6 text-balance text-4xl sm:text-5xl">
               The campus is full of ideas. Let&apos;s help the right ones move.
             </h2>
-            <Link href="/apply" className="pill-cta pill-cta-inverse mt-10">
-              Find your way in <ArrowUpRight className="h-4 w-4" />
+            <Link href="/registry" className="pill-cta pill-cta-inverse mt-10">
+              Join the registry <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
 
