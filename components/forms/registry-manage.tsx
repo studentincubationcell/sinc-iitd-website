@@ -124,7 +124,7 @@ export function RegistryManage({ token }: { token: string }) {
     ["Status", listingStatus(entry)],
     ["Entry", `№${padRegistryId(entry.id)}`],
     ["Founder", entry.name],
-    ["Email", entry.email],
+    ["Kerberos mail", entry.email],
     ["Venture", entry.venture],
     ["Pitch", entry.pitch],
     ["Stage", entry.stage],

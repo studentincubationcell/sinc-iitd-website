@@ -231,13 +231,13 @@ export function RegistryExperience() {
                 </div>
                 <div className="sm:col-span-1">
                   <label className={registryLabelClass} htmlFor="reg-email">
-                    IIT Delhi email
+                    Kerberos mail
                   </label>
                   <input
                     id="reg-email"
                     type="email"
                     className={registryFieldClass}
-                    placeholder="entrynumber@iitd.ac.in"
+                    placeholder="kerberosid@iitd.ac.in"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required

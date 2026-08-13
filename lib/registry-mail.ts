@@ -54,7 +54,7 @@ function listingRows(entry: RegistryEntry): { label: string; value: string }[] {
     { label: "Status", value: listingStatus(entry) },
     { label: "Entry", value: `№${padRegistryId(entry.id)}` },
     { label: "Founder", value: entry.name },
-    { label: "Email", value: entry.email },
+    { label: "Kerberos mail", value: entry.email },
     { label: "Venture", value: entry.venture },
     { label: "Pitch", value: entry.pitch },
     { label: "Stage", value: entry.stage },
