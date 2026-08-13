@@ -26,7 +26,7 @@ console.log(`wrote prisma/schema.runtime.prisma (${provider})`);
 if (shouldPush) {
   const quotedSchema = `"${dest.replace(/"/g, '\\"')}"`;
   const result = spawnSync(
-    `npx prisma db push --schema ${quotedSchema} --skip-generate`,
+    `npx prisma db push --schema ${quotedSchema} --skip-generate --accept-data-loss`,
     { stdio: "inherit", cwd: root, env: process.env, shell: true }
   );
   if (result.error) {
