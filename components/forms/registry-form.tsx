@@ -9,7 +9,7 @@ import {
   REGISTRY_STAGES,
   type RegistryEntry,
 } from "@/lib/schemas";
-import { sectorLabel } from "@/lib/registry-status";
+import { RegistryCoordinatorList } from "@/components/forms/registry-coordinator-list";
 import { cn } from "@/lib/utils";
 import {
   managePath,
@@ -490,31 +490,7 @@ export function RegistryExperience() {
               No submissions yet.
             </p>
           ) : (
-            <ul className="divide-y divide-border border border-border">
-              {[...entries].reverse().map((e) => (
-                <li key={e.id} className="px-5 py-4">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="text-base font-semibold text-foreground">{e.venture}</h3>
-                    <span className="shrink-0 font-mono text-[11px] text-muted">
-                      №{String(e.id).padStart(3, "0")}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{e.pitch}</p>
-                  <p className="mt-2 text-xs text-muted">
-                    {e.stage} · {sectorLabel(e)}
-                    {e.deep ? " · Full profile" : ""}
-                  </p>
-                  <p className="mt-1 font-mono text-[11px] text-muted">
-                    {e.name} · {e.email}
-                    {e.phone ? ` · ${e.phone}` : ""}
-                    {e.whatsapp ? ` · WA ${e.whatsapp}` : ""}
-                    {e.linkedin ? ` · ${e.linkedin}` : ""}
-                    {e.link ? ` · ${e.link}` : ""}
-                    {e.referral ? ` · Referred: ${e.referral}` : ""}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <RegistryCoordinatorList entries={entries} />
           )}
         </div>
       )}
