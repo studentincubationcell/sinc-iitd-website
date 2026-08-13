@@ -130,6 +130,9 @@ export function RegistryManage({ token }: { token: string }) {
     ["Stage", entry.stage],
     ["Sector", entry.sector],
   ];
+  if (entry.phone) basics.push(["Phone", entry.phone]);
+  if (entry.whatsapp) basics.push(["WhatsApp", entry.whatsapp]);
+  if (entry.linkedin) basics.push(["LinkedIn", entry.linkedin]);
   if (entry.link) basics.push(["Link", entry.link]);
   if (entry.referral) basics.push(["Referral", entry.referral]);
 

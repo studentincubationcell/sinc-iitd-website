@@ -61,6 +61,9 @@ function listingRows(entry: RegistryEntry): { label: string; value: string }[] {
     { label: "Sector", value: entry.sector },
     { label: "Listed", value: listedAt(entry.timestamp) },
   ];
+  if (entry.phone) rows.push({ label: "Phone", value: entry.phone });
+  if (entry.whatsapp) rows.push({ label: "WhatsApp", value: entry.whatsapp });
+  if (entry.linkedin) rows.push({ label: "LinkedIn", value: entry.linkedin });
   if (entry.link) rows.push({ label: "Website / deck", value: entry.link });
   if (entry.referral) rows.push({ label: "Referral", value: entry.referral });
   return rows;

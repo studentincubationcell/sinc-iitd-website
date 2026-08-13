@@ -38,6 +38,9 @@ export function RegistryExperience() {
   const [sector, setSector] = useState<string>(REGISTRY_SECTORS[0]);
   const [link, setLink] = useState("");
   const [referral, setReferral] = useState("");
+  const [phone, setPhone] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [linkedin, setLinkedin] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [entry, setEntry] = useState<RegistryEntry | null>(null);
@@ -52,6 +55,12 @@ export function RegistryExperience() {
 
   useEffect(() => {
     setCached(readCachedListing());
+    try {
+      const saved = window.localStorage.getItem("sinc-registry-coord");
+      if (saved) setPasscode(saved);
+    } catch {
+      /* ignore */
+    }
   }, []);
 
   useEffect(() => {
@@ -76,6 +85,9 @@ export function RegistryExperience() {
           pitch,
           stage,
           sector,
+          phone,
+          whatsapp: whatsapp || undefined,
+          linkedin: linkedin || undefined,
           link: link || undefined,
           referral: referral || undefined,
         }),
@@ -100,12 +112,17 @@ export function RegistryExperience() {
     }
   }
 
-  async function unlockRegistry() {
+  async function unlockRegistry(code = passcode) {
+    const key = code.trim();
+    if (!key) {
+      setGateError(true);
+      return;
+    }
     setLoadingList(true);
     setGateError(false);
     try {
       const res = await fetch("/api/registry", {
-        headers: { "x-registry-passcode": passcode },
+        headers: { "x-registry-passcode": key },
       });
       if (!res.ok) {
         setGateError(true);
@@ -115,6 +132,12 @@ export function RegistryExperience() {
       const data = await res.json();
       setEntries(data.entries ?? []);
       setUnlocked(true);
+      setPasscode(key);
+      try {
+        window.localStorage.setItem("sinc-registry-coord", key);
+      } catch {
+        /* ignore */
+      }
     } catch {
       setGateError(true);
     } finally {
@@ -218,6 +241,54 @@ export function RegistryExperience() {
                     autoComplete="email"
                   />
                 </div>
+              </div>
+
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div>
+                  <label className={registryLabelClass} htmlFor="reg-phone">
+                    Phone
+                  </label>
+                  <input
+                    id="reg-phone"
+                    type="tel"
+                    className={registryFieldClass}
+                    placeholder="+91 9XXXXXXXXX"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                    autoComplete="tel"
+                  />
+                </div>
+                <div>
+                  <label className={registryLabelClass} htmlFor="reg-whatsapp">
+                    WhatsApp{" "}
+                    <span className="font-normal text-muted">(optional)</span>
+                  </label>
+                  <input
+                    id="reg-whatsapp"
+                    type="tel"
+                    className={registryFieldClass}
+                    placeholder="Same as phone if blank"
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(e.target.value)}
+                    autoComplete="tel"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className={registryLabelClass} htmlFor="reg-linkedin">
+                  LinkedIn{" "}
+                  <span className="font-normal text-muted">(optional)</span>
+                </label>
+                <input
+                  id="reg-linkedin"
+                  type="url"
+                  className={registryFieldClass}
+                  placeholder="https://www.linkedin.com/in/…"
+                  value={linkedin}
+                  onChange={(e) => setLinkedin(e.target.value)}
+                />
               </div>
 
               <div>
@@ -362,7 +433,10 @@ export function RegistryExperience() {
                 <Lock className="h-4 w-4 text-muted" />
                 <h2 className="text-base font-semibold">Coordinator access</h2>
               </div>
-              <p className="text-sm text-muted">Enter the passcode to view submissions.</p>
+              <p className="text-sm text-muted">
+                Shared team passcode — not a personal login. Ask a SInC coordinator
+                if you don&apos;t have it.
+              </p>
               <div>
                 <label className={registryLabelClass} htmlFor="reg-pass">
                   Passcode
@@ -373,14 +447,14 @@ export function RegistryExperience() {
                   className={registryFieldClass}
                   value={passcode}
                   onChange={(e) => setPasscode(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && unlockRegistry()}
+                  onKeyDown={(e) => e.key === "Enter" && void unlockRegistry()}
                 />
               </div>
               <button
                 type="button"
                 className={registryPrimaryBtn}
                 disabled={loadingList}
-                onClick={unlockRegistry}
+                onClick={() => void unlockRegistry()}
               >
                 {loadingList ? "Unlocking…" : "Unlock"}
               </button>
@@ -409,6 +483,9 @@ export function RegistryExperience() {
                   </p>
                   <p className="mt-1 font-mono text-[11px] text-muted">
                     {e.name} · {e.email}
+                    {e.phone ? ` · ${e.phone}` : ""}
+                    {e.whatsapp ? ` · WA ${e.whatsapp}` : ""}
+                    {e.linkedin ? ` · ${e.linkedin}` : ""}
                     {e.link ? ` · ${e.link}` : ""}
                     {e.referral ? ` · Referred: ${e.referral}` : ""}
                   </p>

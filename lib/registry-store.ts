@@ -19,6 +19,9 @@ type Row = {
   sector: string;
   link: string | null;
   referral: string | null;
+  phone: string | null;
+  whatsapp: string | null;
+  linkedin: string | null;
   deepJson: string | null;
   manageToken: string | null;
   createdAt: Date;
@@ -51,6 +54,9 @@ function mapRow(row: Row, includeToken = false): RegistryEntry {
     sector,
     link: row.link ?? undefined,
     referral: row.referral ?? undefined,
+    phone: row.phone ?? undefined,
+    whatsapp: row.whatsapp ?? undefined,
+    linkedin: row.linkedin ?? undefined,
     timestamp: row.createdAt.toISOString(),
     deep,
     ...(includeToken && row.manageToken ? { manageToken: row.manageToken } : {}),
@@ -90,6 +96,9 @@ export async function createRegistryEntry(
       sector: input.sector,
       link: input.link?.trim() || null,
       referral: input.referral?.trim() || null,
+      phone: input.phone.trim(),
+      whatsapp: input.whatsapp?.trim() || null,
+      linkedin: input.linkedin?.trim() || null,
       manageToken: newManageToken(),
     },
   });
@@ -148,9 +157,11 @@ async function saveDeep(id: number, deep: RegistryDeep): Promise<RegistryEntry> 
   return mapRow(row, true);
 }
 
-import { listingStatus } from "./registry-status";
-
 export function checkRegistryPasscode(code: string): boolean {
-  const expected = process.env.REGISTRY_PASSCODE || "sinc2026";
+  const expected = process.env.REGISTRY_PASSCODE;
+  if (!expected) {
+    if (process.env.NODE_ENV === "production") return false;
+    return code.length > 0 && code === "sinc2026";
+  }
   return code.length > 0 && code === expected;
 }

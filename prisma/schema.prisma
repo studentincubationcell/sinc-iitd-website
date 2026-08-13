@@ -20,6 +20,9 @@ model RegistryEntry {
   sector    String
   link      String?
   referral  String?
+  phone     String?
+  whatsapp  String?
+  linkedin  String?
   /// Optional deep profile JSON: problem, solution, funds, deck, revenue, future
   deepJson  String?
   /// Unlisted secret for the founder manage link (no login)
