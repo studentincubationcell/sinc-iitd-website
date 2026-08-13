@@ -63,11 +63,16 @@ export async function sendMail(opts: {
   const from =
     process.env.SMTP_FROM ||
     `"SInC IIT Delhi" <${process.env.SMTP_USER}>`;
+  const replyTo =
+    process.env.SMTP_REPLY_TO ||
+    process.env.SMTP_USER ||
+    "studentincubationcell@gmail.com";
 
   try {
     await tx.sendMail({
       from,
       to: opts.to,
+      replyTo,
       bcc: opts.bcc || process.env.REGISTRY_NOTIFY_EMAIL || undefined,
       subject: opts.subject,
       text: opts.text,

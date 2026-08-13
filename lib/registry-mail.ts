@@ -87,7 +87,7 @@ function textBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
     "",
     "This listing is private to the SInC team — it is not published on the website.",
     `Cohort 01 applications: ${origin}/apply`,
-    `Questions: sinc@iitd.ac.in`,
+    `Questions: studentincubationcell@gmail.com`,
     "",
     "— Student Incubation Cell, IIT Delhi"
   );
@@ -140,7 +140,7 @@ function htmlBody(entry: RegistryEntry, kind: "listing" | "profile"): string {
            </table>`
         : profileHint
     }
-    <p style="margin:20px 0 0;font-size:13px;line-height:1.55;color:#5c6578;">This listing is not public. Cohort 01 is a separate path: <a href="${origin}/apply" style="color:#2453c4;">${origin}/apply</a>. Questions: <a href="mailto:sinc@iitd.ac.in" style="color:#2453c4;">sinc@iitd.ac.in</a>.</p>
+    <p style="margin:20px 0 0;font-size:13px;line-height:1.55;color:#5c6578;">This listing is not public. Cohort 01 is a separate path: <a href="${origin}/apply" style="color:#2453c4;">${origin}/apply</a>. Questions: <a href="mailto:studentincubationcell@gmail.com" style="color:#2453c4;">studentincubationcell@gmail.com</a>.</p>
   </div>
 </body>
 </html>`;

@@ -73,13 +73,13 @@ Emails go to the founder who registered. If they later save a **full profile**
 (problem, solution, funds, deck, revenue, next 6–12 months), a second email
 includes those fields too.
 
-Optional `REGISTRY_NOTIFY_EMAIL` BCCs coordinators (use `sinc@iitd.ac.in`).
+Optional `REGISTRY_NOTIFY_EMAIL` BCCs coordinators (`studentincubationcell@gmail.com`).
 
-### Option A — Google Workspace / Gmail (`sinc@iitd.ac.in`)
+### Option A — Gmail (`studentincubationcell@gmail.com`)
 
-This is the usual setup if SInC mail is Google.
+SInC mail currently goes through this Gmail account (`sinc@iitd.ac.in` is not in use).
 
-1. Sign in at https://mail.google.com as `sinc@iitd.ac.in`.
+1. Sign in at https://mail.google.com as `studentincubationcell@gmail.com`.
 2. Google Account → **Security** → turn on **2-Step Verification** if it is off.
 3. Search Google Account for **App passwords** → create one for “Mail” / “SInC website”.
 4. Copy the 16-character password (spaces optional). **Do not** use the normal inbox password.
@@ -90,16 +90,14 @@ This is the usual setup if SInC mail is Google.
 | `SMTP_HOST` | `smtp.gmail.com` |
 | `SMTP_PORT` | `587` |
 | `SMTP_SECURE` | `false` |
-| `SMTP_USER` | `sinc@iitd.ac.in` |
+| `SMTP_USER` | `studentincubationcell@gmail.com` |
 | `SMTP_PASS` | the 16-character app password |
-| `SMTP_FROM` | `SInC IIT Delhi <sinc@iitd.ac.in>` |
+| `SMTP_FROM` | `SInC IIT Delhi <studentincubationcell@gmail.com>` |
+| `SMTP_REPLY_TO` | `studentincubationcell@gmail.com` |
 | `SITE_URL` | `https://www.sinciitd.in` |
-| `REGISTRY_NOTIFY_EMAIL` | `sinc@iitd.ac.in` |
+| `REGISTRY_NOTIFY_EMAIL` | `studentincubationcell@gmail.com` |
 
 6. Redeploy. Submit `/registry` with a real email you can open. Check **Spam**.
-
-If Google Workspace blocks app passwords, an admin must allow them:
-Admin console → **Security → Access and data control → Less secure apps / App passwords**.
 
 ### Option B — Resend SMTP (often more reliable on Vercel)
 

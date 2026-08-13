@@ -354,7 +354,7 @@ export function RegistryExperience() {
                       ? deepSaved
                         ? `Updated confirmation with your full profile sent to ${entry.email}.`
                         : `Confirmation sent to ${entry.email} with your listing details.`
-                      : `We couldn't send email just now. Keep this page as your record, or write to sinc@iitd.ac.in.`}
+                      : `We couldn't send email just now. Keep this page as your record, or write to studentincubationcell@gmail.com.`}
                   </p>
                   <dl className="mt-5 space-y-2 text-sm">
                     {(
