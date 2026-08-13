@@ -1,0 +1,59 @@
+# Hobby-safe production deploy.
+# Vercel's Git integration blocks commits from anyone who isn't the Hobby owner.
+# This Action deploys as the owner (VERCEL_TOKEN), so contributors can merge to main.
+#
+# One-time setup (Vercel Hobby owner account, e.g. me1240402):
+# 1. https://vercel.com/account/tokens → create token
+# 2. Project Settings → General → copy Project ID
+#    Team / account Settings → copy Team ID (org id)
+# 3. GitHub repo → Settings → Secrets and variables → Actions:
+#      VERCEL_TOKEN
+#      VERCEL_ORG_ID
+#      VERCEL_PROJECT_ID
+# 4. Vercel project → Settings → Git → Ignored Build Step:
+#      exit 0
+#    (skips Vercel's own Git deploy so it can't block contributor commits)
+name: Deploy production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel production env
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy prebuilt
+        run: vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
