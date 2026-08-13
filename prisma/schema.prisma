@@ -3,6 +3,8 @@ generator client {
 }
 
 datasource db {
+  // Local: sqlite. Production build copies this to schema.runtime.prisma
+  // with provider = postgresql when DATABASE_URL starts with postgres.
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }

@@ -43,6 +43,7 @@ export function RegistryExperience() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [entry, setEntry] = useState<RegistryEntry | null>(null);
+  const [mailed, setMailed] = useState(false);
   const [showDeep, setShowDeep] = useState(false);
   const [deepSaved, setDeepSaved] = useState(false);
   const [deep, setDeep] = useState({
@@ -89,6 +90,7 @@ export function RegistryExperience() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Could not save");
       setEntry(data.entry);
+      setMailed(Boolean(data.mailed));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save");
     } finally {
@@ -110,6 +112,7 @@ export function RegistryExperience() {
       if (!res.ok) throw new Error(data.error || "Could not save");
       setEntry(data.entry);
       setDeepSaved(true);
+      setMailed(Boolean(data.mailed));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save");
     } finally {
@@ -137,23 +140,6 @@ export function RegistryExperience() {
     } finally {
       setLoadingList(false);
     }
-  }
-
-  function emailCopy() {
-    if (!entry) return;
-    const subject = encodeURIComponent(
-      `Your SInC Startup Registry confirmation — Entry №${String(entry.id).padStart(3, "0")}`
-    );
-    const body = encodeURIComponent(
-      `You're listed in the IIT Delhi SInC Startup Registry.\n\n` +
-        `Entry: №${String(entry.id).padStart(3, "0")}\n` +
-        `Venture: ${entry.venture}\n` +
-        `Pitch: ${entry.pitch}\n` +
-        `Stage: ${entry.stage}\n` +
-        `Sector: ${entry.sector}\n\n` +
-        `Keep this email as your record.`
-    );
-    window.location.href = `mailto:${entry.email}?subject=${subject}&body=${body}`;
   }
 
   return (
@@ -363,17 +349,40 @@ export function RegistryExperience() {
                     {entry.venture} is saved. The SInC team reviews listings from the
                     internal registry — nothing is published publicly.
                   </p>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground">
+                    {mailed
+                      ? deepSaved
+                        ? `Updated confirmation with your full profile sent to ${entry.email}.`
+                        : `Confirmation sent to ${entry.email} with your listing details.`
+                      : `We couldn't send email just now. Keep this page as your record, or write to sinc@iitd.ac.in.`}
+                  </p>
+                  <dl className="mt-5 space-y-2 text-sm">
+                    {(
+                      [
+                        ["Venture", entry.venture],
+                        ["Pitch", entry.pitch],
+                        ["Stage", entry.stage],
+                        ["Sector", entry.sector],
+                        entry.link ? ["Link", entry.link] : null,
+                        entry.referral ? ["Referral", entry.referral] : null,
+                      ] as ([string, string] | null)[]
+                    )
+                      .filter((row): row is [string, string] => Boolean(row))
+                      .map(([label, value]) => (
+                        <div key={label}>
+                          <dt className="text-xs text-muted">{label}</dt>
+                          <dd className="text-foreground">{value}</dd>
+                        </div>
+                      ))}
+                  </dl>
                 </div>
               </div>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <button type="button" className={primaryBtn} onClick={emailCopy}>
-                  Email me a copy
-                </button>
                 {!showDeep && !deepSaved ? (
                   <button
                     type="button"
-                    className={secondaryBtn}
+                    className={primaryBtn}
                     onClick={() => setShowDeep(true)}
                   >
                     Add full profile
@@ -387,7 +396,8 @@ export function RegistryExperience() {
               {showDeep && !deepSaved ? (
                 <div className="mt-8 space-y-5 border-t border-border pt-6">
                   <p className="text-sm text-muted">
-                    Optional detail for mentors. Saved against this entry.
+                    Optional detail for mentors — problem, solution, funds, deck,
+                    revenue, and next 6–12 months. We email you a copy when you save.
                   </p>
                   {(
                     [

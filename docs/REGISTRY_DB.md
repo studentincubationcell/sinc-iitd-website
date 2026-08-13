@@ -1,80 +1,136 @@
-# Startup Registry — database setup
+# Startup Registry — database + email
 
-The form at `/registry` talks to Next.js API routes, which persist via **Prisma**.
+The form at `/registry` saves via Prisma and emails the founder a confirmation
+(listing details, then the full profile if they add it).
 
-## Local (already working)
-
-- DB file: `.data/registry.db` (SQLite)
-- Env: `.env` (copy from `.env.example`)
-- Passcode: `REGISTRY_PASSCODE` (default in local `.env`)
+## 1. Local (SQLite — already works)
 
 ```bash
+cp .env.example .env
 npm install
 npx prisma migrate dev
 npm run dev
 ```
 
-Browse data: `npm run db:studio`
+- DB file: `.data/registry.db`
+- Browse rows: `npm run db:studio`
+- Coordinator view: `REGISTRY_PASSCODE` in `.env`
 
-## Production (Vercel) — you need Postgres
+SMTP is optional locally. Without `SMTP_USER` / `SMTP_PASS`, listings still save;
+the page tells the founder email could not be sent.
 
-SQLite **does not work** on Vercel (serverless filesystem is ephemeral / read-only). Use a free Postgres host (Neon is simplest).
+---
 
-### 1. Create a Neon database
+## 2. Production database (Neon Postgres)
 
-1. Go to https://console.neon.tech and sign up (GitHub login is fine).
-2. **New project** → name it `sinc-registry` (or similar).
-3. Copy the connection string (starts with `postgresql://…`). Prefer the one with `?sslmode=require`.
+SQLite does **not** persist on Vercel. Use free [Neon](https://console.neon.tech).
 
-### 2. Point Prisma at Postgres
+### Create the database
 
-In `prisma/schema.prisma`, change:
+1. Open https://console.neon.tech and sign in (GitHub is fine).
+2. **New project** → name `sinc-registry` → region close to India (e.g. Singapore / Mumbai if offered).
+3. After create, open **Dashboard → Connection details**.
+4. Copy the **pooled** URI if shown (`…-pooler.….neon.tech`), otherwise the direct URI.
+5. It looks like:
+   `postgresql://neondb_owner:PASSWORD@ep-….neon.tech/neondb?sslmode=require`
 
-```prisma
-datasource db {
-  provider = "postgresql"   // was "sqlite"
-  url      = env("DATABASE_URL")
-}
-```
+### Put it on Vercel
 
-Then locally (with the Neon URL in `.env`):
+Vercel project **sinc-iitd-website** → **Settings → Environment Variables**.
+Add for **Production** and **Preview**:
 
-```bash
-# put Neon URL in .env as DATABASE_URL
-npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_postgres_init/migration.sql
-# or simpler for first Postgres deploy:
-npx prisma db push
-```
+| Name | Value |
+|------|--------|
+| `DATABASE_URL` | the Neon `postgresql://…` string |
+| `REGISTRY_PASSCODE` | a strong secret only coordinators know |
 
-For an existing SQLite migration history, the cleanest first production setup is:
+Redeploy after saving env vars (Deployments → … → Redeploy, or push to `main`).
 
-```bash
-npx prisma db push
-```
+The production build runs `prisma db push` when `DATABASE_URL` starts with `postgres`,
+so the `RegistryEntry` table is created automatically. You do **not** edit
+`prisma/schema.prisma` by hand.
 
-against Neon (creates tables). Commit any schema changes if you alter models later.
+### Check it worked
 
-### 3. Set Vercel environment variables
+1. Submit a test listing on https://www.sinciitd.in/registry
+2. Unlock **View registry** with `REGISTRY_PASSCODE`
+3. Or Neon → **Tables** → `RegistryEntry`
 
-In the Vercel project → **Settings → Environment Variables**:
-
-| Name | Value | Environments |
-|------|--------|----------------|
-| `DATABASE_URL` | Neon `postgresql://…` connection string | Production, Preview |
-| `REGISTRY_PASSCODE` | a strong secret only coordinators know | Production, Preview |
-
-### 4. Redeploy
-
-Push to `main` or click **Redeploy** on Vercel. After deploy:
-
-- Submit a test listing on `https://your-domain/registry`
-- Unlock **View registry** with `REGISTRY_PASSCODE`
-- Or open Neon → **Tables** → `RegistryEntry` to see rows
-
-### 5. Optional: Prisma Studio against production
+Optional, from your laptop (does not change local SQLite):
 
 ```bash
-DATABASE_URL="postgresql://…" npx prisma studio
+$env:DATABASE_URL="postgresql://…"
+npx prisma studio
 ```
 
-Never commit real `.env` or production passcodes.
+Never commit `.env` or production URLs.
+
+---
+
+## 3. SMTP (confirmation emails)
+
+Emails go to the founder who registered. If they later save a **full profile**
+(problem, solution, funds, deck, revenue, next 6–12 months), a second email
+includes those fields too.
+
+Optional `REGISTRY_NOTIFY_EMAIL` BCCs coordinators (use `sinc@iitd.ac.in`).
+
+### Option A — Google Workspace / Gmail (`sinc@iitd.ac.in`)
+
+This is the usual setup if SInC mail is Google.
+
+1. Sign in at https://mail.google.com as `sinc@iitd.ac.in`.
+2. Google Account → **Security** → turn on **2-Step Verification** if it is off.
+3. Search Google Account for **App passwords** → create one for “Mail” / “SInC website”.
+4. Copy the 16-character password (spaces optional). **Do not** use the normal inbox password.
+5. Add these Vercel env vars (Production + Preview):
+
+| Name | Value |
+|------|--------|
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `587` |
+| `SMTP_SECURE` | `false` |
+| `SMTP_USER` | `sinc@iitd.ac.in` |
+| `SMTP_PASS` | the 16-character app password |
+| `SMTP_FROM` | `SInC IIT Delhi <sinc@iitd.ac.in>` |
+| `SITE_URL` | `https://www.sinciitd.in` |
+| `REGISTRY_NOTIFY_EMAIL` | `sinc@iitd.ac.in` |
+
+6. Redeploy. Submit `/registry` with a real email you can open. Check **Spam**.
+
+If Google Workspace blocks app passwords, an admin must allow them:
+Admin console → **Security → Access and data control → Less secure apps / App passwords**.
+
+### Option B — Resend SMTP (often more reliable on Vercel)
+
+1. Sign up at https://resend.com
+2. Add and verify domain `sinciitd.in` (DNS records Resend shows).
+3. Create an API key. SMTP:
+
+| Name | Value |
+|------|--------|
+| `SMTP_HOST` | `smtp.resend.com` |
+| `SMTP_PORT` | `465` |
+| `SMTP_SECURE` | `true` |
+| `SMTP_USER` | `resend` |
+| `SMTP_PASS` | `re_…` API key |
+| `SMTP_FROM` | `SInC IIT Delhi <noreply@sinciitd.in>` |
+
+### Local `.env`
+
+Same names as above. Use `SITE_URL=http://localhost:3000`.
+
+Campus SMTP (`smtp.iitd.ac.in`) usually only works on IIT Delhi networks, so it
+will fail from Vercel. Prefer Gmail Workspace or Resend.
+
+---
+
+## 4. What the founder email contains
+
+**After listing:** entry number, name, email, venture, pitch, stage, sector,
+link, referral, time (IST), plus a link to add a fuller profile.
+
+**After full profile:** the same listing block plus problem, solution, funds,
+deck/demo, revenue/customers, and 6–12 month plans (empty fields omitted).
+
+Listings stay private to the SInC team.

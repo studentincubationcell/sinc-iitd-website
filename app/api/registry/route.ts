@@ -6,6 +6,7 @@ import {
   checkRegistryPasscode,
   nextRegistryNumber,
 } from "@/lib/registry-store";
+import { sendRegistryConfirmation } from "@/lib/registry-mail";
 
 export const runtime = "nodejs";
 
@@ -42,7 +43,8 @@ export async function POST(request: Request) {
       );
     }
     const entry = await createRegistryEntry(parsed.data);
-    return NextResponse.json({ entry }, { status: 201 });
+    const mailed = await sendRegistryConfirmation(entry, "listing");
+    return NextResponse.json({ entry, mailed }, { status: 201 });
   } catch (e) {
     console.error("registry POST", e);
     return NextResponse.json({ error: "Could not save entry" }, { status: 500 });

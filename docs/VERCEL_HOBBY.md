@@ -46,9 +46,11 @@ Then Git auto-deploy can stay on. Only use this if the site/code can be public.
 
 Hobby deploy still needs Postgres (SQLite will not persist on Vercel). See `docs/REGISTRY_DB.md`.
 
-Set on the Vercel project (Production):
+Set on the Vercel project (Production + Preview):
 
 - `DATABASE_URL` — Neon `postgresql://…`
 - `REGISTRY_PASSCODE` — coordinator secret
+- SMTP vars — see `docs/REGISTRY_DB.md` (Gmail app password or Resend)
 
-Then `npx prisma db push` against that URL once (from a laptop with the Neon string in `.env`).
+The production build creates registry tables when `DATABASE_URL` is Postgres.
+Then `npx prisma studio` against Neon is optional, from a laptop.

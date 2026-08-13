@@ -40,6 +40,7 @@ yarn-error.log*
 .vercel
 
 .data/
+prisma/schema.runtime.prisma
 *.local.json
 *.db
 *.db-journal
