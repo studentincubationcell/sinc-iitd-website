@@ -1,38 +1,151 @@
 [
   {
-    "id": "3",
+    "id": "1",
+    "name": "Haard Parikh",
+    "role": "Coordinator",
+    "team": "Coordinators",
+    "order": 4,
+    "expertise": "Leadership",
+    "bio": "Mechanical engineer who'd rather build startups than machines. Always pitching something, always traveling somewhere, running on coffee and bad sleep. Future founder, current chaos agent.",
+    "email": "haard.t.parikh@gmail.com",
+    "image": "/team/haard-parikh.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Deepak Umaraiya",
+    "role": "Coordinator",
+    "team": "Coordinators",
+    "order": 1,
+    "bio": "Founder and builder passionate about technology, AI, and entrepreneurship. I enjoy turning real-world problems into scalable products and businesses.",
+    "email": "deepakumaraiya200@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/deepak-umaraiya-484477325",
+    "instagram": "https://www.instagram.com/deepaku_iitd",
+    "image": "/team/deepak-umaraiya.jpg"
+  },
+  {
+    "id": "5",
+    "name": "Abhijit Das",
+    "role": "Coordinator",
+    "team": "Coordinators",
+    "order": 5,
+    "expertise": "Design & Media",
+    "bio": "AI/ML enthusiast, analytical thinker, and strategic design-minded problem solver. I work at the intersection of technology, data, and visual communication to turn complex ideas into clear, outcome-driven solutions.",
+    "email": "abhijitdasd788@gmail.com",
+    "image": "/team/abhijit-das.jpg"
+  },
+  {
+    "id": "6",
+    "name": "Pari Panwar",
+    "role": "Coordinator",
+    "team": "Coordinators",
+    "order": 3,
+    "expertise": "Marketing & Design",
+    "bio": "B.Des student. I ideate, build, and refuse to let a good idea sit unused. Dancer at heart, entrepreneur in ambition. Half creative brain, half business brain, running on caffeine and too many open tabs.",
+    "email": "pariipanwar@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/pari-panwar-01470a330",
+    "instagram": "https://www.instagram.com/parii.panwar",
+    "image": "/team/pari-panwar.jpg"
+  },
+  {
+    "id": "9",
     "name": "Gagan Tak",
     "role": "Coordinator",
-    "team": "Tech",
+    "team": "Coordinators",
+    "order": 2,
+    "expertise": "Tech",
     "bio": "Leading SInC's mission to turn campus ideas into real ventures.",
     "image": "/team/gagan-tak.jpg"
   },
   {
-    "id": "1",
-    "name": "",
+    "id": "14",
+    "name": "Rupam Nidhi",
     "role": "Coordinator",
-    "team": "Leadership",
-    "bio": ""
+    "team": "Coordinators",
+    "order": 6,
+    "image": "/team/rupam-nidhi.jpg"
   },
   {
-    "id": "2",
-    "name": "",
-    "role": "",
-    "team": "Events",
-    "bio": ""
+    "id": "3",
+    "name": "Amrutanshu Dash",
+    "role": "Executive",
+    "team": "Executives",
+    "expertise": "Events",
+    "bio": "Music, sports, and a dangerous amount of vibecoding. I build things at odd hours, record music at odder ones, and run events at SInC in between. Easy to find, easier to talk to.",
+    "email": "amrutanshudash17@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/amrutanshu-dash-80833836b",
+    "instagram": "https://www.instagram.com/amrutanshudash17",
+    "image": "/team/amrutanshu-dash.jpg"
   },
   {
     "id": "4",
-    "name": "",
-    "role": "",
-    "team": "Outreach",
-    "bio": ""
+    "name": "Tejasva Sharma",
+    "role": "Executive",
+    "team": "Executives",
+    "expertise": "Events",
+    "bio": "I'm usually either watching anime, playing games, or figuring out where to go next. I like meeting new people, exploring random places, and trying things I haven't done before.",
+    "image": "/team/tejasva-sharma.jpg"
   },
   {
-    "id": "5",
-    "name": "",
-    "role": "",
-    "team": "Incubation",
-    "bio": ""
+    "id": "7",
+    "name": "Lakshya Kumar",
+    "role": "Executive",
+    "team": "Executives",
+    "expertise": "Design & Media",
+    "bio": "Love fitness and content creation — weightlifting and chess (complete opposite polarity). I love financial markets but they don't love me. Also a part-time startup enthusiast, sometimes CP too.",
+    "email": "lakshyakumar1977@gmail.com",
+    "instagram": "https://www.instagram.com/lakshya_kumar2025",
+    "image": "/team/lakshya-kumar.jpg"
+  },
+  {
+    "id": "8",
+    "name": "Om Anand Jha",
+    "role": "Executive",
+    "team": "Executives",
+    "bio": "Designer by the day, engineer by night. I'm an amateur, clumsy know-it-all, figuring out where I fit in. I believe in building real products, and hope to do something in the manufacturing sector.",
+    "email": "omanandjha0@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/om-anand-jha-aa442a343",
+    "image": "/team/om-anand-jha.jpg"
+  },
+  {
+    "id": "10",
+    "name": "Vanshika Dhandhi",
+    "role": "Executive",
+    "team": "Executives",
+    "bio": "I enjoy exploring new ideas and figuring out how they can actually work in the real world. Especially interested in startups, building products, and solving everyday problems through practical solutions.",
+    "email": "vanshika.iitd@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/vanshika-dhandhi-117171378",
+    "instagram": "https://www.instagram.com/vanshika._1008",
+    "image": "/team/vanshika.jpg"
+  },
+  {
+    "id": "11",
+    "name": "Aditya Kumar",
+    "role": "Executive",
+    "team": "Executives",
+    "bio": "I play all sports and love to talk to strangers. My favourite hobby is watching movies.",
+    "email": "adityakumar15670954@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/aditya-kumar-598606381",
+    "instagram": "https://www.instagram.com/aditya_ak77",
+    "image": "/team/aditya-kumar.jpg"
+  },
+  {
+    "id": "12",
+    "name": "Kajal Panwar",
+    "role": "Executive",
+    "team": "Executives",
+    "bio": "I love listening to music, roaming around campus, and writing unnecessarily BIG prompts to AI until it finally understands what I mean.",
+    "email": "sosekajal@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/kajal-panwar-81630b41a",
+    "image": "/team/kajal-panwar.jpg"
+  },
+  {
+    "id": "13",
+    "name": "Shreya Munot",
+    "role": "Executive",
+    "team": "Executives",
+    "bio": "Curious by nature and driven by the excitement of turning ideas into action. A B.Tech in Design student at IIT Delhi, I enjoy exploring the intersection of creativity, entrepreneurship, and technology.",
+    "email": "smunot.2901@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/shreya-munot-6900423a5",
+    "image": "/team/shreya-munot.jpg"
   }
 ]

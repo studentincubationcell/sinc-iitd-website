@@ -141,23 +141,28 @@ export function RegistryManage({ token }: { token: string }) {
       <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
         SInC · IIT Delhi
       </p>
-      <div className="mt-3 flex items-start gap-3">
+      <div className="mt-2 flex items-start gap-3">
         <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-brand-teal" />
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             {entry.venture}
           </h1>
-          <p className="mt-2 text-sm text-muted">{listingStatus(entry)}</p>
+          <p className="mt-1 text-sm text-muted">{listingStatus(entry)}</p>
         </div>
       </div>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
+      <p className="mt-3 text-sm leading-relaxed text-muted">
         No login. This browser will remember the listing. Keep the email link if you
         switch devices.
       </p>
 
-      <dl className="mt-8 space-y-3 border border-border px-5 py-6">
+      <dl className="mt-6 grid gap-3 border border-border px-4 py-4 sm:grid-cols-2 sm:px-5 sm:py-5">
         {basics.map(([label, value]) => (
-          <div key={label}>
+          <div
+            key={label}
+            className={
+              label === "Pitch" || label === "Venture" ? "sm:col-span-2" : undefined
+            }
+          >
             <dt className="text-xs text-muted">{label}</dt>
             <dd className="mt-0.5 text-sm text-foreground whitespace-pre-wrap">{value}</dd>
           </div>
@@ -165,17 +170,17 @@ export function RegistryManage({ token }: { token: string }) {
       </dl>
 
       {entry.deep && !showDeep ? (
-        <p className="mt-6 text-sm text-foreground">Full profile is on file.</p>
+        <p className="mt-4 text-sm text-foreground">Full profile is on file.</p>
       ) : null}
 
       {mailed ? (
-        <p className="mt-4 text-sm text-foreground">
+        <p className="mt-3 text-sm text-foreground">
           Updated confirmation sent to {entry.email}.
         </p>
       ) : null}
 
       {!showDeep ? (
-        <div className="mt-6">
+        <div className="mt-5">
           <button
             type="button"
             className={registryPrimaryBtn}
@@ -185,7 +190,7 @@ export function RegistryManage({ token }: { token: string }) {
           </button>
         </div>
       ) : (
-        <div id="profile" className="mt-8 space-y-5 border-t border-border pt-6">
+        <div id="profile" className="mt-6 space-y-4 border-t border-border pt-5">
           <p className="text-sm text-muted">
             Optional detail for mentors — saved against this listing only.
           </p>

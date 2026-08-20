@@ -152,14 +152,14 @@ export function RegistryExperience() {
   return (
     <div>
       {/* Header */}
-      <header className="border-b border-border pb-8">
+      <header className="border-b border-border pb-5">
         <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
           SInC · IIT Delhi
         </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
           {tab === "apply" ? "Startup Registry" : "Registry (internal)"}
         </h1>
-        <p className="mt-3 max-w-lg text-base leading-relaxed text-muted">
+        <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted">
           {tab === "apply" ? (
             <>
               List your venture in a few minutes. Mentors and coordinators review
@@ -170,7 +170,7 @@ export function RegistryExperience() {
           )}
         </p>
 
-        <div className="mt-6 flex gap-6 border-b border-transparent text-sm">
+        <div className="mt-4 flex gap-6 border-b border-transparent text-sm">
           {(
             [
               { id: "apply" as const, label: "List a venture" },
@@ -195,7 +195,7 @@ export function RegistryExperience() {
       </header>
 
       {cached && tab === "apply" && !entry ? (
-        <p className="mt-6 border border-border px-4 py-3 text-sm text-foreground">
+        <p className="mt-5 border border-border px-4 py-2.5 text-sm text-foreground">
           This browser already has a listing for{" "}
           <span className="font-medium">{cached.venture}</span>
           {" · "}
@@ -209,15 +209,15 @@ export function RegistryExperience() {
       ) : null}
 
       {tab === "apply" && (
-        <div className="pt-8">
+        <div className="pt-6">
           {!entry ? (
-            <form onSubmit={submitQuick} className="space-y-6">
+            <form onSubmit={submitQuick} className="space-y-4">
               <p className="font-mono text-xs text-muted">
                 Next listing · Entry {nextId}
               </p>
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="sm:col-span-1">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
                   <label className={registryLabelClass} htmlFor="reg-name">
                     Full name
                   </label>
@@ -230,7 +230,7 @@ export function RegistryExperience() {
                     autoComplete="name"
                   />
                 </div>
-                <div className="sm:col-span-1">
+                <div>
                   <label className={registryLabelClass} htmlFor="reg-email">
                     Kerberos mail
                   </label>
@@ -247,7 +247,7 @@ export function RegistryExperience() {
                 </div>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className={registryLabelClass} htmlFor="reg-phone">
                     Phone
@@ -280,32 +280,33 @@ export function RegistryExperience() {
                 </div>
               </div>
 
-              <div>
-                <label className={registryLabelClass} htmlFor="reg-linkedin">
-                  LinkedIn{" "}
-                  <span className="font-normal text-muted">(optional)</span>
-                </label>
-                <input
-                  id="reg-linkedin"
-                  type="url"
-                  className={registryFieldClass}
-                  placeholder="https://www.linkedin.com/in/…"
-                  value={linkedin}
-                  onChange={(e) => setLinkedin(e.target.value)}
-                />
-              </div>
-
-              <div>
-                <label className={registryLabelClass} htmlFor="reg-venture">
-                  Venture name
-                </label>
-                <input
-                  id="reg-venture"
-                  className={registryFieldClass}
-                  value={venture}
-                  onChange={(e) => setVenture(e.target.value)}
-                  required
-                />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className={registryLabelClass} htmlFor="reg-linkedin">
+                    LinkedIn{" "}
+                    <span className="font-normal text-muted">(optional)</span>
+                  </label>
+                  <input
+                    id="reg-linkedin"
+                    type="url"
+                    className={registryFieldClass}
+                    placeholder="https://www.linkedin.com/in/…"
+                    value={linkedin}
+                    onChange={(e) => setLinkedin(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className={registryLabelClass} htmlFor="reg-venture">
+                    Venture name
+                  </label>
+                  <input
+                    id="reg-venture"
+                    className={registryFieldClass}
+                    value={venture}
+                    onChange={(e) => setVenture(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
 
               <div>
@@ -323,7 +324,7 @@ export function RegistryExperience() {
                 />
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className={registryLabelClass} htmlFor="reg-stage">
                     Stage
@@ -382,38 +383,39 @@ export function RegistryExperience() {
                 </div>
               ) : null}
 
-              <div>
-                <label className={registryLabelClass} htmlFor="reg-link">
-                  Website or deck link{" "}
-                  <span className="font-normal text-muted">(optional)</span>
-                </label>
-                <input
-                  id="reg-link"
-                  type="url"
-                  className={registryFieldClass}
-                  placeholder="https://"
-                  value={link}
-                  onChange={(e) => setLink(e.target.value)}
-                />
-              </div>
-
-              <div>
-                <label className={registryLabelClass} htmlFor="reg-referral">
-                  Refer another founder{" "}
-                  <span className="font-normal text-muted">(optional)</span>
-                </label>
-                <input
-                  id="reg-referral"
-                  className={registryFieldClass}
-                  placeholder="Name or IITD email"
-                  value={referral}
-                  onChange={(e) => setReferral(e.target.value)}
-                />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className={registryLabelClass} htmlFor="reg-link">
+                    Website or deck link{" "}
+                    <span className="font-normal text-muted">(optional)</span>
+                  </label>
+                  <input
+                    id="reg-link"
+                    type="url"
+                    className={registryFieldClass}
+                    placeholder="https://"
+                    value={link}
+                    onChange={(e) => setLink(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className={registryLabelClass} htmlFor="reg-referral">
+                    Refer another founder{" "}
+                    <span className="font-normal text-muted">(optional)</span>
+                  </label>
+                  <input
+                    id="reg-referral"
+                    className={registryFieldClass}
+                    placeholder="Name or IITD email"
+                    value={referral}
+                    onChange={(e) => setReferral(e.target.value)}
+                  />
+                </div>
               </div>
 
               {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
-              <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
                 <p className="text-xs text-muted">
                   Submissions are private to the SInC team.
                 </p>
@@ -423,21 +425,21 @@ export function RegistryExperience() {
               </div>
             </form>
           ) : (
-            <div className="border border-border px-5 py-8 sm:px-8">
+            <div className="border border-border px-5 py-6 sm:px-6">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-teal" />
                 <div>
-                  <h2 className="text-xl font-semibold tracking-tight text-foreground">
+                  <h2 className="text-lg font-semibold tracking-tight text-foreground">
                     Listed as {entryLabel(entry.id)}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted">
                     {entry.venture} is saved. Check your email for a manage link
                     {mailed ? ` sent to ${entry.email}` : ""}.
                   </p>
                   {entry.manageToken ? (
                     <Link
                       href={managePath(entry.manageToken)}
-                      className={`${registryPrimaryBtn} mt-6`}
+                      className={`${registryPrimaryBtn} mt-4`}
                     >
                       Manage listing
                     </Link>
@@ -450,9 +452,9 @@ export function RegistryExperience() {
       )}
 
       {tab === "registry" && (
-        <div className="pt-8">
+        <div className="pt-6">
           {!unlocked ? (
-            <div className="max-w-sm space-y-4 border border-border px-5 py-8">
+            <div className="max-w-sm space-y-3 border border-border px-5 py-6">
               <div className="flex items-center gap-2 text-foreground">
                 <Lock className="h-4 w-4 text-muted" />
                 <h2 className="text-base font-semibold">Coordinator access</h2>
@@ -487,7 +489,7 @@ export function RegistryExperience() {
               ) : null}
             </div>
           ) : entries.length === 0 ? (
-            <p className="border border-border px-5 py-10 text-center text-sm text-muted">
+            <p className="border border-border px-5 py-8 text-center text-sm text-muted">
               No submissions yet.
             </p>
           ) : (
@@ -496,7 +498,7 @@ export function RegistryExperience() {
         </div>
       )}
 
-      <p className="mt-10 text-center text-xs text-muted">
+      <p className="mt-8 text-center text-xs text-muted">
         Questions?{" "}
         <Link href="/contact" className="underline underline-offset-2">
           Contact

@@ -13,7 +13,7 @@ const FEATURES = [
 
 export function ApplyCTA() {
   return (
-    <section className="relative overflow-hidden border-t border-border-ink/10 bg-card py-28 lg:py-36">
+    <section className="relative overflow-hidden border-t border-border-ink/10 bg-card py-16 lg:py-20">
       <div
         className="pointer-events-none absolute inset-0 dot-grid opacity-50"
         style={{
@@ -24,21 +24,20 @@ export function ApplyCTA() {
 
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
-            <span className="mb-7 inline-flex items-center justify-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
-            Start your journey
-          </span>
+            <span className="mb-5 inline-block font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
+              Start your journey
+            </span>
 
-          <h2 className="editorial-display text-5xl text-foreground sm:text-6xl lg:text-[5rem]">
+          <h2 className="editorial-display text-4xl text-foreground sm:text-5xl lg:text-[4.25rem]">
             Ready to build{" "}
             <span className="text-accent">something real?</span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-muted sm:text-xl">
+          <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
             List your venture on the registry in minutes — or apply to Cohort 01 for structured mentorship and momentum.
           </p>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             {FEATURES.map((f) => (
               <span
                 key={f.label}
@@ -50,11 +49,11 @@ export function ApplyCTA() {
             ))}
           </div>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Link href="/registry" className="pill-cta h-14 px-12 text-sm">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link href="/registry" className="pill-cta h-12 px-10 text-sm">
               Join the registry <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/apply" className="pill-cta pill-cta-outline h-14 px-12 text-sm">
+            <Link href="/apply" className="pill-cta pill-cta-outline h-12 px-10 text-sm">
               Apply to Cohort
             </Link>
           </div>
@@ -85,7 +84,7 @@ export function PageHeader({
   narrow?: boolean;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-40">
+    <section className="relative overflow-hidden border-b border-border bg-background pb-10 pt-28 lg:pb-12 lg:pt-32">
       <div className={`relative mx-auto px-5 sm:px-8 lg:px-12 ${narrow ? "max-w-3xl" : "max-w-[96rem]"}`}>
         {backHref && (
           <Link

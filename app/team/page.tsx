@@ -24,11 +24,11 @@ export default function TeamPage() {
         variant="club"
         badge="Team"
         title="The people behind SInC"
-        description="Students across events, tech, outreach, and incubation who make SInC happen."
+        description="The coordinators and executives who make SInC happen."
       />
       <section className="py-16 pb-24">
         <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <TeamIntro count={filledCount} slots={team.length} />
+          <TeamIntro count={filledCount} />
           {team.length === 0 ? (
             <TeamEmptyState />
           ) : (

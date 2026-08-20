@@ -10,6 +10,7 @@ import {
 import { PortfolioPreview } from "@/components/sections/portfolio-preview";
 import { EventsMarquee } from "@/components/sections/events";
 import { ApplyCTA } from "@/components/sections/cta-page-header";
+import { TeamHomeStrip } from "@/components/sections/team-home-strip";
 
 export default function HomePage() {
   return (
@@ -19,6 +20,7 @@ export default function HomePage() {
       <NetworkSignalBand />
       <PathwaysIndex />
       <StatementBand />
+      <TeamHomeStrip />
       <PortfolioPreview />
       <EventsMarquee />
       <BigTypeBand />

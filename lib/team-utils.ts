@@ -1,5 +1,5 @@
 import type { TeamMember } from "@/lib/schemas";
-import { TEAM_DEPARTMENTS } from "@/lib/schemas";
+import { TEAM_BANDS } from "@/lib/schemas";
 
 function isFilled(value?: string) {
   return Boolean(value?.trim());
@@ -27,8 +27,8 @@ export function getTeamInitials(name: string) {
 
 export { isFilled as isTeamFieldFilled };
 
-const departmentRank = new Map(
-  TEAM_DEPARTMENTS.map((department, index) => [department, index])
+const bandRank = new Map(
+  TEAM_BANDS.map((band, index) => [band, index])
 );
 
 export function sortTeamMembers(members: TeamMember[]) {
@@ -37,10 +37,14 @@ export function sortTeamMembers(members: TeamMember[]) {
     const bHasPhoto = isFilled(b.image);
     if (aHasPhoto !== bHasPhoto) return aHasPhoto ? -1 : 1;
 
-    const aRank = departmentRank.get(a.team as (typeof TEAM_DEPARTMENTS)[number]) ?? 99;
-    const bRank = departmentRank.get(b.team as (typeof TEAM_DEPARTMENTS)[number]) ?? 99;
-    if (aRank !== bRank) return aRank - bRank;
+    const aBand = bandRank.get(a.team as (typeof TEAM_BANDS)[number]) ?? 99;
+    const bBand = bandRank.get(b.team as (typeof TEAM_BANDS)[number]) ?? 99;
+    if (aBand !== bBand) return aBand - bBand;
 
-    return a.id.localeCompare(b.id, undefined, { numeric: true });
+    const aOrder = a.order ?? 99;
+    const bOrder = b.order ?? 99;
+    if (aOrder !== bOrder) return aOrder - bOrder;
+
+    return a.name.localeCompare(b.name);
   });
 }

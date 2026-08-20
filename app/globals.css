@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
 /* ─── Design Tokens · Editorial / Swiss-Brutalist ───────── */
-/* Light = paper canvas + ink type. Dark = charcoal canvas + cream type.
-   Inverse bands (programs, footer, CTA) use --inverse / --inverse-foreground
-   so they stay visually distinct in both system themes. */
+/* Light paper canvas only. Inverse bands (programs, footer, CTA) use
+   --inverse / --inverse-foreground for navy sections — not OS dark mode. */
 :root {
-  color-scheme: light;
+  color-scheme: light only;
 
   /* Lumena formula: warm paper canvas + deep navy ink (never black) */
   --background: #f4f3ec;
@@ -83,65 +82,6 @@
   --shadow-glow-gold:   var(--shadow-md);
   --shadow-glow-purple: var(--shadow-md);
   --radius: 0.75rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-
-    --background: #101d33;
-    --foreground: #f0efe8;
-    --muted: #9aa7bd;
-    --card: #17263f;
-    --card-pure: #17263f;
-    --border: #2b3c58;
-    --border-ink: #f0efe8;
-
-    /* Slightly lifted strips on dark navy canvas */
-    --inverse: #17263f;
-    --inverse-foreground: #f0efe8;
-    --inverse-muted: #9aa7bd;
-    --hover-on-inverse: rgba(244, 243, 238, 0.07);
-    --grid-on-inverse: rgba(244, 243, 238, 0.08);
-
-    --shadow-color: rgba(0, 0, 0, 0.45);
-    --header-surface: rgba(17, 17, 16, 0.94);
-    --glass-surface: rgba(17, 17, 16, 0.82);
-    --overlay-scrim: rgba(0, 0, 0, 0.55);
-    --hover-on-canvas: rgba(244, 243, 238, 0.06);
-    --grid-on-canvas: rgba(244, 243, 238, 0.11);
-    --grid-on-canvas-fine: rgba(244, 243, 238, 0.05);
-
-    --cursor-dot: #f4f3ee;
-    --cursor-dot-ring: #111110;
-    --cursor-ring: rgba(244, 243, 238, 0.45);
-
-    /* Cobalt lightens, gold brightens for legibility on navy */
-    --brand-teal: #7d9df0;
-    --brand-blue: #7d9df0;
-    --brand-teal-light: #96b0f4;
-    --brand-blue-light: #96b0f4;
-    --gold: #e3b452;
-    --gold-tint: rgba(227, 180, 82, 0.12);
-    --pop-pink: #7d9df0;
-    --pop-sky: #1c2d4a;
-    --pop-peach: #1c2d4a;
-
-    --on-accent: #101d33;
-    --accent-tint: rgba(125, 157, 240, 0.12);
-
-    --primary: #f4f3ee;
-    --primary-foreground: #0a0a0a;
-    --maroon: #f4f3ee;
-
-    --club-purple:       #f4f3ee;
-    --club-purple-mid:   #e8e8e0;
-    --club-purple-deep:  #ffffff;
-    --club-lavender:     #f4f3ee;
-    --club-lavender-dim: #b8b8b0;
-    --neon-purple:  #f4f3ee;
-    --neon-blue:    #f4f3ee;
-  }
 }
 
 @theme inline {
@@ -512,9 +452,9 @@ body {
 }
 
 /* ─── Layout Helpers ──────────────────────────────────── */
-.section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+.section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 @media (min-width: 1024px) {
-  .section-padding { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+  .section-padding { padding-top: 4.5rem; padding-bottom: 4.5rem; }
 }
 
 /* Gumroad-inspired soft surfaces — readable, airy, not cramped */

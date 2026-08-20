@@ -27,8 +27,7 @@ export function ProgramsScroll({ programs }: { programs: Program[] }) {
             viewport={{ once: true }}
             transition={{ duration: 0.45 }}
           >
-            <span className="mb-5 inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-              <span className="inline-block h-3 w-3 bg-brand-teal" />
+            <span className="mb-5 inline-block font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
               Programs
             </span>
             <h2 className="editorial-display text-4xl text-foreground sm:text-5xl lg:text-[3.5rem]">

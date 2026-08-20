@@ -77,7 +77,12 @@ export function Header() {
               >
                 <button
                   type="button"
-                  className={cn("flex items-center gap-1.5 border-b-2 px-5 text-sm font-semibold transition-colors", isActive ? "border-accent text-foreground" : "border-transparent text-muted hover:text-foreground")}
+                  className={cn(
+                    "relative flex items-center gap-1.5 px-5 text-sm font-semibold transition-colors",
+                    isActive ? "text-foreground" : "text-muted hover:text-foreground",
+                    isActive &&
+                      "after:absolute after:inset-x-5 after:bottom-0 after:h-0.5 after:bg-accent"
+                  )}
                   aria-expanded={isOpen}
                   onClick={() => setActiveGroup(isOpen ? null : group.label)}
                 >

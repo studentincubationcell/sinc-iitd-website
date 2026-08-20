@@ -29,10 +29,8 @@ const displayFont = Bricolage_Grotesque({
 const siteUrl = "https://www.sinciitd.in";
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f3ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#111110" },
-  ],
+  themeColor: "#f4f3ee",
+  colorScheme: "light",
 };
 
 export const metadata: Metadata = {
@@ -89,6 +87,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} h-full antialiased bg-background`}
+      style={{ colorScheme: "light" }}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

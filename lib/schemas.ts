@@ -266,6 +266,8 @@ export const teamMemberSchema = z.object({
   name: z.string(),
   role: z.string(),
   team: z.string(),
+  expertise: z.string().optional(),
+  order: z.number().int().optional(),
   bio: z.string().optional(),
   linkedin: optionalUrl,
   instagram: optionalUrl,
@@ -381,10 +383,4 @@ export const EVENT_CATEGORY_LABELS: Record<
   other: "Event",
 };
 
-export const TEAM_DEPARTMENTS = [
-  "Tech",
-  "Leadership",
-  "Events",
-  "Outreach",
-  "Incubation",
-] as const;
+export const TEAM_BANDS = ["Coordinators", "Executives"] as const;

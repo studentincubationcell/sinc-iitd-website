@@ -63,7 +63,7 @@ function CoordinatorCard({
     <li className="border-b border-border last:border-b-0">
       <button
         type="button"
-        className="flex w-full items-start justify-between gap-3 px-5 py-4 text-left"
+        className="flex w-full items-start justify-between gap-3 px-4 py-3 text-left sm:px-5"
         onClick={onToggle}
         aria-expanded={open}
       >
@@ -79,8 +79,8 @@ function CoordinatorCard({
         </span>
       </button>
       {open ? (
-        <div className="space-y-6 border-t border-border px-5 py-5">
-          <dl className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-5 border-t border-border px-4 py-4 sm:px-5">
+          <dl className="grid gap-3 sm:grid-cols-2">
             <Detail label="Status" value={listingStatus(entry)} />
             <Detail label="Listed" value={listedAt(entry.timestamp)} />
             <Detail label="Founder" value={entry.name} />

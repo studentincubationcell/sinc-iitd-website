@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RegistryPage() {
   return (
     <main className="border-b border-border bg-background">
-      <div className="mx-auto max-w-2xl px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-2xl px-5 pb-12 pt-28 sm:px-8 sm:pb-14 sm:pt-32 lg:pb-16">
         <RegistryExperience />
       </div>
     </main>

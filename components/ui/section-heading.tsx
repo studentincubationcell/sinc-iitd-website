@@ -26,15 +26,16 @@ export function SectionHeading({
         className
       )}
     >
-      <span
-        className={cn(
-          "mb-5 inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted",
-          align === "center" && "justify-center"
-        )}
-      >
-        <span className="inline-block h-3 w-3 bg-accent-lime" />
-        {label}
-      </span>
+      {label ? (
+        <span
+          className={cn(
+            "mb-5 inline-flex items-center font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted",
+            align === "center" && "justify-center"
+          )}
+        >
+          {label}
+        </span>
+      ) : null}
       <h2 className="editorial-display text-3xl text-foreground sm:text-4xl lg:text-[2.75rem]">
         {title}
       </h2>

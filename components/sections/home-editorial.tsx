@@ -4,39 +4,29 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { AsciiPeopleLoopMedia } from "@/components/ui/ascii-people-reel";
 
-/* ─── 00 · Network signal — top-left / large people / bottom-right ─── */
+/* ─── 00 · Network signal — compact two-column layout ─── */
 export function NetworkSignalBand() {
   return (
     <section
       id="network-signal"
       className="relative scroll-mt-20 border-b border-border bg-background"
     >
-      <div className="relative mx-auto max-w-[96rem] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="relative min-h-[70vh] lg:min-h-[78vh]">
-          {/* Top-left */}
-          <Reveal>
-            <div className="relative z-20 max-w-sm">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-                Founders
-              </p>
-              <p className="mt-3 text-lg leading-snug tracking-[-0.015em] text-foreground sm:text-xl">
-                Students with an idea — or the itch to start — finding the room where building
-                begins.
-              </p>
-            </div>
-          </Reveal>
-
-          {/* Middle — large people, soft-dissolved into paper */}
-          <Reveal>
-            <div className="pointer-events-none absolute inset-x-0 top-[12%] bottom-[14%] z-0 sm:top-[8%] lg:top-[4%] lg:bottom-[10%]">
-              <AsciiPeopleLoopMedia className="h-full w-full" showCaption={false} />
-            </div>
-          </Reveal>
-
-          {/* Bottom-right */}
-          <Reveal>
-            <div className="relative z-20 mt-[58vh] flex justify-end sm:mt-[62vh] lg:mt-[64vh]">
-              <div className="max-w-sm text-left sm:text-right">
+      <div className="relative mx-auto max-w-[96rem] px-5 py-12 sm:px-8 lg:px-12 lg:py-16">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10">
+          <div className="space-y-8">
+            <Reveal>
+              <div className="max-w-sm">
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
+                  Founders
+                </p>
+                <p className="mt-3 text-lg leading-snug tracking-[-0.015em] text-foreground sm:text-xl">
+                  Students with an idea — or the itch to start — finding the room where building
+                  begins.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal>
+              <div className="max-w-sm">
                 <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
                   Mentors · Investors
                 </p>
@@ -45,6 +35,12 @@ export function NetworkSignalBand() {
                   real doors.
                 </p>
               </div>
+            </Reveal>
+          </div>
+
+          <Reveal>
+            <div className="relative mx-auto h-[240px] w-full max-w-xl sm:h-[280px] lg:h-[320px]">
+              <AsciiPeopleLoopMedia className="h-full w-full" showCaption={false} />
             </div>
           </Reveal>
         </div>
@@ -57,17 +53,17 @@ export function NetworkSignalBand() {
 export function ManifestoBand() {
   return (
     <section id="manifesto" className="relative scroll-mt-20 overflow-hidden bg-inverse">
-      <div className="relative mx-auto max-w-[96rem] px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-36">
+      <div className="relative mx-auto max-w-[96rem] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal>
           <blockquote className="relative z-10 max-w-3xl">
-            <p className="mb-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-teal/80">
+            <p className="mb-5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-teal/80">
               10,000 engineers · one campus
             </p>
             <p className="headline-tight text-balance text-3xl leading-[1.15] text-brand-teal sm:text-5xl lg:text-[3.2rem]">
               &ldquo;A campus with 10,000 engineers doesn&apos;t have an idea problem. It has a
               starting problem &mdash; and starting is exactly what a community can fix.&rdquo;
             </p>
-            <footer className="mt-10 text-base text-inverse-foreground">
+            <footer className="mt-8 text-base text-inverse-foreground">
               Student Incubation Cell
               <span className="block text-inverse-muted">IIT Delhi</span>
             </footer>
@@ -82,7 +78,7 @@ export function ManifestoBand() {
 export function StatementBand() {
   return (
     <section className="bg-accent-tint">
-      <div className="mx-auto max-w-[96rem] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+      <div className="mx-auto max-w-[96rem] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal>
           <p className="headline-tight max-w-3xl text-balance text-3xl leading-[1.16] text-foreground sm:text-4xl lg:text-[2.6rem]">
             Great student startups are not accidents. They come from{" "}
@@ -129,7 +125,7 @@ const PATHWAYS = [
 export function PathwaysIndex() {
   return (
     <section className="border-b border-border bg-background">
-      <div className="mx-auto max-w-[96rem] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+      <div className="mx-auto max-w-[96rem] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal>
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
             Ways in
@@ -138,13 +134,13 @@ export function PathwaysIndex() {
             Pick a door. Start moving.
           </h2>
         </Reveal>
-        <ol className="mt-14 divide-y divide-border border-y border-border">
+        <ol className="mt-10 divide-y divide-border border-y border-border">
           {PATHWAYS.map((item, i) => (
             <li key={item.href}>
               <Reveal>
                 <Link
                   href={item.href}
-                  className="group grid gap-3 py-8 transition-colors sm:grid-cols-[4rem_1fr_auto] sm:items-baseline sm:gap-8"
+                  className="group grid gap-3 py-5 transition-colors sm:grid-cols-[4rem_1fr_auto] sm:items-baseline sm:gap-8"
                 >
                   <span className="font-mono text-sm text-muted">
                     {String(i + 1).padStart(2, "0")}
@@ -173,7 +169,7 @@ export function PathwaysIndex() {
 export function CampusAtmosphereBand() {
   return (
     <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden">
-      <div className="relative aspect-[21/9] min-h-[280px] w-full sm:min-h-[360px] lg:min-h-[520px]">
+      <div className="relative aspect-[21/9] min-h-[240px] w-full sm:min-h-[300px] lg:min-h-[360px]">
         <Image
           src="/campus/iitd-atmosphere-softlight.png"
           alt="IIT Delhi main building"
@@ -192,10 +188,10 @@ export function CampusAtmosphereBand() {
   );
 }
 
-/* ─── Big type band — full-viewport, heavily blurred campus wash ─── */
+/* ─── Big type band — content-height, blurred campus wash ─── */
 export function BigTypeBand() {
   return (
-    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] flex min-h-[100svh] w-screen items-center overflow-hidden bg-background">
+    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] flex w-screen items-center overflow-hidden bg-background">
       <div className="pointer-events-none absolute inset-0">
         <Image
           src="/campus/iitd-atmosphere-cartoon.png"
@@ -207,7 +203,7 @@ export function BigTypeBand() {
         />
         <div className="absolute inset-0 bg-background/55" />
       </div>
-      <div className="relative mx-auto w-full max-w-[96rem] px-5 py-24 sm:px-8 lg:px-12">
+      <div className="relative mx-auto w-full max-w-[96rem] px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
         <Reveal>
           <p className="headline-tight max-w-4xl text-balance text-4xl leading-[1.1] text-foreground sm:text-5xl lg:text-[3.8rem]">
             Built on campus.
