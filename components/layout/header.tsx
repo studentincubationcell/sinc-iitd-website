@@ -64,21 +64,21 @@ export function Header() {
       <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <Brand />
 
-        <nav className="hidden items-stretch self-stretch lg:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center self-stretch lg:flex" aria-label="Primary navigation">
           {groups.map((group) => {
             const isActive = group.links.some(({ href }) => pathname === href || pathname.startsWith(`${href}/`));
             const isOpen = activeGroup === group.label;
             return (
               <div
                 key={group.label}
-                className="relative flex"
+                className="relative flex h-full items-center"
                 onMouseEnter={() => setActiveGroup(group.label)}
                 onMouseLeave={() => setActiveGroup(null)}
               >
                 <button
                   type="button"
                   className={cn(
-                    "relative flex items-center gap-1.5 px-5 text-sm font-semibold transition-colors",
+                    "relative flex items-center gap-1.5 px-5 py-2 text-sm font-semibold transition-colors",
                     isActive ? "text-foreground" : "text-muted hover:text-foreground",
                     isActive &&
                       "after:absolute after:inset-x-5 after:bottom-0 after:h-0.5 after:bg-accent"
